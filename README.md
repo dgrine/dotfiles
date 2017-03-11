@@ -1,3 +1,3 @@
 # Installation
 
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/dgrine/setup/master/setup.rb)"
+bash <(curl -s https://raw.githubusercontent.com/dgrine/setup/master/setup.sh)
