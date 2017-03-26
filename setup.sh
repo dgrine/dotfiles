@@ -1,4 +1,4 @@
-# Determine OS
+echo "Determining OS"
 if [ "${OSTYPE}" == "darwin16" ]; then
 	PLATFORM="mac"
 	BASH_RC=".bash_profile"
@@ -10,7 +10,7 @@ else
 	exit 1
 fi
 
-# Pre-requisites
+echo "Verifying pre-requisites"
 if [ "${PLATFORM}" == "mac" ]; then
 	if [ ! `command -v brew` ]; then
 		echo "Installing brew"
@@ -18,7 +18,7 @@ if [ "${PLATFORM}" == "mac" ]; then
 	fi
 fi
 
-# Checkout or update project
+echo "Getting up-to-date local copy"
 BASE="${HOME}/.my"
 REPO="${BASE}/setup"
 cd ${HOME}
@@ -34,12 +34,13 @@ else
 	git pull --rebase
 fi
 
-# Vim
-echo "Installing .vimrc"
+echo "Configuring vim"
 cd ${HOME}
 if [ -f "${HOME}/.vimrc" ]; then
-	echo "Renaming previous .vimrc to .vimrc.my-orig"
-	mv ${HOME}/.vimrc ${HOME}/.vimrc.my-orig
+	if [ ! -f "${HOME}/.vimrc.my-orig" ]; then
+		echo "Renaming previous .vimrc to .vimrc.my-orig"
+		mv ${HOME}/.vimrc ${HOME}/.vimrc.my-orig
+	fi
 fi
 ln -s ${REPO}/.vimrc
 if [ ! -f "${HOME}/.vim/colors/seagull.vim" ]; then
@@ -49,11 +50,12 @@ if [ ! -f "${HOME}/.vim/colors/seagull.vim" ]; then
 	curl -O https://raw.githubusercontent.com/nightsense/seabird/master/colors/seagull.vim
 fi
 
-# Bash profile
-echo "Installing ${BASH_RC}"
+echo "Configuring Bash"
 if [ -f "${HOME}/${BASH_RC}" ]; then
-	echo "Renaming previous ${BASH_RC} to ${BASH_RC}.my-orig"
-	mv ${HOME}/${BASH_RC} ${HOME}/${BASH_RC}.my-orig
+	if [ ! -f "${HOME}/${BASH_RC}.my-orig" ]; then
+		echo "Renaming previous ${BASH_RC} to ${BASH_RC}.my-orig"
+		mv ${HOME}/${BASH_RC} ${HOME}/${BASH_RC}.my-orig
+	fi
 fi
 ln -s ${REPO}/.bash_profile ${HOME}/${BASH_RC}
 
