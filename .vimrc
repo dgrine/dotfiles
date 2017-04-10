@@ -55,5 +55,5 @@ set cinoptions+=g0
 " colorscheme summerfruit256
 colorscheme seagull
 
-nnoremap <esc> :nohlsearch<CR><esc>
+" nnoremap <esc> :nohlsearch<CR><esc>
 
