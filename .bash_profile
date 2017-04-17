@@ -25,7 +25,7 @@ fi
 alias sshx='ssh -X -C -c blowfish-cbc,arcfour'
 alias grep='grep --color=auto'
 alias ebp='e ~/.bash_profile'
-alias ebpl='e ~/.bash_profile_custom'
+alias ebpl='e ~/.bash_profile_local'
 alias sbp='source ~/.bash_profile'
 alias scpalt='rsync avzP'
 alias m='make -j7'
@@ -33,7 +33,7 @@ alias l='ls -alh'
 alias gitstatus='git status'
 alias cddev='cd ~/dev'
 
-if [ -f "${HOME}/.bash_profile_custom" ]; then
-	source .bash_profile_custom
+if [ -f "${HOME}/.bash_profile_local" ]; then
+	source .bash_profile_local
 fi
 
