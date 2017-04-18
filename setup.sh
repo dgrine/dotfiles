@@ -1,5 +1,5 @@
 echo "Determining OS"
-if [ "${OSTYPE}" == "darwin16" ]; then
+if [[ "${OSTYPE}" == *"darwin16"* ]]; then
 	PLATFORM="mac"
 	BASH_RC=".bash_profile"
 elif [ "${OSTYPE}" == "linux-gnu" ]; then
