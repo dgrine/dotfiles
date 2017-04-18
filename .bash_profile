@@ -37,3 +37,11 @@ if [ -f "${HOME}/.bash_profile_local" ]; then
 	source .bash_profile_local
 fi
 
+if [ "${PLATFORM}" == "mac" ]; then
+	MC_WRAPPER=`find /usr/local/Cellar/midnight-commander/ -name mc-wrapper.sh | tail -n 1`
+	if [ "${MC_WRAPPER}" != "" ]; then
+		alias mc=". ${MC_WRAPPER}"
+	fi
+else
+	#TODO: Linux version
+fi
