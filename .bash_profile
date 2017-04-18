@@ -17,6 +17,28 @@ export PS1='\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ '
 export PATH=$PATH:/usr/local/mysql/bin
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+
+#Midnight-commander wrapper
+if [ "${PLATFORM}" == "mac" ]; then
+	TMP_VAR=`find /usr/local/Cellar/midnight-commander/ -name mc-wrapper.sh | tail -n 1`
+	if [ "${TMP_VAR}" != "" ]; then
+		alias mc=". ${TMP_VAR}"
+	fi
+fi
+
+#Bash completion
+if [ "${PLATFORM}" == "mac" ]; then
+	TMP_VAR=`find /usr/local/Cellar/bash-completion/ -name bash_completion | tail -n 1`
+	if [ "${TMP_VAR}" != "" ]; then
+		. ${TMP_VAR}
+	fi
+fi
+
+#ViM
+if [ "${PLATFORM}" == "mac" ]; then
+	alias vim='mvim -v'
+fi
+
 if [ "${PLATFORM}" == "mac" ]; then
 	alias e='mvim'
 else
@@ -32,14 +54,8 @@ alias m='make -j7'
 alias l='ls -alh'
 alias gitstatus='git status'
 alias cddev='cd ~/dev'
+alias cdrepos='cd ~/dev/repos'
 
 if [ -f "${HOME}/.bash_profile_local" ]; then
-	source .bash_profile_local
-fi
-
-if [ "${PLATFORM}" == "mac" ]; then
-	MC_WRAPPER=`find /usr/local/Cellar/midnight-commander/ -name mc-wrapper.sh | tail -n 1`
-	if [ "${MC_WRAPPER}" != "" ]; then
-		alias mc=". ${MC_WRAPPER}"
-	fi
+	source ${HOME}/.bash_profile_local
 fi
