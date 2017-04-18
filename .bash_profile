@@ -42,6 +42,4 @@ if [ "${PLATFORM}" == "mac" ]; then
 	if [ "${MC_WRAPPER}" != "" ]; then
 		alias mc=". ${MC_WRAPPER}"
 	fi
-else
-	#TODO: Linux version
 fi
