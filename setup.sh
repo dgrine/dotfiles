@@ -57,6 +57,9 @@ if [ -f "${HOME}/${BASH_RC}" ]; then
 		mv ${HOME}/${BASH_RC} ${HOME}/${BASH_RC}.my-orig
 	fi
 fi
+if [ "${PLATFORM}" == "mac" ]; then
+    brew install bash-completion
+fi
 ln -s ${REPO}/.bash_profile ${HOME}/${BASH_RC}
 
 echo "Everything went OK."
