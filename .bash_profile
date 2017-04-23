@@ -54,6 +54,7 @@ alias scpalt='rsync avzP'
 alias m='make -j7'
 alias l='ls -alh'
 alias gitstatus='git status'
+alias cdmy='cd ~/.my/setup'
 alias cddev='cd ~/dev'
 alias cdrepos='cd ~/dev/repos'
 
