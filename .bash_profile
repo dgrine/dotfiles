@@ -10,7 +10,12 @@ else
 	exit 1
 fi
 
-export EDITOR=vi
+
+if [ "${PLATFORM}" == "mac" ]; then
+	export EDITOR="vim -v"
+else
+	export EDITOR=vim
+fi
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 export PS1='\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ '
@@ -37,6 +42,7 @@ fi
 #ViM
 if [ "${PLATFORM}" == "mac" ]; then
 	alias vim='mvim -v'
+	alias vi='vim'
 fi
 
 if [ "${PLATFORM}" == "mac" ]; then
