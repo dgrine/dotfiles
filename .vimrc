@@ -43,6 +43,7 @@ set tabstop=4
 set shiftwidth=4
 set ruler
 set laststatus=2
+set noswapfile
 
 filetype plugin on
 let g:pydiction_location = '/Users/djamelg/.vim/bundle/pydiction/complete-dict' 
