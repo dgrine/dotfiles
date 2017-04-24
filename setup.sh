@@ -1,14 +1,13 @@
 echo "Determining OS"
 if [[ "${OSTYPE}" == *"darwin16"* ]]; then
 	PLATFORM="mac"
-	BASH_RC=".bash_profile"
 elif [ "${OSTYPE}" == "linux-gnu" ]; then
 	PLATFORM="linux"
-	BASH_RC=".bashrc"
 else
 	echo "error: unsupported platform ${OSTYPE}"
 	exit 1
 fi
+echo "-> ${PLATFORM}"
 
 echo "Verifying pre-requisites"
 if [ "${PLATFORM}" == "mac" ]; then
@@ -51,6 +50,7 @@ if [ ! -f "${HOME}/.vim/colors/seagull.vim" ]; then
 fi
 
 echo "Configuring Bash"
+BASH_RC=".bash_profile"
 if [ -f "${HOME}/${BASH_RC}" ]; then
 	if [ ! -f "${HOME}/${BASH_RC}.my-orig" ]; then
 		echo "Renaming previous ${BASH_RC} to ${BASH_RC}.my-orig"
