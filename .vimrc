@@ -61,8 +61,6 @@ set cinoptions+=g0
 " colorscheme summerfruit256
 colorscheme seagull
 
-" nnoremap <esc> :nohlsearch<CR><esc>
-
 " Disable middle mouse buttons
 nnoremap <MiddleMouse> <Nop>
 nnoremap <2-MiddleMouse> <Nop>
@@ -75,3 +73,7 @@ inoremap <4-MiddleMouse> <Nop>
 
 " YcmCompleter GoTo mapping
 nnoremap <C-Space> :YcmCompleter GoTo <Enter>
+"
+" Disable highlight from search
+nnoremap <C-[> :noh<CR>
+
