@@ -18,6 +18,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'justinmk/vim-sneak'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'Frydac/Vim-Auro'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -45,6 +46,7 @@ set shiftwidth=4
 set ruler
 set laststatus=2
 set noswapfile
+set cursorline
 
 filetype plugin on
 let g:pydiction_location = '/Users/djamelg/.vim/bundle/pydiction/complete-dict' 
@@ -70,3 +72,6 @@ inoremap <MiddleMouse> <Nop>
 inoremap <2-MiddleMouse> <Nop>
 inoremap <3-MiddleMouse> <Nop>
 inoremap <4-MiddleMouse> <Nop>
+
+" YcmCompleter GoTo mapping
+nnoremap <C-Space> :YcmCompleter GoTo <Enter>

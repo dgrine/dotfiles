@@ -10,7 +10,6 @@ else
 	exit 1
 fi
 
-
 if [ "${PLATFORM}" == "mac" ]; then
 	export EDITOR="vim -v"
 else
@@ -38,6 +37,9 @@ if [ "${PLATFORM}" == "mac" ]; then
 		. ${TMP_VAR}
 	fi
 fi
+
+#ViM mode for bash
+set -o vi
 
 #ViM
 if [ "${PLATFORM}" == "mac" ]; then
