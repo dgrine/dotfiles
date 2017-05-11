@@ -51,6 +51,7 @@ else
 fi
 alias sshx='ssh -X -C -c blowfish-cbc,arcfour'
 alias grep='grep --color=auto'
+alias evrc='e ~/.vimrc'
 alias ebp='e ~/.bash_profile'
 alias ebpl='e ~/.bash_profile_local'
 alias sbp='source ~/.bash_profile'
