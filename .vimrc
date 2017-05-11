@@ -19,6 +19,9 @@ Plugin 'justinmk/vim-sneak'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'Frydac/Vim-Auro'
+Plugin 'tpope/vim-fugitive'
+Plugin 'gregsexton/gitv'
+Plugin 'terryma/vim-expand-region'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -71,9 +74,21 @@ inoremap <2-MiddleMouse> <Nop>
 inoremap <3-MiddleMouse> <Nop>
 inoremap <4-MiddleMouse> <Nop>
 
+" Vertical split with new buffer
+nnoremap <leader>vn :vnew<CR>
+nnoremap <leader>hn :new<CR>
+
 " YcmCompleter GoTo mapping
 nnoremap <C-Space> :YcmCompleter GoTo <Enter>
-"
+
 " Disable highlight from search
 nnoremap <C-[> :noh<CR>
 
+" Ignore
+set wildignore+=*/env/*,*/cache/*,*/.git/*,*/deliverables/*
+
+" CtrlP
+" show open buffers
+nnoremap <leader>pb    :CtrlPBuffer<CR>
+" show most recent used files
+nnoremap <leader>pm   :CtrlPMRUFiles<CR>
