@@ -38,9 +38,6 @@ if [ "${PLATFORM}" == "mac" ]; then
 	fi
 fi
 
-#ViM mode for bash
-set -o vi
-
 #ViM
 if [ "${PLATFORM}" == "mac" ]; then
 	alias vim='mvim -v'
