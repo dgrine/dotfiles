@@ -62,7 +62,8 @@ set cinoptions+=t0
 set cinoptions+=g0
 
 " colorscheme summerfruit256
-colorscheme seagull
+"colorscheme seagull
+colorscheme solarized
 
 " Disable middle mouse buttons
 nnoremap <MiddleMouse> <Nop>
