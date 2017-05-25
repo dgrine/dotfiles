@@ -61,9 +61,13 @@ set cindent
 set cinoptions+=t0
 set cinoptions+=g0
 
-" colorscheme summerfruit256
+set termguicolors
+set t_Co=16
+"colorscheme summerfruit256
 "colorscheme seagull
-colorscheme solarized
+"colorscheme solarized
+"colorscheme sidonia
+colorscheme iceberg
 
 " Disable middle mouse buttons
 nnoremap <MiddleMouse> <Nop>
@@ -83,7 +87,7 @@ nnoremap <leader>hn :new<CR>
 nnoremap <C-Space> :YcmCompleter GoTo <Enter>
 
 " Disable highlight from search
-nnoremap <C-[> :noh<CR>
+nnoremap <leader>l :noh<CR>
 
 " Ignore
 set wildignore+=*/env/*,*/cache/*,*/.git/*,*/deliverables/*
