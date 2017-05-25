@@ -47,6 +47,8 @@ if [ ! -f "${HOME}/.vim/colors/seagull.vim" ]; then
 	mkdir -p ${HOME}/.vim/colors
 	cd  ${HOME}/.vim/colors
 	curl -O https://raw.githubusercontent.com/nightsense/seabird/master/colors/seagull.vim
+    curl -O https://raw.githubusercontent.com/AlessandroYorba/Sidonia/master/colors/sidonia.vim
+    curl -O https://raw.githubusercontent.com/cocopon/iceberg.vim/master/colors/iceberg.vim
 fi
 
 echo "Configuring Bash"
