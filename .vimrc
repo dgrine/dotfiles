@@ -61,13 +61,17 @@ set cindent
 set cinoptions+=t0
 set cinoptions+=g0
 
-set termguicolors
-set t_Co=16
 "colorscheme summerfruit256
 "colorscheme seagull
 "colorscheme solarized
 "colorscheme sidonia
-colorscheme iceberg
+if has("gui_running")
+    colorscheme iceberg
+else
+    set termguicolors
+    set t_Co=16
+    colorscheme sidonia
+endif
 
 " Disable middle mouse buttons
 nnoremap <MiddleMouse> <Nop>
