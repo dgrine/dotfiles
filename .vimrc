@@ -22,6 +22,8 @@ Plugin 'Frydac/Vim-Auro'
 Plugin 'tpope/vim-fugitive'
 Plugin 'gregsexton/gitv'
 Plugin 'terryma/vim-expand-region'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'stefandtw/quickfix-reflector.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -61,17 +63,18 @@ set cindent
 set cinoptions+=t0
 set cinoptions+=g0
 
-"colorscheme summerfruit256
+colorscheme summerfruit256
 "colorscheme seagull
 "colorscheme solarized
 "colorscheme sidonia
-if has("gui_running")
-    colorscheme iceberg
-else
-    set termguicolors
-    set t_Co=16
-    colorscheme sidonia
-endif
+"colorscheme messy
+"if has("gui_running")
+"    colorscheme messy
+"else
+"    set termguicolors
+"    set t_Co=16
+"    colorscheme messy
+"endif
 
 " Disable middle mouse buttons
 nnoremap <MiddleMouse> <Nop>
@@ -96,8 +99,11 @@ nnoremap <leader>l :noh<CR>
 " Ignore
 set wildignore+=*/env/*,*/cache/*,*/.git/*,*/deliverables/*
 
+" Search for selected text
+vnoremap // y/<C-R>"<CR>
+
 " CtrlP
 " show open buffers
-nnoremap <leader>pb    :CtrlPBuffer<CR>
+nnoremap <leader>pb :CtrlPBuffer<CR>
 " show most recent used files
-nnoremap <leader>pm   :CtrlPMRUFiles<CR>
+nnoremap <leader>m :CtrlPMRUFiles<CR>
