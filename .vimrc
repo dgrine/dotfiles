@@ -63,8 +63,10 @@ set cindent
 set cinoptions+=t0
 set cinoptions+=g0
 
-colorscheme summerfruit256
-"colorscheme seagull
+set termguicolors
+set t_Co=16
+"colorscheme summerfruit256
+colorscheme seagull
 "colorscheme solarized
 "colorscheme sidonia
 "colorscheme messy
