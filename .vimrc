@@ -52,6 +52,7 @@ set ruler
 set laststatus=2
 set noswapfile
 set cursorline
+set mouse=a
 
 filetype plugin on
 let g:pydiction_location = '/Users/djamelg/.vim/bundle/pydiction/complete-dict' 
