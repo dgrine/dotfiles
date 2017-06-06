@@ -56,7 +56,7 @@ set cursorline
 filetype plugin on
 let g:pydiction_location = '/Users/djamelg/.vim/bundle/pydiction/complete-dict' 
 let g:airline#extensions#tabline#enabled = 1
-set wildignore+=*/cache/*
+set wildignore+=*/cache/*,*/*.wav
 nnoremap <leader>b :CtrlPBuffer<CR>
 
 set cindent
