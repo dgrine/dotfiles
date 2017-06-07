@@ -67,7 +67,13 @@ function parse_git_dirty {
 	fi
 }
 
-export PS1="\[\e[1;32m\]\u\[\e[m\]\[\e[1;30m\]@\[\e[m\]\[\e[1;33m\]\h\[\e[m\]:\[\e[34m\]\W\[\e[m\]\[\e[35m\]\`parse_git_branch\`\[\e[m\] "
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+    #Remote
+    export PS1="\[\e[1;32m\]\u\[\e[m\]\[\e[1;30m\]@\[\e[m\]\[\e[1;33m\]\h\[\e[m\]:\[\e[1;34m\]\W\[\e[m\]\[\e[35m\]\`parse_git_branch\`\[\e[m\] "
+else
+    #Local
+    export PS1="\[\e[1;32m\]\u\[\e[m\]:\[\e[1;34m\]\W\[\e[m\]\[\e[35m\]\`parse_git_branch\`\[\e[m\] "
+fi
 
 #Midnight-commander wrapper
 if [ "${PLATFORM}" == "mac" ]; then
