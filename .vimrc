@@ -64,8 +64,10 @@ set cindent
 set cinoptions+=t0
 set cinoptions+=g0
 
-set termguicolors
-set t_Co=16
+if v:version >= 800
+    set termguicolors
+    set t_Co=16
+endif
 "colorscheme summerfruit256
 colorscheme seagull
 "colorscheme solarized
