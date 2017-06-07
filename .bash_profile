@@ -75,14 +75,6 @@ else
     export PS1="\[\e[1;32m\]\u\[\e[m\]:\[\e[1;34m\]\W\[\e[m\]\[\e[35m\]\`parse_git_branch\`\[\e[m\] "
 fi
 
-#Midnight-commander wrapper
-if [ "${PLATFORM}" == "mac" ]; then
-	TMP_VAR=`find /usr/local/Cellar/midnight-commander/ -name mc-wrapper.sh | tail -n 1`
-	if [ "${TMP_VAR}" != "" ]; then
-		alias mc=". ${TMP_VAR}"
-	fi
-fi
-
 #Bash completion
 if [ "${PLATFORM}" == "mac" ]; then
 	TMP_VAR=`find /usr/local/Cellar/bash-completion/ -name bash_completion | tail -n 1`
@@ -103,7 +95,6 @@ else
 	alias e='vim'
 fi
 alias r='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
-#alias r='ranger'
 alias sshx='ssh -X -C -c blowfish-cbc,arcfour'
 alias grep='grep --color=auto'
 alias evrc='e ~/.vimrc'
