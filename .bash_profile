@@ -111,7 +111,7 @@ alias grep='grep --color=auto'
 alias s='git status'
 alias pr='git pull --rebase'
 alias p='git push'
-alias b='git submodule foreach git branch'
+alias b='git branch; git submodule foreach git branch'
 #Development
 alias cddev='cd ~/dev'
 alias cdrepos='cd ~/dev/repos'
