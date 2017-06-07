@@ -94,23 +94,28 @@ if [ "${PLATFORM}" == "mac" ]; then
 else
 	alias e='vim'
 fi
-alias r='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
+#Configuration
+alias cdmy='cd ~/.my/setup'
 alias sshx='ssh -X -C -c blowfish-cbc,arcfour'
-alias grep='grep --color=auto'
 alias evrc='e ~/.vimrc'
 alias ebp='e ~/.bash_profile'
 alias ebpl='e ~/.bash_profile_local'
 alias sbp='source ~/.bash_profile'
 alias senv='source env/bin/activate'
 alias scpalt='rsync avzP'
-alias m='make -j7'
 alias l='ls -alh'
+#Tools
+alias r='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
+alias grep='grep --color=auto'
+#Git
 alias s='git status'
 alias pr='git pull --rebase'
 alias p='git push'
-alias cdmy='cd ~/.my/setup'
+alias b='git submodule foreach git branch'
+#Development
 alias cddev='cd ~/dev'
 alias cdrepos='cd ~/dev/repos'
+alias m='make -j7'
 
 if [ -f "${HOME}/.bash_profile_local" ]; then
 	source ${HOME}/.bash_profile_local
