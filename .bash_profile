@@ -87,13 +87,11 @@ fi
 if [ "${PLATFORM}" == "mac" ]; then
 	alias vim='mvim -v'
 	alias vi='vim'
+    alias e='mvim'
+else
+    alias e='vim'
 fi
 
-if [ "${PLATFORM}" == "mac" ]; then
-	alias e='mvim'
-else
-	alias e='vim'
-fi
 #Configuration
 alias cdmy='cd ~/.my/setup'
 alias sshx='ssh -X -C -c blowfish-cbc,arcfour'
@@ -106,12 +104,13 @@ alias scpalt='rsync avzP'
 alias l='ls -alh'
 #Tools
 alias r='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
-alias grep='grep --color=auto'
+alias grep='grep -E --color=auto'
 #Git
 alias s='git status'
 alias pr='git pull --rebase'
 alias p='git push'
 alias b='git branch; git submodule foreach git branch'
+alias c='git commit'
 #Development
 alias cddev='cd ~/dev'
 alias cdrepos='cd ~/dev/repos'
@@ -120,3 +119,5 @@ alias m='make -j7'
 if [ -f "${HOME}/.bash_profile_local" ]; then
 	source ${HOME}/.bash_profile_local
 fi
+
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
