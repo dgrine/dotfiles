@@ -21,9 +21,13 @@ Plugin 'leafgarland/typescript-vim'
 Plugin 'Frydac/Vim-Auro'
 Plugin 'tpope/vim-fugitive'
 Plugin 'gregsexton/gitv'
-Plugin 'terryma/vim-expand-region'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'stefandtw/quickfix-reflector.vim'
+Plugin 'danchoi/ri.vim'
+Plugin 'dkprice/vim-easygrep'
+Plugin 'Tuxdude/mark.vim'
+Plugin 'bronson/vim-visual-star-search'
+Plugin 'Valloric/ListToggle'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -97,9 +101,10 @@ nnoremap <leader>hn :new<CR>
 
 " YcmCompleter GoTo mapping
 nnoremap <C-Space> :YcmCompleter GoTo <Enter>
+let g:ycm_always_populate_location_list = 1
 
-" Disable highlight from search
-nnoremap <leader>l :noh<CR>
+" Disable highlight from search (last part is for vim-mark)
+nnoremap <leader><space> :noh<CR>:MarkClear<cr>
 
 " Ignore
 set wildignore+=*/env/*,*/cache/*,*/.git/*,*/deliverables/*
@@ -109,6 +114,11 @@ vnoremap // y/<C-R>"<CR>
 
 " CtrlP
 " show open buffers
-nnoremap <leader>pb :CtrlPBuffer<CR>
+nnoremap <leader>b :CtrlPBuffer<CR>
 " show most recent used files
-nnoremap <leader>m :CtrlPMRUFiles<CR>
+nnoremap <leader>k :CtrlPMRUFiles<CR>
+
+" vim-mark
+" ignore leader r
+nnoremap <Plug>IgnoreMarkRegex <Plug>MarkRegex
+
