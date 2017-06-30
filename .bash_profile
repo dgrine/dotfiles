@@ -109,7 +109,7 @@ alias grep='grep -E --color=auto'
 alias s='git status'
 alias pr='git pull --rebase'
 alias p='git push'
-alias b='git branch; git submodule foreach git branch'
+alias b='echo Top-level; git branch; git submodule foreach git branch'
 alias c='git commit'
 #Development
 alias cddev='cd ~/dev'
