@@ -61,7 +61,7 @@ set mouse=a
 filetype plugin on
 let g:pydiction_location = '/Users/djamelg/.vim/bundle/pydiction/complete-dict' 
 let g:airline#extensions#tabline#enabled = 1
-set wildignore+=*/cache/*,*/*.wav
+set wildignore+=*/cache/*,*/*.wav,*/node_modules/*,*/build/*
 nnoremap <leader>b :CtrlPBuffer<CR>
 
 set cindent
