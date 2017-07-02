@@ -115,6 +115,7 @@ alias c='git commit'
 alias cddev='cd ~/dev'
 alias cdrepos='cd ~/dev/repos'
 alias m='make -j7'
+alias mkenv='virtualenv env'
 
 if [ -f "${HOME}/.bash_profile_local" ]; then
 	source ${HOME}/.bash_profile_local
