@@ -117,6 +117,9 @@ vnoremap // y/<C-R>"<CR>
 nnoremap <leader>b :CtrlPBuffer<CR>
 " show most recent used files
 nnoremap <leader>k :CtrlPMRUFiles<CR>
+let g:ctrlp_working_path_mode = ''
+let g:ctrlp_match_window = 'min:4,max:999'
+let g:ctrlp_switch_buffer = 'e'
 
 " vim-mark
 " ignore leader r
