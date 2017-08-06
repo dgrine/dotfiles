@@ -102,6 +102,11 @@ nnoremap <leader>hn :new<CR>
 " YcmCompleter GoTo mapping
 nnoremap <C-Space> :YcmCompleter GoTo <Enter>
 let g:ycm_always_populate_location_list = 1
+if has('unix')
+    if has('mac')
+        let g:clang_library_path = '/usr/local/Cellar/llvm/3.8.1/lib/'
+    endif
+endif
 
 " Disable highlight from search (last part is for vim-mark)
 nnoremap <leader><space> :noh<CR>:MarkClear<cr>
