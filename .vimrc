@@ -28,6 +28,7 @@ Plugin 'dkprice/vim-easygrep'
 Plugin 'Tuxdude/mark.vim'
 Plugin 'bronson/vim-visual-star-search'
 Plugin 'Valloric/ListToggle'
+Plugin 'hzchirs/vim-material'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -73,7 +74,7 @@ if v:version >= 800
     set t_Co=16
 endif
 "colorscheme summerfruit256
-colorscheme seagull
+" colorscheme seagull
 "colorscheme solarized
 "colorscheme sidonia
 "colorscheme messy
@@ -84,6 +85,8 @@ colorscheme seagull
 "    set t_Co=16
 "    colorscheme messy
 "endif
+colorscheme vim-material
+let g:airline_theme='material'
 
 " Disable middle mouse buttons
 nnoremap <MiddleMouse> <Nop>
@@ -107,6 +110,7 @@ if has('unix')
         let g:clang_library_path = '/usr/local/Cellar/llvm/3.8.1/lib/'
     endif
 endif
+let g:ycm_autoclose_preview_window_after_completion=1
 
 " Disable highlight from search (last part is for vim-mark)
 nnoremap <leader><space> :noh<CR>:MarkClear<cr>
@@ -130,3 +134,5 @@ let g:ctrlp_switch_buffer = 'e'
 " ignore leader r
 nnoremap <Plug>IgnoreMarkRegex <Plug>MarkRegex
 
+" Hide all scrollbars
+set guioptions=
