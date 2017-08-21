@@ -87,8 +87,6 @@ fi
 alias e='vim'
 if [ "${PLATFORM}" == "mac" ]; then
     alias ee='mvim -v'
-else
-    alias e='vim'
 fi
 
 #Configuration
