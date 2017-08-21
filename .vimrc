@@ -29,6 +29,7 @@ Plugin 'Tuxdude/mark.vim'
 Plugin 'bronson/vim-visual-star-search'
 Plugin 'Valloric/ListToggle'
 Plugin 'hzchirs/vim-material'
+Plugin 'scrooloose/nerdtree'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -62,7 +63,7 @@ set mouse=a
 filetype plugin on
 let g:pydiction_location = '/Users/djamelg/.vim/bundle/pydiction/complete-dict' 
 let g:airline#extensions#tabline#enabled = 1
-set wildignore+=*/cache/*,*/*.wav,*/node_modules/*,*/build/*
+set wildignore+=*/cache/*,*/*.wav,*/node_modules/*
 nnoremap <leader>b :CtrlPBuffer<CR>
 
 set cindent
@@ -136,3 +137,15 @@ nnoremap <Plug>IgnoreMarkRegex <Plug>MarkRegex
 
 " Hide all scrollbars
 set guioptions=
+
+" NERDTree
+" Open
+map <C-T> :NERDTreeToggle<CR>
+" Close if no other buffers
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" set the width of the nerdtree window bigger, default is 31
+let g:NERDTreeWinSize=50
+let g:NERDTreeDirArrows=0
+let g:NERDTreeQuitOnOpen=1
+" find current file in nerdtree
+nnoremap <leader>tf   :NERDTreeFind<CR>

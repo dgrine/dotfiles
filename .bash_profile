@@ -85,9 +85,8 @@ fi
 
 #ViM
 if [ "${PLATFORM}" == "mac" ]; then
-	alias vim='mvim -v'
-	alias vi='vim'
-    alias e='mvim'
+    alias e='vim'
+    alias eg='mvim -v'
 else
     alias e='vim'
 fi
