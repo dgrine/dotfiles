@@ -13,7 +13,7 @@ fi
 if [ "${PLATFORM}" == "mac" ]; then
 	export EDITOR="vim -v"
 else
-	export EDITOR=vim
+	export EDITOR="vim"
 fi
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
@@ -86,7 +86,7 @@ fi
 #ViM
 alias e='vim'
 if [ "${PLATFORM}" == "mac" ]; then
-    alias ee='mvim -v'
+    alias ee='mvim'
 fi
 
 #Configuration
