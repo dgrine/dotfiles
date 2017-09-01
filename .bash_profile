@@ -84,9 +84,9 @@ if [ "${PLATFORM}" == "mac" ]; then
 fi
 
 #ViM
-alias e='vim'
+alias ce='vim'
 if [ "${PLATFORM}" == "mac" ]; then
-    alias ee='mvim'
+    alias e='mvim'
 fi
 
 #Configuration
@@ -101,13 +101,16 @@ alias scpalt='rsync avzP'
 alias l='ls -alh'
 #Tools
 alias r='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
-alias grep='grep -E --color=auto'
+alias grep='grep -E -n --color=auto'
+alias ack='ack --nogroup'
 #Git
 alias s='git status'
+alias a='git add *'
+alias cm='git commit -m '
 alias pr='git pull --rebase'
 alias p='git push'
 alias b='echo Top-level; git branch; git submodule foreach git branch'
-alias c='git commit'
+alias cuth='git commit -m uth'
 #Development
 alias cddev='cd ~/dev'
 alias cdrepos='cd ~/dev/repos'
