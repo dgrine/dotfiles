@@ -19,6 +19,7 @@ Plugin 'justinmk/vim-sneak'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'Frydac/Vim-Auro'
+Plugin 'Frydac/Vim-Tree'
 Plugin 'tpope/vim-fugitive'
 Plugin 'gregsexton/gitv'
 Plugin 'scrooloose/nerdcommenter'
@@ -28,8 +29,9 @@ Plugin 'dkprice/vim-easygrep'
 Plugin 'Tuxdude/mark.vim'
 Plugin 'bronson/vim-visual-star-search'
 Plugin 'Valloric/ListToggle'
-Plugin 'hzchirs/vim-material'
+" Plugin 'hzchirs/vim-material'
 Plugin 'scrooloose/nerdtree'
+Plugin 'mileszs/ack.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -74,10 +76,10 @@ if v:version >= 800
     set termguicolors
     set t_Co=16
 endif
-"colorscheme summerfruit256
-" colorscheme seagull
+" colorscheme summerfruit256
+colorscheme seagull
 "colorscheme solarized
-"colorscheme sidonia
+" colorscheme sidonia
 "colorscheme messy
 "if has("gui_running")
 "    colorscheme messy
@@ -86,8 +88,8 @@ endif
 "    set t_Co=16
 "    colorscheme messy
 "endif
-colorscheme vim-material
-let g:airline_theme='material'
+" colorscheme vim-material
+" let g:airline_theme='material'
 
 " Disable middle mouse buttons
 nnoremap <MiddleMouse> <Nop>
