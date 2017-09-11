@@ -50,6 +50,7 @@ if [ ! -f "${HOME}/.vim/colors/seagull.vim" ]; then
     curl -O https://raw.githubusercontent.com/AlessandroYorba/Sidonia/master/colors/sidonia.vim
     curl -O https://raw.githubusercontent.com/cocopon/iceberg.vim/master/colors/iceberg.vim
     curl -O https://raw.githubusercontent.com/vim-scripts/summerfruit256.vim/master/colors/summerfruit256.vim
+    curl -O https://github.com/Addisonbean/Vim-Xcode-Theme/tree/master/colors/xcode.vim
 fi
 
 echo "Configuring Bash"

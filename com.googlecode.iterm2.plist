@@ -1659,6 +1659,8 @@
 	<true/>
 	<key>HideTabNumber</key>
 	<true/>
+	<key>HotkeyMigratedFromSingleToMulti</key>
+	<true/>
 	<key>JobName</key>
 	<true/>
 	<key>LoadPrefsFromCustomFolder</key>
@@ -1684,7 +1686,7 @@
 	gAKACoAN0xAJChEVGVdOUy5rZXlzoxITFIADgASABaMWFxiABoAHgAiACVpJZGVudGlm
 	aWVyVVdpZHRoVkhpZGRlblEwI0BowAAAAAAACNIhIiMkWiRjbGFzc25hbWVYJGNsYXNz
 	ZXNcTlNEaWN0aW9uYXJ5oiMlWE5TT2JqZWN00xAJCicrGaMSExSAA4AEgAWjLC0YgAuA
-	DIAIgAlRMSNAdCAAAAAAANIhIjM0Xk5TTXV0YWJsZUFycmF5ozM1JVdOU0FycmF5XxAP
+	DIAIgAlRMSNAdKAAAAAAANIhIjM0Xk5TTXV0YWJsZUFycmF5ozM1JVdOU0FycmF5XxAP
 	TlNLZXllZEFyY2hpdmVy0Tg5VUFycmF5gAEACAARABoAIwAtADIANwBGAEwAUQBcAGMA
 	ZgBoAGoAbABzAHsAfwCBAIMAhQCJAIsAjQCPAJEAnACiAKkAqwC0ALUAugDFAM4A2wDe
 	AOcA7gDyAPQA9gD4APwA/gEAAQIBBAEGAQ8BFAEjAScBLwFBAUQBSgAAAAAAAAIBAAAA
@@ -1708,15 +1710,15 @@
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>999 426 445 77 0 0 1920 1057 </string>
 	<key>NSWindow Frame SUStatusFrame</key>
-	<string>760 709 400 129 0 0 1920 1057 </string>
+	<string>440 499 400 129 0 0 1280 777 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>650 512 620 392 0 0 1920 1057 </string>
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>269 139 606 456 0 0 1920 1057 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>288 246 796 473 0 0 1280 777 </string>
+	<string>156 326 770 429 0 0 1280 777 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>3 239 794 537 0 0 1280 777 </string>
+	<string>34 185 794 552 0 0 1920 1080 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>558 157 850 587 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -4453,7 +4455,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-08-31T14:06:39Z</date>
+	<date>2017-09-01T17:59:03Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ShowBookmarkName</key>
@@ -4483,7 +4485,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.0.15</string>
+	<string>3.1.beta.8</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
