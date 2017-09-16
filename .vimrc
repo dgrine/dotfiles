@@ -76,8 +76,9 @@ if v:version >= 800
     set termguicolors
     set t_Co=16
 endif
+colorscheme xcode
 " colorscheme summerfruit256
-colorscheme seagull
+" colorscheme seagull
 "colorscheme solarized
 " colorscheme sidonia
 "colorscheme messy
