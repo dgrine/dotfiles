@@ -115,6 +115,7 @@ if has('unix')
     endif
 endif
 let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_confirm_extra_conf=0
 
 " Disable highlight from search (last part is for vim-mark)
 nnoremap <leader><space> :noh<CR>:MarkClear<cr>
@@ -151,4 +152,7 @@ let g:NERDTreeWinSize=50
 let g:NERDTreeDirArrows=0
 let g:NERDTreeQuitOnOpen=1
 " find current file in nerdtree
-nnoremap <leader>tf   :NERDTreeFind<CR>
+nnoremap <leader>tf :NERDTreeFind<CR>
+
+" NERDTreeComment
+let g:NERDCustomDelimiters = { 'tree': { 'left': '<', 'right': '>'}, 'asd': { 'left' : '//' } }
