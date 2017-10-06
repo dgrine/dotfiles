@@ -90,12 +90,13 @@ if [ "${PLATFORM}" == "mac" ]; then
 fi
 
 #Configuration
-alias cdmy='cd ~/.my/setup'
+export mypath="$HOME/.my/setup"
+alias cdmy='cd $mypath'
 alias sshx='ssh -X -C -c blowfish-cbc,arcfour'
-alias evrc='e ~/.vimrc'
-alias ebp='e ~/.bash_profile'
-alias ebpl='e ~/.bash_profile_local'
-alias sbp='source ~/.bash_profile'
+alias evrc='e $HOME/.vimrc'
+alias ebp='e $HOME/.bash_profile'
+alias ebpl='e $HOME/.bash_profile_local'
+alias sbp='source $HOME/.bash_profile'
 alias senv='source env/bin/activate'
 alias scpalt='rsync avzP'
 alias l='ls -alh'
@@ -112,8 +113,8 @@ alias p='git push'
 alias b='echo Top-level; git branch; git submodule foreach git branch'
 alias cuth='git commit -m uth'
 #Development
-alias cddev='cd ~/dev'
-alias cdrepos='cd ~/dev/repos'
+alias cddev='cd $HOME/dev'
+alias cdrepos='cd $HOME/dev/repos'
 alias m='make -j7'
 alias mkenv='virtualenv env'
 
