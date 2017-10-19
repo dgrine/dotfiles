@@ -116,6 +116,8 @@ if has('unix')
 endif
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_confirm_extra_conf=0
+" Apply YCM FixIt
+map <leader>f :YcmCompleter FixIt<CR>
 
 " Disable highlight from search (last part is for vim-mark)
 nnoremap <leader><space> :noh<CR>:MarkClear<cr>

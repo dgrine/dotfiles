@@ -84,12 +84,14 @@ function fix-xcode-auro-cli {
     cd core-build/cache/cbs/builds/xcode/${mode}/
 
     module='core-std'
+    echo "Symbolic link for ${module}"
     mkdir -p ${module}/${mode}
     cd ${module}/${mode}
-    ln -s ../auro-*.build/${mode}/${module}_CXX.build/Objects-normal/lib${module}_CXX.a lib${module}.a
+    ln -s ../auro-*.build/${mode}/${module}_C.build/Objects-normal/lib${module}_C.a lib${module}.a
     cd ../..
 
     module='core-io'
+    echo "Symbolic link for ${module}"
     mkdir -p ${module}/${mode}
     cd ${module}/${mode}
     ln -s ../auro-*.build/${mode}/${module}_CXX.build/Objects-normal/lib${module}_CXX.a lib${module}.a
