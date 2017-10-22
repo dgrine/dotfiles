@@ -18,6 +18,7 @@ fi
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 export PATH=$PATH:/usr/local/mysql/bin
+export PATH="/usr/local/sbin:$PATH"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 #Get current branch in git repo
@@ -128,3 +129,4 @@ if [ -f "${HOME}/.bash_profile_local" ]; then
 fi
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
