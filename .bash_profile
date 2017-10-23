@@ -93,6 +93,7 @@ fi
 #Configuration
 export mypath="$HOME/.my/setup"
 alias cdmy='cd $mypath'
+alias cdvim='cd $HOME/.vim/'
 alias sshx='ssh -X -C -c blowfish-cbc,arcfour'
 alias evrc='e $HOME/.vimrc'
 alias ebp='e $HOME/.bash_profile'
