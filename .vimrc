@@ -29,7 +29,6 @@ Plugin 'dkprice/vim-easygrep'
 Plugin 'Tuxdude/mark.vim'
 Plugin 'bronson/vim-visual-star-search'
 Plugin 'Valloric/ListToggle'
-" Plugin 'hzchirs/vim-material'
 Plugin 'scrooloose/nerdtree'
 Plugin 'mileszs/ack.vim'
 
