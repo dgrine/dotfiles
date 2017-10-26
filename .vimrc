@@ -31,6 +31,7 @@ Plugin 'bronson/vim-visual-star-search'
 Plugin 'Valloric/ListToggle'
 Plugin 'scrooloose/nerdtree'
 Plugin 'mileszs/ack.vim'
+Plugin 'kshenoy/vim-signature'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
