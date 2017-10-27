@@ -14,6 +14,9 @@ if [ "${PLATFORM}" == "mac" ]; then
 	if [ ! `command -v brew` ]; then
 		echo "Installing brew"
 		ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+        echo "Installing pip"
+        brew install pip
+        pip2 install --upgrade pip setuptools
 	fi
 fi
 
@@ -65,10 +68,6 @@ if [ "${PLATFORM}" == "mac" ]; then
     brew install bash-completion
 fi
 ln -s ${REPO}/.bash_profile ${HOME}/${BASH_RC}
-
-echo "Configuring Python"
-easy_install pip
-pip install --user better_exceptions
 
 echo "Everything went OK."
 
