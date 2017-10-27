@@ -33,7 +33,7 @@ else
 	git pull --rebase
 fi
 
-echo "Configuring vim"
+echo "Configuring VIM"
 cd ${HOME}
 if [ -f "${HOME}/.vimrc" ]; then
 	if [ ! -f "${HOME}/.vimrc.my-orig" ]; then
@@ -65,6 +65,10 @@ if [ "${PLATFORM}" == "mac" ]; then
     brew install bash-completion
 fi
 ln -s ${REPO}/.bash_profile ${HOME}/${BASH_RC}
+
+echo "Configuring Python"
+easy_install pip
+pip install --user better_exceptions
 
 echo "Everything went OK."
 
