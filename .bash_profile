@@ -125,7 +125,7 @@ alias master='ch master'
 alias cddev='cd $HOME/dev'
 alias cdrepos='cd $HOME/dev/repos'
 alias m='make -j7'
-alias mkenv='virtualenv env'
+alias mkenv='virtualenv -p python3 env'
 
 if [ -f "${HOME}/.bash_profile_local" ]; then
 	source ${HOME}/.bash_profile_local
