@@ -73,6 +73,7 @@ function auro {
 function default {
     cbs
     debug
+    rtc
     noverbose
 }
 
