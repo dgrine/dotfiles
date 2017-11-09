@@ -32,6 +32,9 @@ Plugin 'Valloric/ListToggle'
 Plugin 'scrooloose/nerdtree'
 Plugin 'mileszs/ack.vim'
 Plugin 'kshenoy/vim-signature'
+Plugin 'tpope/vim-unimpaired' " shortcuts that make life easier
+Plugin 'nathanaelkane/vim-indent-guides' " indent guides
+Plugin 'SirVer/ultisnips'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -155,6 +158,27 @@ let g:NERDTreeDirArrows=0
 let g:NERDTreeQuitOnOpen=1
 " find current file in nerdtree
 nnoremap <leader>tf :NERDTreeFind<CR>
-
-" NERDTreeComment
 let g:NERDCustomDelimiters = { 'tree': { 'left': '<', 'right': '>'}, 'asd': { 'left' : '//' } }
+
+" set list prettier
+set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+
+" vim-indent-guides
+let g:indent_guides_guide_size=1
+let g:indent_guides_start_level=2
+"set ts=4 sw=4 et
+
+" Trigger configuration. Do not use <tab> if you use
+" https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-h>"
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+" Where should UltiSnipsEdit put its files, by default it just went into the
+" home directory, rather in the vim folder
+if has('win32')
+    let g:UltiSnipsSnippetsDir='~/vimfiles/bundle/vim-auro/UltiSnips'
+else
+    let g:UltiSnipsSnippetsDir='~/.vim/bundle/vim-auro/UltiSnips'
+endif
