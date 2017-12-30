@@ -1,5 +1,5 @@
 echo "Determining OS"
-if [[ "${OSTYPE}" == *"darwin16"* ]]; then
+if [[ "${OSTYPE}" == *"darwin17"* ]]; then
 	PLATFORM="mac"
 elif [ "${OSTYPE}" == "linux-gnu" ]; then
 	PLATFORM="linux"
@@ -54,6 +54,7 @@ if [ ! -f "${HOME}/.vim/colors/seagull.vim" ]; then
     curl -O https://raw.githubusercontent.com/cocopon/iceberg.vim/master/colors/iceberg.vim
     curl -O https://raw.githubusercontent.com/vim-scripts/summerfruit256.vim/master/colors/summerfruit256.vim
     curl -O https://raw.githubusercontent.com/Addisonbean/Vim-Xcode-Theme/master/colors/xcode.vim
+    curl -O https://raw.githubusercontent.com/zacanger/angr.vim/master/colors/angr.vim
 fi
 
 echo "Configuring Bash"

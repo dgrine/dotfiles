@@ -35,6 +35,8 @@ Plugin 'kshenoy/vim-signature'
 Plugin 'tpope/vim-unimpaired' " shortcuts that make life easier
 Plugin 'nathanaelkane/vim-indent-guides' " indent guides
 Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'yuttie/comfortable-motion.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -80,6 +82,7 @@ if v:version >= 800
     set t_Co=16
 endif
 colorscheme xcode
+colorscheme angr
 " colorscheme summerfruit256
 " colorscheme seagull
 "colorscheme solarized
@@ -110,7 +113,9 @@ nnoremap <leader>vn :vnew<CR>
 nnoremap <leader>hn :new<CR>
 
 " YcmCompleter GoTo mapping
-nnoremap <C-Space> :YcmCompleter GoTo <Enter>
+nnoremap <C-Space> :YcmCompleter GoTo<CR>
+nnoremap <C-Return> :vsplit <bar> YcmCompleter GoTo<CR>
+
 let g:ycm_always_populate_location_list = 1
 if has('unix')
     if has('mac')
@@ -168,6 +173,7 @@ let g:indent_guides_guide_size=1
 let g:indent_guides_start_level=2
 "set ts=4 sw=4 et
 
+" Ulti-Snips
 " Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<c-j>"
@@ -181,4 +187,32 @@ if has('win32')
     let g:UltiSnipsSnippetsDir='~/vimfiles/bundle/vim-auro/UltiSnips'
 else
     let g:UltiSnipsSnippetsDir='~/.vim/bundle/vim-auro/UltiSnips'
-endif
+endif 
+
+" EasyGrep
+let g:EasyGrepMode='TrackExt'
+let g:EasyGrepJumpToMatch=0
+let g:EasyGrepRecursive=1
+let g:EasyGrepCommand=1
+let g:EasyGrepSearchCurrentBufferDir=0
+
+" Clang-format
+noremap <C-K> :pyf ~/dev/bin/clang-format.py<cr>
+inoremap <C-K> <c-o>:pyf ~/dev/bin/clang-format.py<cr>
+
+" comfortable-motion
+"let g:comfortable_motion_friction = 80.0
+"let g:comfortable_motion_air_drag = 2.0
+
+"let g:comfortable_motion_friction = 200.0
+"let g:comfortable_motion_air_drag = 0.0
+
+"let g:comfortable_motion_friction = 0.0
+"let g:comfortable_motion_air_drag = 4.0
+
+let g:comfortable_motion_no_default_key_mappings = 1
+let g:comfortable_motion_impulse_multiplier = 1  " Feel free to increase/decrease this value.
+nnoremap <silent> <C-d> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 2)<CR>
+nnoremap <silent> <C-u> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -2)<CR>
+nnoremap <silent> <C-f> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 4)<CR>
+nnoremap <silent> <C-b> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -4)<CR>
