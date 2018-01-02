@@ -82,7 +82,7 @@ if v:version >= 800
     set t_Co=16
 endif
 colorscheme xcode
-colorscheme angr
+"colorscheme angr
 " colorscheme summerfruit256
 " colorscheme seagull
 "colorscheme solarized
