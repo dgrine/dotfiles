@@ -81,7 +81,11 @@ if v:version >= 800
     set termguicolors
     set t_Co=16
 endif
-colorscheme xcode
+if has("gui_running")
+    colorscheme xcode
+else
+    colorscheme molokai
+end
 "colorscheme angr
 " colorscheme summerfruit256
 " colorscheme seagull
