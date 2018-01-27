@@ -37,6 +37,7 @@ Plugin 'nathanaelkane/vim-indent-guides' " indent guides
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'yuttie/comfortable-motion.vim'
+Plugin 'airblade/vim-gitgutter'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
