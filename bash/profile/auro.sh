@@ -61,11 +61,13 @@ function verbose {
 function nortc {
     export auro_postfix=""
     auro_reload
+    auro
 }
 
 function rtc {
     export auro_postfix="-rtc"
     auro_reload
+    auro
 }
 
 function auro {
