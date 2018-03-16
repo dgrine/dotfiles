@@ -71,7 +71,7 @@ set mouse=a
 filetype plugin on
 let g:pydiction_location = '/Users/djamelg/.vim/bundle/pydiction/complete-dict' 
 let g:airline#extensions#tabline#enabled = 1
-set wildignore+=*/cache/*,*/*.wav,*/node_modules/*
+set wildignore+=*/cache/*,*/*.wav,*/node_modules/*,*.o
 nnoremap <leader>b :CtrlPBuffer<CR>
 
 set cindent
@@ -85,23 +85,9 @@ endif
 if has("gui_running")
     colorscheme xcode
 else
-    colorscheme molokai
+    "colorscheme molokai
+    colorscheme xcode
 end
-"colorscheme angr
-" colorscheme summerfruit256
-" colorscheme seagull
-"colorscheme solarized
-" colorscheme sidonia
-"colorscheme messy
-"if has("gui_running")
-"    colorscheme messy
-"else
-"    set termguicolors
-"    set t_Co=16
-"    colorscheme messy
-"endif
-" colorscheme vim-material
-" let g:airline_theme='material'
 
 " Disable middle mouse buttons
 nnoremap <MiddleMouse> <Nop>
@@ -136,7 +122,8 @@ map <leader>f :YcmCompleter FixIt<CR>
 nnoremap <leader><space> :noh<CR>:MarkClear<cr>
 
 " Ignore
-set wildignore+=*/env/*,*/cache/*,*/.git/*,*/deliverables/*
+" let ctrlp ignore paths with the folder cache in the name
+set wildignore+=*/cache/*,*/.git/*,*/deliverables/*,*/*.wav,*/generated/*,*/tags,*/cmake-build*/*,*/core-vst/external/*
 
 " Search for selected text
 vnoremap // y/<C-R>"<CR>
@@ -149,6 +136,8 @@ nnoremap <leader>k :CtrlPMRUFiles<CR>
 let g:ctrlp_working_path_mode = ''
 let g:ctrlp_match_window = 'min:4,max:999'
 let g:ctrlp_switch_buffer = 'e'
+let g:ctrlp_max_files=0
+let g:ctrlp_max_depth=40
 
 " vim-mark
 " ignore leader r
@@ -177,6 +166,12 @@ set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 let g:indent_guides_guide_size=1
 let g:indent_guides_start_level=2
 "set ts=4 sw=4 et
+
+" ack
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+cnoreabbrev ag Ack!
 
 " Ulti-Snips
 " Trigger configuration. Do not use <tab> if you use

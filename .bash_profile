@@ -121,11 +121,16 @@ alias p='git push'
 alias ms='git merge --squash'
 alias ch='git checkout'
 alias master='ch master'
+alias gc='git clone -j8 --recursive'
+alias gd='git difftool'
+alias gdd='git difftool --dir-diff'
 #Development
 alias cddev='cd $HOME/dev'
 alias cdrepos='cd $HOME/dev/repos'
 alias m='make -j7'
 alias mkenv='virtualenv -p python3 env'
+alias ag='ag --nogroup'
+alias meld='open /Applications/Meld.app'
 #Path
 export PATH="${PATH}:/$HOME/dev/bin"
 
