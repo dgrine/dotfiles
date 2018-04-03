@@ -56,6 +56,11 @@ if [ ! -f "${HOME}/.vim/colors/seagull.vim" ]; then
     curl -O https://raw.githubusercontent.com/Addisonbean/Vim-Xcode-Theme/master/colors/xcode.vim
     curl -O https://raw.githubusercontent.com/zacanger/angr.vim/master/colors/angr.vim
 fi
+mkdir -p ${HOME}/.vim/bundle
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+vim +PluginInstall +qall
+cd ~/.vim/bundle/YouCompleteMe
+./install.py --clang-completer
 
 echo "Configuring Bash"
 BASH_RC=".bash_profile"
