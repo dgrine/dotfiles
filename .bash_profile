@@ -123,7 +123,7 @@ alias ch='git checkout'
 alias master='ch master'
 alias gc='git clone -j8 --recursive'
 alias gd='git difftool'
-alias gdd='git difftool --dir-diff'
+alias gdd='git difftool'
 #Development
 alias cddev='cd $HOME/dev'
 alias cdrepos='cd $HOME/dev/repos'

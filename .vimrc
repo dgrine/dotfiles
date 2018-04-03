@@ -123,7 +123,7 @@ nnoremap <leader><space> :noh<CR>:MarkClear<cr>
 
 " Ignore
 " let ctrlp ignore paths with the folder cache in the name
-set wildignore+=*/cache/*,*/.git/*,*/deliverables/*,*/*.wav,*/generated/*,*/tags,*/cmake-build*/*,*/core-vst/external/*
+set wildignore+=*/cache/*,*/.git/*,*/deliverables/*,*/*.wav,*/tags,*/cmake-build*/*,*/core-vst/external/*
 
 " Search for selected text
 vnoremap // y/<C-R>"<CR>
