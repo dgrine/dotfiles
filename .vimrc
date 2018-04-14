@@ -38,6 +38,8 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'yuttie/comfortable-motion.vim'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'vim-scripts/indentpython.vim'
+Plugin 'davidhalter/jedi-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -67,6 +69,7 @@ set laststatus=2
 set noswapfile
 set cursorline
 set mouse=a
+set encoding=utf-8
 
 filetype plugin on
 let g:pydiction_location = '/Users/djamelg/.vim/bundle/pydiction/complete-dict' 

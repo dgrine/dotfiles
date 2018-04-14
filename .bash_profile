@@ -131,6 +131,7 @@ alias m='make -j7'
 alias mkenv='virtualenv -p python3 env'
 alias ag='ag --nogroup'
 alias meld='open /Applications/Meld.app'
+alias p3='python3'
 #Path
 export PATH="${PATH}:/$HOME/dev/bin"
 
