@@ -40,6 +40,8 @@ Plugin 'yuttie/comfortable-motion.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'davidhalter/jedi-vim'
+Plugin 'dag/vim-fish'
+Plugin 'tpope/vim-abolish'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -91,6 +93,10 @@ else
     "colorscheme molokai
     colorscheme xcode
 end
+
+" Also match <> with highlight and % jump
+set matchpairs+=<:>
+"set matchpairs+=|:|
 
 " Disable middle mouse buttons
 nnoremap <MiddleMouse> <Nop>
@@ -219,3 +225,5 @@ nnoremap <silent> <C-d> :call comfortable_motion#flick(g:comfortable_motion_impu
 nnoremap <silent> <C-u> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -2)<CR>
 nnoremap <silent> <C-f> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 4)<CR>
 nnoremap <silent> <C-b> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -4)<CR>
+
+set guifont=Hack\ Regular\ Nerd\ Font\ Complete
