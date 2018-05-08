@@ -74,6 +74,10 @@ if [ "${PLATFORM}" == "mac" ]; then
     brew install bash-completion
 fi
 ln -s ${REPO}/.bash_profile ${HOME}/${BASH_RC}
+#fzf
+brew install fzf
+# To install useful key bindings and fuzzy completion:
+$(brew --prefix)/opt/fzf/install
 
 echo "Everything went OK."
 
