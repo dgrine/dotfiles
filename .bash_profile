@@ -141,6 +141,7 @@ alias mkenv='virtualenv -p python3 env'
 alias ag='ag --nogroup'
 alias meld='open /Applications/Meld.app'
 alias p3='python3'
+alias pcat='pygmentize -O style=native -g'
 function dbg {
     prog=$1
     shift
