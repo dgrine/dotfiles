@@ -136,6 +136,7 @@ alias gdd='git difftool'
 #Development
 alias cddev='cd $HOME/dev'
 alias cdrepos='cd $HOME/dev/repos'
+alias cdbin='cd $HOME/dev/bin'
 alias m='make -j7'
 alias mkenv='virtualenv -p python3 env'
 alias ag='ag --nogroup'
