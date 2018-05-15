@@ -34,6 +34,7 @@ function rbs {
 
 function ck {
     export auro_bs="cook"
+    #export auro_toolchain="myclang"
     auro_reload
     auro
 }
