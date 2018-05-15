@@ -32,6 +32,12 @@ function rbs {
     auro
 }
 
+function ck {
+    export auro_bs="cook"
+    auro_reload
+    auro
+}
+
 function debug {
     export auro_mode="debug"
     auro_reload
@@ -75,7 +81,7 @@ function auro {
 }
 
 function default {
-    cbs
+    ck
     debug
     rtc
     noverbose
