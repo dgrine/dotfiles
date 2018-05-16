@@ -143,6 +143,7 @@ alias ag='ag --nogroup'
 alias meld='open /Applications/Meld.app'
 alias p3='python3'
 alias pcat='pygmentize -O style=native -g'
+export FZF_CTRL_T_OPTS='--height 90% --preview "pygmentize {}"'
 function dbg {
     prog=$1
     shift
