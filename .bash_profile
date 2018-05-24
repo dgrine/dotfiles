@@ -117,6 +117,7 @@ alias l='ls -alh'
 alias r='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 alias grep='grep -E -n --color=auto'
 alias ack='ack --nogroup'
+alias python='python3'
 #Git
 alias s='git status'
 alias b='echo Top-level; git branch; git submodule foreach git branch'

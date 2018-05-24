@@ -72,7 +72,9 @@ set noswapfile
 set cursorline
 set mouse=a
 set encoding=utf-8
-
+set backspace=indent,eol,start " Fixes the weird behavior of backspace in terminal vim
+set clipboard=unnamed "  just ‘yank’ and paste using y and p from Vim as well
+ 
 filetype plugin on
 let g:pydiction_location = '/Users/djamelg/.vim/bundle/pydiction/complete-dict' 
 let g:airline#extensions#tabline#enabled = 1
