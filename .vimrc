@@ -13,11 +13,13 @@ let g:airline#extensions#tabline#enabled=1
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 " Files (similar to :FZF)
-nnoremap <leader>p :Files .<CR>
-" Old files and open buffers
-nnoremap <leader>k :History<CR>
+nnoremap <leader>ft :Files<CR>
+" Recent files and open buffers
+nnoremap <leader>fr :History<CR>
 " Git files (git status)
-nnoremap <leader>s :GFiles?<CR>
+nnoremap <leader>fs :GFiles?<CR>
+" Files command with preview window
+command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
 " NERDTree file manager
 Plug 'scrooloose/nerdtree'
@@ -80,6 +82,9 @@ Plug 'airblade/vim-gitgutter'
 set updatetime=100
 
 " Mark
+" <Leader>* Jump to the next occurrence of current mark and remember it as
+" last mark
+" <Leader>/ Jump to the next occurrence of any mark
 Plug 'Tuxdude/mark.vim'
 "nnoremap <Plug>IgnoreMarkRegex <Plug>MarkRegex
 " Disable highlight from search
