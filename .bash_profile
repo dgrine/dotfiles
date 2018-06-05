@@ -144,7 +144,6 @@ alias ag='ag --nogroup'
 alias meld='open /Applications/Meld.app'
 alias p3='python3'
 alias pcat='pygmentize -O style=native -g'
-export FZF_CTRL_T_OPTS='--height 90% --preview "pygmentize {}"'
 function dbg {
     prog=$1
     shift
@@ -161,4 +160,5 @@ fi
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
 #Fzf
+export FZF_CTRL_T_OPTS='--height 90% --preview "pygmentize -l $(pygmentize -N {}) {}"'
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
