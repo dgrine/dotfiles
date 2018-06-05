@@ -1,62 +1,95 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
+" Specify a directory for plugins
+" - For Neovim: ~/.local/share/nvim/plugged
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+" Lean & mean status/tabline for vim that's light as air
+Plug 'vim-airline/vim-airline'
+" Tab bar
+let g:airline#extensions#tabline#enabled=1
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'rkulla/pydiction.git'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'tpope/vim-surround'
-Plugin 'justinmk/vim-sneak'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'Frydac/Vim-Auro'
-Plugin 'Frydac/Vim-Tree'
-Plugin 'tpope/vim-fugitive'
-Plugin 'gregsexton/gitv'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'stefandtw/quickfix-reflector.vim'
-Plugin 'danchoi/ri.vim'
-Plugin 'dkprice/vim-easygrep'
-Plugin 'Tuxdude/mark.vim'
-Plugin 'bronson/vim-visual-star-search'
-Plugin 'Valloric/ListToggle'
-Plugin 'scrooloose/nerdtree'
-Plugin 'mileszs/ack.vim'
-Plugin 'kshenoy/vim-signature'
-Plugin 'tpope/vim-unimpaired' " shortcuts that make life easier
-Plugin 'nathanaelkane/vim-indent-guides' " indent guides
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'yuttie/comfortable-motion.vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'vim-scripts/indentpython.vim'
-Plugin 'davidhalter/jedi-vim'
-Plugin 'dag/vim-fish'
-Plugin 'tpope/vim-abolish'
+" Fuzzy File Finder
+" (already installed via brew)
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+" Files (similar to :FZF)
+nnoremap <leader>p :Files .<CR>
+" Old files and open buffers
+nnoremap <leader>k :History<CR>
+" Git files (git status)
+nnoremap <leader>s :GFiles?<CR>
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+" NERDTree file manager
+Plug 'scrooloose/nerdtree'
+" Open
+map <C-T> :NERDTreeToggle<CR>
+" Close if no other buffers
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" Set the width of the nerdtree window bigger, default is 31
+let g:NERDTreeWinSize=50
+let g:NERDTreeDirArrows=0
+let g:NERDTreeQuitOnOpen=1
+" Find current file in nerdtree
+nnoremap <leader>tf :NERDTreeFind<CR>
+let g:NERDCustomDelimiters = { 'tree': { 'left': '<', 'right': '>'}, 'asd': { 'left' : '//' } }
+
+" Commenting/uncommenting
+Plug 'scrooloose/nerdcommenter'
+
+" YouCompleteMe
+Plug 'Valloric/YouCompleteMe'
+let g:ycm_always_populate_location_list = 1
+let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_confirm_extra_conf=0
+map <leader>f :YcmCompleter FixIt<CR>
+nnoremap <C-Space> :YcmCompleter GoTo<CR>
+nnoremap <C-Return> :vsplit <bar> YcmCompleter GoTo<CR>
+
+" Multiple cursor editing
+Plug 'terryma/vim-multiple-cursors'
+
+" Jump to any location specified by two characters
+Plug 'justinmk/vim-sneak'
+
+" Shortcuts that make life easier (like jumping to next error, etc.)
+Plug 'tpope/vim-unimpaired'
+
+" Surround.vim is all about surroundings: parentheses, brackets, quotes, XML tags, and more
+Plug 'tpope/vim-surround'
+
+" Working with variants of a word:
+" crs (coerce to snake_case)
+" MixedCase (crm)
+" camelCase (crc)
+" snake_case (crs)
+" UPPER_CASE (cru)
+" dash-case (cr-)
+" dot.case (cr.)
+" space case (cr<space>)
+" Title Case (crt)
+Plug 'tpope/vim-abolish'
+
+" Git wrapper
+Plug 'tpope/vim-fugitive'
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>gr :Gread<CR>
+
+" Git gutter
+Plug 'airblade/vim-gitgutter'
+set updatetime=100
+
+" Mark
+Plug 'Tuxdude/mark.vim'
+"nnoremap <Plug>IgnoreMarkRegex <Plug>MarkRegex
+" Disable highlight from search
+nnoremap <leader><space> :noh<CR>:MarkClear<cr>
+
+" Emile's additional syntax formatting
+Plug 'Frydac/Vim-Tree'
+
+" Initialize plugin system
+call plug#end()
 
 syntax on
 set hlsearch
@@ -72,160 +105,22 @@ set noswapfile
 set cursorline
 set mouse=a
 set encoding=utf-8
-set backspace=indent,eol,start " Fixes the weird behavior of backspace in terminal vim
-set clipboard=unnamed "  just ‘yank’ and paste using y and p from Vim as well
- 
-filetype plugin on
-let g:pydiction_location = '/Users/djamelg/.vim/bundle/pydiction/complete-dict' 
-let g:airline#extensions#tabline#enabled = 1
-set wildignore+=*/cache/*,*/*.wav,*/node_modules/*,*.o
-nnoremap <leader>b :CtrlPBuffer<CR>
-
-set cindent
-set cinoptions+=t0
-set cinoptions+=g0
-
-if v:version >= 800
-    set termguicolors
-    set t_Co=16
-endif
-if has("gui_running")
-    colorscheme xcode
-else
-    "colorscheme molokai
-    colorscheme xcode
-end
-
 " Also match <> with highlight and % jump
 set matchpairs+=<:>
-"set matchpairs+=|:|
-
-" Disable middle mouse buttons
-nnoremap <MiddleMouse> <Nop>
-nnoremap <2-MiddleMouse> <Nop>
-nnoremap <3-MiddleMouse> <Nop>
-nnoremap <4-MiddleMouse> <Nop>
-inoremap <MiddleMouse> <Nop>
-inoremap <2-MiddleMouse> <Nop>
-inoremap <3-MiddleMouse> <Nop>
-inoremap <4-MiddleMouse> <Nop>
-
-" Vertical split with new buffer
-nnoremap <leader>vn :vnew<CR>
-nnoremap <leader>hn :new<CR>
-
-" YcmCompleter GoTo mapping
-nnoremap <C-Space> :YcmCompleter GoTo<CR>
-nnoremap <C-Return> :vsplit <bar> YcmCompleter GoTo<CR>
-
-let g:ycm_always_populate_location_list = 1
-if has('unix')
-    if has('mac')
-        let g:clang_library_path = '/usr/local/Cellar/llvm/3.8.1/lib/'
-    endif
-endif
-let g:ycm_autoclose_preview_window_after_completion=1
-let g:ycm_confirm_extra_conf=0
-" Apply YCM FixIt
-map <leader>f :YcmCompleter FixIt<CR>
-
-" Disable highlight from search (last part is for vim-mark)
-nnoremap <leader><space> :noh<CR>:MarkClear<cr>
-
-" Ignore
-" let ctrlp ignore paths with the folder cache in the name
-set wildignore+=*/cache/*,*/.git/*,*/deliverables/*,*/*.wav,*/tags,*/cmake-build*/*,*/core-vst/external/*
-
-" Search for selected text
-vnoremap // y/<C-R>"<CR>
-
-" CtrlP
-" show open buffers
-nnoremap <leader>b :CtrlPBuffer<CR>
-" show most recent used files
-nnoremap <leader>k :CtrlPMRUFiles<CR>
-let g:ctrlp_working_path_mode = ''
-let g:ctrlp_match_window = 'min:4,max:999'
-let g:ctrlp_switch_buffer = 'e'
-let g:ctrlp_max_files=0
-let g:ctrlp_max_depth=40
-
-" vim-mark
-" ignore leader r
-nnoremap <Plug>IgnoreMarkRegex <Plug>MarkRegex
-
-" Hide all scrollbars
-set guioptions=
-
-" NERDTree
-" Open
-map <C-T> :NERDTreeToggle<CR>
-" Close if no other buffers
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" set the width of the nerdtree window bigger, default is 31
-let g:NERDTreeWinSize=50
-let g:NERDTreeDirArrows=0
-let g:NERDTreeQuitOnOpen=1
-" find current file in nerdtree
-nnoremap <leader>tf :NERDTreeFind<CR>
-let g:NERDCustomDelimiters = { 'tree': { 'left': '<', 'right': '>'}, 'asd': { 'left' : '//' } }
-
-" set list prettier
+" Set list prettier
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
-
-" vim-indent-guides
-let g:indent_guides_guide_size=1
-let g:indent_guides_start_level=2
-"set ts=4 sw=4 et
-
-" ack
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
-cnoreabbrev ag Ack!
-
-" Ulti-Snips
-" Trigger configuration. Do not use <tab> if you use
-" https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-h>"
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-" Where should UltiSnipsEdit put its files, by default it just went into the
-" home directory, rather in the vim folder
-if has('win32')
-    let g:UltiSnipsSnippetsDir='~/vimfiles/bundle/vim-auro/UltiSnips'
-else
-    let g:UltiSnipsSnippetsDir='~/.vim/bundle/vim-auro/UltiSnips'
-endif 
-
-" EasyGrep
-let g:EasyGrepMode='TrackExt'
-let g:EasyGrepJumpToMatch=0
-let g:EasyGrepRecursive=1
-let g:EasyGrepCommand=1
-let g:EasyGrepSearchCurrentBufferDir=0
-
+" Fixes the weird behavior of backspace in terminal vim
+set backspace=indent,eol,start 
+" ‘yank’ and paste using y and p from Vim as well
+set clipboard=unnamed
 " Clang-format
 noremap <C-K> :pyf ~/dev/bin/clang-format.py<cr>
 inoremap <C-K> <c-o>:pyf ~/dev/bin/clang-format.py<cr>
-
-" comfortable-motion
-"let g:comfortable_motion_friction = 80.0
-"let g:comfortable_motion_air_drag = 2.0
-
-"let g:comfortable_motion_friction = 200.0
-"let g:comfortable_motion_air_drag = 0.0
-
-"let g:comfortable_motion_friction = 0.0
-"let g:comfortable_motion_air_drag = 4.0
-
-let g:comfortable_motion_no_default_key_mappings = 1
-let g:comfortable_motion_impulse_multiplier = 1  " Feel free to increase/decrease this value.
-nnoremap <silent> <C-d> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 2)<CR>
-nnoremap <silent> <C-u> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -2)<CR>
-nnoremap <silent> <C-f> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 4)<CR>
-nnoremap <silent> <C-b> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -4)<CR>
-
+" Remove white borders and scrollbars across the GUI
+set guioptions=
+" Set the GUI font
 set guifont=Hack\ Regular\ Nerd\ Font\ Complete
+" Set the colorscheme
+if has("gui_running")
+    colorscheme xcode
+end
