@@ -17,6 +17,13 @@ alias bs-lin='ssh matlab.auro-technologies.com'
 alias bs-mac='ssh 10.0.24.142'
 alias docs='open core-build/docs/index.md'
 
+function auro_asd_debug {
+    export auro_asd_debug="1"
+}
+function auro_asd_nodebug {
+    export auro_asd_debug="0"
+}
+
 function auro_reload {
     export auro_compiler="${auro_bs}-${auro_tool}-${auro_mode}${auro_postfix}"
 }

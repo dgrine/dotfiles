@@ -1,3 +1,3 @@
-# Installation
+# Development setup
 
-bash <(curl -s https://raw.githubusercontent.com/dgrine/setup/master/setup.sh)
+This repo contains some of my setup configuration files.

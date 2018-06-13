@@ -93,6 +93,22 @@ nnoremap <leader><space> :noh<CR>:MarkClear<cr>
 " Emile's additional syntax formatting
 Plug 'Frydac/Vim-Tree'
 
+" Track the engine.
+Plug 'SirVer/ultisnips'
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<C-j>"
+let g:UltiSnipsJumpForwardTrigger="<C-j>"
+let g:UltiSnipsJumpBackwardTrigger="<C-h>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+if has('win32')
+    let g:UltiSnipsSnippetsDir='~/vimfiles/snippets/UltiSnips'
+else
+    let g:UltiSnipsSnippetsDir='~/.vim/snippets/UltiSnips'
+endif
+
 " Initialize plugin system
 call plug#end()
 
