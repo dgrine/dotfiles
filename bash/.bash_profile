@@ -99,9 +99,9 @@ alias cdmy='cd $mypath'
 alias cdvim='cd $HOME/.vim/'
 alias sshx='ssh -X -C -c blowfish-cbc,arcfour'
 alias evrc='e $HOME/.vimrc'
-alias ebp='e $HOME/.bash_profile'
-alias ebpl='e $HOME/.bash_profile_local'
-alias sbp='source $HOME/.bash_profile'
+alias ebp='e $HOME/${BASH_RC}'
+alias ebpl='e $HOME/${BASH_RC}_local'
+alias sbp='source $HOME/${BASH_RC}'
 alias senv='source env/bin/activate'
 alias scpalt='rsync avzP'
 alias l='ls -alh'
@@ -145,8 +145,8 @@ function dbg {
 #Path
 export PATH="${PATH}:/$HOME/dev/bin"
 
-if [ -f "${HOME}/.bash_profile_local" ]; then
-	source ${HOME}/.bash_profile_local
+if [ -f "${HOME}/${BASH_RC}_local" ]; then
+	source ${HOME}/${BASH_RC}_local
 fi
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
