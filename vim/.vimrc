@@ -39,13 +39,17 @@ let g:NERDCustomDelimiters = { 'tree': { 'left': '<', 'right': '>'}, 'asd': { 'l
 Plug 'scrooloose/nerdcommenter'
 
 " YouCompleteMe
-Plug 'Valloric/YouCompleteMe'
-let g:ycm_always_populate_location_list = 1
+Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer' }
+let g:ycm_always_populate_location_list=1
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_confirm_extra_conf=0
 map <leader>f :YcmCompleter FixIt<CR>
 nnoremap <C-Space> :YcmCompleter GoTo<CR>
 nnoremap <C-Return> :vsplit <bar> YcmCompleter GoTo<CR>
+
+let g:ycm_complete_in_comments=1 
+let g:ycm_seed_identifiers_with_syntax=1 
+let g:ycm_collect_identifiers_from_comments_and_strings=1 
 
 " Multiple cursor editing
 Plug 'terryma/vim-multiple-cursors'
@@ -92,22 +96,17 @@ nnoremap <leader><space> :noh<CR>:MarkClear<cr>
 
 " Emile's additional syntax formatting
 Plug 'Frydac/Vim-Tree'
-
+"
 " Track the engine.
-Plug 'SirVer/ultisnips'
-
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<C-j>"
-let g:UltiSnipsJumpForwardTrigger="<C-j>"
-let g:UltiSnipsJumpBackwardTrigger="<C-h>"
-
+"Plug 'SirVer/ultisnips'
+"let g:UltiSnipsSnippetsDir=$HOME.'/.my/setup/vim/snippets/UltiSnips'
+"let g:UltiSnipsSnippetDirectories=["UltiSnips"]
+"let g:UltiSnipsExpandTrigger="<c-j>"
+"let g:UltiSnipsJumpForwardTrigger="<c-j>"
+"let g:UltiSnipsJumpBackwardTrigger="<c-h>"
+"let g:UltiSnipsListSnippets="<c-h>"
 " If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-if has('win32')
-    let g:UltiSnipsSnippetsDir='~/vimfiles/snippets/UltiSnips'
-else
-    let g:UltiSnipsSnippetsDir='~/.vim/snippets/UltiSnips'
-endif
+"let g:UltiSnipsEditSplit="vertical"
 
 " Initialize plugin system
 call plug#end()
