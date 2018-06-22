@@ -138,9 +138,13 @@ noremap <C-K> :pyf ~/dev/bin/clang-format.py<cr>
 inoremap <C-K> <c-o>:pyf ~/dev/bin/clang-format.py<cr>
 " Remove white borders and scrollbars across the GUI
 set guioptions=
-" Set the GUI font
-set guifont=Hack\ Regular\ Nerd\ Font\ Complete
 " Set the colorscheme
 if has("gui_running")
-    colorscheme xcode
+    if has("macunix")
+        colorscheme xcode
+        set guifont=Hack\ Regular\ Nerd\ Font\ Complete
+    else
+        colorscheme desert
+        set guifont=Monospace\ 9
+    endif
 end

@@ -90,7 +90,7 @@ alias ce='vim'
 if [ "${PLATFORM}" == "mac" ]; then
     alias e='mvim'
 else
-    alias e='ce'
+    alias e='gvim'
 fi
 
 #Configuration
