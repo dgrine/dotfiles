@@ -97,16 +97,40 @@ nnoremap <leader><space> :noh<CR>:MarkClear<cr>
 " Emile's additional syntax formatting
 Plug 'Frydac/Vim-Tree'
 "
-" Track the engine.
-"Plug 'SirVer/ultisnips'
-"let g:UltiSnipsSnippetsDir=$HOME.'/.my/setup/vim/snippets/UltiSnips'
-"let g:UltiSnipsSnippetDirectories=["UltiSnips"]
-"let g:UltiSnipsExpandTrigger="<c-j>"
-"let g:UltiSnipsJumpForwardTrigger="<c-j>"
-"let g:UltiSnipsJumpBackwardTrigger="<c-h>"
-"let g:UltiSnipsListSnippets="<c-h>"
-" If you want :UltiSnipsEdit to split your window.
-"let g:UltiSnipsEditSplit="vertical"
+" UltiSnips, quick snippets
+Plug 'SirVer/ultisnips'
+let g:UltiSnipsSnippetsDir=$HOME.'/.my/setup/vim/snippets/UltiSnips'
+let g:UltiSnipsSnippetDirectories=["UltiSnips"]
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-h>"
+let g:UltiSnipsListSnippets="<c-h>"
+ "If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+" ctrlsf.vim
+" An ack/ag/pt/rg powered code search and view tool, and lets you 
+" edit in-place with powerful edit mode.
+" Enter, o, double-click - Open corresponding file of current line in the window which CtrlSF is launched from.
+" <C-O> - Like Enter but open file in a horizontal split window.
+" t - Like Enter but open file in a new tab.
+" p - Like Enter but open file in a preview window.
+" P - Like Enter but open file in a preview window and switch focus to it.
+" O - Like Enter but always leave CtrlSF window opening.
+" T - Like t but focus CtrlSF window instead of new opened tab.
+" M - Switch result window between normal view and compact view.
+" q - Quit CtrlSF window.
+" <C-J> - Move cursor to next match.
+" <C-K> - Move cursor to previous match.
+Plug 'dyng/ctrlsf.vim'
+nmap     <C-F>f <Plug>CtrlSFPrompt
+vmap     <C-F>f <Plug>CtrlSFVwordPath
+vmap     <C-F>F <Plug>CtrlSFVwordExec
+nmap     <C-F>n <Plug>CtrlSFCwordPath
+nmap     <C-F>p <Plug>CtrlSFPwordPath
+nnoremap <C-F>o :CtrlSFOpen<CR>
+nnoremap <C-F>t :CtrlSFToggle<CR>
+inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 
 " Initialize plugin system
 call plug#end()
@@ -139,12 +163,12 @@ inoremap <C-K> <c-o>:pyf ~/.my/setup/vim/clang-format.py<cr>
 " Remove white borders and scrollbars across the GUI
 set guioptions=
 "if has("gui_running")
-    if has("macunix")
-        colorscheme xcode
-    else
+    "if has("macunix")
+        "colorscheme xcode
+    "else
         set guifont=Monospace\ 9
         set background=dark
         let g:palenight_terminal_italics=1
         colorscheme palenight
-    endif
+    "endif
 "end
