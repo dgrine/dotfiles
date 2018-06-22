@@ -134,17 +134,17 @@ set backspace=indent,eol,start
 " ‘yank’ and paste using y and p from Vim as well
 set clipboard=unnamed
 " Clang-format
-noremap <C-K> :pyf ~/dev/bin/clang-format.py<cr>
-inoremap <C-K> <c-o>:pyf ~/dev/bin/clang-format.py<cr>
+noremap <C-K> :pyf ~/.my/setup/vim/clang-format.py<cr>
+inoremap <C-K> <c-o>:pyf ~/.my/setup/vim/clang-format.py<cr>
 " Remove white borders and scrollbars across the GUI
 set guioptions=
-" Set the colorscheme
-if has("gui_running")
+"if has("gui_running")
     if has("macunix")
         colorscheme xcode
-        set guifont=Hack\ Regular\ Nerd\ Font\ Complete
     else
-        colorscheme desert
         set guifont=Monospace\ 9
+        set background=dark
+        let g:palenight_terminal_italics=1
+        colorscheme palenight
     endif
-end
+"end
