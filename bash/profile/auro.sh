@@ -13,7 +13,7 @@ alias cdmake='cdbuilds; cd make'
 alias cdmake-debug='cdmake; cd debug'
 alias cdmake-release='cdmake; cd release'
 alias cdcb='cd core-build'
-alias bs-lin='ssh matlab.auro-technologies.com'
+alias bs-lin='ssh auro@matlab.auro-technologies.com'
 alias bs-mac='ssh 10.0.24.142'
 alias docs='open core-build/docs/index.md'
 
