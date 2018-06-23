@@ -130,6 +130,7 @@ alias gdd='git difftool'
 alias cddev='cd $HOME/dev'
 alias cdrepos='cd $HOME/dev/repos'
 alias cdbin='cd $HOME/dev/bin'
+alias cdtmp='mkdir -p $HOME/dev/tmp && cd $HOME/dev/tmp';
 alias m='make -j7'
 alias mkenv='virtualenv -p python3 env'
 alias ag='ag --nogroup'
