@@ -132,6 +132,16 @@ nnoremap <C-F>o :CtrlSFOpen<CR>
 nnoremap <C-F>t :CtrlSFToggle<CR>
 inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 
+Plug 'godlygeek/tabular'
+if exists(":Tabularize")
+    nmap <Leader>a= :Tabularize /=<CR>
+    vmap <Leader>a= :Tabularize /=<CR>
+    nmap <Leader>a= :Tabularize /\|<CR>
+    vmap <Leader>a= :Tabularize /\|<CR>
+    nmap <Leader>a: :Tabularize /:\zs<CR>
+    vmap <Leader>a: :Tabularize /:\zs<CR>
+endif
+
 " Initialize plugin system
 call plug#end()
 
@@ -143,6 +153,7 @@ set autoindent
 set expandtab
 set tabstop=4
 set shiftwidth=4
+set textwidth=120
 set ruler
 set laststatus=2
 set noswapfile
