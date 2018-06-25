@@ -155,11 +155,15 @@ set tabstop=4
 set shiftwidth=4
 set textwidth=120
 set ruler
+set cindent
+set cinoptions=g-0
 set laststatus=2
 set noswapfile
 set cursorline
 set mouse=a
 set encoding=utf-8
+" Delete all buffers except the current one
+nmap <Leader>bd :%bd<CR>
 " Also match <> with highlight and % jump
 set matchpairs+=<:>
 " Set list prettier
