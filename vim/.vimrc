@@ -161,6 +161,7 @@ set cursorline
 set mouse=a
 set encoding=utf-8
 " Delete all buffers except the current one
+nmap <Leader>bda :%bda<CR>
 nmap <Leader>bd :%bd<CR>
 " Also match <> with highlight and % jump
 set matchpairs+=<:>
