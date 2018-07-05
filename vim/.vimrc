@@ -151,7 +151,7 @@ set autoindent
 set expandtab
 set tabstop=4
 set shiftwidth=4
-set textwidth=120
+"set textwidth=120
 set ruler
 set cindent
 set cinoptions=g-0
