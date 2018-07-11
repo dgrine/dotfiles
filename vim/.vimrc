@@ -172,8 +172,8 @@ set backspace=indent,eol,start
 " ‘yank’ and paste using y and p from Vim as well
 set clipboard=unnamed
 " Clang-format
-noremap <C-K> :pyf ~/.my/setup/vim/clang-format.py<cr>
-inoremap <C-K> <c-o>:pyf ~/.my/setup/vim/clang-format.py<cr>
+noremap <C-K> :pyf ~/.my/setup/clang-format/clang-format.py<cr>
+inoremap <C-K> <c-o>:pyf ~/.my/setup/clang-format/clang-format.py<cr>
 " Remove white borders and scrollbars across the GUI
 set guioptions=
 "if has("gui_running")
