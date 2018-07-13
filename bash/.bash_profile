@@ -155,3 +155,6 @@ test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shel
 #Fzf
 export FZF_CTRL_T_OPTS='--height 90% --preview "pygmentize -l $(pygmentize -N {}) {}"'
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+#Invoke completion
+source ${HOME}/.my/setup/invoke/bash_completion.sh
