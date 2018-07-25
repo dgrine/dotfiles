@@ -1,4 +1,4 @@
-" Specify a directory for plugins
+"" Specify a directory for plugins
 " - For Neovim: ~/.local/share/nvim/plugged
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
@@ -13,11 +13,11 @@ let g:airline#extensions#tabline#enabled=1
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 " Files (similar to :FZF)
-nnoremap <leader>ft :Files<CR>
+nnoremap <Leader>ft :Files<CR>
 " Recent files and open buffers
-nnoremap <leader>fr :History<CR>
+nnoremap <Leader>fr :History<CR>
 " Git files (git status)
-nnoremap <leader>fs :GFiles?<CR>
+nnoremap <Leader>fs :GFiles?<CR>
 " Files command with preview window
 command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
@@ -32,7 +32,7 @@ let g:NERDTreeWinSize=50
 let g:NERDTreeDirArrows=0
 let g:NERDTreeQuitOnOpen=1
 " Find current file in nerdtree
-nnoremap <leader>tf :NERDTreeFind<CR>
+nnoremap <Leader>tf :NERDTreeFind<CR>
 let g:NERDCustomDelimiters = { 'tree': { 'left': '<', 'right': '>'}, 'asd': { 'left' : '//' } }
 
 " Commenting/uncommenting
@@ -43,7 +43,7 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer' }
 let g:ycm_always_populate_location_list=1
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_confirm_extra_conf=0
-map <leader>f :YcmCompleter FixIt<CR>
+map <Leader>f :YcmCompleter FixIt<CR>
 nnoremap <C-Space> :YcmCompleter GoTo<CR>
 nnoremap <C-Return> :vsplit <bar> YcmCompleter GoTo<CR>
 
@@ -71,15 +71,15 @@ Plug 'tpope/vim-surround'
 " UPPER_CASE (cru)
 " dash-case (cr-)
 " dot.case (cr.)
-" space case (cr<space>)
+" space case (cr<Space>)
 " Title Case (crt)
 Plug 'tpope/vim-abolish'
 
 " Git wrapper
 Plug 'tpope/vim-fugitive'
-nnoremap <leader>gs :Gstatus<CR>
-nnoremap <leader>gd :Gdiff<CR>
-nnoremap <leader>gr :Gread<CR>
+nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>gd :Gdiff<CR>
+nnoremap <Leader>gr :Gread<CR>
 
 " Git gutter
 Plug 'airblade/vim-gitgutter'
@@ -92,7 +92,7 @@ set updatetime=100
 Plug 'Tuxdude/mark.vim'
 "nnoremap <Plug>IgnoreMarkRegex <Plug>MarkRegex
 " Disable highlight from search
-nnoremap <leader><space> :noh<CR>:MarkClear<cr>
+nnoremap <Leader><Space> :noh<CR>:MarkClear<cr>
 
 " Emile's additional syntax formatting
 Plug 'Frydac/Vim-Tree'
@@ -176,13 +176,13 @@ noremap <C-K> :pyf ~/.my/setup/clang-format/clang-format.py<cr>
 inoremap <C-K> <c-o>:pyf ~/.my/setup/clang-format/clang-format.py<cr>
 " Remove white borders and scrollbars across the GUI
 set guioptions=
-"if has("gui_running")
-    "if has("macunix")
-        "colorscheme xcode
-    "else
-        set guifont=Monospace\ 9
-        set background=dark
-        let g:palenight_terminal_italics=1
-        colorscheme palenight
-    "endif
-"end
+if has("gui_running")
+    set guifont=Monospace\ 9
+    set background=dark
+    let g:palenight_terminal_italics=1
+    colorscheme xcode
+    nmap <Leader>csl :colorscheme xcode<CR>
+    nmap <Leader>csd :colorscheme palenight<CR>
+else
+    colorscheme default
+end
