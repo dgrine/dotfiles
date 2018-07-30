@@ -9,6 +9,11 @@ endif
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
 
+" Remove this once ViM supports Python 3.7
+if has('python3')
+  silent! python3 1
+endif
+
 " Lean & mean status/tabline for vim that's light as air
 Plug 'vim-airline/vim-airline'
 " Tab bar
@@ -101,7 +106,9 @@ Plug 'Tuxdude/mark.vim'
 nnoremap <Leader><Space> :noh<CR>:MarkClear<cr>
 
 " Emile's additional syntax formatting
-Plug 'Frydac/Vim-Tree'
+Plug 'Frydac/vim-tree'
+" Emile's Auro stuff
+Plug 'Frydac/vim-auro'
 "
 " UltiSnips, quick snippets
 Plug 'SirVer/ultisnips'
