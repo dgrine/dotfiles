@@ -21,6 +21,8 @@ export PATH=$PATH:/usr/local/mysql/bin
 export PATH="/usr/local/sbin:$PATH"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+export DISPLAY=:0
+export XAUTHORITY=~/.Xauthority
 
 #Get current branch in git repo
 function parse_git_branch() {
