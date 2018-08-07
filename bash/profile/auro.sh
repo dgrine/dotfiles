@@ -16,6 +16,7 @@ alias cdcb='cd core-build'
 alias bs-lin='ssh auro@matlab.auro-technologies.com'
 alias bs-mac='ssh 10.0.24.142'
 alias docs='open core-build/docs/index.md'
+alias cd548='cdavs; cd story/code548'
 
 function auro_asd_debug {
     export auro_asd_debug="1"
