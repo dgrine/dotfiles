@@ -1,3 +1,6 @@
 alias cdtir='cdrepos; cd tir'
 alias cdcpp='cdtir; cd cpp'
 alias cdbuilds='cdtir; cd builds'
+alias cdstage='cdtir; cd stage'
+alias cdbin='cdstage; cd bin'
+alias cdlingware='cdstage; cd lingware'
