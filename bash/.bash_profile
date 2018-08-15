@@ -142,7 +142,12 @@ alias pcat='pygmentize -O style=native -g'
 function dbg {
     prog=$1
     shift
-    lldb $prog -- $@
+    if [ ! -f dbg.txt ]; then
+        lldb $prog -- $@
+    else
+        echo "Using dbg.txt"
+        lldb -S dbg.txt $prog -- $@
+    fi
 }
 
 #Path
