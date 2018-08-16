@@ -153,6 +153,13 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 " Note: to allign a table: gaip*|
 
+" Vim as powerful a tool for writers
+Plug 'reedes/vim-pencil'
+
+" Distraction-free writing in Vim
+Plug 'junegunn/goyo.vim'
+nnoremap <C-G>o :Goyo<CR>
+
 " Initialize plugin system
 call plug#end()
 
@@ -164,7 +171,7 @@ set autoindent
 set expandtab
 set tabstop=4
 set shiftwidth=4
-"set textwidth=120
+"set textwidth=80
 set ruler
 set cindent
 set cinoptions=g-0
@@ -173,6 +180,19 @@ set noswapfile
 set cursorline
 set mouse=a
 set encoding=utf-8
+" Initialize the pencil plugin for these prose-oriented file types
+" See https://github.com/reedes/vim-pencil
+set nocompatible
+filetype plugin on
+augroup pencil
+  autocmd!
+  autocmd FileType markdown,mkd call pencil#init()
+  autocmd FileType text         call pencil#init()
+augroup END
+ "Wrap our lines
+"set wrap
+ "When wrapping, don't break in a word
+"set linebreak
 " Delete all buffers except the current one
 nmap <Leader>bda :%bda<CR>
 nmap <Leader>bd :%bd<CR>
