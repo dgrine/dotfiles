@@ -18,44 +18,12 @@ alias bs-mac='ssh 10.0.24.142'
 alias docs='open core-build/docs/index.md'
 alias cd548='cdavs; cd story/code548'
 
-function auro_asd_debug {
-    export auro_asd_debug="1"
-}
-function auro_asd_nodebug {
-    export auro_asd_debug="0"
-}
-
 function auro_reload {
-    export auro_compiler="${auro_bs}-${auro_tool}-${auro_mode}${auro_postfix}"
-}
-
-function cbs {
-    export auro_bs="cbs"
-    auro_reload
-    auro
-}
-
-function rbs {
-    export auro_bs="rbs"
-    auro_reload
-    auro
-}
-
-function ck {
-    export auro_bs="cook"
-    #export auro_toolchain="myclang"
-    auro_reload
-    auro
+    export auro_compiler="${auro_brand}-${auro_arch}-${auro_mode}-${auro_rtc}-${auro_postfix}"
 }
 
 function debug {
     export auro_mode="debug"
-    auro_reload
-    auro
-}
-
-function reldeb {
-    export auro_mode="debug-release"
     auro_reload
     auro
 }
@@ -67,21 +35,21 @@ function release {
 }
 
 function noverbose {
-    export auro_compiler_verbose=0
+    export auro_verbose=0
 }
 
 function verbose {
-    export auro_compiler_verbose=1
+    export auro_verbose=1
 }
 
 function nortc {
-    export auro_postfix=""
+    export auro_rtc=""
     auro_reload
     auro
 }
 
 function rtc {
-    export auro_postfix="-rtc"
+    export auro_rtc="rtc"
     auro_reload
     auro
 }
@@ -91,32 +59,12 @@ function auro {
 }
 
 function default {
-    ck
+    export auro_brand="clang"
+    export auro_arch="x64"
     debug
     rtc
     noverbose
+    #export auro_compiler="clang-x64"
 }
 
-export auro_tool="clang-x64"
 default > /dev/null
-
-function fix-xcode-auro-cli {
-    mode='Debug'
-    cd core-build/cache/cbs/builds/xcode/${mode}/
-
-    module='core-std'
-    echo "Symbolic link for ${module}"
-    mkdir -p ${module}/${mode}
-    cd ${module}/${mode}
-    ln -s ../auro-*.build/${mode}/${module}_C.build/Objects-normal/lib${module}_C.a lib${module}.a
-    cd ../..
-
-    module='core-io'
-    echo "Symbolic link for ${module}"
-    mkdir -p ${module}/${mode}
-    cd ${module}/${mode}
-    ln -s ../auro-*.build/${mode}/${module}_CXX.build/Objects-normal/lib${module}_CXX.a lib${module}.a
-    cd ../..
-    
-    cd ../../../../../../
-}
