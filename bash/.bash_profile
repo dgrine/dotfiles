@@ -11,23 +11,24 @@ else
 fi
 
 # Editor
-alias ce='vim'
+export EDITOR="vim -v"
+alias ce='$EDITOR'
 if [ "${PLATFORM}" == "mac" ]; then
     if [ -x "$(command -v mvim)" ]; then
-        export EDITOR="vim -v"
-        alias e='mvim'
+        export VISUAL="mvim"
     else
-        export EDITOR="nano"
+        export VISUAL="${EDITOR}"
         echo "Warning: MacVim not installed"
     fi
 else
-    export EDITOR="vim"
     if [ -x "$(command -v gvim)" ]; then
-        alias e='gvim'
+        export EDITOR="gvim"
     else
+        export VISUAL="${EDITOR}"
         echo "Warning: gvim not installed"
     fi
 fi
+alias e='${VISUAL}'
 
 # Environment
 export CLICOLOR=1
