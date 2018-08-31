@@ -215,7 +215,7 @@ if has("gui_running")
     set guifont=Monospace\ 9
     set background=dark
     let g:palenight_terminal_italics=1
-    colorscheme xcode
+    colorscheme palenight
     nmap <Leader>csl :colorscheme xcode<CR>
     nmap <Leader>csd :colorscheme palenight<CR>
 else
