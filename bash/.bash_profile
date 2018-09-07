@@ -122,6 +122,7 @@ else
 fi
 if [ -x "$(command -v python3)" ]; then
     alias python='python3'
+    alias pip='pip3'
 else
     echo "Warning: Python 3 not installed"
 fi
