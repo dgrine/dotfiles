@@ -160,7 +160,7 @@ if [ -x "$(command -v git)" ]; then
     alias s='git status'
     alias b='echo Top-level; git branch; git submodule foreach git branch'
     alias d='git diff'
-    alias a='git add *'
+    alias a='git add .'
     alias cm='git commit -m '
     alias cuth='git commit -m uth'
     alias cwip='cm wip'
