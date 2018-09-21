@@ -160,6 +160,10 @@ Plug 'reedes/vim-pencil'
 Plug 'junegunn/goyo.vim'
 nnoremap <C-G>o :Goyo<CR>
 
+" Script which generates a list of compiler flags from a project with an arbitrary build system
+" :YcmGenerateConfig generates a config file for the current directory
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
+
 " Initialize plugin system
 call plug#end()
 
