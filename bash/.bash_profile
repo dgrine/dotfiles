@@ -115,11 +115,6 @@ else
 fi
 alias scpalt='rsync avzP'
 alias grep='grep -E -n --color=auto'
-if [ -x "$(command -v ranger)" ]; then
-    alias ag='ag --nogroup'
-else
-    echo "Warning: Ag (the silver searcher) not installed"
-fi
 if [ -x "$(command -v python3)" ]; then
     alias python='python3'
     alias pip='pip3'
@@ -130,12 +125,6 @@ if [ -x "$(command -v make)" ]; then
     alias m='make -j7'
 else
     echo "Warning: Make not installed"
-fi
-if [ -x "$(command -v virtualenv)" ]; then
-    alias mkenv='virtualenv -p python3 env'
-    alias senv='source env/bin/activate'
-else
-    echo "Warning: Virtualenv not installed"
 fi
 if [ -x "$(command -v pygmentize)" ]; then
     alias pcat='pygmentize -O style=native -g'
