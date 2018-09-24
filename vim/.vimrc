@@ -164,6 +164,9 @@ nnoremap <C-G>o :Goyo<CR>
 " :YcmGenerateConfig generates a config file for the current directory
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 
+" Rg (ripgrep)
+Plug 'jremmen/vim-ripgrep'
+
 " Initialize plugin system
 call plug#end()
 
@@ -192,9 +195,9 @@ set nocompatible
 filetype plugin on
 augroup pencil
   autocmd!
-  autocmd FileType markdown,mkd call pencil#init()
-  autocmd FileType text         call pencil#init()
+  autocmd FileType markdown,mkd,rst call pencil#init()
 augroup END
+
  "Wrap our lines
 "set wrap
  "When wrapping, don't break in a word
