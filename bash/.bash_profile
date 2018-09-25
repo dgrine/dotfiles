@@ -2,12 +2,14 @@
 if [ "${OSTYPE}" == "darwin17" ]; then
 	PLATFORM="mac"
 	BASH_RC=".bash_profile"
+elif [ "${OSTYPE}" == "darwin18" ]; then
+	PLATFORM="mac"
+	BASH_RC=".bash_profile"
 elif [ "${OSTYPE}" == "linux-gnu" ]; then
 	PLATFORM="linux"
 	BASH_RC=".bashrc"
 else
 	echo "Error: unsupported platform ${OSTYPE}"
-	exit 1
 fi
 
 # Editor
