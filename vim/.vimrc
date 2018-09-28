@@ -153,9 +153,6 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 " Note: to allign a table: gaip*|
 
-" Vim as powerful a tool for writers
-Plug 'reedes/vim-pencil'
-
 " Distraction-free writing in Vim
 Plug 'junegunn/goyo.vim'
 nnoremap <C-G>o :Goyo<CR>
@@ -189,14 +186,8 @@ set mouse=a
 set encoding=utf-8
 " Cursor never on first or last line
 set scrolloff=10
-" Initialize the pencil plugin for these prose-oriented file types
-" See https://github.com/reedes/vim-pencil
 set nocompatible
 filetype plugin on
-augroup pencil
-  autocmd!
-  autocmd FileType markdown,mkd,rst call pencil#init()
-augroup END
 
  "Wrap our lines
 "set wrap
