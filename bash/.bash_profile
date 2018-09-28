@@ -120,6 +120,8 @@ alias grep='grep -E -n --color=auto'
 if [ -x "$(command -v python3)" ]; then
     alias python='python3'
     alias pip='pip3'
+    alias mkenv='python3 -m venv env'
+    alias senv='source env/bin/activate'
 else
     echo "Warning: Python 3 not installed"
 fi
