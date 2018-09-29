@@ -98,7 +98,6 @@ else
 fi
 
 # Aliases
-alias cdmy='cd $HOME/.my/setup'
 alias cdvim='cd $HOME/.vim/'
 alias sshx='ssh -X -C -c blowfish-cbc,arcfour'
 alias evrc='e $HOME/.vimrc'
@@ -108,6 +107,7 @@ alias sbp='source $HOME/${BASH_RC}'
 alias l='ls -alh'
 alias cddev='cd $HOME/dev'
 alias cdrepos='cd $HOME/dev/repos'
+alias cdsetup='cdrepos; cd setup'
 alias cdbin='cd $HOME/dev/bin'
 alias cdtmp='mkdir -p $HOME/dev/tmp && cd $HOME/dev/tmp';
 if [ -x "$(command -v ranger)" ]; then
@@ -191,7 +191,7 @@ fi
 
 # Invoke completion
 if [ -x "$(command -v inv)" ]; then
-    source ${HOME}/.my/setup/invoke/bash_completion.sh
+    source ${HOME}/dev/repos/setup/invoke/bash_completion.sh
 else
     echo "Warning: Invoke not installed"
 fi
