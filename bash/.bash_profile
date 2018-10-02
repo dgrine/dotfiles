@@ -1,13 +1,10 @@
 # Determing OS
 if [ "${OSTYPE}" == "darwin17" ]; then
 	PLATFORM="mac"
-	BASH_RC=".bash_profile"
 elif [ "${OSTYPE}" == "darwin18" ]; then
 	PLATFORM="mac"
-	BASH_RC=".bash_profile"
 elif [ "${OSTYPE}" == "linux-gnu" ]; then
 	PLATFORM="linux"
-	BASH_RC=".bashrc"
 else
 	echo "Error: unsupported platform ${OSTYPE}"
 fi
@@ -101,9 +98,9 @@ fi
 alias cdvim='cd $HOME/.vim/'
 alias sshx='ssh -X -C -c blowfish-cbc,arcfour'
 alias evrc='e $HOME/.vimrc'
-alias ebp='e $HOME/${BASH_RC}'
-alias ebpl='e $HOME/${BASH_RC}_local'
-alias sbp='source $HOME/${BASH_RC}'
+alias ebp='e $HOME/.bash_profile'
+alias ebpl='e $HOME/.bash_profile_local'
+alias sbp='source $HOME/.bash_profile'
 alias l='ls -alh'
 alias cddev='cd $HOME/dev'
 alias cdrepos='cd $HOME/dev/repos'
@@ -197,6 +194,6 @@ else
 fi
 
 # Local Bash profile
-if [ -f "${HOME}/${BASH_RC}_local" ]; then
-	source ${HOME}/${BASH_RC}_local
+if [ -f "${HOME}/.bash_profile_local" ]; then
+	source ${HOME}/.bash_profile_local
 fi
