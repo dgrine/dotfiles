@@ -29,8 +29,9 @@ nnoremap <Leader>ft :Files<CR>
 nnoremap <Leader>fr :History<CR>
 " Git files (git status)
 nnoremap <Leader>fs :GFiles?<CR>
-" Files command with preview window
-command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+" Files command (with preview window)
+"command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, <bang>0)
 
 " NERDTree file manager
 Plug 'scrooloose/nerdtree'
@@ -205,8 +206,8 @@ set backspace=indent,eol,start
 " ‘yank’ and paste using y and p from Vim as well
 set clipboard=unnamed
 " Clang-format
-noremap <C-K> :py3f ~/.my/setup/clang-format/clang-format.py<cr>
-inoremap <C-K> <c-o>:py3f ~/.my/setup/clang-format/clang-format.py<cr>
+noremap <C-K> :py3f ~/dev/repos/setup/clang-format/clang-format.py<cr>
+inoremap <C-K> <c-o>:py3f ~/dev/repos/setup/clang-format/clang-format.py<cr>
 " Remove white borders and scrollbars across the GUI
 set guioptions=
 if has("gui_running")
