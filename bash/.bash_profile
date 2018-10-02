@@ -105,6 +105,7 @@ alias l='ls -alh'
 alias cddev='cd $HOME/dev'
 alias cdrepos='cd $HOME/dev/repos'
 alias cdsetup='cdrepos; cd setup'
+alias cddocs='cdrepos; cd docs'
 alias cdbin='cd $HOME/dev/bin'
 alias cdtmp='mkdir -p $HOME/dev/tmp && cd $HOME/dev/tmp';
 if [ -x "$(command -v ranger)" ]; then
