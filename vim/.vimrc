@@ -4,6 +4,8 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+" Plug
+" =============================================================================
 " Specify a directory for plugins
 " - For Neovim: ~/.local/share/nvim/plugged
 " - Avoid using standard Vim directory names like 'plugin'
@@ -165,9 +167,18 @@ Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 " Rg (ripgrep)
 Plug 'jremmen/vim-ripgrep'
 
+" TypeScript omni-completion
+" Requires TypeScript to be installed: npm -g install typescript
+Plug 'Quramy/tsuquyomi'
+" TypeScript syntax highlighting
+Plug 'leafgarland/typescript-vim'
+
 " Initialize plugin system
 call plug#end()
+" =============================================================================
 
+" General settings
+" =============================================================================
 syntax on
 set hlsearch
 set incsearch
@@ -189,14 +200,6 @@ set encoding=utf-8
 set scrolloff=10
 set nocompatible
 filetype plugin on
-
- "Wrap our lines
-"set wrap
- "When wrapping, don't break in a word
-"set linebreak
-" Delete all buffers except the current one
-nmap <Leader>bda :%bda<CR>
-nmap <Leader>bd :%bd<CR>
 " Also match <> with highlight and % jump
 set matchpairs+=<:>
 " Set list prettier
@@ -205,9 +208,6 @@ set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 set backspace=indent,eol,start 
 " ‘yank’ and paste using y and p from Vim as well
 set clipboard=unnamed
-" Clang-format
-noremap <C-K> :py3f ~/dev/repos/setup/clang-format/clang-format.py<cr>
-inoremap <C-K> <c-o>:py3f ~/dev/repos/setup/clang-format/clang-format.py<cr>
 " Remove white borders and scrollbars across the GUI
 set guioptions=
 if has("gui_running")
@@ -220,3 +220,21 @@ if has("gui_running")
 else
     colorscheme default
 end
+" =============================================================================
+
+" File type specific settings
+" =============================================================================
+" Set TypeScript indentation
+autocmd BufNewFile,BufRead *.ts set shiftwidth=2
+" =============================================================================
+
+" Custom key mapping
+" =============================================================================
+" Delete all buffers except the current one
+nmap <Leader>bda :%bda<CR>
+nmap <Leader>bd :%bd<CR>
+" Clang-format
+noremap <C-K> :py3f ~/dev/repos/setup/clang-format/clang-format.py<cr>
+inoremap <C-K> <c-o>:py3f ~/dev/repos/setup/clang-format/clang-format.py<cr>
+" =============================================================================
+
