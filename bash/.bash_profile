@@ -21,7 +21,7 @@ if [ "${PLATFORM}" == "mac" ]; then
     fi
 else
     if [ -x "$(command -v gvim)" ]; then
-        export EDITOR="gvim"
+        export VISUAL="gvim"
     else
         export VISUAL="${EDITOR}"
         echo "Warning: gvim not installed"
