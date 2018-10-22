@@ -24,7 +24,7 @@ function release {
 }
 
 function noverbose {
-    export auro_verbose=0
+    unset auro_verbose
 }
 
 function verbose {
