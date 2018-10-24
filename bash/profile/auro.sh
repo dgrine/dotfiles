@@ -48,12 +48,15 @@ function auro {
 }
 
 function default {
-    export auro_brand="clang"
+    if [ "${OSTYPE}" == "linux-gnu" ]; then
+        export auro_brand="gcc"
+    else
+        export auro_brand="clang"
+    fi
     export auro_arch="x64"
     debug
     rtc
     noverbose
-    #export auro_compiler="clang-x64"
 }
 
 default > /dev/null

@@ -39,7 +39,7 @@ export PATH="/usr/local/sbin:$PATH"
 export PATH="$PATH:/$HOME/dev/bin"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
-export DISPLAY=:0
+#export DISPLAY=:0
 export XAUTHORITY=~/.Xauthority
 
 # Command prompt

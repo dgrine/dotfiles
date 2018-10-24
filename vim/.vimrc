@@ -23,7 +23,11 @@ let g:airline#extensions#tabline#enabled=1
 
 " Fuzzy File Finder
 " (already installed via brew)
-Plug '/usr/local/opt/fzf'
+if filereadable('/usr/local/opt/fzf')
+    Plug '/usr/local/opt/fzf'
+else
+    Plug '~/.fzf'
+endif
 Plug 'junegunn/fzf.vim'
 " Files (similar to :FZF)
 nnoremap <Leader>ft :Files<CR>
@@ -209,14 +213,22 @@ set backspace=indent,eol,start
 " ‘yank’ and paste using y and p from Vim as well
 set clipboard=unnamed
 " Remove white borders and scrollbars across the GUI
-set guioptions=
 if has("gui_running")
-    set guifont=Monospace\ 9
-    set background=dark
-    let g:palenight_terminal_italics=1
-    nmap <Leader>csl :colorscheme xcode<CR>
-    nmap <Leader>csd :colorscheme ir_black<CR>
-    colorscheme xcode
+    " GVim
+    if has("gui_gtk2") || has("gui_gtk3")
+        " Linux
+    elseif has("gui_win32")
+        " Win32.64 GVim
+    elseif has("gui_macvim")
+        " MacVim
+        set guioptions=
+        set guifont=Monospace\ 9
+        set background=dark
+        let g:palenight_terminal_italics=1
+        nmap <Leader>csl :colorscheme xcode<CR>
+        nmap <Leader>csd :colorscheme ir_black<CR>
+        colorscheme xcode
+    endif
 else
     colorscheme default
 end
