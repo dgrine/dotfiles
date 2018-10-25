@@ -22,12 +22,14 @@ Plug 'vim-airline/vim-airline'
 let g:airline#extensions#tabline#enabled=1
 
 " Fuzzy File Finder
-" (already installed via brew)
-if filereadable('/usr/local/opt/fzf')
-    Plug '/usr/local/opt/fzf'
-else
-    Plug '~/.fzf'
-endif
+" On macOS:
+"   brew install fzf
+"   ln -s /usr/local/opt/fzf ~/.fzf
+" location (/usr/local/opt/fzf)
+" On Linux:
+"    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+"    ~/.fzf/install
+Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
 " Files (similar to :FZF)
 nnoremap <Leader>ft :Files<CR>
