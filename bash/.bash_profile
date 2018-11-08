@@ -109,7 +109,7 @@ alias cddocs='cdrepos; cd docs'
 alias cdbin='cd $HOME/dev/bin'
 alias cdtmp='mkdir -p $HOME/dev/tmp && cd $HOME/dev/tmp';
 #alias stree='open /Applications/Sourcetree.app/Contents/MacOS/Sourcetree --args .'
-alias stree='/Applications/Sourcetree.app/Contents/MacOS/Sourcetree . & &>/dev/null\n'
+alias stree='/Applications/Sourcetree.app/Contents/MacOS/Sourcetree . & &>/dev/null'
 if [ -x "$(command -v ranger)" ]; then
     alias r='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 else
