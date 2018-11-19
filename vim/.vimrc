@@ -214,6 +214,11 @@ set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 set backspace=indent,eol,start 
 " ‘yank’ and paste using y and p from Vim as well
 set clipboard=unnamed
+" Indents word-wrapped lines as much as the 'parent' line
+set breakindent
+" Ensures word-wrap does not split words
+set formatoptions=l
+set lbr
 " Remove white borders and scrollbars across the GUI
 if has("gui_running")
     " GVim
