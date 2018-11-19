@@ -4,10 +4,7 @@
 
 ZSH_THEME="robbyrussell"
 
-plugins=(
-  git,
-  rake-fast
-)
+plugins=(git web-search vim pip python rake-fast)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -115,27 +112,34 @@ if [ -x "$(command -v lldb)" ]; then
     }
 fi
 if [ -x "$(command -v git)" ]; then
-    alias s='git status'
-    alias b='echo Top-level; git branch; git submodule foreach git branch'
-    alias d='git diff'
-    alias a='git add .'
-    alias cm='git commit -m '
-    alias cuth='git commit -m uth'
-    alias cwip='cm wip'
-    alias pr='git pull --rebase'
-    alias p='git push'
-    alias ms='git merge --squash'
-    alias ch='git checkout'
-    alias master='ch master'
-    alias gc='git clone -j8 --recursive'
-    alias gd='git difftool'
-    alias gdd='git difftool'
+    #alias s='git status'
+    #alias b='echo Top-level; git branch; git submodule foreach git branch'
+    #alias d='git diff'
+    #alias a='git add .'
+    #alias cm='git commit -m '
+    #alias cuth='git commit -m uth'
+    #alias cwip='cm wip'
+    #alias pr='git pull --rebase'
+    #alias p='git push'
+    #alias ms='git merge --squash'
+    #alias ch='git checkout'
+    #alias master='ch master'
+    #alias gc='git clone -j8 --recursive'
+    #alias gd='git difftool'
+    #alias gdd='git difftool'
 else
     echo "Warning: Git not installed"
 fi
 
 # iTerm shell integration
 #test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
+#Vim and Fzf interaction
+# vi mode, needs to come before fzf is loaded
+bindkey -v
+# Edit command line in vim by pressing Esc-v
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
 
 #Fzf
 if [ -x "$(command -v fzf)" ]; then
