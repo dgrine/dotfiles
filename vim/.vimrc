@@ -234,7 +234,7 @@ if has("gui_running")
         set background=dark
         let g:palenight_terminal_italics=1
         nmap <Leader>csl :colorscheme xcode<CR>
-        nmap <Leader>csd :colorscheme ir_black<CR>
+        nmap <Leader>csd :colorscheme dracula<CR>
         colorscheme xcode
     endif
 else
