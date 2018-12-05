@@ -179,6 +179,9 @@ Plug 'Quramy/tsuquyomi'
 " TypeScript syntax highlighting
 Plug 'leafgarland/typescript-vim'
 
+" JSX
+Plug 'mxw/vim-jsx'
+
 " Initialize plugin system
 call plug#end()
 " =============================================================================
