@@ -2,9 +2,9 @@
 # Sources this file.
 # Everything else in that file should be commented out
 
-ZSH_THEME="robbyrussell"
+ZSH_THEME="cypher"
 
-plugins=(git web-search vim pip python rake-fast)
+plugins=(git web-search vim pip python rake ruby)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -57,6 +57,9 @@ export LANG=en_US.UTF-8
 export XAUTHORITY=~/.Xauthority
 
 # Aliases
+alias icecream='export PATH=/usr/local/opt/icecream/libexec/icecc/bin:$PATH'
+icecream
+#export auro_j=40
 alias cdvim='cd $HOME/.vim/'
 alias sshx='ssh -X -C -c blowfish-cbc,arcfour'
 alias evrc='e $HOME/.vimrc'
@@ -70,7 +73,6 @@ alias cdsetup='cdrepos; cd setup'
 alias cddocs='cdrepos; cd docs'
 alias cdbin='cd $HOME/dev/bin'
 alias cdtmp='mkdir -p $HOME/dev/tmp && cd $HOME/dev/tmp';
-alias rake='noglob rake'
 if [ -x "$(command -v ranger)" ]; then
     alias r='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 else
@@ -112,21 +114,7 @@ if [ -x "$(command -v lldb)" ]; then
     }
 fi
 if [ -x "$(command -v git)" ]; then
-    #alias s='git status'
-    #alias b='echo Top-level; git branch; git submodule foreach git branch'
-    #alias d='git diff'
-    #alias a='git add .'
-    #alias cm='git commit -m '
-    #alias cuth='git commit -m uth'
-    #alias cwip='cm wip'
-    #alias pr='git pull --rebase'
-    #alias p='git push'
-    #alias ms='git merge --squash'
-    #alias ch='git checkout'
-    #alias master='ch master'
-    #alias gc='git clone -j8 --recursive'
-    #alias gd='git difftool'
-    #alias gdd='git difftool'
+
 else
     echo "Warning: Git not installed"
 fi

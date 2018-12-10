@@ -235,7 +235,7 @@ if has("gui_running")
         let g:palenight_terminal_italics=1
         nmap <Leader>csl :colorscheme xcode<CR>
         nmap <Leader>csd :colorscheme dracula<CR>
-        colorscheme dracula
+        colorscheme xcode
     endif
 else
     colorscheme default
