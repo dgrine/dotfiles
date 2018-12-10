@@ -118,7 +118,7 @@ if [ -x "$(command -v lldb)" ]; then
 fi
 
 # Git
-if [ x "$(command -v git)" ]; then
+if [ ! -x "$(command -v git)" ]; then
     echo "Warning: Git not installed"
 fi
 
