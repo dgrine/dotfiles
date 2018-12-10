@@ -57,9 +57,6 @@ export LANG=en_US.UTF-8
 export XAUTHORITY=~/.Xauthority
 
 # Aliases
-alias icecream='export PATH=/usr/local/opt/icecream/libexec/icecc/bin:$PATH'
-icecream
-#export auro_j=40
 alias cdvim='cd $HOME/.vim/'
 alias sshx='ssh -X -C -c blowfish-cbc,arcfour'
 alias evrc='e $HOME/.vimrc'
@@ -118,9 +115,13 @@ if [ -x "$(command -v git)" ]; then
 else
     echo "Warning: Git not installed"
 fi
-
-# iTerm shell integration
-#test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+if [ -x "/usr/local/opt/icecream/sbin/iceccd -vvv" ]; then
+    alias icecream-set-path='export PATH=/usr/local/opt/icecream/libexec/icecc/bin:$PATH'
+    alias icecream-start-daemon='sudo /usr/local/opt/icecream/sbin/iceccd -vvv'
+    alias icecream-start-monitor='sudo /usr/local/opt/icecream/sbin/iceccd -vvv'
+else
+    echo "Warning: icecream nog installed"
+fi
 
 #Vim and Fzf interaction
 # vi mode, needs to come before fzf is loaded
