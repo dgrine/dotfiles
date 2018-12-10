@@ -36,6 +36,7 @@ function auro_init {
         auro_compiler=$auro_compiler-$auro_postfix
     fi
     export auro_compiler=$auro_compiler
+    export auro_j="8"
 }
 
 function debug {
@@ -87,3 +88,4 @@ function default {
 }
 
 default > /dev/null
+
