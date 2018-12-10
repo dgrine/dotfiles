@@ -9,29 +9,47 @@ plugins=(git web-search vim pip python rake ruby)
 source $ZSH/oh-my-zsh.sh
 
 # Determing OS
-if [ "${OSTYPE}" = "darwin17.0" ]
-then
+if [ "${OSTYPE}" = "darwin17.0" ]; then
     PLATFORM="mac"
-elif [ "${OSTYPE}" = "darwin18.0" ]
-then
+elif [ "${OSTYPE}" = "darwin18.0" ]; then
 	PLATFORM="mac"
-elif [ "${OSTYPE}" = "linux-gnu" ]
-then
+elif [ "${OSTYPE}" = "linux-gnu" ]; then
 	PLATFORM="linux"
 else
 	echo "Error: unsupported platform ${OSTYPE}"
     return
 fi
 
+# Environment
+export PATH="$PATH:/$HOME/dev/bin"
+export CLICOLOR=1
+export LSCOLORS=GxFxCxDxBxegedabagaced
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+#export DISPLAY=:0
+export XAUTHORITY=~/.Xauthority
+
 # Editor
-export EDITOR="vim -v"
+if [ -x "$(command -v nvim)" ]; then
+    export EDITOR="nvim"
+elif [ -x "$(command -v vim)" ]; then
+    export EDITOR="vim -v"
+elif [ -x "$(command -v pico)" ]; then
+    export EDITOR="pico"
+elif [ -x "$(command -v nano)" ]; then
+    export EDITOR="nano"
+else
+    echo "Warning: no suitable editor available"
+fi
 alias ce='$EDITOR'
 if [ "${PLATFORM}" = "mac" ]; then
-    if [ -x "$(command -v mvim)" ]; then
+    if [ -x "$(command -v vimr)" ]; then
+        export VISUAL="vimr"
+    elif [ -x "$(command -v mvim)" ]; then
         export VISUAL="mvim"
     else
         export VISUAL="${EDITOR}"
-        echo "Warning: MacVim not installed"
+        echo "Warning: VimR or MacVim not installed"
     fi
 else
     if [ -x "$(command -v gvim)" ]; then
@@ -42,15 +60,6 @@ else
     fi
 fi
 alias e='${VISUAL}'
-
-# Environment
-export PATH="$PATH:/$HOME/dev/bin"
-export CLICOLOR=1
-export LSCOLORS=GxFxCxDxBxegedabagaced
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
-#export DISPLAY=:0
-export XAUTHORITY=~/.Xauthority
 
 # General aliases
 alias evrc='e $HOME/.vimrc'
@@ -126,7 +135,7 @@ fi
 if [ -x "/usr/local/opt/icecream/sbin/iceccd" ]; then
     alias icecream-set-path='export PATH=/usr/local/opt/icecream/libexec/icecc/bin:$PATH'
     alias icecream-start-daemon='sudo /usr/local/opt/icecream/sbin/iceccd -vvv'
-    alias icecream-start-monitor='sudo /usr/local/opt/icecream/sbin/iceccd -vvv'
+    # To start the monitor, for example: icemon -s matlab 
 else
     echo "Warning: icecream nog installed"
 fi
