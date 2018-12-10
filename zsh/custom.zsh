@@ -2,7 +2,7 @@
 # Sources this file.
 # Everything else in that file should be commented out
 
-ZSH_THEME="cypher"
+ZSH_THEME="arrow"
 
 plugins=(git web-search vim pip python rake ruby)
 
@@ -44,25 +44,21 @@ fi
 alias e='${VISUAL}'
 
 # Environment
+export PATH="$PATH:/$HOME/dev/bin"
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
-if [ -x "$(command -v mysql)" ]; then
-    export PATH=$PATH:/usr/local/mysql/bin
-fi
-export PATH="/usr/local/sbin:$PATH"
-export PATH="$PATH:/$HOME/dev/bin"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 #export DISPLAY=:0
 export XAUTHORITY=~/.Xauthority
 
-# Aliases
-alias cdvim='cd $HOME/.vim/'
-alias sshx='ssh -X -C -c blowfish-cbc,arcfour'
+# General aliases
 alias evrc='e $HOME/.vimrc'
 alias ezrc='e $HOME/dev/repos/setup/zsh/custom.zsh'
 alias ezrcl='e $HOME/.zshrc_local'
 alias szrc='source $HOME/.zshrc'
+alias cdvim='cd $HOME/.vim/'
+alias sshx='ssh -X -C -c blowfish-cbc,arcfour'
 alias l='ls -alh'
 alias cddev='cd $HOME/dev'
 alias cdrepos='cd $HOME/dev/repos'
@@ -77,6 +73,8 @@ else
 fi
 alias scpalt='rsync avzP'
 alias grep='grep -E -n --color=auto'
+
+# Python
 if [ -x "$(command -v python3)" ]; then
     alias python='python3'
     alias pip='pip3'
@@ -85,19 +83,27 @@ if [ -x "$(command -v python3)" ]; then
 else
     echo "Warning: Python 3 not installed"
 fi
+
+# Make
 if [ -x "$(command -v make)" ]; then
     alias m='make -j7'
 else
     echo "Warning: Make not installed"
 fi
+
+# Pygmentize and pcat
 if [ -x "$(command -v pygmentize)" ]; then
     alias pcat='pygmentize -O style=native -g'
 else
     echo "Warning: Pygmentize not installed"
 fi
+
+# Meld
 if [ "${PLATFORM}" = "mac" ]; then
     alias meld='open /Applications/Meld.app'
 fi
+
+# lldb
 if [ -x "$(command -v lldb)" ]; then
     function dbg {
         prog=$1
@@ -110,12 +116,14 @@ if [ -x "$(command -v lldb)" ]; then
         fi
     }
 fi
-if [ -x "$(command -v git)" ]; then
 
-else
+# Git
+if [ x "$(command -v git)" ]; then
     echo "Warning: Git not installed"
 fi
-if [ -x "/usr/local/opt/icecream/sbin/iceccd -vvv" ]; then
+
+# icecream
+if [ -x "/usr/local/opt/icecream/sbin/iceccd" ]; then
     alias icecream-set-path='export PATH=/usr/local/opt/icecream/libexec/icecc/bin:$PATH'
     alias icecream-start-daemon='sudo /usr/local/opt/icecream/sbin/iceccd -vvv'
     alias icecream-start-monitor='sudo /usr/local/opt/icecream/sbin/iceccd -vvv'
@@ -123,15 +131,13 @@ else
     echo "Warning: icecream nog installed"
 fi
 
-#Vim and Fzf interaction
-# vi mode, needs to come before fzf is loaded
-bindkey -v
-# Edit command line in vim by pressing Esc-v
-zle -N edit-command-line
-bindkey -M vicmd v edit-command-line
-
-#Fzf
+# Fzf
 if [ -x "$(command -v fzf)" ]; then
+    # Vim and Fzf interaction: vi mode, needs to come before fzf is loaded
+    bindkey -v
+    # Edit command line in vim by pressing Esc-v
+    zle -N edit-command-line
+    bindkey -M vicmd v edit-command-line
     export FZF_CTRL_T_OPTS='--height 90% --preview "pygmentize -l $(pygmentize -N {}) {}"'
     [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 else
@@ -146,7 +152,7 @@ fi
 	#fi
 #fi
 
-# Invoke completion
+# Invoke completion for Bash
 #if [ -x "$(command -v inv)" ]; then
     #source ${HOME}/dev/repos/setup/invoke/bash_completion.sh
 #else
