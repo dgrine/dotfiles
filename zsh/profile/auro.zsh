@@ -7,7 +7,7 @@ alias cdtop='cdrepos; cd toplevel-fusion'
 alias cdcook='cdrepos; cd cook-binary'
 alias cd548='cdavs; cd story/code548'
 
-function auro_init {
+function auro-set-compiler {
     auro_compiler=""
     if [ "${auro_brand}" != "" ]
     then
@@ -36,18 +36,17 @@ function auro_init {
         auro_compiler=$auro_compiler-$auro_postfix
     fi
     export auro_compiler=$auro_compiler
-    export auro_j="8"
 }
 
 function debug {
     export auro_mode="debug"
-    auro_init
+    auro-set-compiler
     auro
 }
 
 function release {
     export auro_mode="release"
-    auro_init
+    auro-set-compiler
     auro
 }
 
@@ -61,13 +60,13 @@ function verbose {
 
 function nortc {
     export auro_rtc=""
-    auro_init
+    auro-set-compiler
     auro
 }
 
 function rtc {
     export auro_rtc="rtc"
-    auro_init
+    auro-set-compiler
     auro
 }
 
@@ -75,7 +74,7 @@ function auro {
     echo $auro_compiler
 }
 
-function default {
+function auro-init {
     if [ "${OSTYPE}" = "linux-gnu" ]; then
         export auro_brand="gcc"
     else
@@ -85,7 +84,11 @@ function default {
     debug
     rtc
     noverbose
+    export auro_j="40"
 }
 
-default > /dev/null
+auro-init > /dev/null
+
+ccache-set-path
+icecream-set-ccache-prefix
 

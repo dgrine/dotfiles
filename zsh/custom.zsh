@@ -131,10 +131,13 @@ if [ ! -x "$(command -v git)" ]; then
     echo "Warning: Git not installed"
 fi
 
+# ccache
+alias ccache-set-path='export PATH=/usr/local/opt/ccache/libexec:$PATH'
+
 # icecream
 if [ -x "/usr/local/opt/icecream/sbin/iceccd" ]; then
-    alias icecream-set-path='export PATH=/usr/local/opt/icecream/libexec/icecc/bin:$PATH'
-    alias icecream-start-daemon='sudo /usr/local/opt/icecream/sbin/iceccd -vvv'
+    alias icecream-start-daemon='/usr/local/opt/icecream/sbin/iceccd -vvv'
+    alias icecream-set-ccache-prefix='export CCACHE_PREFIX=icecc'
     # To start the monitor, for example: icemon -s matlab 
 else
     echo "Warning: icecream nog installed"
