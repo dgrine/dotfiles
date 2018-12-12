@@ -232,14 +232,15 @@ if has("gui_running")
     elseif has("gui_macvim")
         " MacVim
         set guioptions=
-        "set guifont=Monospace\ 11
         set guifont=Menlo\ Regular:h13
-        set background=dark
-        let g:palenight_terminal_italics=1
         nmap <Leader>csl :colorscheme xcode<CR>
         nmap <Leader>csd :colorscheme dracula<CR>
         colorscheme xcode
     endif
+elseif has("nvim")
+        nmap <Leader>csl :colorscheme xcode<CR>
+        nmap <Leader>csd :colorscheme dracula<CR>
+        colorscheme xcode
 else
     colorscheme default
 end
