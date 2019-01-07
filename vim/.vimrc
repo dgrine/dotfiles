@@ -40,6 +40,8 @@ nnoremap <Leader>fs :GFiles?<CR>
 " Files command (with preview window)
 "command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, <bang>0)
+" Per command history
+let g:fzf_history_dir = '~/.fzf-history'
 
 " NERDTree file manager
 Plug 'scrooloose/nerdtree'
