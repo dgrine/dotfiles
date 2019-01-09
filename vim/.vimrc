@@ -66,8 +66,8 @@ let g:ycm_always_populate_location_list=1
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_confirm_extra_conf=0
 map <Leader>f :YcmCompleter FixIt<CR>
-nnoremap <C-Space> :YcmCompleter GoTo<CR>
-nnoremap <C-Return> :vsplit <bar> YcmCompleter GoTo<CR>
+nnoremap <TAB><Space> :YcmCompleter GoTo<CR>
+nnoremap <TAB><Return> :vsplit <bar> YcmCompleter GoTo<CR>
 
 let g:ycm_complete_in_comments=1 
 let g:ycm_seed_identifiers_with_syntax=1 
