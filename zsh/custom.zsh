@@ -4,7 +4,7 @@
 
 ZSH_THEME="arrow"
 
-plugins=(git web-search vim pip python rake ruby iterm2 npm brew z)
+plugins=(git web-search vim pip python rake ruby fabric iterm2 npm brew z)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -139,8 +139,6 @@ if [ -x "/usr/local/opt/icecream/sbin/iceccd" ]; then
     alias icecream-start-daemon='/usr/local/opt/icecream/sbin/iceccd -vvv'
     alias icecream-set-ccache-prefix='export CCACHE_PREFIX=icecc'
     # To start the monitor, for example: icemon -s matlab 
-else
-    echo "Warning: icecream nog installed"
 fi
 
 # Fzf

@@ -181,6 +181,14 @@ Plug 'Quramy/tsuquyomi'
 " TypeScript syntax highlighting
 Plug 'leafgarland/typescript-vim'
 
+" Asynchronous completion framework for neovim/Vim8
+" Check whether this can deprecate TypeScript omni-completion
+if has('nvim')
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    let g:deoplete#enable_at_startup = 1
+    Plug 'zchee/deoplete-jedi' " Python completion using jedi (pip install jedi)
+end
+
 " JSX
 Plug 'mxw/vim-jsx'
 
