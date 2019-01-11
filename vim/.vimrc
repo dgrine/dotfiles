@@ -250,9 +250,13 @@ if has("gui_running")
 elseif has("nvim")
         nmap <Leader>csl :colorscheme xcode<CR>
         nmap <Leader>csd :colorscheme dracula<CR>
-        colorscheme xcode
+        if has("gui_vimr")
+            colorscheme xcode
+        else
+            colorscheme dracula
+        endif
 else
-    colorscheme default
+    colorscheme dracula
 end
 " =============================================================================
 
