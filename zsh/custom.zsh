@@ -41,7 +41,9 @@ elif [ -x "$(command -v nano)" ]; then
 else
     echo "Warning: no suitable editor available"
 fi
-alias ce='$EDITOR'
+alias e='$EDITOR'
+
+# Visual editor
 if [ "${PLATFORM}" = "mac" ]; then
     if [ -x "$(command -v vimr)" ]; then
         export VISUAL="vimr"
@@ -59,7 +61,7 @@ else
         echo "Warning: gvim not installed"
     fi
 fi
-alias e='${VISUAL}'
+alias ve='${VISUAL}'
 
 # General aliases
 alias evrc='e $HOME/.vimrc'
@@ -76,7 +78,8 @@ alias cddocs='cdrepos; cd docs'
 alias cdbin='cd $HOME/dev/bin'
 alias cdtmp='mkdir -p $HOME/dev/tmp && cd $HOME/dev/tmp';
 if [ -x "$(command -v ranger)" ]; then
-    alias r='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
+    # Doing a silly little dance to work-around Ranger using VISUAL instead of EDITOR
+    alias r='TMP=${VISUAL}; export VISUAL=${EDITOR} && ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"; export VISUAL=${TMP}; TMP=""'
 else
     echo "Warning: ranger not installed"
 fi
