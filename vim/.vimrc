@@ -68,7 +68,6 @@ let g:ycm_confirm_extra_conf=0
 map <Leader>f :YcmCompleter FixIt<CR>
 nnoremap <TAB><Space> :YcmCompleter GoTo<CR>
 nnoremap <TAB><Return> :vsplit <bar> YcmCompleter GoTo<CR>
-
 let g:ycm_complete_in_comments=1 
 let g:ycm_seed_identifiers_with_syntax=1 
 let g:ycm_collect_identifiers_from_comments_and_strings=1 
@@ -232,7 +231,14 @@ set breakindent
 " Ensures word-wrap does not split words
 set formatoptions=l
 set lbr
-" Remove white borders and scrollbars across the GUI
+
+" Visuals
+set t_Co=256
+let g:dracula_italic = 0
+colorscheme dracula
+highlight Normal ctermbg=None
+nmap <Leader>csl :colorscheme xcode<CR>
+nmap <Leader>csd :colorscheme dracula<CR>
 if has("gui_running")
     " GVim
     if has("gui_gtk2") || has("gui_gtk3")
@@ -243,20 +249,12 @@ if has("gui_running")
         " MacVim
         set guioptions=
         set guifont=Menlo\ Regular:h13
-        nmap <Leader>csl :colorscheme xcode<CR>
-        nmap <Leader>csd :colorscheme dracula<CR>
-        colorscheme xcode
+    elseif has("gui_vimr")
+        " vimr
+        set guioptions=
     endif
-elseif has("nvim")
-        nmap <Leader>csl :colorscheme xcode<CR>
-        nmap <Leader>csd :colorscheme dracula<CR>
-        if has("gui_vimr")
-            colorscheme xcode
-        else
-            colorscheme dracula
-        endif
 else
-    colorscheme dracula
+    set nolazyredraw
 end
 " =============================================================================
 
