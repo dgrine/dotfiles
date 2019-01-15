@@ -18,8 +18,16 @@ endif
 
 " Lean & mean status/tabline for vim that's light as air
 Plug 'vim-airline/vim-airline'
+" Powerline fonts: disable this if things look weird (no powerline fonts
+" available)
+let g:airline_powerline_fonts = 1
+
 " Tab bar
-let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#tabline#enabled = 1
+
+" Tmux integration: status bar
+Plug 'edkolev/tmuxline.vim'
+let g:airline#extensions#tmuxline#enabled = 1
 
 " Fuzzy File Finder
 " On macOS:
