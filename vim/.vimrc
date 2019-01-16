@@ -25,10 +25,6 @@ let g:airline_powerline_fonts = 1
 " Tab bar
 let g:airline#extensions#tabline#enabled = 1
 
-" Tmux integration: status bar
-Plug 'edkolev/tmuxline.vim'
-let g:airline#extensions#tmuxline#enabled = 1
-
 " Fuzzy File Finder
 " On macOS:
 "   brew install fzf
@@ -74,8 +70,8 @@ let g:ycm_always_populate_location_list=1
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_confirm_extra_conf=0
 map <Leader>f :YcmCompleter FixIt<CR>
-nnoremap <TAB><Space> :YcmCompleter GoTo<CR>
-nnoremap <TAB><Return> :vsplit <bar> YcmCompleter GoTo<CR>
+nnoremap <C-Space> :YcmCompleter GoTo<CR>
+nnoremap <C-Return> :vsplit <bar> YcmCompleter GoTo<CR>
 let g:ycm_complete_in_comments=1 
 let g:ycm_seed_identifiers_with_syntax=1 
 let g:ycm_collect_identifiers_from_comments_and_strings=1 
@@ -184,9 +180,9 @@ Plug 'jremmen/vim-ripgrep'
 
 " TypeScript omni-completion
 " Requires TypeScript to be installed: npm -g install typescript
-Plug 'Quramy/tsuquyomi'
+"Plug 'Quramy/tsuquyomi'
 " TypeScript syntax highlighting
-Plug 'leafgarland/typescript-vim'
+"Plug 'leafgarland/typescript-vim'
 
 " Asynchronous completion framework for neovim/Vim8
 " Check whether this can deprecate TypeScript omni-completion
@@ -199,9 +195,26 @@ end
 " JSX
 Plug 'mxw/vim-jsx'
 
-" Tmux
-Plug 'christoomey/vim-tmux-navigator' 
+" Tmux integration: status bar
+Plug 'edkolev/tmuxline.vim'
+let g:airline#extensions#tmuxline#enabled = 1
 
+" Tmux: navigation
+Plug 'christoomey/vim-tmux-navigator' 
+" Disable tmux navigator when zooming the Vim pane
+let g:tmux_navigator_disable_when_zoomed = 1
+
+" Deeper integration (specifically running tests and commands) between Vim and
+" Tmux
+" See https://blog.bugsnag.com/tmux-and-vim/
+Plug 'benmills/vimux'
+" Prompt for a command to run
+map <Leader>rp :VimuxPromptCommand<CR>
+" Run last command executed by VimuxRunCommand
+map <Leader>rr :VimuxRunLastCommand<CR>
+" Inspect runner pane (already brings you in copy mode)
+map <Leader>ri :VimuxInspectRunner<CR>
+let g:VimuxOrientation = 'h'
 
 " Initialize plugin system
 call plug#end()
