@@ -199,6 +199,10 @@ end
 " JSX
 Plug 'mxw/vim-jsx'
 
+" Tmux
+Plug 'christoomey/vim-tmux-navigator' 
+
+
 " Initialize plugin system
 call plug#end()
 " =============================================================================
