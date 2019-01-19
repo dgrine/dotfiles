@@ -214,7 +214,11 @@ map <Leader>rp :VimuxPromptCommand<CR>
 map <Leader>rr :VimuxRunLastCommand<CR>
 " Inspect runner pane (already brings you in copy mode)
 map <Leader>ri :VimuxInspectRunner<CR>
+" Close the tmux runner
+map <Leader>rq :VimuxCloseRunner<CR>
+" Runner pane
 let g:VimuxOrientation = 'h'
+let g:VimuxHeight = '40'
 
 " Initialize plugin system
 call plug#end()
@@ -286,7 +290,16 @@ end
 " File type specific settings
 " =============================================================================
 " Set TypeScript indentation
-autocmd BufNewFile,BufRead *.ts set shiftwidth=2
+autocmd BufNewFile,BufRead *.ts call SetTypeScriptOptions()
+function SetTypeScriptOptions()
+    set shiftwidth=2
+endfunction
+" Set ReStructured Text indentation
+function SetReStructuredTextOptions()
+    set indentexpr="" 
+    set shiftwidth=2
+endfunction
+autocmd BufNewFile,BufRead *.rst call SetReStructuredTextOptions()
 " =============================================================================
 
 " Custom key mapping

@@ -4,7 +4,7 @@
 
 ZSH_THEME="arrow"
 
-plugins=(git web-search vim pip python rake ruby fabric iterm2 npm brew z)
+plugins=(git web-search vim pip python rake ruby fabric iterm2 npm brew z docker)
 
 source $ZSH/oh-my-zsh.sh
 
