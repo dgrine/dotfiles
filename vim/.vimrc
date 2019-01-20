@@ -165,7 +165,7 @@ Plug 'junegunn/vim-easy-align'
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
-" Note: to allign a table: gaip*|
+" Note: to align a table: gaip*|
 
 " Distraction-free writing in Vim
 Plug 'junegunn/goyo.vim'
