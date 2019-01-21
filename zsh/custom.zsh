@@ -106,7 +106,7 @@ fi
 
 # Pygmentize and pcat
 if [ -x "$(command -v pygmentize)" ]; then
-    alias pcat='pygmentize -O style=native -g'
+    alias pcat='pygmentize -O style=vim -g'
 else
     echo "Warning: Pygmentize not installed"
 fi
@@ -158,20 +158,8 @@ else
     echo "Warning: fzf not installed"
 fi
 
-# Bash completion
-#if [ "${PLATFORM}" = "mac" ]; then
-	#TMP_VAR=`find /usr/local/Cellar/bash-completion/ -name bash_completion | tail -n 1`
-	#if [ "${TMP_VAR}" != "" ]; then
-		#. ${TMP_VAR}
-	#fi
-#fi
-
-# Invoke completion for Bash
-#if [ -x "$(command -v inv)" ]; then
-    #source ${HOME}/dev/repos/setup/invoke/bash_completion.sh
-#else
-    #echo "Warning: Invoke not installed"
-#fi
+# zsh completion
+source ${HOME}/dev/repos/setup/invoke/zsh_completion.zsh
 
 # Local profile
 [ -f "${HOME}/.zshrc_local" ] && source ${HOME}/.zshrc_local
