@@ -300,6 +300,7 @@ function SetReStructuredTextOptions()
     set shiftwidth=2
 endfunction
 autocmd BufNewFile,BufRead *.rst call SetReStructuredTextOptions()
+autocmd BufNewFile,BufRead *.md call SetReStructuredTextOptions()
 " =============================================================================
 
 " Custom key mapping
