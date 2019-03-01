@@ -2,6 +2,7 @@
 # Sources this file.
 # Everything else in that file should be commented out
 
+export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="arrow"
 
 plugins=(git web-search vim pip python rake ruby fabric iterm2 npm brew z docker)
