@@ -3,7 +3,7 @@
 
 echo ""
 echo "==============================================="
-echo " Dev tools and utilities installation (debian)
+echo " Dev tools and utilities installation (debian) "
 echo "==============================================="
 echo ""
 
