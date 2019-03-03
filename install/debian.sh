@@ -7,6 +7,21 @@ echo " Dev tools and utilities installation (debian) "
 echo "==============================================="
 echo ""
 
+echo "Installing git"
+sudo apt install -y git
+
+echo "Checking out setup repo"
+cd ~
+mkdir -p dev/repos/
+cd dev/repos
+echo "Do you wish to check out the setup repo using SSH?"
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) git clone git@gitlab.com:dgrine/setup.git;     break;;
+        No  ) git clone https://gitlab.com/dgrine/setup.git; break;;
+    esac
+donegit clone 
+
 echo "Installing curl"
 sudo apt install -y curl
 
