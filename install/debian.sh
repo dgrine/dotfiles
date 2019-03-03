@@ -1,6 +1,12 @@
 # Installation script
 # Tested on Ubuntu 18.04
 
+echo ""
+echo "==============================================="
+echo " Dev tools and utilities installation (debian)
+echo "==============================================="
+echo ""
+
 echo "Installing curl"
 sudo apt install -y curl
 
