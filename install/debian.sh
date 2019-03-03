@@ -14,19 +14,19 @@ echo "Checking out setup repo"
 cd ~
 mkdir -p dev/repos/
 cd dev/repos
-echo "Do you wish to check out the setup repo using SSH?"
-select yn in "Yes" "No"; do
-    case $yn in
-        Yes ) git clone git@gitlab.com:dgrine/setup.git;     break;;
-        No  ) git clone https://gitlab.com/dgrine/setup.git; break;;
-    esac
-donegit clone 
+git clone git@gitlab.com:dgrine/setup.git || {
+    echo "SSH checkout failed"
+    git clone https://gitlab.com/dgrine/setup.git || {
+        echo "HTTPS checkout failed"
+        exit 1
+    }
+}
 
 echo "Installing curl"
 sudo apt install -y curl
 
-echo "Installing gcc-c++"
-sudo apt install -y build-essential gcc-c++
+echo "Installing gcc and g++"
+sudo apt install -y build-essential gcc g++
 
 echo "Installing cmake"
 sudo apt install -y cmake
