@@ -10,5 +10,5 @@ Development setup including:
 ### Debian
 
 ```
-wget https://gitlab.com/dgrine/setup/raw/master/install/debian.sh -O - | sh
+wget https://gitlab.com/dgrine/setup/raw/master/install/debian.sh install.sh && chmod +x install.sh && ./install.sh
 ```

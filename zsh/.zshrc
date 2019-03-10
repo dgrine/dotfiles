@@ -67,7 +67,7 @@ alias ve='${VISUAL}'
 # General aliases
 alias evrc='e $HOME/.vimrc'
 alias etcnf='e $HOME/.tmux.conf'
-alias ezrc='e $HOME/dev/repos/setup/zsh/custom.zsh'
+alias ezrc='e $HOME/.zshrc'
 alias ezrcl='e $HOME/.zshrc_local'
 alias szrc='source $HOME/.zshrc'
 alias cdvim='cd $HOME/.vim/'
