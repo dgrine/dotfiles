@@ -41,6 +41,7 @@ echo "Installing neovim plugins"
 nvim
 cd ~/.vim/plugged/YouCompleteMe
 python3 install.py --clang-completer
+sudo pip3 install pynvim
 
 echo "Installing tmux"
 yay -Sy tmux
