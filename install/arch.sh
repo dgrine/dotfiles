@@ -7,11 +7,8 @@ echo " Dev tools and utilities installation (arch)   "
 echo "==============================================="
 echo ""
 
-echo "Installing yaourt"
-sudo pacman -Sy yaourt
-
-echo "Installing git"
-yaourt git-git
+echo "Installing yay"
+sudo pacman -Sy yay
 
 echo "Checking out setup repo"
 cd ~
@@ -25,20 +22,11 @@ git clone git@gitlab.com:dgrine/setup.git || {
     }
 }
 
-echo "Installing curl"
-sudo apt install -y curl
-
-echo "Installing gcc and g++"
-# sudo apt install -y build-essential gcc g++
-
-# echo "Installing cmake"
-# sudo apt install -y cmake
-
-# echo "Installing python"
-# sudo apt install -y python3 python3-dev
+echo "Installing cmake"
+yay -Sy cmake
 
 echo "Installing neovim"
-sudo apt install -y neovim
+yay -Sy neovim
 echo "Configuring neovim"
 cd ~
 ln -s ~/dev/repos/setup/vim/.vimrc
@@ -55,13 +43,13 @@ cd ~/.vim/plugged/YouCompleteMe
 python3 install.py --clang-completer
 
 echo "Installing tmux"
-sudo apt install -y tmux
+yay -Sy tmux
 echo "Configuring tmux"
 cd ~
 ln -s  ~/dev/repos/setup/tmux/.tmux.conf
 
 echo "Installing ranger"
-sudo apt install -y ranger
+yay -Sy ranger
 echo "Configuring ranger"
 cd ~
 mkdir -p .config/ranger
@@ -74,9 +62,10 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 
 echo "Installing Oh-My-Zsh"
-sudo apt install -y zsh
-echo "Configuring Oh-My-Zsh"
 cd ~
 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 rm -rf .zshrc
 ln -s ~/dev/repos/setup/zsh/.zshrc
+
+echo "Setup almost complete. There are still some manual tasks to be perfomed:"
+echo "- Enable 'Color' in /etc/pacman.conf"
