@@ -59,7 +59,7 @@ else
         export VISUAL="gvim"
     else
         export VISUAL="${EDITOR}"
-        echo "Warning: gvim not installed"
+        #echo "Warning: gvim not installed"
     fi
 fi
 alias ve='${VISUAL}'
@@ -121,11 +121,11 @@ else
 fi
 
 # Pygmentize and pcat
-if [ -x "$(command -v pygmentize)" ]; then
-    alias pcat='pygmentize -O style=vim -g'
-else
-    echo "Warning: Pygmentize not installed"
-fi
+# if [ -x "$(command -v pygmentize)" ]; then
+#     alias pcat='pygmentize -O style=vim -g'
+# else
+#     echo "Warning: Pygmentize not installed"
+# fi
 
 # Meld
 if [ "${PLATFORM}" = "mac" ]; then
