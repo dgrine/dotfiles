@@ -161,21 +161,30 @@ if [ -x "/usr/local/opt/icecream/sbin/iceccd" ]; then
     # To start the monitor, for example: icemon -s matlab 
 fi
 
+# zsh completion
+source ${HOME}/dev/repos/setup/invoke/zsh_completion.zsh
+
+# Local profile
+[ -f "${HOME}/.zshrc_local" ] && source ${HOME}/.zshrc_local
+
+# When zsh starts up, zsh uses vi insertion mode as the default keymap
+#bindkey -e 
+
 # Fzf
+# Note: this really must be the last thing loaded
 if [ -x "$(command -v fzf)" ]; then
     # Vim and Fzf interaction: vi mode, needs to come before fzf is loaded
     bindkey -v
     # Edit command line in vim by pressing Esc-v
     zle -N edit-command-line
     bindkey -M vicmd v edit-command-line
-    export FZF_CTRL_T_OPTS='--height 90% --preview "pygmentize -l $(pygmentize -N {}) {}"'
+    if [ -x "$(command -v pygmentize)" ]; then
+        export FZF_CTRL_T_OPTS='--height 90% --preview "pygmentize -l $(pygmentize -N {}) {}"'
+    else
+        export FZF_CTRL_T_OPTS='--height 90% --preview "cat {}"'
+    fi
     [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 else
     echo "Warning: fzf not installed"
 fi
 
-# zsh completion
-source ${HOME}/dev/repos/setup/invoke/zsh_completion.zsh
-
-# Local profile
-[ -f "${HOME}/.zshrc_local" ] && source ${HOME}/.zshrc_local
