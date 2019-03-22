@@ -32,7 +32,7 @@ echo "Installing cmake"
 sudo apt install -y cmake
 
 echo "Installing python"
-sudo apt install -y python3 python3-dev
+sudo apt install -y python3 python3-dev python3-pip
 
 echo "Installing neovim"
 sudo apt install -y neovim
