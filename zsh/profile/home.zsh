@@ -6,8 +6,15 @@ alias ssh_deeplearning='ssh -p 24 grine@deeplearning'
 function ssh_deeplearning_fwd()
 {
     port="$1"
-    echo "Forwarding port $port ..."
-    ssh_deeplearning -L "$port":localhost:"$port" -N
+    if [ "" = "$port" ]; then
+        echo "Error: missing port"
+        echo "Usage: ssh_deeplearning_fwd <port>"
+        return 1
+    else
+        echo "Forwarding port $port ..."
+        echo "Ctrl+C to stop"
+        ssh_deeplearning -L "$port":localhost:"$port" -N
+    fi
 }
 alias cdpd='cdrepos; cd py-dev'
 alias cdargo='cdrepos; cd Argo'
