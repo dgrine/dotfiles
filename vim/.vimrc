@@ -11,9 +11,9 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " Remove this once ViM supports Python 3.7
-if has('python3')
-  silent! python3 1
-endif
+"if has('python3')
+  "silent! python3 1
+"endif
 
 " Lean & mean status/tabline for vim that's light as air
 Plug 'vim-airline/vim-airline'
@@ -64,18 +64,16 @@ let g:NERDCustomDelimiters = { 'tree': { 'left': '<', 'right': '>'}, 'asd': { 'l
 Plug 'scrooloose/nerdcommenter'
 
 " YouCompleteMe
-if has('python3')
-    Plug 'Valloric/YouCompleteMe', { 'do': 'python3 install.py --clang-completer' }
-    let g:ycm_always_populate_location_list=1
-    let g:ycm_autoclose_preview_window_after_completion=1
-    let g:ycm_confirm_extra_conf=0
-    map <Leader>f :YcmCompleter FixIt<CR>
-    nnoremap <C-Space> :YcmCompleter GoTo<CR>
-    nnoremap <C-Return> :vsplit <bar> YcmCompleter GoTo<CR>
-    let g:ycm_complete_in_comments=1 
-    let g:ycm_seed_identifiers_with_syntax=1 
-    let g:ycm_collect_identifiers_from_comments_and_strings=1 
-endif
+Plug 'Valloric/YouCompleteMe', { 'do': 'python3 install.py --clang-completer' }
+let g:ycm_always_populate_location_list=1
+let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_confirm_extra_conf=0
+map <Leader>f :YcmCompleter FixIt<CR>
+nnoremap <C-Space> :YcmCompleter GoTo<CR>
+nnoremap <C-Return> :vsplit <bar> YcmCompleter GoTo<CR>
+let g:ycm_complete_in_comments=1 
+let g:ycm_seed_identifiers_with_syntax=1 
+let g:ycm_collect_identifiers_from_comments_and_strings=1 
 
 " Multiple cursor editing
 Plug 'terryma/vim-multiple-cursors'
@@ -126,17 +124,15 @@ Plug 'Frydac/vim-tree'
 Plug 'Frydac/vim-auro'
 "
 " UltiSnips, quick snippets
-if has('python3')
-    Plug 'SirVer/ultisnips'
-    let g:UltiSnipsSnippetsDir=$HOME.'/.my/setup/vim/snippets/UltiSnips'
-    let g:UltiSnipsSnippetDirectories=["UltiSnips"]
-    let g:UltiSnipsExpandTrigger="<c-j>"
-    let g:UltiSnipsJumpForwardTrigger="<c-j>"
-    let g:UltiSnipsJumpBackwardTrigger="<c-h>"
-    let g:UltiSnipsListSnippets="<c-h>"
-     "If you want :UltiSnipsEdit to split your window.
-    let g:UltiSnipsEditSplit="vertical"
-endif
+Plug 'SirVer/ultisnips'
+let g:UltiSnipsSnippetsDir=$HOME.'/.my/setup/vim/snippets/UltiSnips'
+let g:UltiSnipsSnippetDirectories=["UltiSnips"]
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-h>"
+let g:UltiSnipsListSnippets="<c-h>"
+ "If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 
 " ctrlsf.vim
 " An ack/ag/pt/rg powered code search and view tool, and lets you 
