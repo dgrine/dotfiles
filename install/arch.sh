@@ -25,6 +25,10 @@ git clone git@gitlab.com:dgrine/setup.git || {
 echo "Installing cmake"
 yay -Sy cmake
 
+echo "Configuring lldb"
+cd ~
+ln -s ~/dev/repos/setup/lldb/.lldbinit
+
 echo "Installing neovim"
 yay -Sy neovim
 echo "Configuring neovim"

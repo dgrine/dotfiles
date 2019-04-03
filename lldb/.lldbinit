@@ -1,0 +1,2 @@
+command script import ~/dev/repos/setup/lldb/dbg.py
+
