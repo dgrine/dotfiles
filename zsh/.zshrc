@@ -99,22 +99,21 @@ else
 fi
 
 # Miniconda
-# Note: the miniconda scripts don't seem very robust and often spit out mumbo jumbo errors.
-# To mitigate this, all output is sent to /dev/null
-#__conda_setup="$(CONDA_REPORT_ERRORS=false '$HOME/dev/miniconda3/bin/conda' shell.bash hook 2> /dev/null)"
-#if [ $? -eq 0 ]; then
-    #\eval "$__conda_setup"
-#else
-    #if [ -f "$HOME/dev/miniconda3/etc/profile.d/conda.sh" ]; then
-        #. "$HOME/dev/miniconda3/etc/profile.d/conda.sh" 2> /dev/null
-        #CONDA_CHANGEPS1=false conda activate base
-    #else
-        #\export PATH="$PATH:$HOME/dev/miniconda3/bin"
-    #fi
-#fi
-#unset __conda_setup
-# <<< conda init <<<
-export PATH="$PATH:$HOME/dev/miniconda3/bin"
+# Note: Output from conda init zsh, but moved to this location instead of end of this file
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup=$("$HOME/dev/miniconda3/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup" 2>/dev/null
+else
+    if [ -f "$HOME/dev/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "$HOME/dev/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="$HOME/dev/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 
 # Make
 if [ -x "$(command -v make)" ]; then
