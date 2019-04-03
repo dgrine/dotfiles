@@ -114,6 +114,8 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+# Prevent conda from automatically activating base environment (writes to .condarc)
+conda config --set auto_activate_base false
 
 # Make
 if [ -x "$(command -v make)" ]; then
