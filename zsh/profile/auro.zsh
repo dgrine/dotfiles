@@ -49,6 +49,11 @@ function release {
     auro-set-compiler
     auro
 }
+function reldeb {
+    export auro_mode="release-debug"
+    auro-set-compiler
+    auro
+}
 
 function noverbose {
     unset auro_verbose

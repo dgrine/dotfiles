@@ -28,10 +28,6 @@ sudo apt install -y curl
 echo "Installing gcc and g++"
 sudo apt install -y build-essential gcc g++
 
-echo "Configuring lldb"
-cd ~
-ln -s ~/dev/repos/setup/lldb/.lldbinit
-
 echo "Installing cmake"
 sudo apt install -y cmake
 
