@@ -97,3 +97,25 @@ auro-init > /dev/null
 ccache-set-path
 icecream-set-ccache-prefix
 
+function auro-log-bs-ci-lin-gcc-x64 {
+    build_id=$1
+    if [[ "${build_id}" == "" ]]; then;
+        echo "Retrieving CI lin-gcc-x64 log of latest build"
+        cmd='cd "/var/lib/jenkins/jobs/ci/jobs/ci-toplevel-fusion (gcc-x64)/branches/CI/builds/" && cd `ls -t -d */ | head -n 1` && cat log'
+    else
+        echo "Retrieving CI lin-gcc-x64 log of build #{build_id}"
+        cmd='cd "/var/lib/jenkins/jobs/ci/jobs/ci-toplevel-fusion (gcc-x64)/branches/CI/builds/${build_id}" && cat log'
+    fi
+    ssh auro@matlab "$cmd"
+}
+function auro-log-bs-ci-lin-gcc-x86 {
+    build_id=$1
+    if [[ "${build_id}" == "" ]]; then;
+        echo "Retrieving CI lin-gcc-x86 log of latest build"
+        cmd='cd "/var/lib/jenkins/jobs/ci/jobs/ci-toplevel-fusion (gcc-x86)/branches/CI/builds/" && cd `ls -t -d */ | head -n 1` && cat log'
+    else
+        echo "Retrieving CI lin-gcc-x86 log of build #{build_id}"
+        cmd='cd "/var/lib/jenkins/jobs/ci/jobs/ci-toplevel-fusion (gcc-x86)/branches/CI/builds/${build_id}" && cat log'
+    fi
+    ssh auro@matlab "$cmd"
+}
