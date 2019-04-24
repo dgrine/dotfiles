@@ -92,11 +92,6 @@ function auro-init {
     export auro_j="40"
 }
 
-auro-init > /dev/null
-
-ccache-set-path
-icecream-set-ccache-prefix
-
 function auro-log-bs-ci-lin-gcc-x64 {
     build_id=$1
     if [[ "${build_id}" == "" ]]; then;
@@ -119,3 +114,12 @@ function auro-log-bs-ci-lin-gcc-x86 {
     fi
     ssh auro@matlab "$cmd"
 }
+
+function auro-list-ut-tags {
+    rg -t cpp 'TEST_CASE' -g '*_tests.cpp' | cut -d ',' -f 2 | rg '"\[[a-z_A-Z]+\]' --only-matching | rg '\[[a-z_A-Z]+\]' --only-matching | sort | uniq -c
+}
+
+auro-init > /dev/null
+ccache-set-path
+icecream-set-ccache-prefix
+
