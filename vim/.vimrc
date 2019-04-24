@@ -256,7 +256,7 @@ set formatoptions=l
 set lbr
 
 " Visuals
-set t_Co=256
+set termguicolors
 let g:dracula_italic = 0
 colorscheme dracula
 highlight Normal ctermbg=None
