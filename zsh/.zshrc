@@ -173,14 +173,13 @@ source ${HOME}/dev/repos/setup/invoke/zsh_completion.zsh
 # Local profile
 [ -f "${HOME}/.zshrc_local" ] && source ${HOME}/.zshrc_local
 
-# When zsh starts up, zsh uses vi insertion mode as the default keymap
-#bindkey -e 
-
 # Fzf
 # Note: this really must be the last thing loaded
 if [ -x "$(command -v fzf)" ]; then
     # Vim and Fzf interaction: vi mode, needs to come before fzf is loaded
     bindkey -v
+    bindkey '^y' fzf-cd-widget
+
     # Edit command line in vim by pressing Esc-v
     zle -N edit-command-line
     bindkey -M vicmd v edit-command-line
