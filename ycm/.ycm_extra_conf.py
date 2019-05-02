@@ -26,12 +26,28 @@
 import os
 import ycm_core
 
+cores = ['core-std', 'core-io', 'core-math', 'core-test', 'core-audio']
+comps = ['comp-cx']
+fusions = ['fusion-cx']
+clis = ['cli-coder']
+modules = cores + comps + fusions + clis
+
 flags = [
     '-x',
     'c++',
     # '-I<include_path>',
+    '-I/Users/djamelg/dev/repos/toplevel-fusion/info/generated/public',
+    '-I/Users/djamelg/dev/repos/toplevel-fusion/info/public',
     '-std=gnu++14',
 ]
+
+for module in modules:
+    flags.append('-I/Users/djamelg/dev/repos/toplevel-fusion/{}/public'.format(module))
+    flags.append('-I/Users/djamelg/dev/repos/toplevel-fusion/{}/protected'.format(module))
+    flags.append('-I/Users/djamelg/dev/repos/toplevel-fusion/{}/private'.format(module))
+    flags.append('-I/Users/djamelg/dev/repos/toplevel-fusion/{}/test/public'.format(module))
+    flags.append('-I/Users/djamelg/dev/repos/toplevel-fusion/{}/test/protected'.format(module))
+    flags.append('-I/Users/djamelg/dev/repos/toplevel-fusion/{}/test/private'.format(module))
 
 
 # Set this to the absolute path to the folder (NOT the file!) containing the
