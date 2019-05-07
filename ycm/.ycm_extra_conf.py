@@ -27,9 +27,9 @@ import os
 import ycm_core
 
 cores = ['core-std', 'core-io', 'core-math', 'core-test', 'core-audio']
-comps = ['comp-cx']
-fusions = ['fusion-cx']
-clis = ['cli-coder']
+comps = ['comp-cx', 'comp-api', 'comp-audio', 'comp-io']
+fusions = ['fusion-cxeng']
+clis = ['cli-coder', 'cli-asd']
 modules = cores + comps + fusions + clis
 
 flags = [
@@ -38,6 +38,8 @@ flags = [
     # '-I<include_path>',
     '-I/Users/djamelg/dev/repos/toplevel-fusion/info/generated/public',
     '-I/Users/djamelg/dev/repos/toplevel-fusion/info/public',
+    '-I/Users/djamelg/dev/repos/toplevel-fusion/core-test/doctest',
+    '-I/Users/djamelg/dev/repos/toplevel-fusion/core-test/extern/doctest/doctest',
     '-std=gnu++14',
 ]
 
