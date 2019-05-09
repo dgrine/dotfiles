@@ -158,7 +158,7 @@ function auro-log-bs-ci-msvc-2017-x64 {
         echo "Retrieving CI ${build_name} log of build ${build_id}"
         cmd="cd \"/var/lib/jenkins/jobs/ci/jobs/ci-toplevel-fusion (${build_name})/branches/CI/builds/${build_id}\" && ${cmd_print} log"
     fi
-    ssh auro@matlab.auro-technologies.com "${cmd} | sed 's/\x1b\[[0-9;]*m//g'"
+    ssh auro@matlab.auro-technologies.com "${cmd}"
 }
 
 function auro-list-ut-tags {
