@@ -216,11 +216,7 @@ let g:VimuxHeight = '40'
 
 " Clang formatting
 Plug 'rhysd/vim-clang-format'
-let g:clang_format#style_options = {
-            \ "AccessModifierOffset" : -4,
-            \ "AllowShortIfStatementsOnASingleLine" : "true",
-            \ "AlwaysBreakTemplateDeclarations" : "true",
-            \ "Standard" : "C++11"}
+let g:clang_format#detect_style_file=1
 
 " map to <Leader>cf in C++ code
 autocmd FileType c,cpp,objc nnoremap <buffer><C-K> :<C-u>ClangFormat<CR>
