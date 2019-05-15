@@ -87,6 +87,7 @@ else
 fi
 alias scpalt='rsync avzP'
 alias grep='grep -E -n --color=auto'
+alias gdt='git difftool'
 
 # Python
 if [ -x "$(command -v python3)" ]; then

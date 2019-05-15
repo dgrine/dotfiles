@@ -58,6 +58,9 @@ cd ~/.config/ranger
 ln -s ~/dev/repos/setup/ranger/commands.py
 ln -s ~/dev/repos/setup/ranger/rc.conf
 
+echo "Configuring git"
+cp ~/dev/repos/setup/git/.gitconfig ~/.gitconfig
+
 echo "Installing fzf"
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
