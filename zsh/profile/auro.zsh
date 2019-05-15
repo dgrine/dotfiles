@@ -92,7 +92,7 @@ function auro-init {
     export auro_j="40"
 }
 
-function auro-log-bs-ci-lin-gcc-x64 {
+function auro-bs-ci-lin-gcc-x64 {
     build_id=$1
     build_name="gcc-x64"
     if [ -t 1 ]; then
@@ -109,7 +109,24 @@ function auro-log-bs-ci-lin-gcc-x64 {
     fi
     ssh auro@matlab.auro-technologies.com "${cmd} | sed 's/\x1b\[[0-9;]*m//g'"
 }
-function auro-log-bs-ci-lin-gcc-x86 {
+function auro-bs-qc-lin-gcc-x64 {
+    build_id=$1
+    build_name="lin_gcc_x64"
+    if [ -t 1 ]; then
+        cmd_print="tail -f"
+    else
+        cmd_print="cat"
+    fi
+    if [[ "${build_id}" == "" ]]; then;
+        echo "Retrieving QC ${build_name} log of latest build"
+        cmd="cd \"/var/lib/jenkins/jobs/qc/jobs/qc-toplevel-fusion (${build_name})/builds/\" && cd \`ls -t -d */ | head -n 1\` && ${cmd_print} log"
+    else
+        echo "Retrieving QC ${build_name} log of build ${build_id}"
+        cmd="cd \"/var/lib/jenkins/jobs/qc/jobs/qc-toplevel-fusion (${build_name})/builds/${build_id}\" && ${cmd_print} log"
+    fi
+    ssh auro@matlab.auro-technologies.com "${cmd} | sed 's/\x1b\[[0-9;]*m//g'"
+}
+function auro-bs-ci-lin-gcc-x86 {
     build_id=$1
     build_name="gcc-x86"
     if [ -t 1 ]; then
@@ -126,7 +143,24 @@ function auro-log-bs-ci-lin-gcc-x86 {
     fi
     ssh auro@matlab.auro-technologies.com "${cmd} | sed 's/\x1b\[[0-9;]*m//g'"
 }
-function auro-log-bs-ci-mac-x64 {
+function auro-bs-qc-lin-gcc-x86 {
+    build_id=$1
+    build_name="lin_gcc_x86"
+    if [ -t 1 ]; then
+        cmd_print="tail -f"
+    else
+        cmd_print="cat"
+    fi
+    if [[ "${build_id}" == "" ]]; then;
+        echo "Retrieving QC ${build_name} log of latest build"
+        cmd="cd \"/var/lib/jenkins/jobs/qc/jobs/qc-toplevel-fusion (${build_name})/builds/\" && cd \`ls -t -d */ | head -n 1\` && ${cmd_print} log"
+    else
+        echo "Retrieving QC ${build_name} log of build ${build_id}"
+        cmd="cd \"/var/lib/jenkins/jobs/qc/jobs/qc-toplevel-fusion (${build_name})/builds/${build_id}\" && ${cmd_print} log"
+    fi
+    ssh auro@matlab.auro-technologies.com "${cmd} | sed 's/\x1b\[[0-9;]*m//g'"
+}
+function auro-bs-ci-mac-x64 {
     build_id=$1
     build_name="mac-x64"
     if [ -t 1 ]; then
@@ -143,7 +177,24 @@ function auro-log-bs-ci-mac-x64 {
     fi
     ssh auro@matlab.auro-technologies.com "${cmd} | sed 's/\x1b\[[0-9;]*m//g'"
 }
-function auro-log-bs-ci-msvc-2017-x64 {
+function auro-bs-qc-mac-x64 {
+    build_id=$1
+    build_name="mac_x64"
+    if [ -t 1 ]; then
+        cmd_print="tail -f"
+    else
+        cmd_print="cat"
+    fi
+    if [[ "${build_id}" == "" ]]; then;
+        echo "Retrieving QC ${build_name} log of latest build"
+        cmd="cd \"/var/lib/jenkins/jobs/qc/jobs/qc-toplevel-fusion (${build_name})/builds/\" && cd \`ls -t -d */ | head -n 1\` && ${cmd_print} log"
+    else
+        echo "Retrieving QC ${build_name} log of build ${build_id}"
+        cmd="cd \"/var/lib/jenkins/jobs/qc/jobs/qc-toplevel-fusion (${build_name})/builds/${build_id}\" && ${cmd_print} log"
+    fi
+    ssh auro@matlab.auro-technologies.com "${cmd} | sed 's/\x1b\[[0-9;]*m//g'"
+}
+function auro-bs-ci-msvc-2017-x64 {
     build_id=$1
     build_name="msvc-2017-x64"
     if [ -t 1 ]; then
@@ -157,6 +208,23 @@ function auro-log-bs-ci-msvc-2017-x64 {
     else
         echo "Retrieving CI ${build_name} log of build ${build_id}"
         cmd="cd \"/var/lib/jenkins/jobs/ci/jobs/ci-toplevel-fusion (${build_name})/branches/CI/builds/${build_id}\" && ${cmd_print} log"
+    fi
+    ssh auro@matlab.auro-technologies.com "${cmd}"
+}
+function auro-bs-qc-msvc-2017-x64 {
+    build_id=$1
+    build_name="win_msvc_2017_x64"
+    if [ -t 1 ]; then
+        cmd_print="tail -f"
+    else
+        cmd_print="cat"
+    fi
+    if [[ "${build_id}" == "" ]]; then;
+        echo "Retrieving QC ${build_name} log of latest build"
+        cmd="cd \"/var/lib/jenkins/jobs/qc/jobs/qc-toplevel-fusion (${build_name})/builds/\" && cd \`ls -t -d */ | head -n 1\` && ${cmd_print} log"
+    else
+        echo "Retrieving QC ${build_name} log of build ${build_id}"
+        cmd="cd \"/var/lib/jenkins/jobs/qc/jobs/qc-toplevel-fusion (${build_name})/builds/${build_id}\" && ${cmd_print} log"
     fi
     ssh auro@matlab.auro-technologies.com "${cmd}"
 }
