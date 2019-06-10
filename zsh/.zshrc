@@ -119,6 +119,10 @@ unset __conda_setup
 if [ -x "$(command -v conda)" ]; then
     conda config --set auto_activate_base false
 fi
+# On macOS, conda seems to always activate the base environment
+if [ "${PLATFORM}" = "mac" ]; then
+    conda deactivate > /dev/null
+fi
 
 # Make
 if [ -x "$(command -v make)" ]; then
