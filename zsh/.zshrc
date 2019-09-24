@@ -96,7 +96,7 @@ alias gdt='git difftool'
 if [ -x "$(command -v python3)" ]; then
     alias python='python3'
     alias pip='pip3'
-    alias mkenv='python3 -m venv env'
+    alias mkenv='python3 -m venv env && pip install pip --upgrade'
     alias senv='source env/bin/activate'
 else
     echo "Warning: Python 3 not installed"
