@@ -26,9 +26,9 @@
 import os
 import ycm_core
 
-cores = ['core-std', 'core-io', 'core-math', 'core-test', 'core-audio']
+cores = ['core-std', 'core-io', 'core-math', 'core-test', 'core-audio', 'ref-cx']
 comps = ['comp-cx', 'comp-api', 'comp-audio', 'comp-io']
-fusions = ['fusion-cxeng']
+fusions = ['fusion-cx']
 clis = ['cli-coder', 'cli-asd']
 modules = cores + comps + fusions + clis
 
@@ -40,6 +40,7 @@ flags = [
     '-I/Users/djamelg/dev/repos/toplevel-fusion/info/public',
     '-I/Users/djamelg/dev/repos/toplevel-fusion/core-test/doctest',
     '-I/Users/djamelg/dev/repos/toplevel-fusion/core-test/extern/doctest/doctest',
+    '-I/Users/djamelg/dev/repos/toplevel-fusion/fusion-cx/data/v2/scenario/cli/private',
     '-std=gnu++14',
 ]
 
@@ -69,7 +70,7 @@ if os.path.exists( compilation_database_folder ):
 else:
   database = None
 
-SOURCE_EXTENSIONS = [ '.C', '.cpp', '.cxx', '.cc', '.c', '.m', '.mm' ]
+SOURCE_EXTENSIONS = ['.cpp', '.cc', '.c']
 
 def DirectoryOfThisScript():
   return os.path.dirname( os.path.abspath( __file__ ) )
