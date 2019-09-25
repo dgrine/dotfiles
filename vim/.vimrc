@@ -172,6 +172,9 @@ Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 " Rg (ripgrep)
 Plug 'jremmen/vim-ripgrep'
 
+" Kivy language support
+Plug 'farfanoide/vim-kivy'
+
 " TypeScript omni-completion
 " Requires TypeScript to be installed: npm -g install typescript
 "Plug 'Quramy/tsuquyomi'
