@@ -14,6 +14,8 @@ if [ "${OSTYPE}" = "darwin17.0" ]; then
     PLATFORM="mac"
 elif [ "${OSTYPE}" = "darwin18.0" ]; then
 	PLATFORM="mac"
+elif [ "${OSTYPE}" = "darwin19.0" ]; then
+	PLATFORM="mac"
 elif [ "${OSTYPE}" = "linux-gnu" ]; then
 	PLATFORM="linux"
 else
