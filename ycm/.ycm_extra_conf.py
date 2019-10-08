@@ -41,7 +41,7 @@ flags = [
     '-I/Users/djamelg/dev/repos/toplevel-fusion/core-test/doctest',
     '-I/Users/djamelg/dev/repos/toplevel-fusion/core-test/extern/doctest/doctest',
     '-I/Users/djamelg/dev/repos/toplevel-fusion/fusion-cx/data/v2/scenario/cli/private',
-    '-std=gnu++14',
+    '-std=gnu++17',
 ]
 
 for module in modules:
