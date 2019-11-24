@@ -39,7 +39,7 @@ export XAUTHORITY=~/.Xauthority
 if [ -x "$(command -v nvim)" ]; then
     export EDITOR="nvim"
 elif [ -x "$(command -v vim)" ]; then
-    export EDITOR="vim -v"
+    export EDITOR="vim"
 elif [ -x "$(command -v pico)" ]; then
     export EDITOR="pico"
 elif [ -x "$(command -v nano)" ]; then
@@ -98,8 +98,8 @@ alias gdt='git difftool'
 if [ -x "$(command -v python3)" ]; then
     alias python='python3'
     alias pip='pip3'
-    alias mkenv='python3 -m venv env && pip install --upgrade pip'
     alias senv='source env/bin/activate'
+    alias mkenv='python3 -m venv env && senv && pip install --upgrade pip'
 else
     echo "Warning: Python 3 not installed"
 fi
