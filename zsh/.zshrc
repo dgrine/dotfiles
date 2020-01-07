@@ -182,6 +182,7 @@ source ${HOME}/dev/repos/setup/invoke/zsh_completion.zsh
 
 # Hostname profile and then local profile
 if [ -f ${home}/dev/repos/setup/zsh/profile/`hostname`.zsh ]; then
+    echo "Loading `hostname` profile"
     source ${HOME}/dev/repos/setup/zsh/profile/`hostname`.zsh
 fi
 if [ -f "${HOME}/.zshrc_local" ]; then
