@@ -26,7 +26,7 @@ fi
 # Environment
 export PATH="$PATH:$HOME/dev/bin:$HOME/.local/bin:$HOME/.fzf/bin"
 if [ "${PLATFORM}" = "mac" ]; then
-    export PATH="/usr/local/opt/ruby/bin:$PATH"
+    export PATH="/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"
 fi
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
