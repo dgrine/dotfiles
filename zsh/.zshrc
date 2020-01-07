@@ -181,7 +181,9 @@ fi
 source ${HOME}/dev/repos/setup/invoke/zsh_completion.zsh
 
 # Hostname profile and then local profile
-source ${HOME}/dev/repos/setup/zsh/profile/`hostname`.zsh
+if [ -f ${home}/dev/repos/setup/zsh/profile/`hostname`.zsh ]; then
+    source ${HOME}/dev/repos/setup/zsh/profile/`hostname`.zsh
+fi
 if [ -f "${HOME}/.zshrc_local" ]; then
     echo "Warning: Loading local profile ${HOME}/.zshrc_local"
     source ${HOME}/.zshrc_local
