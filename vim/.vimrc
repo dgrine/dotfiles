@@ -90,7 +90,7 @@ nnoremap <Leader>gr :Gread<CR>
 
 " Git gutter
 Plug 'airblade/vim-gitgutter'
-set updatetime=100
+set updatetime=1000
 
 " Mark
 " <Leader>* Jump to the next occurrence of current mark and remember it as
@@ -339,6 +339,7 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 "set textwidth=80
+set signcolumn=auto:2 " useful for having git-gutter and coc info
 set ruler
 set cindent
 set cinoptions=g-0
