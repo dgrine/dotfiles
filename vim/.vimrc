@@ -58,17 +58,139 @@ let g:NERDCustomDelimiters = { 'tree': { 'left': '<', 'right': '>'}, 'asd': { 'l
 " Commenting/uncommenting
 Plug 'scrooloose/nerdcommenter'
 
-" YouCompleteMe
-"Plug 'Valloric/YouCompleteMe', { 'do': 'python3 install.py --clang-completer' }
-"let g:ycm_always_populate_location_list=1
-"let g:ycm_autoclose_preview_window_after_completion=1
-"let g:ycm_confirm_extra_conf=0
-"map <Leader>f :YcmCompleter FixIt<CR>
-"nnoremap <C-Space> :YcmCompleter GoTo<CR>
-"nnoremap <C-Return> :vsplit <bar> YcmCompleter GoTo<CR>
-"let g:ycm_complete_in_comments=1 
-"let g:ycm_seed_identifiers_with_syntax=1 
-"let g:ycm_collect_identifiers_from_comments_and_strings=1 
+" Multiple cursor editing
+Plug 'terryma/vim-multiple-cursors'
+
+" Jump to any location specified by two characters
+Plug 'justinmk/vim-sneak'
+
+" Shortcuts that make life easier (like jumping to next error, etc.)
+Plug 'tpope/vim-unimpaired'
+
+" Surround.vim is all about surroundings: parentheses, brackets, quotes, XML tags, and more
+Plug 'tpope/vim-surround'
+
+" Working with variants of a word:
+" crs (coerce to snake_case)
+" MixedCase (crm)
+" camelCase (crc)
+" snake_case (crs)
+" UPPER_CASE (cru)
+" dash-case (cr-)
+" dot.case (cr.)
+" space case (cr<Space>)
+" Title Case (crt)
+Plug 'tpope/vim-abolish'
+
+" Git wrapper
+Plug 'tpope/vim-fugitive'
+nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>gd :Gdiff<CR>
+nnoremap <Leader>gr :Gread<CR>
+
+" Git gutter
+Plug 'airblade/vim-gitgutter'
+set updatetime=100
+
+" Mark
+" <Leader>* Jump to the next occurrence of current mark and remember it as
+" last mark
+" <Leader>/ Jump to the next occurrence of any mark
+Plug 'Tuxdude/mark.vim'
+"nnoremap <Plug>IgnoreMarkRegex <Plug>MarkRegex
+" Disable highlight from search
+nnoremap <Leader><Space> :noh<CR>:MarkClear<cr>
+
+" Emile's additional syntax formatting
+Plug 'Frydac/vim-tree'
+" Emile's Auro stuff
+Plug 'Frydac/vim-auro'
+"
+" UltiSnips, quick snippets
+Plug 'SirVer/ultisnips'
+let g:UltiSnipsSnippetsDir=$HOME.'/dev/repos/setup/vim/snippets/UltiSnips'
+let g:UltiSnipsSnippetDirectories=["UltiSnips"]
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-h>"
+let g:UltiSnipsListSnippets="<c-h>"
+ "If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+" ctrlsf.vim
+" An ack/ag/pt/rg powered code search and view tool, and lets you 
+" edit in-place with powerful edit mode.
+" Enter, o, double-click - Open corresponding file of current line in the window which CtrlSF is launched from.
+" <C-O> - Like Enter but open file in a horizontal split window.
+" t - Like Enter but open file in a new tab.
+" p - Like Enter but open file in a preview window.
+" P - Like Enter but open file in a preview window and switch focus to it.
+" O - Like Enter but always leave CtrlSF window opening.
+" T - Like t but focus CtrlSF window instead of new opened tab.
+" M - Switch result window between normal view and compact view.
+" q - Quit CtrlSF window.
+" <C-J> - Move cursor to next match.
+" <C-K> - Move cursor to previous match.
+Plug 'dyng/ctrlsf.vim'
+nmap     <C-F>f <Plug>CtrlSFPrompt
+vmap     <C-F>f <Plug>CtrlSFVwordPath
+vmap     <C-F>F <Plug>CtrlSFVwordExec
+nmap     <C-F>n <Plug>CtrlSFCwordPath
+nmap     <C-F>p <Plug>CtrlSFPwordPath
+nnoremap <C-F>o :CtrlSFOpen<CR>
+nnoremap <C-F>t :CtrlSFToggle<CR>
+inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
+
+" A simple, easy-to-use Vim alignment plugin.
+Plug 'junegunn/vim-easy-align'
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+" Note: to align a table: gaip*|
+
+" Rg (ripgrep)
+Plug 'jremmen/vim-ripgrep'
+
+" Kivy language support
+"Plug 'farfanoide/vim-kivy'
+
+" Tmux integration: status bar
+Plug 'edkolev/tmuxline.vim'
+let g:airline#extensions#tmuxline#enabled = 1
+
+" Tmux: navigation
+Plug 'christoomey/vim-tmux-navigator' 
+" Disable tmux navigator when zooming the Vim pane
+let g:tmux_navigator_disable_when_zoomed = 1
+
+" Deeper integration (specifically running tests and commands) between Vim and
+" Tmux
+" See https://blog.bugsnag.com/tmux-and-vim/
+Plug 'benmills/vimux'
+" Prompt for a command to run
+map <Leader>rp :VimuxPromptCommand<CR>
+" Run last command executed by VimuxRunCommand
+map <Leader>rr :VimuxRunLastCommand<CR>
+" Inspect runner pane (already brings you in copy mode)
+map <Leader>ri :VimuxInspectRunner<CR>
+" Close the tmux runner
+map <Leader>rq :VimuxCloseRunner<CR>
+" Runner pane
+let g:VimuxOrientation = 'h'
+let g:VimuxHeight = '40'
+
+" Clang formatting
+Plug 'rhysd/vim-clang-format'
+let g:clang_format#detect_style_file=1
+
+" map to <Leader>cf in C++ code
+autocmd FileType c,cpp,objc nnoremap <buffer><C-K> :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc vnoremap <buffer><C-K> :ClangFormat<CR>
+" if you install vim-operator-user
+"autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
+" Toggle auto formatting:
+"nmap <Leader>C :ClangFormatAutoToggle<CR><Paste>
 
 " Coc
 " See https://github.com/neoclide/coc.nvim and personal dev docs
@@ -201,165 +323,6 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
-
-" Multiple cursor editing
-Plug 'terryma/vim-multiple-cursors'
-
-" Jump to any location specified by two characters
-Plug 'justinmk/vim-sneak'
-
-" Shortcuts that make life easier (like jumping to next error, etc.)
-Plug 'tpope/vim-unimpaired'
-
-" Surround.vim is all about surroundings: parentheses, brackets, quotes, XML tags, and more
-Plug 'tpope/vim-surround'
-
-" Working with variants of a word:
-" crs (coerce to snake_case)
-" MixedCase (crm)
-" camelCase (crc)
-" snake_case (crs)
-" UPPER_CASE (cru)
-" dash-case (cr-)
-" dot.case (cr.)
-" space case (cr<Space>)
-" Title Case (crt)
-Plug 'tpope/vim-abolish'
-
-" Git wrapper
-Plug 'tpope/vim-fugitive'
-nnoremap <Leader>gs :Gstatus<CR>
-nnoremap <Leader>gd :Gdiff<CR>
-nnoremap <Leader>gr :Gread<CR>
-
-" Git gutter
-Plug 'airblade/vim-gitgutter'
-set updatetime=100
-
-" Mark
-" <Leader>* Jump to the next occurrence of current mark and remember it as
-" last mark
-" <Leader>/ Jump to the next occurrence of any mark
-Plug 'Tuxdude/mark.vim'
-"nnoremap <Plug>IgnoreMarkRegex <Plug>MarkRegex
-" Disable highlight from search
-nnoremap <Leader><Space> :noh<CR>:MarkClear<cr>
-
-" Emile's additional syntax formatting
-Plug 'Frydac/vim-tree'
-" Emile's Auro stuff
-Plug 'Frydac/vim-auro'
-"
-" UltiSnips, quick snippets
-Plug 'SirVer/ultisnips'
-let g:UltiSnipsSnippetsDir=$HOME.'/.my/setup/vim/snippets/UltiSnips'
-let g:UltiSnipsSnippetDirectories=["UltiSnips"]
-let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-h>"
-let g:UltiSnipsListSnippets="<c-h>"
- "If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
-" ctrlsf.vim
-" An ack/ag/pt/rg powered code search and view tool, and lets you 
-" edit in-place with powerful edit mode.
-" Enter, o, double-click - Open corresponding file of current line in the window which CtrlSF is launched from.
-" <C-O> - Like Enter but open file in a horizontal split window.
-" t - Like Enter but open file in a new tab.
-" p - Like Enter but open file in a preview window.
-" P - Like Enter but open file in a preview window and switch focus to it.
-" O - Like Enter but always leave CtrlSF window opening.
-" T - Like t but focus CtrlSF window instead of new opened tab.
-" M - Switch result window between normal view and compact view.
-" q - Quit CtrlSF window.
-" <C-J> - Move cursor to next match.
-" <C-K> - Move cursor to previous match.
-Plug 'dyng/ctrlsf.vim'
-nmap     <C-F>f <Plug>CtrlSFPrompt
-vmap     <C-F>f <Plug>CtrlSFVwordPath
-vmap     <C-F>F <Plug>CtrlSFVwordExec
-nmap     <C-F>n <Plug>CtrlSFCwordPath
-nmap     <C-F>p <Plug>CtrlSFPwordPath
-nnoremap <C-F>o :CtrlSFOpen<CR>
-nnoremap <C-F>t :CtrlSFToggle<CR>
-inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
-
-" A simple, easy-to-use Vim alignment plugin.
-Plug 'junegunn/vim-easy-align'
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
-" Note: to align a table: gaip*|
-
-" Distraction-free writing in Vim
-"Plug 'junegunn/goyo.vim'
-"nnoremap <C-G>o :Goyo<CR>
-
-" Script which generates a list of compiler flags from a project with an arbitrary build system
-" :YcmGenerateConfig generates a config file for the current directory
-Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
-
-" Rg (ripgrep)
-Plug 'jremmen/vim-ripgrep'
-
-" Kivy language support
-Plug 'farfanoide/vim-kivy'
-
-" TypeScript omni-completion
-" Requires TypeScript to be installed: npm -g install typescript
-"Plug 'Quramy/tsuquyomi'
-" TypeScript syntax highlighting
-"Plug 'leafgarland/typescript-vim'
-
-" Asynchronous completion framework for neovim/Vim8
-" Check whether this can deprecate TypeScript omni-completion
-"if has('nvim')
-    "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    "let g:deoplete#enable_at_startup = 1
-    "Plug 'zchee/deoplete-jedi' " Python completion using jedi (pip install jedi)
-"end
-
-" JSX
-"Plug 'mxw/vim-jsx'
-
-" Tmux integration: status bar
-Plug 'edkolev/tmuxline.vim'
-let g:airline#extensions#tmuxline#enabled = 1
-
-" Tmux: navigation
-Plug 'christoomey/vim-tmux-navigator' 
-" Disable tmux navigator when zooming the Vim pane
-let g:tmux_navigator_disable_when_zoomed = 1
-
-" Deeper integration (specifically running tests and commands) between Vim and
-" Tmux
-" See https://blog.bugsnag.com/tmux-and-vim/
-Plug 'benmills/vimux'
-" Prompt for a command to run
-map <Leader>rp :VimuxPromptCommand<CR>
-" Run last command executed by VimuxRunCommand
-map <Leader>rr :VimuxRunLastCommand<CR>
-" Inspect runner pane (already brings you in copy mode)
-map <Leader>ri :VimuxInspectRunner<CR>
-" Close the tmux runner
-map <Leader>rq :VimuxCloseRunner<CR>
-" Runner pane
-let g:VimuxOrientation = 'h'
-let g:VimuxHeight = '40'
-
-" Clang formatting
-Plug 'rhysd/vim-clang-format'
-let g:clang_format#detect_style_file=1
-
-" map to <Leader>cf in C++ code
-autocmd FileType c,cpp,objc nnoremap <buffer><C-K> :<C-u>ClangFormat<CR>
-autocmd FileType c,cpp,objc vnoremap <buffer><C-K> :ClangFormat<CR>
-" if you install vim-operator-user
-"autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
-" Toggle auto formatting:
-"nmap <Leader>C :ClangFormatAutoToggle<CR><Paste>
 
 " Initialize plugin system
 call plug#end()
