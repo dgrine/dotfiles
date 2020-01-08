@@ -174,7 +174,6 @@ alias ccache-set-path='export PATH=/usr/local/opt/ccache/libexec:$PATH'
 if [ -x "/usr/local/opt/icecream/sbin/iceccd" ]; then
     alias icecream-start-daemon='/usr/local/opt/icecream/sbin/iceccd -vvv'
     alias icecream-set-ccache-prefix='export CCACHE_PREFIX=icecc'
-    # To start the monitor, for example: icemon -s matlab 
 fi
 
 # zsh completion
