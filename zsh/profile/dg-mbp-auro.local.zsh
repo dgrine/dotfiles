@@ -1,11 +1,5 @@
-alias cdcd3='cdrepos; cd auro-codec-v3'
-alias cdcd4='cdrepos; cd auro-codec-v4'
-alias cdcx1='cdrepos; cd auro-cx-v1'
-alias cdcx2='cdrepos; cd auro-cx-v2'
-alias cdavs='cdrepos; cd fusion-avs'
 alias cdtop='cdrepos; cd toplevel-fusion'
 alias cdcook='cdrepos; cd cook-binary'
-alias cd548='cdavs; cd story/code548'
 
 function auro-set-compiler {
     auro_compiler=""
