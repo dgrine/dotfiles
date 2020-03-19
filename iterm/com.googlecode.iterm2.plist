@@ -8,6 +8,8 @@
 	<true/>
 	<key>AppleAntiAliasingThreshold</key>
 	<integer>1</integer>
+	<key>ApplePressAndHoldEnabled</key>
+	<false/>
 	<key>AppleScrollAnimationEnabled</key>
 	<integer>0</integer>
 	<key>AppleSmoothFixedFontsSizeThreshold</key>
@@ -853,9 +855,9 @@
 	<key>NSWindow Frame iTerm Window 0</key>
 	<string>0 0 2560 1417 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>889 23 658 710 0 0 2560 1417 </string>
+	<string>1070 671 970 746 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>1389 517 970 746 0 0 2560 1417 </string>
+	<string>0 671 970 746 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
 	<string>420 592 970 746 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 4</key>
@@ -2905,6 +2907,7 @@
 	<array>
 		<string>3.3.2</string>
 		<string>3.2.9</string>
+		<string>3.3.8</string>
 		<string>3.3.4</string>
 		<string>3.3.7</string>
 		<string>3.3.3</string>
@@ -2928,7 +2931,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>EE7D1326-3824-48AB-BA22-87768380BE75</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>27</integer>
+	<integer>30</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -3674,10 +3677,6 @@
 		<key>Initial Directory</key>
 		<string>/Users/djamelg/Desktop</string>
 	</dict>
-	<key>NoSyncSearchHistory2</key>
-	<array>
-		<string>auro</string>
-	</array>
 	<key>NoSyncSuppressCaptureOutputRequiresShellIntegrationWarning</key>
 	<true/>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
@@ -3738,7 +3737,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-01-20T17:45:20Z</date>
+	<date>2020-02-14T06:50:59Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateRelaunchingMarker</key>
@@ -3786,7 +3785,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.3.7</string>
+	<string>3.3.8</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>3</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
