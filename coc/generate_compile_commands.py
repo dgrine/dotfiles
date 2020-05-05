@@ -15,8 +15,8 @@ def generate_compile_commands():
     subprocess.run(['ln', '-s', fn, '.'])
     # Adjust include directories
     sysroot_dir = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1'
-    doctest_dir = f'{cwd}/core-test/doctest'
-    doctest_h_dir = f'{cwd}/core-test/extern/doctest/doctest/'
+    doctest_dir = f'{cwd}/core/test/doctest'
+    doctest_h_dir = f'{cwd}/core/test/extern/doctest/doctest/'
     include_directories = [sysroot_dir, doctest_dir, doctest_h_dir]
     for include_directory in include_directories:
         with open(fn, 'r') as fin:
