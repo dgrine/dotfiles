@@ -168,12 +168,15 @@ if [ ! -x "$(command -v git)" ]; then
 fi
 
 # ccache
-alias ccache-set-path='export PATH=/usr/local/opt/ccache/libexec:$PATH'
 
 # icecream
-if [ -x "/usr/local/opt/icecream/sbin/iceccd" ]; then
+if [ "${PLATFORM}" = "mac" ]; then
     alias icecream-start-daemon='/usr/local/opt/icecream/sbin/iceccd -vvv'
     alias icecream-set-ccache-prefix='export CCACHE_PREFIX=icecc'
+    #alias ccache-set-path='export PATH=/usr/local/opt/ccache/libexec:$PATH'
+else
+    export CCACHE_PREFIX=/usr/lib/icecream/bin/icecc
+    export PATH="/usr/lib/ccache/bin:$PATH"
 fi
 
 # zsh completion
