@@ -49,26 +49,6 @@ else
 fi
 alias e='$EDITOR'
 
-# Visual editor
-if [ "${PLATFORM}" = "mac" ]; then
-    if [ -x "$(command -v vimr)" ]; then
-        export VISUAL="vimr"
-    elif [ -x "$(command -v mvim)" ]; then
-        export VISUAL="mvim"
-    else
-        export VISUAL="${EDITOR}"
-        echo "Warning: VimR or MacVim not installed"
-    fi
-else
-    if [ -x "$(command -v gvim)" ]; then
-        export VISUAL="gvim"
-    else
-        export VISUAL="${EDITOR}"
-        #echo "Warning: gvim not installed"
-    fi
-fi
-alias ve='${VISUAL}'
-
 # General aliases
 alias evrc='e $HOME/.vimrc'
 alias etcnf='e $HOME/.tmux.conf'
@@ -190,13 +170,15 @@ fi
 # Fzf
 # Note: this really must be the last thing loaded
 if [ -x "$(command -v fzf)" ]; then
+    export FZF_DEFAULT_COMMAND='rg --files --hidden'
+
     # Vim and Fzf interaction: vi mode, needs to come before fzf is loaded
     bindkey -v
     bindkey '^y' fzf-cd-widget
 
     # Edit command line in vim by pressing Esc-v
     zle -N edit-command-line
-    bindkey -M vicmd v edit-command-line
+    #bindkey -M vicmd v edit-command-line
     if [ -x "$(command -v pygmentize)" ]; then
         export FZF_CTRL_T_OPTS='--height 90% --preview "pygmentize -l $(pygmentize -N {}) {}"'
     else

@@ -67,6 +67,9 @@ Plug 'justinmk/vim-sneak'
 " Shortcuts that make life easier (like jumping to next error, etc.)
 Plug 'tpope/vim-unimpaired'
 
+" Javascript
+Plug 'maksimr/vim-jsbeautify'
+
 " Surround.vim is all about surroundings: parentheses, brackets, quotes, XML tags, and more
 Plug 'tpope/vim-surround'
 
@@ -182,8 +185,8 @@ Plug 'rhysd/vim-clang-format'
 let g:clang_format#detect_style_file=1
 
 " map to <Leader>cf in C++ code
-autocmd FileType c,cpp,objc nnoremap <buffer><C-K> :<C-u>ClangFormat<CR>
-autocmd FileType c,cpp,objc vnoremap <buffer><C-K> :ClangFormat<CR>
+autocmd FileType javascript,c,cpp,objc nnoremap <buffer><C-K> :<C-u>ClangFormat<CR>
+autocmd FileType javascript,c,cpp,objc vnoremap <buffer><C-K> :ClangFormat<CR>
 " if you install vim-operator-user
 "autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
 " Toggle auto formatting:
@@ -325,6 +328,10 @@ nnoremap <silent> <Leader>ga  :<C-u>CocList diagnostics<cr>
 "nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 "nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+" Python Black formatter (PEP8)
+Plug 'psf/black'
+autocmd FileType python nnoremap <buffer><C-K> :Black<CR>
 
 " Initialize plugin system
 call plug#end()

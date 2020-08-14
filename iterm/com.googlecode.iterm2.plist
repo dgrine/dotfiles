@@ -845,23 +845,23 @@
 	<key>NSWindow Frame NSNavPanelAutosaveName</key>
 	<string>738 876 347 181 0 0 2560 1417 </string>
 	<key>NSWindow Frame SUStatusFrame</key>
-	<string>2160 0 400 129 2560 640 1280 777 </string>
+	<string>0 0 400 129 0 0 2560 1417 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>930 712 700 467 -1280 0 1280 777 </string>
+	<string>930 712 700 467 0 0 2560 1417 </string>
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>1115 559 606 469 0 0 2560 1417 </string>
 	<key>NSWindow Frame SharedPreferences</key>
 	<string>506 197 958 470 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 296 2236 1121 0 0 2560 1417 </string>
-	<key>NSWindow Frame iTerm Window 1</key>
 	<string>0 0 2560 1417 0 0 2560 1417 </string>
+	<key>NSWindow Frame iTerm Window 1</key>
+	<string>878 290 850 666 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>0 0 1920 1057 0 0 1920 1057 </string>
+	<string>1047 64 850 666 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
-	<string>236 135 850 626 0 0 1280 777 </string>
+	<string>469 75 2034 1124 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 4</key>
-	<string>1411 231 970 746 0 0 2560 1417 </string>
+	<string>92 341 850 666 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 5</key>
 	<string>715 192 970 746 0 0 2560 1417 </string>
 	<key>NeverWarnAboutShortLivedSessions_0392B6E5-D7A5-45DB-99D0-22A086392131</key>
@@ -2142,7 +2142,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>HackNerdFontComplete-Regular 11</string>
+			<string>HackNerdFontComplete-Regular 12</string>
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>
@@ -2180,7 +2180,7 @@
 				<key>editor</key>
 				<string>com.sublimetext.3</string>
 				<key>text</key>
-				<string>/Users/djamelg/dev/bin/vimr \1</string>
+				<string>nvim \1</string>
 			</dict>
 			<key>Send Code When Idle</key>
 			<false/>
@@ -2908,6 +2908,7 @@
 		<string>3.3.6</string>
 		<string>3.3.8</string>
 		<string>3.3.11</string>
+		<string>3.3.12</string>
 		<string>3.3.3</string>
 		<string>3.3.7</string>
 		<string>3.3.9</string>
@@ -2927,9 +2928,9 @@
 	<key>NoSyncFrame_SharedPreferences</key>
 	<dict>
 		<key>screenFrame</key>
-		<string>{{0, 0}, {1280, 800}}</string>
+		<string>{{0, 0}, {2560, 1440}}</string>
 		<key>topLeft</key>
-		<string>{288, 727}</string>
+		<string>{97, 1334}</string>
 	</dict>
 	<key>NoSyncHaveRequestedFullDiskAccess</key>
 	<true/>
@@ -2940,7 +2941,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>EE7D1326-3824-48AB-BA22-87768380BE75</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>67</integer>
+	<integer>80</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -3746,11 +3747,11 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-07-05T07:33:29Z</date>
+	<date>2020-08-11T18:31:16Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateGroupIdentifier</key>
-	<integer>278149923</integer>
+	<integer>1000824365</integer>
 	<key>SUUpdateRelaunchingMarker</key>
 	<false/>
 	<key>SeparateStatusBarsPerPane</key>
@@ -3796,7 +3797,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.3.11</string>
+	<string>3.3.12</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>3</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
