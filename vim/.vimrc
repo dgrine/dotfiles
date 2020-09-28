@@ -185,8 +185,8 @@ Plug 'rhysd/vim-clang-format'
 let g:clang_format#detect_style_file=1
 
 " map to <Leader>cf in C++ code
-autocmd FileType javascript,c,cpp,objc nnoremap <buffer><C-K> :<C-u>ClangFormat<CR>
-autocmd FileType javascript,c,cpp,objc vnoremap <buffer><C-K> :ClangFormat<CR>
+autocmd FileType javascript,c,cpp,objc nnoremap <buffer><C-F> :<C-u>ClangFormat<CR>
+autocmd FileType javascript,c,cpp,objc vnoremap <buffer><C-F> :ClangFormat<CR>
 " if you install vim-operator-user
 "autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
 " Toggle auto formatting:
@@ -331,7 +331,7 @@ nnoremap <silent> <Leader>ga  :<C-u>CocList diagnostics<cr>
 
 " Python Black formatter (PEP8)
 Plug 'psf/black'
-autocmd FileType python nnoremap <buffer><C-K> :Black<CR>
+autocmd FileType python nnoremap <buffer><C-F> :Black<CR>
 
 " Initialize plugin system
 call plug#end()
