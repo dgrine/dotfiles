@@ -368,7 +368,7 @@ set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 " Fixes the weird behavior of backspace in terminal vim
 set backspace=indent,eol,start 
 " ‘yank’ and paste using y and p from Vim as well
-set clipboard=unnamed
+set clipboard=unnamedplus
 " Indents word-wrapped lines as much as the 'parent' line
 set breakindent
 " Ensures word-wrap does not split words
