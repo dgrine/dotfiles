@@ -24,7 +24,8 @@ function eot-tir-rebuild {
     cd lingware
     inv lid.build
     inv lxcommon.build
-    inv english.build
+    inv english.build-entity
+    inv english.build-entity-extended
 
     
     cdfusion
