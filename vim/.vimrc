@@ -10,6 +10,16 @@ endif
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
 
+" Tag bar
+" Dependency on universal-ctags https://github.com/universal-ctags/homebrew-universal-ctags
+" On macOS:
+"   brew install --HEAD universal-ctags/universal-ctags/universal-ctags
+Plug 'majutsushi/tagbar'
+nmap <Leader> t :TagbarToggle<CR>
+let g:tagbar_width = 75
+let g:tagbar_compact = 1
+let g:tagbar_indent = 1
+
 " Lean & mean status/tabline for vim that's light as air
 Plug 'vim-airline/vim-airline'
 " Powerline fonts: disable this if things look weird (no powerline fonts
@@ -25,8 +35,8 @@ let g:airline#extensions#tabline#enabled = 1
 "   ln -s /usr/local/opt/fzf ~/.fzf
 " location (/usr/local/opt/fzf)
 " On Linux:
-"    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-"    ~/.fzf/install
+"   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+"   ~/.fzf/install
 Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
 " Files (similar to :FZF)
@@ -252,7 +262,7 @@ nn <silent> <Leader>gm :call CocLocations('ccls','$ccls/member')<cr>
 nn <silent> <Leader>gf :call CocLocations('ccls','$ccls/member',{'kind':3})<cr>
 
 " Use K to show documentation in preview window
-nnoremap <silent> <Leader>K :call <SID>show_documentation()<CR>
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
