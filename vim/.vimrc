@@ -388,27 +388,12 @@ set lbr
 " Visuals
 set termguicolors
 let g:dracula_italic = 0
-colorscheme dracula
 highlight Normal ctermbg=None
 nmap <Leader>csl :colorscheme xcode<CR>
 nmap <Leader>csd :colorscheme dracula<CR>
-if has("gui_running")
-    " GVim
-    if has("gui_gtk2") || has("gui_gtk3")
-        " Linux
-    elseif has("gui_win32")
-        " Win32.64 GVim
-    elseif has("gui_macvim")
-        " MacVim
-        set guioptions=
-        set guifont=Menlo\ Regular:h13
-    elseif has("gui_vimr")
-        " vimr
-        set guioptions=
-    endif
-else
-    set nolazyredraw
-end
+nmap <Leader>csd :colorscheme tomorrow_night<CR>
+colorscheme tomorrow_night
+
 " =============================================================================
 
 " File type specific settings
