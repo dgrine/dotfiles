@@ -50,18 +50,17 @@ fi
 alias e='$EDITOR'
 
 # General aliases
-alias evrc='e $HOME/.vimrc'
-alias etcnf='e $HOME/.tmux.conf'
-alias ezrc='e $HOME/.zshrc'
-alias ezrcl='e $HOME/.zshrc_local'
-alias szrc='source $HOME/.zshrc'
-alias cdvim='cd $HOME/.vim/'
+alias conf-nvim='e $HOME/.vimrc'
+alias conf-tmux='e $HOME/.tmux.conf'
+alias conf-zsh='e $HOME/.zshrc'
+alias conf-zsh-local='e $HOME/.zshrc_local'
+alias source-zsh='source $HOME/.zshrc'
 alias sshx='ssh -X -C -c blowfish-cbc,arcfour'
 alias l='ls -alh'
 alias cddev='cd $HOME/dev'
 alias cdrepos='cd $HOME/dev/repos'
-alias cdsetup='cdrepos; cd setup'
-alias cddocs='cdrepos; cd docs'
+alias cdsetup='cd $HOME/dev/repos/setup'
+alias cddocs='cd $HOME/dev/repos/docs'
 alias cdbin='cd $HOME/dev/bin'
 alias cdtmp='mkdir -p $HOME/dev/tmp && cd $HOME/dev/tmp';
 if [ -x "$(command -v ranger)" ]; then
@@ -114,18 +113,6 @@ if [ -x "$(command -v make)" ]; then
     alias m='make -j7'
 else
     echo "Warning: Make not installed"
-fi
-
-# Pygmentize and pcat
-# if [ -x "$(command -v pygmentize)" ]; then
-#     alias pcat='pygmentize -O style=vim -g'
-# else
-#     echo "Warning: Pygmentize not installed"
-# fi
-
-# Meld
-if [ "${PLATFORM}" = "mac" ]; then
-    alias meld='open /Applications/Meld.app'
 fi
 
 # lldb
