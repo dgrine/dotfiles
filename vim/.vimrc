@@ -19,6 +19,7 @@ nmap <Leader> t :TagbarToggle<CR>
 let g:tagbar_width = 75
 let g:tagbar_compact = 1
 let g:tagbar_indent = 1
+let g:tagbar_autofocus = 1
 
 " Lean & mean status/tabline for vim that's light as air
 Plug 'vim-airline/vim-airline'
