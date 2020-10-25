@@ -79,6 +79,7 @@ if [ -x "$(command -v python3)" ]; then
     alias pip='pip3'
     alias senv='source env/bin/activate && if [ -f "requirements.txt" ]; then pip3 install -r requirements.txt; else touch requirements.txt; fi'
     alias mkenv='python3 -m venv env && senv && pip install --upgrade pip'
+    export PYTHONBREAKPOINT="pudb.set_trace"
 else
     echo "Warning: Python 3 not installed"
 fi
