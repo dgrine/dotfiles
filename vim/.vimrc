@@ -359,7 +359,7 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 "set textwidth=80
-set signcolumn=auto:2 " useful for having git-gutter and coc info
+"set signcolumn=auto:2 " useful for having git-gutter and coc info
 set ruler
 set cindent
 set cinoptions=g-0
@@ -391,7 +391,7 @@ set termguicolors
 let g:dracula_italic = 0
 highlight Normal ctermbg=None
 nmap <Leader>csl :colorscheme xcode<CR>
-nmap <Leader>csd :colorscheme dracula<CR>
+"nmap <Leader>csd :colorscheme dracula<CR>
 nmap <Leader>csd :colorscheme tomorrow_night<CR>
 colorscheme tomorrow_night
 
