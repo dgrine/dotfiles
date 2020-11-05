@@ -19,8 +19,9 @@
                     "lsRanges" : true
                 }
             },
-            "python.jediEnabled": true,
-            "python.formatting.provider": "black"
+            "python.jediEnabled": false,
+            "python.formatting.provider": "black",
+            "python.formatting.blackArgs": ""
         }
     }
 }

@@ -29,10 +29,10 @@ def generate_compile_commands():
         with open(fn, 'w') as fout:
             json.dump(obj, fout)
 
-    # print(f"Generating .ccls-root")
-    # lines = [f'-I{sysroot_dir}', '--sysroot', sysroot_dir]
-    # with open('.ccls-root', 'w') as fout:
-        # fout.write('\n'.join(lines))
+    print(f"Generating .ccls-root")
+    lines = [f'-I{sysroot_dir}', '--sysroot', sysroot_dir]
+    with open('.ccls-root', 'w') as fout:
+        fout.write('\n'.join(lines))
 
 if '__main__' == __name__:
     generate_compile_commands()
