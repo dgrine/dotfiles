@@ -54,21 +54,24 @@ alias conf-nvim='e $HOME/.vimrc'
 alias conf-tmux='e $HOME/.tmux.conf'
 alias conf-zsh='e $HOME/.zshrc'
 alias conf-zsh-local='e $HOME/.zshrc_local'
+alias conf-vifm='e $HOME/.config/vifm/vifmrc'
 alias source-zsh='source $HOME/.zshrc'
 alias sshx='ssh -X -C -c blowfish-cbc,arcfour'
 alias l='ls -alh'
 alias cddev='cd $HOME/dev'
 alias cdrepos='cd $HOME/dev/repos'
 alias cdsetup='cd $HOME/dev/repos/setup'
+alias cdblackboard='cd $HOME/dev/repos/blackboard/'
 alias cddocs='cd $HOME/dev/repos/docs'
 alias cdbin='cd $HOME/dev/bin'
 alias cdtmp='mkdir -p $HOME/dev/tmp && cd $HOME/dev/tmp';
-if [ -x "$(command -v ranger)" ]; then
-    # Doing a silly little dance to work-around Ranger using VISUAL instead of EDITOR
-    alias r='TMP=${VISUAL}; export VISUAL=${EDITOR} && ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"; export VISUAL=${TMP}; TMP=""'
-else
-    echo "Warning: ranger not installed"
-fi
+#if [ -x "$(command -v ranger)" ]; then
+    ## Doing a silly little dance to work-around Ranger using VISUAL instead of EDITOR
+    #alias r='TMP=${VISUAL}; export VISUAL=${EDITOR} && ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"; export VISUAL=${TMP}; TMP=""'
+#else
+    #echo "Warning: ranger not installed"
+#fi
+alias r='vifm'
 alias scpalt='rsync avzP'
 alias grep='grep -E -n --color=auto'
 alias gdt='git difftool'
@@ -77,8 +80,32 @@ alias gdt='git difftool'
 if [ -x "$(command -v python3)" ]; then
     alias python='python3'
     alias pip='pip3'
-    alias senv='source env/bin/activate && if [ -f "requirements.txt" ]; then pip3 install -r requirements.txt; else touch requirements.txt; fi'
-    alias mkenv='python3 -m venv env && senv && pip install --upgrade pip'
+    function senv()
+    {
+        TMP=$PIP_CONFIG_FILE
+        if [ -f "pip.conf" ]; then
+            export PIP_CONFIG_FILE=pip.conf
+        fi
+        source env/bin/activate
+        if [ -f "requirements.txt" ]; then
+            pip3 install -r requirements.txt
+        else
+            echo "No requirements.txt found"
+        fi
+        pip install --upgrade pip
+        export PIP_CONFIG_FILE=$TMP
+    }
+    function mkenv()
+    {
+        TMP=$PIP_CONFIG_FILE
+        if [ -f "pip.conf" ]; then
+            export PIP_CONFIG_FILE=pip.conf
+        fi
+        python3 -m venv env
+        senv
+        pip install --upgrade pip
+        export PIP_CONFIG_FILE=$TMP
+    }
     export PYTHONBREAKPOINT="pudb.set_trace"
 else
     echo "Warning: Python 3 not installed"
@@ -177,3 +204,9 @@ else
     echo "Warning: fzf not installed"
 fi
 
+# Adapted from https://unix.stackexchange.com/a/113768/347104
+if [ -n "$PS1" ] && [ -z "$TMUX" ]; then
+  # Adapted from https://unix.stackexchange.com/a/176885/347104
+  # Create session 'main' or attach to 'main' if already exists.
+  tmux new-session -A -s main
+fi
