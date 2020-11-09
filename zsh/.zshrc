@@ -50,6 +50,7 @@ fi
 alias e='$EDITOR'
 
 # General aliases
+alias conf-alacritty='e $HOME/.config/alacritty/alacritty.yml'
 alias conf-nvim='e $HOME/.vimrc'
 alias conf-tmux='e $HOME/.tmux.conf'
 alias conf-zsh='e $HOME/.zshrc'
@@ -71,7 +72,14 @@ alias cdtmp='mkdir -p $HOME/dev/tmp && cd $HOME/dev/tmp';
 #else
     #echo "Warning: ranger not installed"
 #fi
-alias r='vifm'
+function r() {
+    local dst="$(command vifm --choose-dir - "$@")"
+    if [ -z "$dst" ]; then
+        echo "Directory picking cancelled/failed"
+        return 1
+    fi
+    cd "$dst"
+}
 alias scpalt='rsync avzP'
 alias grep='grep -E -n --color=auto'
 alias gdt='git difftool'
@@ -80,8 +88,7 @@ alias gdt='git difftool'
 if [ -x "$(command -v python3)" ]; then
     alias python='python3'
     alias pip='pip3'
-    function senv()
-    {
+    function senv() {
         TMP=$PIP_CONFIG_FILE
         if [ -f "pip.conf" ]; then
             export PIP_CONFIG_FILE=pip.conf
@@ -95,8 +102,7 @@ if [ -x "$(command -v python3)" ]; then
         pip install --upgrade pip
         export PIP_CONFIG_FILE=$TMP
     }
-    function mkenv()
-    {
+    function mkenv() {
         TMP=$PIP_CONFIG_FILE
         if [ -f "pip.conf" ]; then
             export PIP_CONFIG_FILE=pip.conf
