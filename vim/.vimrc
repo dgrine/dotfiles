@@ -15,7 +15,7 @@ call plug#begin('~/.vim/plugged')
 " On macOS:
 "   brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 Plug 'majutsushi/tagbar'
-nmap <Leader> t :TagbarToggle<CR>
+nmap <Leader> tb :TagbarToggle<CR>
 let g:tagbar_width = 75
 let g:tagbar_compact = 1
 let g:tagbar_indent = 1
