@@ -1,9 +1,13 @@
-# Assuming ~/.zshrc only sets export ZSH="/path/to/oh-my-zsh"
-# Sources this file.
+# Assuming ~/.zshrc only:
+# - sets export ZSH="/path/to/oh-my-zsh"
+# - sources this file
 # Everything else in that file should be commented out
 
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="arrow"
+ZSH_THEME="clean"
+ZSH_THEME="jonathan"
+ZSH_THEME="mortalscumbag"
 
 plugins=(git web-search pip python rake ruby fabric iterm2 npm brew z docker)
 
@@ -16,18 +20,16 @@ elif [ "${OSTYPE}" = "darwin18.0" ]; then
 	PLATFORM="mac"
 elif [ "${OSTYPE}" = "darwin19.0" ]; then
 	PLATFORM="mac"
+elif [ "${OSTYPE}" = "darwin20.0" ]; then
+	PLATFORM="mac"
 elif [ "${OSTYPE}" = "linux-gnu" ]; then
 	PLATFORM="linux"
 else
-	echo "Error: unsupported platform ${OSTYPE}"
-    return
+	echo "Warning: unsupported platform ${OSTYPE}"
 fi
 
 # Environment
-export PATH="$PATH:$HOME/dev/bin:$HOME/.local/bin:$HOME/.fzf/bin"
-if [ "${PLATFORM}" = "mac" ]; then
-    export PATH="/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"
-fi
+export PATH="$PATH:$HOME/dev/repos/setup/bin:$HOME/dev/bin:$HOME/.local/bin:$HOME/.fzf/bin"
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 export LC_ALL=en_US.UTF-8
@@ -44,12 +46,10 @@ elif [ -x "$(command -v pico)" ]; then
     export EDITOR="pico"
 elif [ -x "$(command -v nano)" ]; then
     export EDITOR="nano"
-else
-    echo "Warning: no suitable editor available"
 fi
 alias e='$EDITOR'
 
-# General aliases
+# Aliases - configuration
 alias conf-alacritty='e $HOME/.config/alacritty/alacritty.yml'
 alias conf-nvim='e $HOME/.vimrc'
 alias conf-tmux='e $HOME/.tmux.conf'
@@ -57,7 +57,11 @@ alias conf-zsh='e $HOME/.zshrc'
 alias conf-zsh-local='e $HOME/.zshrc_local'
 alias conf-vifm='e $HOME/.config/vifm/vifmrc'
 alias source-zsh='source $HOME/.zshrc'
+
+# Aliases - SSH
 alias sshx='ssh -X -C -c blowfish-cbc,arcfour'
+
+# Aliases - Navigation
 alias l='ls -alh'
 alias cddev='cd $HOME/dev'
 alias cdrepos='cd $HOME/dev/repos'
@@ -69,20 +73,26 @@ alias cdtmp='mkdir -p $HOME/dev/tmp && cd $HOME/dev/tmp';
 #if [ -x "$(command -v ranger)" ]; then
     ## Doing a silly little dance to work-around Ranger using VISUAL instead of EDITOR
     #alias r='TMP=${VISUAL}; export VISUAL=${EDITOR} && ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"; export VISUAL=${TMP}; TMP=""'
-#else
-    #echo "Warning: ranger not installed"
 #fi
+
+# Aliases - Fun
+alias rr='rickroll.sh'
+
+# Navigation
 function r() {
-    local dst="$(command vifm --choose-dir - "$@")"
+    local dst="$(command vifm --choose-dir - "$@" .)"
     if [ -z "$dst" ]; then
         echo "Directory picking cancelled/failed"
         return 1
     fi
     cd "$dst"
 }
+
+# rsync
 alias scpalt='rsync avzP'
+
+# grep
 alias grep='grep -E -n --color=auto'
-alias gdt='git difftool'
 
 # Python
 if [ -x "$(command -v python3)" ]; then
@@ -112,41 +122,44 @@ if [ -x "$(command -v python3)" ]; then
         pip install --upgrade pip
         export PIP_CONFIG_FILE=$TMP
     }
+    function pip-clear-cache() {
+        if [ -d "$HOME/.cache/pip" ]; then
+            # Linux
+            rm -rf $HOME/.cache/pip
+        elif [ -d "$HOME/Library/Caches/pip" ]; then
+            # macOS
+            rm -rf $HOME/Library/Caches/pip
+        fi
+    }
     export PYTHONBREAKPOINT="pudb.set_trace"
-else
-    echo "Warning: Python 3 not installed"
 fi
 
 # Miniconda
-# Note: Output from conda init zsh, but moved to this location instead of end of this file
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup=$("$HOME/dev/miniconda3/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup" 2>/dev/null
-else
-    if [ -f "$HOME/dev/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "$HOME/dev/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="$HOME/dev/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-# Prevent conda from automatically activating base environment (writes to .condarc)
 if [ -x "$(command -v conda)" ]; then
+    # Note: Output from conda init zsh, but moved to this location instead of end of this file
+    # >>> conda initialize >>>
+    # !! Contents within this block are managed by 'conda init' !!
+    __conda_setup=$("$HOME/dev/miniconda3/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup" 2>/dev/null
+    else
+        if [ -f "$HOME/dev/miniconda3/etc/profile.d/conda.sh" ]; then
+            . "$HOME/dev/miniconda3/etc/profile.d/conda.sh"
+        else
+            export PATH="$HOME/dev/miniconda3/bin:$PATH"
+        fi
+    fi
+    unset __conda_setup
     conda config --set auto_activate_base false
-fi
-# On macOS, conda seems to always activate the base environment
-if [ "${PLATFORM}" = "mac" ]; then
-    conda deactivate > /dev/null
+    # On macOS, conda seems to always activate the base environment
+    if [ "${PLATFORM}" = "mac" ]; then
+        conda deactivate > /dev/null
+    fi
 fi
 
 # Make
 if [ -x "$(command -v make)" ]; then
     alias m='make -j7'
-else
-    echo "Warning: Make not installed"
 fi
 
 # lldb
@@ -163,13 +176,6 @@ if [ -x "$(command -v lldb)" ]; then
     }
 fi
 
-# Git
-if [ ! -x "$(command -v git)" ]; then
-    echo "Warning: Git not installed"
-fi
-
-# ccache
-
 # icecream
 if [ "${PLATFORM}" = "mac" ]; then
     alias icecream-start-daemon='/usr/local/opt/icecream/sbin/iceccd -vvv'
@@ -183,13 +189,12 @@ fi
 # zsh completion
 source ${HOME}/dev/repos/setup/invoke/zsh_completion.zsh
 
-# Hostname profile and then local profile
+# Local zsh customization
 if [ -f "${HOME}/.zshrc_local" ]; then
     source ${HOME}/.zshrc_local
 fi
 
 # Fzf
-# Note: this really must be the last thing loaded
 if [ -x "$(command -v fzf)" ]; then
     export FZF_DEFAULT_COMMAND='rg --files --hidden'
 
@@ -206,13 +211,13 @@ if [ -x "$(command -v fzf)" ]; then
         export FZF_CTRL_T_OPTS='--height 90% --preview "cat {}"'
     fi
     [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-else
-    echo "Warning: fzf not installed"
 fi
 
+# Launch tmux
 # Adapted from https://unix.stackexchange.com/a/113768/347104
 if [ -n "$PS1" ] && [ -z "$TMUX" ]; then
-  # Adapted from https://unix.stackexchange.com/a/176885/347104
   # Create session 'main' or attach to 'main' if already exists.
   tmux new-session -A -s main
 fi
+
+neofetch
