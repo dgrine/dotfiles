@@ -5,9 +5,9 @@
 
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="arrow"
-ZSH_THEME="clean"
-ZSH_THEME="jonathan"
-ZSH_THEME="mortalscumbag"
+#ZSH_THEME="clean"
+#ZSH_THEME="jonathan"
+#ZSH_THEME="mortalscumbag"
 
 plugins=(git web-search pip python rake ruby fabric iterm2 npm brew z docker)
 
@@ -111,6 +111,9 @@ if [ -x "$(command -v python3)" ]; then
         fi
         pip install --upgrade pip
         export PIP_CONFIG_FILE=$TMP
+        if [ -f "requirements-uninstall.txt" ]; then
+            pip uninstall -y -r requirements-uninstall.txt
+        fi
     }
     function mkenv() {
         TMP=$PIP_CONFIG_FILE
@@ -220,4 +223,4 @@ if [ -n "$PS1" ] && [ -z "$TMUX" ]; then
   tmux new-session -A -s main
 fi
 
-neofetch
+#neofetch
