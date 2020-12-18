@@ -30,6 +30,14 @@ function auro-set-compiler {
     then
         auro_compiler=$auro_compiler-$auro_juce
     fi
+    if [ "${auro_vlc}" != "" ]
+    then
+        auro_compiler=$auro_compiler-$auro_vlc
+    fi
+    if [ "${auro_pic}" != "" ]
+    then
+        auro_compiler=$auro_compiler-$auro_pic
+    fi
     if [ "${auro_postfix}" != "" ]
     then
         auro_compiler=$auro_compiler-$auro_postfix
@@ -37,50 +45,72 @@ function auro-set-compiler {
     export auro_compiler=$auro_compiler
 }
 
-function debug {
+function auro-debug {
     export auro_mode="debug"
     auro-set-compiler
     auro
 }
 
-function release {
+function auro-release {
     export auro_mode="release"
     auro-set-compiler
     auro
 }
-function reldeb {
+function auro-reldeb {
     export auro_mode="release-debug"
     auro-set-compiler
     auro
 }
 
-function noverbose {
+function auro-noverbose {
     unset auro_verbose
 }
 
-function verbose {
+function auro-verbose {
     export auro_verbose=1
 }
 
-function nortc {
+function auro-nortc {
     export auro_rtc=""
     auro-set-compiler
     auro
 }
 
-function rtc {
+function auro-rtc {
     export auro_rtc="rtc"
     auro-set-compiler
     auro
 }
 
-function nojuce {
-    export auro_juce="nojuce"
+function auro-nojuce {
+    export auro_juce=""
     auro-set-compiler
     auro
 }
-function juce {
-    export auro_juce=""
+function auro-juce {
+    export auro_juce="juce"
+    auro-set-compiler
+    auro
+}
+
+function auro-novlc {
+    export auro_vlc=""
+    auro-set-compiler
+    auro
+}
+function auro-vlc {
+    export auro_vlc="vlc"
+    auro-set-compiler
+    auro
+}
+
+function auro-nopic {
+    export auro_pic=""
+    auro-set-compiler
+    auro
+}
+function auro-pic {
+    export auro_pic="pic"
     auro-set-compiler
     auro
 }
@@ -96,10 +126,12 @@ function auro-init {
         export auro_brand="clang"
     fi
     export auro_arch="x64"
-    debug
-    rtc
-    noverbose
-    nojuce
+    auro-debug
+    auro-rtc
+    auro-noverbose
+    auro-nojuce
+    auro-novlc
+    auro-nopic
     export auro_j="40"
 }
 
