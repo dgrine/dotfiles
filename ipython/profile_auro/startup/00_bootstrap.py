@@ -1,7 +1,11 @@
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-plt.ion()
+try:
+    import numpy as np
+    import pandas as pd
+    import matplotlib.pyplot as plt
+
+    plt.ion()
+except ModuleNotFoundError:
+    pass
 from pathlib import Path
 import sys
 
