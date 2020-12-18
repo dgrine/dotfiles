@@ -211,6 +211,13 @@ if [ -x "$(command -v fzf)" ]; then
         export FZF_CTRL_T_OPTS='--height 90% --preview "cat {}"'
     fi
     [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+    if [ "${PLATFORM}" = "mac" ]; then
+        source "/usr/local/opt/fzf/shell/key-bindings.zsh"
+        source "/usr/local/opt/fzf/shell/completion.zsh"
+    else
+        source "/usr/share/fzf/key-bindings.zsh"
+        source "/usr/share/fzf/completion.zsh"
+    fi
 fi
 
 # Launch tmux
