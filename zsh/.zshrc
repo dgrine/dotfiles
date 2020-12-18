@@ -51,7 +51,7 @@ alias e='$EDITOR'
 
 # Aliases - configuration
 alias conf-alacritty='e $HOME/.config/alacritty/alacritty.yml'
-alias conf-nvim='e $HOME/.vimrc'
+alias conf-nvim='e $HOME/.config/nvim/init.vim'
 alias conf-tmux='e $HOME/.tmux.conf'
 alias conf-zsh='e $HOME/.zshrc'
 alias conf-zsh-local='e $HOME/.zshrc_local'
