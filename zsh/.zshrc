@@ -99,31 +99,25 @@ if [ -x "$(command -v python3)" ]; then
     alias python='python3'
     alias pip='pip3'
     function senv() {
-        TMP=$PIP_CONFIG_FILE
-        if [ -f "pip.conf" ]; then
-            export PIP_CONFIG_FILE=pip.conf
-        fi
         source env/bin/activate
-        if [ -f "requirements.txt" ]; then
-            pip3 install -r requirements.txt
-        else
-            echo "No requirements.txt found"
+    }
+    function ienv() {
+        echo "> Installing requirements.txt"
+        pip3 install -r requirements.txt
+        if [ -f "requirements-unittest.txt" ]; then
+            echo "> Installing requirements-unittest.txt"
+            pip3 install -r requirements-unittest.txt
         fi
-        pip install --upgrade pip
-        export PIP_CONFIG_FILE=$TMP
         if [ -f "requirements-uninstall.txt" ]; then
-            pip uninstall -y -r requirements-uninstall.txt
+            echo "> Uninstalling requirements-uninstall.txt"
+            pip3 uninstall -y -r requirements-uninstall.txt
         fi
     }
     function mkenv() {
-        TMP=$PIP_CONFIG_FILE
-        if [ -f "pip.conf" ]; then
-            export PIP_CONFIG_FILE=pip.conf
-        fi
         python3 -m venv env
         senv
-        pip install --upgrade pip
-        export PIP_CONFIG_FILE=$TMP
+        pip3 install --upgrade pip
+        pip3 install neovim black
     }
     function pip-clear-cache() {
         if [ -d "$HOME/.cache/pip" ]; then
@@ -136,6 +130,9 @@ if [ -x "$(command -v python3)" ]; then
     }
     export PYTHONBREAKPOINT="pudb.set_trace"
 fi
+
+# Docker
+alias rmdocker-containers='docker ps -a -q -f status=exited | xargs docker rm'
 
 # Miniconda
 if [ -x "$(command -v conda)" ]; then
