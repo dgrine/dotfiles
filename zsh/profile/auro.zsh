@@ -120,10 +120,10 @@ function auro {
 }
 
 function auro-init {
-    if [ "${OSTYPE}" = "linux-gnu" ]; then
-        export auro_brand="gcc"
-    else
+    if command -v clang++ &> /dev/null; then
         export auro_brand="clang"
+    else
+        export auro_brand="gnu"
     fi
     export auro_arch="x64"
     auro-debug
