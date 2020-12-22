@@ -14,15 +14,22 @@ git clone git@gitlab.com:dgrine/setup.git
 # neovim
 pamac install neovim
 cd $HOME/.config
-ln -s $HOME/dev/repos/setup/alacritty
+ln -s $HOME/dev/repos/setup/nvim
 
-# neovim: coc requires node
-pamac install nodejs npm
+# neovim: coc dependencies
+pamac install nodejs npm ccls
+
+# neovim: tagbar dependencies
+pamac install ctags
 
 # tmux
 pamac install tmux
 cd $HOME
 ln -s  $HOME/dev/repos/setup/tmux/.tmux.conf
+git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
+
+# tmux: copy/paste dependencie on xclip
+pamac install xclip
 
 # fzf
 pamac install fzf
