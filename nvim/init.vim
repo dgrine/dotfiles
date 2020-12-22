@@ -15,11 +15,13 @@ call plug#begin('~/.vim/plugged')
 " On macOS:
 "   brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 Plug 'majutsushi/tagbar'
-nmap <Leader> tb :TagbarToggle<CR>
+nmap <Leader>tt :TagbarToggle<CR>
 let g:tagbar_width = 75
 let g:tagbar_compact = 1
 let g:tagbar_indent = 1
 let g:tagbar_autofocus = 1
+let g:tagbar_foldlevel = 2
+
 
 " Lean & mean status/tabline for vim that's light as air
 Plug 'vim-airline/vim-airline'
@@ -385,6 +387,10 @@ set breakindent
 " Ensures word-wrap does not split words
 set formatoptions=l
 set lbr
+
+" Increment/decrement number on line: C-a is used by tmux, so mapping to Alt
+:nnoremap <A-a> <C-a>
+:nnoremap <A-x> <C-x>
 
 " Visuals
 set termguicolors
