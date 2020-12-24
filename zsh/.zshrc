@@ -74,6 +74,15 @@ alias cdtmp='mkdir -p $HOME/dev/tmp && cd $HOME/dev/tmp';
     ## Doing a silly little dance to work-around Ranger using VISUAL instead of EDITOR
     #alias r='TMP=${VISUAL}; export VISUAL=${EDITOR} && ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"; export VISUAL=${TMP}; TMP=""'
 #fi
+if [ "${PLATFORM}" = "mac" ]; then
+    function open() {
+        open $1
+    }
+else
+    function open() {
+        xdg-open $1 & &> /dev/null
+    }
+fi
 
 # Aliases - Fun
 alias rr='rickroll.sh'
@@ -223,8 +232,11 @@ fi
 # Launch tmux
 # Adapted from https://unix.stackexchange.com/a/113768/347104
 if [ -n "$PS1" ] && [ -z "$TMUX" ]; then
-  # Create session 'main' or attach to 'main' if already exists.
-  tmux new-session -A -s main
+    tmux new-session -d -s main
+    tmux new-session -d -s blackboard
+    tmux new-session -d -s auro
+    tmux new-session -d -s eot
+    tmux attach -t main
 fi
 
 #neofetch
