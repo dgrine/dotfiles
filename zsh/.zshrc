@@ -80,7 +80,7 @@ if [ "${PLATFORM}" = "mac" ]; then
     }
 else
     function open() {
-        xdg-open $1 & &> /dev/null
+        xdg-open $1 &> /dev/null &
     }
 fi
 
@@ -107,8 +107,11 @@ alias grep='grep -E -n --color=auto'
 if [ -x "$(command -v python3)" ]; then
     alias python='python3'
     alias pip='pip3'
-    function senv() {
-        source env/bin/activate
+    function menv() {
+        python3 -m venv env
+        senv
+        pip3 install --upgrade pip
+        pip3 install neovim black
     }
     function ienv() {
         echo "> Installing requirements.txt"
@@ -122,11 +125,11 @@ if [ -x "$(command -v python3)" ]; then
             pip3 uninstall -y -r requirements-uninstall.txt
         fi
     }
-    function mkenv() {
-        python3 -m venv env
-        senv
-        pip3 install --upgrade pip
-        pip3 install neovim black
+    function senv() {
+        source env/bin/activate
+    }
+    function renv() {
+            rm -rf env
     }
     function pip-clear-cache() {
         if [ -d "$HOME/.cache/pip" ]; then
@@ -137,11 +140,16 @@ if [ -x "$(command -v python3)" ]; then
             rm -rf $HOME/Library/Caches/pip
         fi
     }
+    function pip-list() {
+        pip3 list -v | grep $1 | cut -d':' -f 2 | awk '{printf("%s %s\n", $1, $3);}'
+    }
     export PYTHONBREAKPOINT="pudb.set_trace"
 fi
 
 # Docker
-alias rmdocker-containers='docker ps -a -q -f status=exited | xargs docker rm'
+alias rmdocker-containers='docker rm -f $(docker ps -a -q)'
+alias rmdocker-volumes='docker volume rm $(docker volume ls -q)'
+alias rmdocker-clean='rmdocker-containers && rmdocker-volumes'
 
 # Miniconda
 if [ -x "$(command -v conda)" ]; then
@@ -198,11 +206,6 @@ fi
 # zsh completion
 source ${HOME}/dev/repos/setup/invoke/zsh_completion.zsh
 
-# Local zsh customization
-if [ -f "${HOME}/.zshrc_local" ]; then
-    source ${HOME}/.zshrc_local
-fi
-
 # Fzf
 if [ -x "$(command -v fzf)" ]; then
     export FZF_DEFAULT_COMMAND='rg --files --hidden'
@@ -229,14 +232,21 @@ if [ -x "$(command -v fzf)" ]; then
     fi
 fi
 
-# Launch tmux
-# Adapted from https://unix.stackexchange.com/a/113768/347104
-if [ -n "$PS1" ] && [ -z "$TMUX" ]; then
-    tmux new-session -d -s main
-    tmux new-session -d -s blackboard
-    tmux new-session -d -s auro
-    tmux new-session -d -s eot
-    tmux attach -t main
+# Launch tmux if it hasn't started yet
+if ! pgrep tmux &> /dev/null; then
+    if [ -n "$PS1" ] && [ -z "$TMUX" ]; then
+        tmux new-session -d -s main
+        tmux new-session -d -s blackboard
+        tmux new-session -d -s auro
+        tmux new-session -d -s eot
+        tmux attach -t main
+    fi
+fi
+alias tmux='tmux attach -t main'
+
+# Local zsh customization
+if [ -f "${HOME}/.zshrc_local" ]; then
+    source ${HOME}/.zshrc_local
 fi
 
 #neofetch

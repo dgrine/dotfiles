@@ -1,6 +1,4 @@
-alias cdtop='cdrepos; cd toplevel-fusion'
-alias cdcook='cdrepos; cd cook-binary'
-alias cdall='cdrepos; cd all'
+alias cdall='cd $HOME/dev/repos/all'
 
 function auro-set-compiler {
     auro_compiler=""

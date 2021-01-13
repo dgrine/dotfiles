@@ -1,5 +1,5 @@
 alias cdsdk='cd $HOME/dev/repos/fusion-wowool-sdk'
-alias cdserver='cd $HOME/dev/repos/fusion-wowool-server'
+alias cdportal='cd $HOME/dev/repos/fusion-portal'
 
 function eot-rebuild-tir {
     unset EOT_KEY
@@ -42,9 +42,9 @@ format=columns
 " > pip.conf
 }
 
-function eot-mkenv() {
+function eot-menv() {
     python3 -m venv env
     source env/bin/activate
     pip3 config set global.extra-index-url https://${EOT_NEXUS_USERNAME}:${EOT_NEXUS_PASSWORD_ENCODED}@nexus.eyeonid.com/repository/eyeontext-pypi/simple --site
-    mkenv
+    menv
 }
