@@ -1,5 +1,7 @@
 alias cdall='cd $HOME/dev/repos/all'
 
+alias conf-auro='e $HOME/dev/repos/setup/zsh/profile/auro.zsh'
+
 function auro-set-compiler {
     auro_compiler=""
     if [ "${auro_brand}" != "" ]
@@ -114,7 +116,7 @@ function auro-pic {
 }
 
 function auro {
-    echo $auro_compiler
+    echo "auro_compiler=${auro_compiler}"
 }
 
 function auro-init {

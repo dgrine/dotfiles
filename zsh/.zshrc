@@ -61,8 +61,19 @@ alias source-zsh='source $HOME/.zshrc'
 # Aliases - SSH
 alias sshx='ssh -X -C -c blowfish-cbc,arcfour'
 
+# Alias ls
+if [ -x "$(command -v exa)" ]; then
+    alias l='exa -al --color=always --group-directories-first' # my preferred listing
+    alias la='exa -a --color=always --group-directories-first'  # all files and dirs
+    alias ll='exa -l --color=always --group-directories-first'  # long format
+    alias lt='exa -aT --color=always --group-directories-first' # tree listing
+else
+    alias l='ls -alh'
+fi
+
+
+
 # Aliases - Navigation
-alias l='ls -alh'
 alias cddev='cd $HOME/dev'
 alias cdrepos='cd $HOME/dev/repos'
 alias cdsetup='cd $HOME/dev/repos/setup'
@@ -208,7 +219,7 @@ source ${HOME}/dev/repos/setup/invoke/zsh_completion.zsh
 
 # Fzf
 if [ -x "$(command -v fzf)" ]; then
-    export FZF_DEFAULT_COMMAND='rg --files --hidden'
+    export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g "!{node_modules/*,.git/*}"'
 
     # Vim and Fzf interaction: vi mode, needs to come before fzf is loaded
     bindkey -v
