@@ -10,6 +10,9 @@ endif
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
 
+" nginx.conf support
+Plug 'chr4/nginx.vim'
+
 " Tag bar
 " Dependency on universal-ctags https://github.com/universal-ctags/homebrew-universal-ctags
 " On macOS:
@@ -396,7 +399,7 @@ set lbr
 set termguicolors
 let g:dracula_italic = 0
 highlight Normal ctermbg=None
-"nmap <Leader>csl :colorscheme xcode<CR>
+nmap <Leader>csl :colorscheme blue<CR>
 "nmap <Leader>csd :colorscheme dracula<CR>
 nmap <Leader>csd :colorscheme tomorrow_night<CR>
 colorscheme tomorrow_night

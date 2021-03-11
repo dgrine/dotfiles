@@ -5,7 +5,7 @@
 
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="arrow"
-#ZSH_THEME="clean"
+ZSH_THEME="clean"
 #ZSH_THEME="jonathan"
 #ZSH_THEME="mortalscumbag"
 
@@ -243,8 +243,7 @@ if [ -x "$(command -v fzf)" ]; then
     fi
 fi
 
-# Launch tmux if it hasn't started yet
-if ! pgrep tmux &> /dev/null; then
+function launch_tmux() {
     if [ -n "$PS1" ] && [ -z "$TMUX" ]; then
         tmux new-session -d -s main
         tmux new-session -d -s blackboard
@@ -252,6 +251,10 @@ if ! pgrep tmux &> /dev/null; then
         tmux new-session -d -s eot
         tmux attach -t main
     fi
+}
+# Launch tmux if it hasn't started yet
+if ! pgrep tmux &> /dev/null; then
+    launch_tmux
 fi
 alias tmux='tmux attach -t main'
 
