@@ -3,7 +3,7 @@
 [pull]
     rebase = true
 [merge]
-	tool = kdiff3
+	tool = meld
 [mergetool]
     prompt = true
 [mergetool "vimdiff"]
@@ -11,14 +11,14 @@
 [difftool]
     prompt = false
 [diff]
-    tool = kdiff3
+	tool = meld
 [core]
     excludesfile = ~/.gitignore_global
 [alias]
     lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
   ;lg = !"git lg"
 [gui]
-	editor = kate
+	editor = neovide
 [cola]
 	spellcheck = false
 [user]
