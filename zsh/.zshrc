@@ -122,7 +122,7 @@ if [ -x "$(command -v python3)" ]; then
         python3 -m venv env
         senv
         pip3 install --upgrade pip
-        pip3 install neovim black
+        pip3 install neovim black pudb
     }
     function ienv() {
         echo "> Installing requirements.txt"
