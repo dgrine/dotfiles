@@ -199,10 +199,14 @@ let g:VimuxHeight = '40'
 " Clang formatting
 Plug 'rhysd/vim-clang-format'
 let g:clang_format#detect_style_file=1
+let g:clang_format#auto_format=1
+let g:clang_format#extra_args='--sort-includes'
+autocmd FileType c,cpp,obj ClangFormatAutoEnable
+nmap <C-F> :ClangFormatAutoToggle<CR>
 
 " map to <Leader>cf in C++ code
-autocmd FileType javascript,c,cpp,objc nnoremap <buffer><C-F> :<C-u>ClangFormat<CR>
-autocmd FileType javascript,c,cpp,objc vnoremap <buffer><C-F> :ClangFormat<CR>
+"autocmd FileType javascript,c,cpp,objc nnoremap <buffer><C-F> :<C-u>ClangFormat<CR>
+"autocmd FileType javascript,c,cpp,objc vnoremap <buffer><C-F> :ClangFormat<CR>
 " if you install vim-operator-user
 "autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
 " Toggle auto formatting:
