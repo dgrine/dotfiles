@@ -47,6 +47,6 @@ format=columns
 function eot-menv() {
     python3 -m venv env
     source env/bin/activate
-    pip3 config set global.extra-index-url https://${EOT_NEXUS_USERNAME}:${EOT_NEXUS_PASSWORD_ENCODED}@nexus.eyeonid.com/repository/eyeontext-pypi/simple --site
+    pip3 config set global.extra-index-url https://${EOT_NEXUS_USERNAME}:${EOT_NEXUS_PASSWORD_ENCODED}@repo.eyeontext.com/repository/eyeontext-pypi/simple --site
     menv
 }
