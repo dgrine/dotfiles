@@ -401,12 +401,17 @@ set lbr
 
 " Visuals
 set termguicolors
-let g:dracula_italic = 0
 highlight Normal ctermbg=None
+
 nmap <Leader>csl :colorscheme blue<CR>
+
 "nmap <Leader>csd :colorscheme dracula<CR>
+let g:dracula_italic = 0
+
 nmap <Leader>csd :colorscheme tomorrow_night<CR>
 colorscheme tomorrow_night
+
+set guifont=Hack\ Nerd\ Font:9
 
 " =============================================================================
 
