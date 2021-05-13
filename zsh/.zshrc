@@ -6,8 +6,6 @@
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="arrow"
 ZSH_THEME="clean"
-#ZSH_THEME="jonathan"
-#ZSH_THEME="mortalscumbag"
 
 plugins=(git web-search pip python rake ruby fabric iterm2 npm brew z docker)
 
@@ -81,10 +79,6 @@ alias cdblackboard='cd $HOME/dev/repos/blackboard/'
 alias cddocs='cd $HOME/dev/repos/docs'
 alias cdbin='cd $HOME/dev/bin'
 alias cdtmp='mkdir -p $HOME/dev/tmp && cd $HOME/dev/tmp';
-#if [ -x "$(command -v ranger)" ]; then
-    ## Doing a silly little dance to work-around Ranger using VISUAL instead of EDITOR
-    #alias r='TMP=${VISUAL}; export VISUAL=${EDITOR} && ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"; export VISUAL=${TMP}; TMP=""'
-#fi
 if [ "${PLATFORM}" = "mac" ]; then
     function open() {
         open $1
