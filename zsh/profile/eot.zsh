@@ -50,3 +50,6 @@ function eot-menv() {
     pip3 config set global.extra-index-url https://${EOT_NEXUS_USERNAME}:${EOT_NEXUS_PASSWORD_ENCODED}@repo.eyeontext.com/repository/eyeontext-pypi/simple --site
     menv
 }
+
+alias eot-devserver='ssh -i ${HOME}/dev/repos/docs/docs-eot/data/debian-buildserver.pem dev@3.64.83.152'
+alias eot-devserver-root='ssh -i ${HOME}/dev/repos/docs/docs-eot/data/debian-buildserver.pem ubuntu@3.64.83.152'
