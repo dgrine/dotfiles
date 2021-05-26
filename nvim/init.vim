@@ -353,6 +353,11 @@ nnoremap <silent> <Leader>ga  :<C-u>CocList diagnostics<cr>
 Plug 'psf/black'
 autocmd FileType python nnoremap <buffer><C-F> :Black<CR>
 
+" Filetypes for undetected filetypes
+"augroup filetypedetect
+    autocmd BufNewFile,BufRead *Dockerfile* set syntax=dockerfile
+"augroup END
+
 " Initialize plugin system
 call plug#end()
 " =============================================================================
@@ -364,9 +369,22 @@ set hlsearch
 set incsearch
 set number
 set autoindent
+"set expandtab
+"set tabstop=4
+"set shiftwidth=4
+" Prevent vim from overwriting these settings when loading a ruby file
+let g:ruby_recommended_style=0
+let s:tabwidth=4
+" show existing tabs '\t' with 4 spaces width
+exec 'set tabstop='    .s:tabwidth
+" what is the number of spaces for 1 level of indentation, e.g. when shifting
+" a line with '>'
+exec 'set shiftwidth=' .s:tabwidth
+" using 'tab' in insert mode results in 4 spaces
+exec 'set softtabstop='.s:tabwidth
+" insert spaces on pressing `tab`
 set expandtab
-set tabstop=4
-set shiftwidth=4
+
 "set textwidth=80
 "set signcolumn=auto:2 " useful for having git-gutter and coc info
 set ruler
