@@ -121,13 +121,13 @@ if [ -x "$(command -v python3)" ]; then
     function ienv() {
         echo "> Installing requirements.txt"
         pip3 install -r requirements.txt
-        if [ -f "requirements-unittest.txt" ]; then
-            echo "> Installing requirements-unittest.txt"
-            pip3 install -r requirements-unittest.txt
+        if [ -f "requirements-dev.txt" ]; then
+            echo "> Installing requirements-dev.txt"
+            pip3 install -r requirements-dev.txt
         fi
-        if [ -f "requirements-uninstall.txt" ]; then
-            echo "> Uninstalling requirements-uninstall.txt"
-            pip3 uninstall -y -r requirements-uninstall.txt
+        if [ -f "requirements-dev-uninstall.txt" ]; then
+            echo "> Uninstalling requirements-dev-uninstall.txt"
+            pip3 uninstall -y -r requirements-dev-uninstall.txt
         fi
     }
     function senv() {
