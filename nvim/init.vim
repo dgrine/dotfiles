@@ -369,6 +369,7 @@ set hlsearch
 set incsearch
 set number
 set autoindent
+filetype indent on
 "set expandtab
 "set tabstop=4
 "set shiftwidth=4

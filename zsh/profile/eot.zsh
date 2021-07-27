@@ -1,8 +1,6 @@
 alias cdsdk='cd $HOME/dev/repos/fusion-wowool-sdk'
 alias cdportal='cd $HOME/dev/repos/fusion-portal'
 
-alias conf-auro='e $HOME/dev/repos/setup/zsh/profile/auro.zsh'
-
 function eot-rebuild-tir {
     unset EOT_KEY
     unset EOT_ROOT

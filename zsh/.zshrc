@@ -69,8 +69,6 @@ else
     alias l='ls -alh'
 fi
 
-
-
 # Aliases - Navigation
 alias cddev='cd $HOME/dev'
 alias cdrepos='cd $HOME/dev/repos'
@@ -181,8 +179,135 @@ fi
 
 # Make
 if [ -x "$(command -v make)" ]; then
-    alias m='make -j7'
+    alias m='make -j32'
 fi
+
+# C++
+if [ -x "$(command -v cpp)" ]; then
+    function cpp-create() {
+        # CMakeLists.txt
+        cat <<EOT > CMakeLists.txt
+cmake_minimum_required(VERSION 3.20)
+project(app)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+enable_testing()
+add_subdirectory(lib)
+add_subdirectory(ut)
+EOT
+
+        # .gitignore
+        cat <<EOT > .gitignore
+build/
+.vscode
+.ccls-*
+.clang-format
+compile_commands.json
+EOT
+
+        # .vscode/launch.json
+        mkdir -p .vscode/
+        cat <<EOT > .vscode/launch.json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "app",
+            "program": "`pwd`/build/debug/ut/app_ut",
+            "env": {
+                "ASAN_OPTIONS=detect_leaks": "0"
+            },
+            "args": [],
+            "cwd": "`app`"
+        }
+    ]
+}
+EOT
+
+        # extern
+        mkdir -p extern/doctest/public/doctest
+        cd extern/doctest/public/doctest
+        curl -O -j https://raw.githubusercontent.com/onqtam/doctest/master/doctest/doctest.h
+        cd ../../../..
+
+        # lib
+        mkdir -p lib/public/app
+        mkdir -p lib/private/app
+        cd lib
+        # lib/CMakeLists.txt
+        cat <<EOT > CMakeLists.txt
+set(appLibrarySources "private/app/hello_world.cpp")
+add_library(app_lib \${appLibrarySources})
+target_include_directories(app_lib
+    PUBLIC public/
+    PRIVATE private/
+)
+EOT
+        # lib/public/app/hello_world.hpp
+        cat <<EOT > public/app/hello_world.hpp
+void hello_world();
+EOT
+        # lib/private/app/hello_world.cpp
+        cat <<EOT > private/app/hello_world.cpp
+#include <iostream>
+
+void hello_world()
+{
+    std::cout << "Unit-test\n";
+}
+EOT
+        cd ..
+
+        # ut
+        mkdir -p ut/private
+        cd ut
+        # ut/CMakeLists.txt
+        cat <<EOT > CMakeLists.txt
+set(appUnitTestSources "private/main.cpp")
+add_executable(app_ut \${appUnitTestSources})
+target_link_libraries(app_ut PUBLIC app_lib)
+target_include_directories(app_ut PRIVATE ../extern/doctest/public)
+target_compile_definitions(app_ut PRIVATE DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN)
+
+add_test(NAME ut COMMAND app_ut)
+EOT
+        # ut/private/main.cpp
+        cat <<EOT > private/main.cpp
+#include <app/hello_world.hpp>
+#include <doctest/doctest.h>
+
+TEST_CASE("unit-test")
+{
+    hello_world();
+}
+EOT
+        cd ..
+
+        # Configure build/debug
+        mkdir -p build/debug
+        cd build/debug
+        cmake ../.. -DCMAKE_BUILD_TYPE=Debug
+        cd ../..
+
+        # Configure build/reldeb
+        mkdir -p build/reldeb
+        cd build/reldeb
+        cmake ../.. -DCMAKE_BUILD_TYPE=RelWithDebInfo
+        cd ../..
+
+        # .clang-complete
+        ln -s ~/dev/repos/setup/clang-format/.clang-format
+        python3 ~/dev/repos/setup/coc/generate_compile_commands.py
+
+    }
+
+    function cpp-build() {
+        cd build
+    }
+fi
+
 
 # lldb
 if [ -x "$(command -v lldb)" ]; then

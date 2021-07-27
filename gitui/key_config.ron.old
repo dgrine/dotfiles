@@ -11,20 +11,14 @@
             bits: 0,
         ),
     ),
-    tab_files: (
+    tab_stashing: (
         code: Char('3'),
         modifiers: (
             bits: 0,
         ),
     ),
-    tab_stashing: (
-        code: Char('4'),
-        modifiers: (
-            bits: 0,
-        ),
-    ),
     tab_stashes: (
-        code: Char('5'),
+        code: Char('4'),
         modifiers: (
             bits: 0,
         ),
@@ -111,18 +105,6 @@
         code: Right,
         modifiers: (
             bits: 0,
-        ),
-    ),
-    tree_collapse_recursive: (
-        code: Left,
-        modifiers: (
-            bits: 1,
-        ),
-    ),
-    tree_expand_recursive: (
-        code: Right,
-        modifiers: (
-            bits: 1,
         ),
     ),
     home: (
@@ -305,40 +287,10 @@
             bits: 1,
         ),
     ),
-    merge_branch: (
-        code: Char('m'),
-        modifiers: (
-            bits: 0,
-        ),
-    ),
-    tags: (
-        code: Char('T'),
-        modifiers: (
-            bits: 1,
-        ),
-    ),
-    delete_tag: (
-        code: Char('D'),
-        modifiers: (
-            bits: 1,
-        ),
-    ),
-    select_tag: (
-        code: Enter,
-        modifiers: (
-            bits: 0,
-        ),
-    ),
     push: (
         code: Char('p'),
         modifiers: (
             bits: 0,
-        ),
-    ),
-    open_file_tree: (
-        code: Char('F'),
-        modifiers: (
-            bits: 1,
         ),
     ),
     force_push: (
@@ -351,12 +303,6 @@
         code: Char('f'),
         modifiers: (
             bits: 0,
-        ),
-    ),
-    abort_merge: (
-        code: Char('M'),
-        modifiers: (
-            bits: 1,
         ),
     ),
 )
