@@ -18,7 +18,8 @@
         "enable": true
     },
     "python.formatting.provider": "black",
-    "coc.preferences.formatOnSaveFiletypes": ["python"],
+    "python.formatting.blackArgs": ["--line-length=200"],
+    "coc.preferences.formatOnSaveFiletypes": ["python", "c", "cpp", "html", "typescript"],
     "solargraph.diagnostics": true,
     "solargraph.hover": true,
     "solargraph.formatting": true

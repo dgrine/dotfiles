@@ -30,8 +30,6 @@ fi
 export PATH="$PATH:$HOME/dev/repos/setup/bin:$HOME/dev/bin:$HOME/.local/bin:$HOME/.fzf/bin:$HOME/.cargo/bin:$HOME/.gem/ruby/3.0.0/bin"
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
 #export DISPLAY=:0
 export XAUTHORITY=~/.Xauthority
 
@@ -54,6 +52,7 @@ alias conf-tmux='e $HOME/.tmux.conf'
 alias conf-zsh='e $HOME/.zshrc'
 alias conf-zsh-local='e $HOME/.zshrc_local'
 alias conf-vifm='e $HOME/.config/vifm/vifmrc'
+alias conf-coc='e $HOME/dev/repos/setup/nvim/coc-settings.json'
 alias source-zsh='source $HOME/.zshrc'
 
 # Aliases - SSH
@@ -115,18 +114,6 @@ if [ -x "$(command -v python3)" ]; then
         senv
         pip3 install --upgrade pip
         pip3 install neovim black pudb
-    }
-    function ienv() {
-        echo "> Installing requirements.txt"
-        pip3 install -r requirements.txt
-        if [ -f "requirements-dev.txt" ]; then
-            echo "> Installing requirements-dev.txt"
-            pip3 install -r requirements-dev.txt
-        fi
-        if [ -f "requirements-dev-uninstall.txt" ]; then
-            echo "> Uninstalling requirements-dev-uninstall.txt"
-            pip3 uninstall -y -r requirements-dev-uninstall.txt
-        fi
     }
     function senv() {
         source env/bin/activate
@@ -284,30 +271,79 @@ TEST_CASE("unit-test")
 }
 EOT
         cd ..
+        cpp-configure
+    }
 
-        # Configure build/debug
-        mkdir -p build/debug
-        cd build/debug
-        cmake ../.. -DCMAKE_BUILD_TYPE=Debug
+    function cpp-configure() {
+        cpp-clean()
+        local dir=""
+
+        dir="build/debug-rtc-address"
+        echo "Configuring $dir"
+        rm -rf ${dir}
+        mkdir -p ${dir}
+        cd ${dir}
+        cmake ../.. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=../../toolchain/clang.cmake -DBB_RTC=address
         cd ../..
 
-        # Configure build/reldeb
-        mkdir -p build/reldeb
-        cd build/reldeb
-        cmake ../.. -DCMAKE_BUILD_TYPE=RelWithDebInfo
+        dir="build/debug"
+        echo "Configuring $dir"
+        rm -rf ${dir}
+        mkdir -p ${dir}
+        cd ${dir}
+        cmake ../.. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=../../toolchain/clang.cmake
+        cd ../..
+
+        dir="build/reldeb-rtc-address"
+        echo "Configuring $dir"
+        rm -rf ${dir}
+        mkdir -p ${dir}
+        cd ${dir}
+        cmake ../.. -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_TOOLCHAIN_FILE=../../toolchain/clang.cmake -DBB_RTC=address
+        cd ../..
+
+        dir="build/release"
+        echo "Configuring $dir"
+        rm -rf ${dir}
+        mkdir -p ${dir}
+        cd ${dir}
+        cmake ../.. -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=../../toolchain/clang.cmake
         cd ../..
 
         # .clang-complete
-        ln -s ~/dev/repos/setup/clang-format/.clang-format
+        ln -sf ~/dev/repos/setup/clang-format/.clang-format
         python3 ~/dev/repos/setup/coc/generate_compile_commands.py
-
     }
 
     function cpp-build() {
-        cd build
+        if [ $# -lt 1 ]; then
+            echo "error: build dir must be specified"
+            ls build/
+            echo "usage: cpp-build build/debug-rtc-address"
+            exit 1
+        else
+            local dir="$1"
+            echo "Building ${dir}"
+            cd $dir && make -j32
+            cd -
+        fi
+    }
+
+    function cpp-clean() {
+        rm -rf build/
     }
 fi
 
+# pdf-reduce
+function pdf-reduce() {
+    if [ $# -lt 2 ]; then
+        echo "error: input and output file are required"
+        echo "usage: pdf-reduce input.pdf output.pdf"
+        exit 1
+    else
+        gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -sOutputFile=$2 $1
+    fi
+}
 
 # lldb
 if [ -x "$(command -v lldb)" ]; then
@@ -333,6 +369,9 @@ else
     export PATH="/usr/lib/ccache/bin:$PATH"
 fi
 
+# LateX
+export TEXLIVE_PATH='/usr/share/texmf-dist/scripts/texlive'
+
 # zsh completion
 source ${HOME}/dev/repos/setup/invoke/zsh_completion.zsh
 
@@ -357,8 +396,8 @@ if [ -x "$(command -v fzf)" ]; then
         source "/usr/local/opt/fzf/shell/key-bindings.zsh"
         source "/usr/local/opt/fzf/shell/completion.zsh"
     else
-        source "${HOME}/.fzf/shell/key-bindings.zsh"
-        source "${HOME}/.fzf/shell/completion.zsh"
+        source "/usr/share/fzf/shell/key-bindings.zsh"
+        #source "/usr/share/fzf/shell/completion.zsh"
     fi
 fi
 
@@ -366,7 +405,7 @@ function launch_tmux() {
     if [ -n "$PS1" ] && [ -z "$TMUX" ]; then
         tmux new-session -d -s main
         tmux new-session -d -s blackboard
-        tmux new-session -d -s auro
+        #tmux new-session -d -s auro
         tmux new-session -d -s eot
         tmux attach -t main
     fi
@@ -383,3 +422,4 @@ if [ -f "${HOME}/.zshrc_local" ]; then
 fi
 
 #neofetch
+

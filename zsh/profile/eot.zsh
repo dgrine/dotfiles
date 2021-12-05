@@ -1,5 +1,6 @@
 alias cdsdk='cd $HOME/dev/repos/fusion-wowool-sdk'
-alias cdportal='cd $HOME/dev/repos/fusion-portal'
+alias cdportal='cd $HOME/dev/repos/fusion-wowool-portal'
+alias cdportaldocs='cd $HOME/dev/repos/fusion-wowool-portal-docs'
 
 function eot-rebuild-tir {
     unset EOT_KEY
@@ -48,6 +49,23 @@ function eot-menv() {
     pip3 config set global.extra-index-url https://${EOT_NEXUS_USERNAME}:${EOT_NEXUS_PASSWORD_ENCODED}@repo.eyeontext.com/repository/eyeontext-pypi/simple --site
     menv
 }
+function eot-ienv() {
+    senv
+    echo "Installing pre-releases listed in install_requires_eot.txt"
+    pip3 install --pre -r install_requires_eot.txt
+    echo "Install stable releases listed in install_requires.txt"
+    pip3 install -r install_requires.txt
+    echo "Installing pre-releases listed in dev_requires_eot.txt"
+    pip3 install --pre -r dev_requires_eot.txt
+    echo "Install stable releases listed in dev_requires.txt"
+    pip3 install -r dev_requires.txt
+    echo "Installing pre-releases listed in build_requires_eot.txt"
+    pip3 install --pre -r build_requires_eot.txt
+    echo "Install stable releases listed in build_requires.txt"
+    pip3 install -r build_requires.txt
+}
 
-alias eot-devserver='ssh -i ${HOME}/dev/repos/docs/docs-eot/data/debian-buildserver.pem dev@3.64.83.152'
+alias conf-eot='e ~/dev/repos/setup/zsh/profile/eot.zsh'
+alias eot-devserver='ssh -vv -i ${HOME}/dev/repos/docs/docs-eot/data/debian-buildserver.pem dev@3.64.83.152'
 alias eot-devserver-root='ssh -i ${HOME}/dev/repos/docs/docs-eot/data/debian-buildserver.pem ubuntu@3.64.83.152'
+

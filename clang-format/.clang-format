@@ -75,7 +75,7 @@ IncludeBlocks:   Preserve
 IncludeCategories: 
   - Regex:           '^<app.*\.'
     Priority:        1
-  - Regex:           '^<auro.*\.'
+  - Regex:           '^<bb.*\.'
     Priority:        2
   - Regex:           '^<doctest'
     Priority:        3 

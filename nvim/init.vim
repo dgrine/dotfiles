@@ -8,7 +8,7 @@ endif
 " Specify a directory for plugins
 " - For Neovim: ~/.local/share/nvim/plugged
 " - Avoid using standard Vim directory names like 'plugin'
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.local/share/nvim/plugged')
 
 " nginx.conf support
 Plug 'chr4/nginx.vim'
@@ -69,10 +69,29 @@ let g:NERDTreeDirArrows=0
 let g:NERDTreeQuitOnOpen=1
 " Find current file in nerdtree
 nnoremap <Leader>tf :NERDTreeFind<CR>
-let g:NERDCustomDelimiters = { 'tree': { 'left': '<', 'right': '>'}, 'asd': { 'left' : '//' } }
+"let g:NERDCustomDelimiters = { 'tree': { 'left': '<', 'right': '>'}, 'asd': { 'left' : '//' } }
+
 
 " Commenting/uncommenting
 Plug 'scrooloose/nerdcommenter'
+" Create default mappings
+let g:NERDCreateDefaultMappings = 1
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+" Set a language to use its alternate delimiters by default
+let g:NERDAltDelims_java = 1
+" Add your own custom formats or override the defaults
+let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+" Enable NERDCommenterToggle to check all selected lines is commented or not 
+let g:NERDToggleCheckAllLines = 1
 
 " Multiple cursor editing
 Plug 'terryma/vim-multiple-cursors'
@@ -196,14 +215,6 @@ map <Leader>rq :VimuxCloseRunner<CR>
 let g:VimuxOrientation = 'h'
 let g:VimuxHeight = '40'
 
-" Clang formatting
-Plug 'rhysd/vim-clang-format'
-let g:clang_format#detect_style_file=1
-let g:clang_format#auto_format=1
-let g:clang_format#extra_args='--sort-includes'
-autocmd FileType c,cpp,obj ClangFormatAutoEnable
-nmap <C-F> :ClangFormatAutoToggle<CR>
-
 " map to <Leader>cf in C++ code
 "autocmd FileType javascript,c,cpp,objc nnoremap <buffer><C-F> :<C-u>ClangFormat<CR>
 "autocmd FileType javascript,c,cpp,objc vnoremap <buffer><C-F> :ClangFormat<CR>
@@ -295,7 +306,7 @@ nmap <Leader>gn <Plug>(coc-rename)
 augroup mygroup
   autocmd!
   " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
   " Update signature help on jump placeholder
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
@@ -358,6 +369,16 @@ autocmd FileType python nnoremap <buffer><C-F> :Black<CR>
     autocmd BufNewFile,BufRead *Dockerfile* set syntax=dockerfile
 "augroup END
 
+" Clang formatting
+Plug 'rhysd/vim-clang-format'
+let g:clang_format#detect_style_file=1
+let g:clang_format#auto_format=1
+let g:clang_format#extra_args='--sort-includes'
+autocmd FileType c,cpp,obj ClangFormatAutoEnable
+nmap <C-F> :ClangFormatAutoToggle<CR>
+
+" Plug 'dracula/vim', { 'name': 'dracula' }
+
 " Initialize plugin system
 call plug#end()
 " =============================================================================
@@ -370,9 +391,9 @@ set incsearch
 set number
 set autoindent
 filetype indent on
-"set expandtab
-"set tabstop=4
-"set shiftwidth=4
+set expandtab
+set tabstop=4
+set shiftwidth=4
 " Prevent vim from overwriting these settings when loading a ruby file
 let g:ruby_recommended_style=0
 let s:tabwidth=4
@@ -427,7 +448,7 @@ nmap <Leader>csl :colorscheme blue<CR>
 "nmap <Leader>csd :colorscheme dracula<CR>
 let g:dracula_italic = 0
 
-nmap <Leader>csd :colorscheme tomorrow-night<CR>
+" nmap <Leader>csd :colorscheme tomorrow-night<CR>
 colorscheme tomorrow-night
 
 set guifont=Hack\ Nerd\ Font:9
