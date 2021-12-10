@@ -52,6 +52,7 @@ brew install ripgrep
 
 echo "Installing fzf"
 brew install fzf
+ln -s /usr/local/opt/fzf ~/.fzf
 
 echo "Linking to custom .zshrc"
 ln -s ~/dev/repos/setup/zsh/.zshrc ~/.zshrc

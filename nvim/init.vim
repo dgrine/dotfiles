@@ -25,7 +25,6 @@ let g:tagbar_indent = 1
 let g:tagbar_autofocus = 1
 let g:tagbar_foldlevel = 2
 
-
 " Lean & mean status/tabline for vim that's light as air
 Plug 'vim-airline/vim-airline'
 " Powerline fonts: disable this if things look weird (no powerline fonts
@@ -376,6 +375,9 @@ let g:clang_format#auto_format=1
 let g:clang_format#extra_args='--sort-includes'
 autocmd FileType c,cpp,obj ClangFormatAutoEnable
 nmap <C-F> :ClangFormatAutoToggle<CR>
+
+" Close buffer
+nnoremap <silent>    <A-c> :bd<CR>
 
 " Plug 'dracula/vim', { 'name': 'dracula' }
 

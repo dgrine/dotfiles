@@ -2,4 +2,4 @@
 __pycache__/*
 ipython/profile_auro/history.sqlite
 vifm/vifminfo.json
-
+.ccls-cache

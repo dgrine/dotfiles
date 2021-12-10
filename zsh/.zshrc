@@ -4,7 +4,7 @@
 # Everything else in that file should be commented out
 
 export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="arrow"
+# ZSH_THEME="arrow"
 ZSH_THEME="clean"
 
 plugins=(git web-search pip python rake ruby fabric iterm2 npm brew z docker)

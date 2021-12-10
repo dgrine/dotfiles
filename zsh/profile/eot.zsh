@@ -1,6 +1,7 @@
 alias cdsdk='cd $HOME/dev/repos/fusion-wowool-sdk'
 alias cdportal='cd $HOME/dev/repos/fusion-wowool-portal'
 alias cdportaldocs='cd $HOME/dev/repos/fusion-wowool-portal-docs'
+alias conf-zsh-eot='e $HOME/dev/repos/setup/zsh/profile/eot.zsh'
 
 function eot-rebuild-tir {
     unset EOT_KEY
@@ -48,6 +49,22 @@ function eot-menv() {
     source env/bin/activate
     pip3 config set global.extra-index-url https://${EOT_NEXUS_USERNAME}:${EOT_NEXUS_PASSWORD_ENCODED}@repo.eyeontext.com/repository/eyeontext-pypi/simple --site
     menv
+}
+function eot-menv-ci() {
+    eot-menv
+    senv
+    if [ -e "install_requires.txt" ]; then
+        pip3 install -r install_requires.txt
+    fi
+    if [ -e "install_requires_eot.txt" ]; then
+        pip3 install --pre -r install_requires_eot.txt
+    fi
+    if [ -e "dev_requires_eot.txt" ]; then
+        pip3 install -r dev_requires.txt
+    fi
+    if [ -e "dev_requires_eot.txt" ]; then
+        pip3 install --pre -r dev_requires_eot.txt
+    fi
 }
 function eot-ienv() {
     senv
