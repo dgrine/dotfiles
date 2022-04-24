@@ -421,5 +421,10 @@ if [ -f "${HOME}/.zshrc_local" ]; then
     source ${HOME}/.zshrc_local
 fi
 
+# Allow zsh nvim command line editing
+autoload -U edit-command-line
+zle -N edit-command-line 
+bindkey -M vicmd v edit-command-line
+
 #neofetch
 
