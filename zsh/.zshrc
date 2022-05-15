@@ -396,7 +396,9 @@ if [ -x "$(command -v fzf)" ]; then
         source "/usr/local/opt/fzf/shell/key-bindings.zsh"
         source "/usr/local/opt/fzf/shell/completion.zsh"
     else
-        source "/usr/share/fzf/shell/key-bindings.zsh"
+        source ~/.fzf/shell/key-bindings.zsh
+        # source "/usr/share/fzf/shell/key-bindings.zsh"
+        # source /usr/share/doc/fzf/examples/key-bindings.zsh
         #source "/usr/share/fzf/shell/completion.zsh"
     fi
 fi
