@@ -379,7 +379,7 @@ nmap <C-F> :ClangFormatAutoToggle<CR>
 " Close buffer
 nnoremap <silent>    <A-c> :bd<CR>
 
-" Plug 'dracula/vim', { 'name': 'dracula' }
+Plug 'dracula/vim', { 'name': 'dracula' }
 
 " Initialize plugin system
 call plug#end()
@@ -445,14 +445,8 @@ set lbr
 set termguicolors
 highlight Normal ctermbg=None
 
-nmap <Leader>csl :colorscheme blue<CR>
-
-"nmap <Leader>csd :colorscheme dracula<CR>
-let g:dracula_italic = 0
-
-" nmap <Leader>csd :colorscheme tomorrow-night<CR>
-colorscheme tomorrow-night
-
+" colorscheme tomorrow-night
+colorscheme dracula
 set guifont=Hack\ Nerd\ Font:9
 
 " =============================================================================
