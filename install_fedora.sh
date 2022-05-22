@@ -50,6 +50,10 @@ sudo dnf install ripgrep
 echo "Installing fzf"
 sudo dnf install fzf
 
+echo "Installing git"
+sudo dnf install git
+ln -s ~/dev/repos/setup/git/.gitconfig
+
 echo "Linking to custom .zshrc"
 ln -s ~/dev/repos/setup/zsh/.zshrc ~/.zshrc
 

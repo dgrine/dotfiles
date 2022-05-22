@@ -3,7 +3,6 @@
 # git
 cd $HOME
 ln -s $HOME/dev/repos/setup/git/.gitconfig
-ln -s $HOME/dev/repos/setup/git/.gitignore_global
 
 # alacritty
 pamac install alacritty

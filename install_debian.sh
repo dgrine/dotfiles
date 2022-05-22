@@ -24,6 +24,9 @@ apt install python3 python3-dev
 
 echo "Installing Docker, Docker Compose"
 apt install docker docker-compose
+groupadd docker
+usermod -aG docker $USER
+newgrp docker
 
 echo "Installing ctags"
 apt install ctags
@@ -41,6 +44,7 @@ ln -s ~/dev/repos/setup/vifm ~/.config/vifm
 
 echo "Installing git"
 apt install git
+ln -s ~/dev/repos/setup/git/.gitconfig
 
 echo "Installing tmux"
 apt install tmux
@@ -56,6 +60,12 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 
 echo "Installing meld"
 apt install meld
+
+echo "Installing texlive"
+apt install texlive-latex-recommended
+apt install texlive-extra-utils
+apt install texlive-latex-extra
+apt install texlive-fonts-extra
 
 echo "Linking to custom .zshrc"
 ln -s ~/dev/repos/setup/zsh/.zshrc ~/.zshrc
