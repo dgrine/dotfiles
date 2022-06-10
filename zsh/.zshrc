@@ -407,7 +407,6 @@ function launch_tmux() {
     if [ -n "$PS1" ] && [ -z "$TMUX" ]; then
         tmux new-session -d -s main
         tmux new-session -d -s blackboard
-        #tmux new-session -d -s auro
         tmux new-session -d -s eot
         tmux attach -t main
     fi
