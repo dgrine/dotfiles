@@ -1,10 +1,9 @@
 alias cdsdk='cd $HOME/dev/repos/fusion-wowool-sdk'
 alias cdsdknative='cd $HOME/dev/repos/fusion-wowool-sdk/comp-wowool-sdk-native-py-cpp'
 alias cdportal='cd $HOME/dev/repos/fusion-wowool-portal'
-alias cdbreach='cd $HOME/dev/repos/fusion-breach-extractor'
+alias cdbreach='cd $HOME/dev/repos/fusion-breach-extractor/breach-extractor'
 alias cdwowooldocs='cd $HOME/dev/repos/wowool-docs'
 alias conf-zsh-eot='e $HOME/dev/repos/setup/zsh/profile/eot.zsh'
-alias eot-mount-breachserver='sudo mkdir -p /mnt/eot-breachserver && sudo sshfs -o debug,allow_other,IdentityFile=/home/djamelg/.ssh/id_rsa djgr@35.170.58.49:/mnt/efs/ /mnt/eot-breachserver'
 
 function eot-rebuild-tir {
     unset EOT_KEY
@@ -57,16 +56,28 @@ function eot-menv-release() {
     eot-menv
     senv
     if [ -f "install_requires.txt" ]; then
+        echo "Installing install_requires.txt"
         pip3 install -r install_requires.txt
     fi
     if [ -f "install_requires_eot.txt" ]; then
+        echo "Installing install_requires_eot (releases).txt"
         pip3 install -r install_requires_eot.txt
     fi
     if [ -f "dev_requires.txt" ]; then
+        echo "Installing dev_requires.txt"
         pip3 install -r dev_requires.txt
     fi
     if [ -f "dev_requires_eot.txt" ]; then
+        echo "Installing dev_requires_eot (releases).txt"
         pip3 install -r dev_requires_eot.txt
+    fi
+    if [ -f "build_requires.txt" ]; then
+        echo "Installing build_requires.txt"
+        pip3 install -r build_requires.txt
+    fi
+    if [ -f "build_requires_eot.txt" ]; then
+        echo "Installing build_requires_eot (releases).txt"
+        pip3 install -r build_requires_eot.txt
     fi
 }
 function eot-menv-dev() {
@@ -117,4 +128,8 @@ function eot-ienv() {
 alias conf-eot='e ~/dev/repos/setup/zsh/profile/eot.zsh'
 alias eot-devserver='ssh -vv -i ${HOME}/dev/repos/docs/docs-eot/data/debian-buildserver.pem dev@3.64.83.152'
 alias eot-devserver-root='ssh -i ${HOME}/dev/repos/docs/docs-eot/data/debian-buildserver.pem ubuntu@3.64.83.152'
-alias eot-breachserver='ssh djgr@35.170.58.49'
+alias eot-buildserver-root='ssh -vv -i ${HOME}/dev/repos/docs/docs-eot/data/debian-buildserver.pem builder@ec2-35-158-194-216.eu-central-1.compute.amazonaws.com'
+alias eot-breachserver='ssh djgr@44.206.52.68'
+alias eot-mount-breachserver='sudo mkdir -p /mnt/eot-breachserver && sudo sshfs -o debug,allow_other,IdentityFile=/home/djamelg/.ssh/id_rsa,reconnect,ServerAliveInterval=15,ServerAliveCountMax=3 djgr@44.206.52.68:/ /mnt/eot-breachserver'
+alias 'eot-brext-markers'='rg "(([A-Z][a-z]+)+Marker)" -o --no-heading | cut -d: -f2 | sort | uniq'
+alias 'eot-brext-values'='rg "(([A-Z][a-z]+)+Value)" -o --no-heading | cut -d: -f2 | sort | uniq'

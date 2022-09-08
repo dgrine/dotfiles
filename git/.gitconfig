@@ -1,6 +1,13 @@
 [diff]
-    tool = meld
+	tool = meld
 [difftool]
     prompt = false
 [difftool "meld"]
     cmd = meld "$LOCAL" "$REMOTE"
+[cola]
+	spellcheck = false
+	startupmode = list
+[merge]
+	tool = meld
+[gui]
+	editor = nvim

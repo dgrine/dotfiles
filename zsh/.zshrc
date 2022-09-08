@@ -33,6 +33,11 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 #export DISPLAY=:0
 export XAUTHORITY=~/.Xauthority
 
+# Git
+alias gdt='git difftool'
+alias glg='git log --graph --abbrev-commit --decorate --format=format:"%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)" --all'
+alias gitsm='smartgit .'
+
 # Editor
 if [ -x "$(command -v nvim)" ]; then
     export EDITOR="nvim"
@@ -141,197 +146,9 @@ alias rmdocker-containers='docker rm -f $(docker ps -a -q)'
 alias rmdocker-volumes='docker volume rm $(docker volume ls -q)'
 alias rmdocker-clean='rmdocker-containers && rmdocker-volumes'
 
-# Miniconda
-if [ -x "$(command -v conda)" ]; then
-    # Note: Output from conda init zsh, but moved to this location instead of end of this file
-    # >>> conda initialize >>>
-    # !! Contents within this block are managed by 'conda init' !!
-    __conda_setup=$("$HOME/dev/miniconda3/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)
-    if [ $? -eq 0 ]; then
-        eval "$__conda_setup" 2>/dev/null
-    else
-        if [ -f "$HOME/dev/miniconda3/etc/profile.d/conda.sh" ]; then
-            . "$HOME/dev/miniconda3/etc/profile.d/conda.sh"
-        else
-            export PATH="$HOME/dev/miniconda3/bin:$PATH"
-        fi
-    fi
-    unset __conda_setup
-    conda config --set auto_activate_base false
-    # On macOS, conda seems to always activate the base environment
-    if [ "${PLATFORM}" = "mac" ]; then
-        conda deactivate > /dev/null
-    fi
-fi
-
 # Make
 if [ -x "$(command -v make)" ]; then
     alias m='make -j32'
-fi
-
-# C++
-if [ -x "$(command -v cpp)" ]; then
-    function cpp-create() {
-        # CMakeLists.txt
-        cat <<EOT > CMakeLists.txt
-cmake_minimum_required(VERSION 3.20)
-project(app)
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED True)
-enable_testing()
-add_subdirectory(lib)
-add_subdirectory(ut)
-EOT
-
-        # .gitignore
-        cat <<EOT > .gitignore
-build/
-.vscode
-.ccls-*
-.clang-format
-compile_commands.json
-EOT
-
-        # .vscode/launch.json
-        mkdir -p .vscode/
-        cat <<EOT > .vscode/launch.json
-{
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "type": "lldb",
-            "request": "launch",
-            "name": "app",
-            "program": "`pwd`/build/debug/ut/app_ut",
-            "env": {
-                "ASAN_OPTIONS=detect_leaks": "0"
-            },
-            "args": [],
-            "cwd": "`app`"
-        }
-    ]
-}
-EOT
-
-        # extern
-        mkdir -p extern/doctest/public/doctest
-        cd extern/doctest/public/doctest
-        curl -O -j https://raw.githubusercontent.com/onqtam/doctest/master/doctest/doctest.h
-        cd ../../../..
-
-        # lib
-        mkdir -p lib/public/app
-        mkdir -p lib/private/app
-        cd lib
-        # lib/CMakeLists.txt
-        cat <<EOT > CMakeLists.txt
-set(appLibrarySources "private/app/hello_world.cpp")
-add_library(app_lib \${appLibrarySources})
-target_include_directories(app_lib
-    PUBLIC public/
-    PRIVATE private/
-)
-EOT
-        # lib/public/app/hello_world.hpp
-        cat <<EOT > public/app/hello_world.hpp
-void hello_world();
-EOT
-        # lib/private/app/hello_world.cpp
-        cat <<EOT > private/app/hello_world.cpp
-#include <iostream>
-
-void hello_world()
-{
-    std::cout << "Unit-test\n";
-}
-EOT
-        cd ..
-
-        # ut
-        mkdir -p ut/private
-        cd ut
-        # ut/CMakeLists.txt
-        cat <<EOT > CMakeLists.txt
-set(appUnitTestSources "private/main.cpp")
-add_executable(app_ut \${appUnitTestSources})
-target_link_libraries(app_ut PUBLIC app_lib)
-target_include_directories(app_ut PRIVATE ../extern/doctest/public)
-target_compile_definitions(app_ut PRIVATE DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN)
-
-add_test(NAME ut COMMAND app_ut)
-EOT
-        # ut/private/main.cpp
-        cat <<EOT > private/main.cpp
-#include <app/hello_world.hpp>
-#include <doctest/doctest.h>
-
-TEST_CASE("unit-test")
-{
-    hello_world();
-}
-EOT
-        cd ..
-        cpp-configure
-    }
-
-    function cpp-configure() {
-        cpp-clean()
-        local dir=""
-
-        dir="build/debug-rtc-address"
-        echo "Configuring $dir"
-        rm -rf ${dir}
-        mkdir -p ${dir}
-        cd ${dir}
-        cmake ../.. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=../../toolchain/clang.cmake -DBB_RTC=address
-        cd ../..
-
-        dir="build/debug"
-        echo "Configuring $dir"
-        rm -rf ${dir}
-        mkdir -p ${dir}
-        cd ${dir}
-        cmake ../.. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=../../toolchain/clang.cmake
-        cd ../..
-
-        dir="build/reldeb-rtc-address"
-        echo "Configuring $dir"
-        rm -rf ${dir}
-        mkdir -p ${dir}
-        cd ${dir}
-        cmake ../.. -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_TOOLCHAIN_FILE=../../toolchain/clang.cmake -DBB_RTC=address
-        cd ../..
-
-        dir="build/release"
-        echo "Configuring $dir"
-        rm -rf ${dir}
-        mkdir -p ${dir}
-        cd ${dir}
-        cmake ../.. -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=../../toolchain/clang.cmake
-        cd ../..
-
-        # .clang-complete
-        ln -sf ~/dev/repos/setup/clang-format/.clang-format
-        python3 ~/dev/repos/setup/coc/generate_compile_commands.py
-    }
-
-    function cpp-build() {
-        if [ $# -lt 1 ]; then
-            echo "error: build dir must be specified"
-            ls build/
-            echo "usage: cpp-build build/debug-rtc-address"
-            exit 1
-        else
-            local dir="$1"
-            echo "Building ${dir}"
-            cd $dir && make -j32
-            cd -
-        fi
-    }
-
-    function cpp-clean() {
-        rm -rf build/
-    }
 fi
 
 # pdf-reduce
