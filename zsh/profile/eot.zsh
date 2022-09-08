@@ -1,7 +1,10 @@
 alias cdsdk='cd $HOME/dev/repos/fusion-wowool-sdk'
+alias cdsdknative='cd $HOME/dev/repos/fusion-wowool-sdk/comp-wowool-sdk-native-py-cpp'
 alias cdportal='cd $HOME/dev/repos/fusion-wowool-portal'
-alias cdportaldocs='cd $HOME/dev/repos/fusion-wowool-portal-docs'
+alias cdbreach='cd $HOME/dev/repos/fusion-breach-extractor'
+alias cdwowooldocs='cd $HOME/dev/repos/wowool-docs'
 alias conf-zsh-eot='e $HOME/dev/repos/setup/zsh/profile/eot.zsh'
+alias eot-mount-breachserver='sudo mkdir -p /mnt/eot-breachserver && sudo sshfs -o debug,allow_other,IdentityFile=/home/djamelg/.ssh/id_rsa djgr@35.170.58.49:/mnt/efs/ /mnt/eot-breachserver'
 
 function eot-rebuild-tir {
     unset EOT_KEY
@@ -50,20 +53,49 @@ function eot-menv() {
     pip3 config set global.extra-index-url https://${EOT_NEXUS_USERNAME}:${EOT_NEXUS_PASSWORD_ENCODED}@repo.eyeontext.com/repository/eyeontext-pypi/simple --site
     menv
 }
-function eot-menv-ci() {
+function eot-menv-release() {
     eot-menv
     senv
-    if [ -e "install_requires.txt" ]; then
+    if [ -f "install_requires.txt" ]; then
         pip3 install -r install_requires.txt
     fi
-    if [ -e "install_requires_eot.txt" ]; then
-        pip3 install --pre -r install_requires_eot.txt
+    if [ -f "install_requires_eot.txt" ]; then
+        pip3 install -r install_requires_eot.txt
     fi
-    if [ -e "dev_requires_eot.txt" ]; then
+    if [ -f "dev_requires.txt" ]; then
         pip3 install -r dev_requires.txt
     fi
-    if [ -e "dev_requires_eot.txt" ]; then
+    if [ -f "dev_requires_eot.txt" ]; then
+        pip3 install -r dev_requires_eot.txt
+    fi
+}
+function eot-menv-dev() {
+    echo "Installing development environment"
+    eot-menv
+    senv
+    if [ -f "install_requires.txt" ]; then
+        echo "Installing install_requires.txt"
+        pip3 install -r install_requires.txt
+    else
+        echo "Skipping install_requires.txt"
+    fi
+    if [ -f "install_requires_eot.txt" ]; then
+        echo "Installing install_requires_eot (pre-releases).txt"
+        pip3 install --pre -r install_requires_eot.txt
+    else
+        echo "Skipping install_requires_eot.txt"
+    fi
+    if [ -f "dev_requires.txt" ]; then
+        echo "Installing dev_requires.txt"
+        pip3 install -r dev_requires.txt
+    else
+        echo "Skipping dev_requires.txt"
+    fi
+    if [ -f "dev_requires_eot.txt" ]; then
+        echo "Installing dev_requires_eot (pre-releases).txt"
         pip3 install --pre -r dev_requires_eot.txt
+    else
+        echo "Skipping dev_requires_eot.txt"
     fi
 }
 function eot-ienv() {
@@ -85,4 +117,4 @@ function eot-ienv() {
 alias conf-eot='e ~/dev/repos/setup/zsh/profile/eot.zsh'
 alias eot-devserver='ssh -vv -i ${HOME}/dev/repos/docs/docs-eot/data/debian-buildserver.pem dev@3.64.83.152'
 alias eot-devserver-root='ssh -i ${HOME}/dev/repos/docs/docs-eot/data/debian-buildserver.pem ubuntu@3.64.83.152'
-
+alias eot-breachserver='ssh djgr@35.170.58.49'
