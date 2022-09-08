@@ -381,6 +381,10 @@ nnoremap <silent>    <A-c> :bd<CR>
 
 Plug 'dracula/vim', { 'name': 'dracula' }
 
+" css color support
+Plug 'skammer/vim-css-color'
+
+
 " Initialize plugin system
 call plug#end()
 " =============================================================================
