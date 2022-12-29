@@ -4,30 +4,21 @@
 # Everything else in that file should be commented out
 
 export ZSH="$HOME/.oh-my-zsh"
-# ZSH_THEME="arrow"
-ZSH_THEME="clean"
+ZSH_THEME="gianu"
 
-plugins=(git web-search pip python rake ruby fabric iterm2 npm brew z docker)
+plugins=(git pip python npm brew z docker)
 
 source $ZSH/oh-my-zsh.sh
 
 # Determing OS
-if [ "${OSTYPE}" = "darwin17.0" ]; then
-    PLATFORM="mac"
-elif [ "${OSTYPE}" = "darwin18.0" ]; then
-	PLATFORM="mac"
-elif [ "${OSTYPE}" = "darwin19.0" ]; then
-	PLATFORM="mac"
-elif [ "${OSTYPE}" = "darwin20.0" ]; then
-	PLATFORM="mac"
-elif [ "${OSTYPE}" = "linux-gnu" ]; then
-	PLATFORM="linux"
+if [ "${OSTYPE}" = "linux-gnu" ]; then
+    PLATFORM="linux"
 else
-	echo "Warning: unsupported platform ${OSTYPE}"
+    PLATFORM="mac"
 fi
 
 # Environment
-export PATH="$PATH:$HOME/dev/repos/setup/bin:$HOME/dev/bin:$HOME/.local/bin:$HOME/.fzf/bin:$HOME/.cargo/bin:$HOME/.gem/ruby/3.0.0/bin"
+export PATH="$PATH:$HOME/dev/bin"
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 #export DISPLAY=:0
@@ -36,7 +27,7 @@ export XAUTHORITY=~/.Xauthority
 # Git
 alias gdt='git difftool'
 alias glg='git log --graph --abbrev-commit --decorate --format=format:"%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)" --all'
-alias gitsm='smartgit .'
+alias gitsm='smartgit . &> /dev/null  &'
 
 # Editor
 if [ -x "$(command -v nvim)" ]; then
@@ -52,12 +43,12 @@ alias e='$EDITOR'
 
 # Aliases - configuration
 alias conf-alacritty='e $HOME/.config/alacritty/alacritty.yml'
-alias conf-nvim='e $HOME/.config/nvim/init.vim'
+alias conf-nvim='e $HOME/.config/nvim/init.lua'
+alias conf-nvim-plugins='e $HOME/.config/nvim/lua/plugins.lua'
 alias conf-tmux='e $HOME/.tmux.conf'
 alias conf-zsh='e $HOME/.zshrc'
 alias conf-zsh-local='e $HOME/.zshrc_local'
 alias conf-vifm='e $HOME/.config/vifm/vifmrc'
-alias conf-coc='e $HOME/dev/repos/setup/nvim/coc-settings.json'
 alias source-zsh='source $HOME/.zshrc'
 
 # Aliases - SSH
@@ -74,25 +65,16 @@ else
 fi
 
 # Aliases - Navigation
+alias cddotfiles='cd $HOME/dotfiles'
 alias cddev='cd $HOME/dev'
 alias cdrepos='cd $HOME/dev/repos'
-alias cdsetup='cd $HOME/dev/repos/setup'
-alias cdblackboard='cd $HOME/dev/repos/blackboard/'
-alias cddocs='cd $HOME/dev/repos/docs'
 alias cdbin='cd $HOME/dev/bin'
 alias cdtmp='mkdir -p $HOME/dev/tmp && cd $HOME/dev/tmp';
-if [ "${PLATFORM}" = "mac" ]; then
-    function open() {
-        open $1
-    }
-else
+if [ "${PLATFORM}" = "linux" ]; then
     function open() {
         xdg-open $1 &> /dev/null &
     }
 fi
-
-# Aliases - Fun
-alias rr='rickroll.sh'
 
 # Navigation
 function r() {
@@ -115,16 +97,16 @@ if [ -x "$(command -v python3)" ]; then
     alias python='python3'
     alias pip='pip3'
     function menv() {
-        python3 -m venv env
+        python3 -m venv .venv
         senv
         pip3 install --upgrade pip
-        pip3 install neovim black pudb
+        pip3 install neovim black
     }
     function senv() {
-        source env/bin/activate
+        source .venv/bin/activate
     }
     function renv() {
-            rm -rf env
+            rm -rf .venv
     }
     function pip-clear-cache() {
         if [ -d "$HOME/.cache/pip" ]; then
@@ -138,7 +120,7 @@ if [ -x "$(command -v python3)" ]; then
     function pip-list() {
         pip3 list -v | grep $1 | cut -d':' -f 2 | awk '{printf("%s %s\n", $1, $3);}'
     }
-    export PYTHONBREAKPOINT="pudb.set_trace"
+    #export PYTHONBREAKPOINT="pudb.set_trace"
 fi
 
 # Docker
@@ -148,7 +130,7 @@ alias rmdocker-clean='rmdocker-containers && rmdocker-volumes'
 
 # Make
 if [ -x "$(command -v make)" ]; then
-    alias m='make -j32'
+    alias m='make -j32' # I've got a lot of cores :-)
 fi
 
 # pdf-reduce
@@ -176,28 +158,23 @@ if [ -x "$(command -v lldb)" ]; then
     }
 fi
 
-# icecream
-if [ "${PLATFORM}" = "mac" ]; then
-    alias icecream-start-daemon='/usr/local/opt/icecream/sbin/iceccd -vvv'
-    alias icecream-set-ccache-prefix='export CCACHE_PREFIX=icecc'
-    #alias ccache-set-path='export PATH=/usr/local/opt/ccache/libexec:$PATH'
-else
-    export CCACHE_PREFIX=/usr/lib/icecream/bin/icecc
-    export PATH="/usr/lib/ccache/bin:$PATH"
+# zsh completion
+source ${HOME}/.zsh_completion.zsh
+
+# Bat (the cat alternative)
+if [ -x "$(command -v bat)" ]; then
+    export BAT_THEME="gruvbox-dark"
 fi
 
-# LateX
-export TEXLIVE_PATH='/usr/share/texmf-dist/scripts/texlive'
-
-# zsh completion
-source ${HOME}/dev/repos/setup/invoke/zsh_completion.zsh
+# Vi mode in zsh
+bindkey -v
 
 # Fzf
 if [ -x "$(command -v fzf)" ]; then
     export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g "!{node_modules/*,.git/*}"'
+    export FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --layout reverse --margin=1,4 --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
 
-    # Vim and Fzf interaction: vi mode, needs to come before fzf is loaded
-    bindkey -v
+    # Fzf interaction 
     bindkey '^y' fzf-cd-widget
 
     # Edit command line in vim by pressing Esc-v
@@ -210,18 +187,16 @@ if [ -x "$(command -v fzf)" ]; then
     fi
     [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
     if [ "${PLATFORM}" = "mac" ]; then
-        source "/usr/local/opt/fzf/shell/key-bindings.zsh"
-        source "/usr/local/opt/fzf/shell/completion.zsh"
+        source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
+        source "/opt/homebrew/opt/fzf/shell/completion.zsh"
     else
         source ~/.fzf/shell/key-bindings.zsh
-        # source "/usr/share/fzf/shell/key-bindings.zsh"
-        # source /usr/share/doc/fzf/examples/key-bindings.zsh
-        #source "/usr/share/fzf/shell/completion.zsh"
     fi
 fi
 
 function launch_tmux() {
     if [ -n "$PS1" ] && [ -z "$TMUX" ]; then
+        pkill tmux; sleep 1;
         tmux new-session -d -s main
         tmux new-session -d -s blackboard
         tmux new-session -d -s eot

@@ -1,0 +1,10 @@
+{
+    "coc.preferences.formatOnSaveFiletypes": ["python", "c", "cpp", "html", "typescript"],
+    "coc.preferences.formatOnType": true,
+    "suggest.noselect": true,
+    "python.formatting.provider": "black",
+    "python.formatting.blackArgs": ["--line-length=120"],
+    "pyright": {
+        "enable": true
+    }
+}

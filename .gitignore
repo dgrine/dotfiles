@@ -1,5 +1,6 @@
 *.swp
 __pycache__/*
-ipython/profile_auro/history.sqlite
-vifm/vifminfo.json
-.ccls-cache
+vifm/.config/vifm/vifminfo.json
+tmux/.tmux/plugins
+packer_compiled.lua
+.DS_Store
