@@ -2,11 +2,11 @@
 
 Development configuration files for:
 
-* [Alacritty](https://github.com/alacritty/alacritty) — Fast, cross-platform, OpenGL terminal emulator
-* [Git](https://git-scm.com) — Distributed version control system 
-* [Neovim](https://neovim.io) — Hyperextensible Vim-based text editor
-* [Tmux](https://github.com/tmux/tmux/wiki) — Terminal multiplexer
-* [Vifm](https://vifm.info) — File manager with curses interface providing a Vim-like environment 
+* [alacritty](https://github.com/alacritty/alacritty) — Fast, cross-platform, OpenGL terminal emulator
+* [git](https://git-scm.com) — Distributed version control system 
+* [neovim](https://neovim.io) — Hyperextensible Vim-based text editor
+* [tmux](https://github.com/tmux/tmux/wiki) — Terminal multiplexer
+* [vifm](https://vifm.info) — File manager with curses interface providing a Vim-like environment 
 * [zsh](https://zsh.sourceforge.io) — Shell designed for interactive use
 
 The configurations work on Linux and macOS.
@@ -14,6 +14,10 @@ The configurations work on Linux and macOS.
 ![Example of Neovim, Vifm and zsh running inside a Tmux session within Alacritty](screenshot.png)
 
 ## Features
+
+The configuration files provide a modern _terminal-only_ development environment
+that is heavily focused on _vim-style_ navigation, command line editing, and
+programming.
 
 * Alacritty
 
@@ -73,3 +77,17 @@ cd ~/dotfiles
 ```
 
 To uninstall a specific package use `./uninstall.sh <package>`
+
+## Recommended Software
+
+* [alacritty](https://github.com/alacritty/alacritty) — Fast, cross-platform OpenGL terminal emulator
+* [bat](https://github.com/sharkdp/bat) — Cat clone with syntax highlighting and Git integration
+* [exa](https://github.com/ogham/exa) — Modern replacement for `ls`
+* [fzf](https://github.com/junegunn/fzf) — General-purpose command-line fuzzy finder
+* [git](https://git-scm.com) — Distributed version control system 
+* [meld](https://meldmerge.org) — Visual diff and merge tool
+* [neovim](https://neovim.io) — Hyperextensible Vim-based text editor
+* [ripgrep](https://github.com/BurntSushi/ripgrep) — Fast, line-oriented search tool for regex patterns
+* [tmux](https://github.com/tmux/tmux/wiki) — Terminal multiplexer
+* [vifm](https://vifm.info) — File manager with curses interface providing a Vim-like environment 
+* [zsh](https://zsh.sourceforge.io) — Shell designed for interactive use
