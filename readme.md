@@ -34,12 +34,13 @@ The configurations work on Linux and macOS.
 
     * `<C-a>` as prefix
     * Plugin management using [tpm](https://github.com/tmux-plugins/tpm)
+    * Startup sessions are locally customizable 
 
 * Vifm
 
     * Change current shell directory to navigated directory
 
-* Zsh
+* zsh
 
     * [oh-my-zsh](https://ohmyz.sh) based configuration
     * Vim-style editing

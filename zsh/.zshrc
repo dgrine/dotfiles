@@ -194,30 +194,33 @@ if [ -x "$(command -v fzf)" ]; then
     fi
 fi
 
-function launch_tmux() {
-    if [ -n "$PS1" ] && [ -z "$TMUX" ]; then
-        pkill tmux; sleep 1;
-        tmux new-session -d -s main
-        tmux new-session -d -s blackboard
-        tmux new-session -d -s eot
-        tmux attach -t main
-    fi
-}
-# Launch tmux if it hasn't started yet
-if ! pgrep tmux &> /dev/null; then
-    launch_tmux
-fi
-alias tmux='tmux attach -t main'
-
-# Local zsh customization
-if [ -f "${HOME}/.zshrc_local" ]; then
-    source ${HOME}/.zshrc_local
-fi
-
 # Allow zsh nvim command line editing
 autoload -U edit-command-line
 zle -N edit-command-line 
 bindkey -M vicmd v edit-command-line
 
-#neofetch
+# Local zsh customization
+# zsh profiles can extend sessions by appending to the following array
+declare -a DOTFILES_TMUX_SESSIONS
+DOTFILES_TMUX_SESSIONS=(
+    "main"
+)
+if [ -f "${HOME}/.zshrc_local" ]; then
+    source ${HOME}/.zshrc_local
+fi
 
+# Tmux dev environment
+function devenv() {
+    if [ -n "$PS1" ] && [ -z "$TMUX" ]; then
+        pkill tmux; sleep 1;
+        for SESSION in $DOTFILES_TMUX_SESSIONS; do
+            tmux new-session -d -s $SESSION
+        done
+        tmux attach -t main
+    fi
+}
+
+# Launch tmux if it hasn't started yet
+if ! pgrep tmux &> /dev/null; then
+    devenv
+fi

@@ -1,3 +1,6 @@
+# Extending a tmux session
+DOTFILES_TMUX_SESSIONS+=('eot')
+
 # Aliases
 alias conf-zsh-eot='e $HOME/dotfiles/zsh-profile/eot.zsh'
 alias cdsdk='cd $HOME/dev/repos/fusion-wowool-sdk'

@@ -1,3 +1,6 @@
+# Extending a tmux session
+DOTFILES_TMUX_SESSIONS+=('blackboard')
+
 # Aliases
 alias conf-zsh-blackboard='e $HOME/dotfiles/zsh-profile/blackboard.zsh'
 alias cdblackboard='cd $HOME/dev/repos/blackboard/'
