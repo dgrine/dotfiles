@@ -6,7 +6,8 @@
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="gianu"
 
-plugins=(git pip python npm brew z docker)
+# Note that fzf must be before vi-mode for <C-t> and <C-r> to work correctly
+plugins=(fzf vi-mode git pip python npm brew z docker)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -158,13 +159,18 @@ if [ -x "$(command -v lldb)" ]; then
     }
 fi
 
-# zsh completion
-source ${HOME}/.zsh_completion.zsh
-
 # Bat (the cat alternative)
 if [ -x "$(command -v bat)" ]; then
     export BAT_THEME="gruvbox-dark"
 fi
+#
+# Allow zsh nvim command line editing
+autoload -U edit-command-line
+zle -N edit-command-line 
+bindkey -M vicmd v edit-command-line
+
+# zsh completion
+source ${HOME}/.zsh_completion.zsh
 
 # Vi mode in zsh
 bindkey -v
@@ -180,11 +186,7 @@ if [ -x "$(command -v fzf)" ]; then
     # Edit command line in vim by pressing Esc-v
     zle -N edit-command-line
     #bindkey -M vicmd v edit-command-line
-    if [ -x "$(command -v pygmentize)" ]; then
-        export FZF_CTRL_T_OPTS='--height 90% --preview "pygmentize -l $(pygmentize -N {}) {}"'
-    else
-        export FZF_CTRL_T_OPTS='--height 90% --preview "cat {}"'
-    fi
+    export FZF_CTRL_T_OPTS='--height 90% --preview "cat {}"'
     [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
     if [ "${PLATFORM}" = "mac" ]; then
         source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
@@ -194,17 +196,10 @@ if [ -x "$(command -v fzf)" ]; then
     fi
 fi
 
-# Allow zsh nvim command line editing
-autoload -U edit-command-line
-zle -N edit-command-line 
-bindkey -M vicmd v edit-command-line
-
 # Local zsh customization
 # zsh profiles can extend sessions by appending to the following array
 declare -a DOTFILES_TMUX_SESSIONS
-DOTFILES_TMUX_SESSIONS=(
-    "main"
-)
+DOTFILES_TMUX_SESSIONS=("main")
 if [ -f "${HOME}/.zshrc_local" ]; then
     source ${HOME}/.zshrc_local
 fi
