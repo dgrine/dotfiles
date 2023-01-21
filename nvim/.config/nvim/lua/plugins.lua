@@ -315,46 +315,12 @@ return require('packer').startup(function(use)
         end
     }
 
-    -- Testing
-    use {
-        'nvim-neotest/neotest',
-        requires = {
-            'nvim-lua/plenary.nvim',
-            'nvim-treesitter/nvim-treesitter',
-            'antoinemadec/FixCursorHold.nvim'
-        },
-        config = function()
-        require("neotest").setup({
-            adapters = {
-                require("neotest-python")({
-                    dap = { justMyCode = true },
-                    args = {"--log-level", "DEBUG"},
-                    runner = "unittest",
-                    python = ".venv/bin/python"
-                }),
-            },
-          })
-        end
-    }
-    use {
-        'nvim-neotest/neotest-python',
-        requires='nvim-neotest/neotest'
-    }
-
-    -- Repl
-    use {
-        'jpalardy/vim-slime',
-        config = function()
-            vim.g.slime_target = "tmux"
-            vim.cmd 'let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.1"}'
-        end
-    }
-   
     -- Debugging
     use 'mfussenegger/nvim-dap'
     use {
         'mfussenegger/nvim-dap-python',
         config = function()
+            require('dap').set_log_level('TRACE')
             require('dap-python').setup()
         end
     }
@@ -377,6 +343,42 @@ return require('packer').startup(function(use)
         end
     }
 
+
+    -- Testing
+    use {
+        'nvim-neotest/neotest',
+        requires = {
+            'nvim-lua/plenary.nvim',
+            'nvim-treesitter/nvim-treesitter',
+            'antoinemadec/FixCursorHold.nvim'
+        },
+        config = function()
+        require("neotest").setup({
+            adapters = {
+                require("neotest-python")({
+                    dap = { justMyCode = true },
+                    args = {"--log-level", "DEBUG"},
+                    runner = "unittest",
+                    python = "./.venv/bin/python"
+                }),
+            },
+          })
+        end
+    }
+    use {
+        'nvim-neotest/neotest-python',
+        requires='nvim-neotest/neotest'
+    }
+
+    -- Repl
+    use {
+        'jpalardy/vim-slime',
+        config = function()
+            vim.g.slime_target = "tmux"
+            vim.cmd 'let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.1"}'
+        end
+    }
+   
     -- Theme
     use 'sainnhe/sonokai'
 
