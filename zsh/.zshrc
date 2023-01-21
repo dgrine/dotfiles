@@ -101,7 +101,7 @@ if [ -x "$(command -v python3)" ]; then
         python3 -m venv .venv
         senv
         pip3 install --upgrade pip
-        pip3 install neovim black
+        pip3 install neovim black debugpy
     }
     function senv() {
         source .venv/bin/activate
