@@ -18,3 +18,5 @@ vim.opt.clipboard = 'unnamedplus'
 -- Also match <> with highlights and %-jumps
 vim.opt.listchars:append(vim.opt, "<:>")
 
+-- Unix line endings
+vim.opt.ff = 'unix'
