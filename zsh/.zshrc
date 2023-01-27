@@ -45,6 +45,7 @@ alias e='$EDITOR'
 # Aliases - configuration
 alias conf-alacritty='e $HOME/.config/alacritty/alacritty.yml'
 alias conf-nvim='e $HOME/.config/nvim/init.lua'
+alias conf-nvim-mappings='e $HOME/.config/nvim/lua/mappings.lua'
 alias conf-nvim-plugins='e $HOME/.config/nvim/lua/plugins.lua'
 alias conf-tmux='e $HOME/.tmux.conf'
 alias conf-zsh='e $HOME/.zshrc'
@@ -160,10 +161,11 @@ if [ -x "$(command -v lldb)" ]; then
 fi
 
 # Bat (the cat alternative)
-if [ -x "$(command -v bat)" ]; then
-    export BAT_THEME="gruvbox-dark"
+if [ -x "$(command -v bat)" ] || [ -x "$(command -v batcat)" ]; then
+    export BAT_THEME="ansi"
 fi
-#
+
+
 # Allow zsh nvim command line editing
 autoload -U edit-command-line
 zle -N edit-command-line 
@@ -177,16 +179,22 @@ bindkey -v
 
 # Fzf
 if [ -x "$(command -v fzf)" ]; then
-    export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g "!{node_modules/*,.git/*}"'
-    export FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --layout reverse --margin=1,4 --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
+    export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g "!{node_modules/*,.git/*,.venv/*}"'
+    if [ -x "$(command -v bat)" ]; then
+        export FZF_PREVIEW_COMMAND="bat"
+    elif [ -x "$(command -v batcat)" ]; then
+        export FZF_PREVIEW_COMMAND="batcat"
+    else
+        export FZF_PREVIEW_COMMAND="cat"
+    fi
+    export FZF_PREVIEW_COMMAND="$FZF_PREVIEW_COMMAND --style=numbers,changes --wrap never --color always {} || cat {} || tree -C {}"
+    export FZF_CTRL_T_OPTS="--min-height 30 --preview-window right:60% --preview-window noborder --preview '($FZF_PREVIEW_COMMAND) 2> /dev/null'"
 
     # Fzf interaction 
     bindkey '^y' fzf-cd-widget
 
     # Edit command line in vim by pressing Esc-v
     zle -N edit-command-line
-    #bindkey -M vicmd v edit-command-line
-    export FZF_CTRL_T_OPTS='--height 90% --preview "cat {}"'
     [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
     if [ "${PLATFORM}" = "mac" ]; then
         source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
@@ -219,3 +227,5 @@ function devenv() {
 if ! pgrep tmux &> /dev/null; then
     devenv
 fi
+
+# unfunction _bat
