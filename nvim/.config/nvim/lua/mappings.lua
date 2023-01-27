@@ -25,18 +25,20 @@ local mappings = {
         ["]"] = { "<Plug>(GitGutterNextHunk)", "Next git hunk" },
     },
 
-    e = { ":NvimTreeFindFileToggle!<CR>", "Explore Files" },
+    -- e = { ":NvimTreeFindFileToggle!<CR>", "Explore Files" },
+    e = { "<Cmd>lua require('nvim-tree').toggle({find_file=true, focus=true, update_root=true})<CR>", "Explore Files" },
 
     r = {
         name = "Run",
+        r = { ":VimuxRunLastCommand<CR>", "Run last command" },
         p = { ":VimuxPromptCommand<CR>", "Run a command" },
-        r = { ":VimuxRunLastCommand<CR>", "Run last command" }
     },
 
     t = {
         name = "Test",
-        r = { "<Cmd>lua require('neotest').run.run({strategy='dap'})<CR>", "Run nearest test" },
-        t = { "<Cmd>lua require('neotest').run.run_last<CR>", "Run last test" },
+        t = { "<Cmd>lua require('neotest').run.run_last()<CR>", "Run last test" },
+        h = { "<Cmd>lua require('neotest').run.run({strategy='integrated'})<CR>", "Run nearest test in debugger" },
+        d = { "<Cmd>lua require('neotest').run.run({strategy='dap'})<CR>", "Run nearest test in debugger" },
         f = { "<Cmd>lua require('neotest').run.run(vim.fn.expand('%'))<CR>", "Run tests in file" },
         s = { "<Cmd>lua require('neotest').summary.toggle()<CR>", "Show/hide summary panel" },
         o = { "<Cmd>lua require('neotest').output_panel.toggle()<CR>", "Show/hide output panel" },
