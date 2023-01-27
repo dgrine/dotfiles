@@ -49,6 +49,7 @@ programming.
     * [oh-my-zsh](https://ohmyz.sh) based configuration
     * Vim-style editing
     * Support for [fzf](https://github.com/junegunn/fzf)
+    * Support for [bat](https://github.com/sharkdp/bat)
     * Extensibility via `~/.zshrc_local`
 
 
