@@ -37,7 +37,7 @@ local mappings = {
     t = {
         name = "Test",
         t = { "<Cmd>lua require('neotest').run.run_last()<CR>", "Run last test" },
-        h = { "<Cmd>lua require('neotest').run.run({strategy='integrated'})<CR>", "Run nearest test in debugger" },
+        h = { "<Cmd>lua require('neotest').run.run({strategy='integrated'})<CR>", "Run nearest test" },
         d = { "<Cmd>lua require('neotest').run.run({strategy='dap'})<CR>", "Run nearest test in debugger" },
         f = { "<Cmd>lua require('neotest').run.run(vim.fn.expand('%'))<CR>", "Run tests in file" },
         s = { "<Cmd>lua require('neotest').summary.toggle()<CR>", "Show/hide summary panel" },
