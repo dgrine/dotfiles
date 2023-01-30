@@ -28,7 +28,7 @@ plugins=(fzf vi-mode git pip python npm brew z docker)
 if [ "${PLATFORM}" = "mac" ]; then
     export FZF_BASE="/opt/homebrew/opt/fzf"
 else
-    export FZF_BASE="~/.fzf/"
+    export FZF_BASE="$HOME/.fzf"
 fi
 
 source $ZSH/oh-my-zsh.sh
