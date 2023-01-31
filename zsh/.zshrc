@@ -106,12 +106,9 @@ function r() {
     cd "$dst"
 }
 
-# ls
+# Listing
 if [ -x "$(command -v exa)" ]; then
-    alias l='exa -al --color=always --group-directories-first' # my preferred listing
-    alias la='exa -a --color=always --group-directories-first'  # all files and dirs
-    alias ll='exa -l --color=always --group-directories-first'  # long format
-    alias lt='exa -aT --color=always --group-directories-first' # tree listing
+    alias l='exa -al --icons --color=always --group-directories-first' # my preferred listing
 else
     alias l='ls -alh'
 fi
@@ -124,8 +121,8 @@ alias sshx='ssh -X -C -c blowfish-cbc,arcfour'
 # Versioning
 ###############################################################################
 alias gdt='git difftool'
+alias gdtui='git difftool --tool meld'
 alias glg='git log --graph --abbrev-commit --decorate --format=format:"%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)" --all'
-alias gitsm='smartgit . &> /dev/null  &'
 
 ###############################################################################
 # Coding
@@ -135,6 +132,10 @@ alias gitsm='smartgit . &> /dev/null  &'
 if [ -x "$(command -v python3)" ]; then
     alias python='python3'
     alias pip='pip3'
+    python_version=$(python -c 'from sys import version_info as v; print(f"{v.major}.{v.minor}")')
+    if [ "${PLATFORM}" = "mac" ]; then
+        export PATH="$PATH:$HOME/Library/Python/${python_version}/bin"
+    fi
     function menv() {
         python3 -m venv .venv
         senv

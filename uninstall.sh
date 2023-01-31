@@ -4,6 +4,10 @@ if [ "$PACKAGE" = "" ] || [ "$PACKAGE" = "alacritty" ]; then
     echo "Uninstalling alacritty ..."
     stow -D alacritty
 fi
+if [ "$PACKAGE" = "" ] || [ "$PACKAGE" = "git" ]; then
+    echo "Uninstalling git ..."
+    stow -D git
+fi
 if [ "$PACKAGE" = "" ] || [ "$PACKAGE" = "zsh" ]; then
     echo "Uninstalling zsh ..."
     stow -D zsh

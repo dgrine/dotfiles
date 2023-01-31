@@ -26,7 +26,10 @@ programming.
 * Git
 
     * Neovim as default editor
-    * Merges and diffs via [Meld](https://meldmerge.org)
+    * Merges and diffs
+
+        * GUI version using [Meld](https://meldmerge.org)
+        * Console version using [icdiff](https://github.com/jeffkaufman/icdiff)
 
 * Neovim
 
@@ -86,6 +89,7 @@ To uninstall a specific package use `./uninstall.sh <package>`
 * [exa](https://github.com/ogham/exa) — Modern replacement for `ls`
 * [fzf](https://github.com/junegunn/fzf) — General-purpose command-line fuzzy finder
 * [git](https://git-scm.com) — Distributed version control system 
+* [icdiff](https://github.com/jeffkaufman/icdiff) — Command-line diff tool
 * [meld](https://meldmerge.org) — Visual diff and merge tool
 * [neovim](https://neovim.io) — Hyperextensible Vim-based text editor
 * [ripgrep](https://github.com/BurntSushi/ripgrep) — Fast, line-oriented search tool for regex patterns

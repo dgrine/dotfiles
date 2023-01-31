@@ -5,6 +5,10 @@ if [ "$PACKAGE" = "" ] || [ "$PACKAGE" = "alacritty" ]; then
     echo "Installing alacritty ..."
     stow alacritty
 fi
+if [ "$PACKAGE" = "" ] || [ "$PACKAGE" = "git" ]; then
+    echo "Installing git ..."
+    stow git
+fi
 if [ "$PACKAGE" = "" ] || [ "$PACKAGE" = "zsh" ]; then
     echo "Installing zsh ..."
     stow zsh
