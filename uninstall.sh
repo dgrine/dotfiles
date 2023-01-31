@@ -1,30 +1,41 @@
 #!/usr/bin/env bash
+# uninstall.sh
+# Uninstalls the configuration files 
+# Example: ./uninstall.sh <package> (<target_dir>)
+#  - Leave <package> empty to uninstall all packages
+#  - To test, you can provide a target directory as a second argument
+echo "Uninstalling configurations ..."
 PACKAGE=$1
+TARGET_DIR=$2
+if [ "${TARGET_DIR}" = "" ]; then
+    TARGET_DIR=$HOME
+fi
+echo "Uninstalling configurations from ${TARGET_DIR}..."
 if [ "$PACKAGE" = "" ] || [ "$PACKAGE" = "alacritty" ]; then
-    echo "Uninstalling alacritty ..."
-    stow -D alacritty
+    echo "... alacritty"
+    stow -t ${TARGET_DIR} -D alacritty
 fi
 if [ "$PACKAGE" = "" ] || [ "$PACKAGE" = "git" ]; then
-    echo "Uninstalling git ..."
-    stow -D git
+    echo "... git"
+    stow -t ${TARGET_DIR} -D git
 fi
 if [ "$PACKAGE" = "" ] || [ "$PACKAGE" = "zsh" ]; then
-    echo "Uninstalling zsh ..."
-    stow -D zsh
+    echo "... zsh"
+    stow -t ${TARGET_DIR} -D zsh
 fi
 if [ "$PACKAGE" = "" ] || [ "$PACKAGE" = "tmux" ]; then
-    echo "Uninstalling tmux ..."
-    stow -D tmux
+    echo "... tmux"
+    stow -t ${TARGET_DIR} -D tmux
 fi
 if [ "$PACKAGE" = "" ] || [ "$PACKAGE" = "vifm" ]; then
-    echo "Uninstalling vifm ..."
-    stow -D vifm
+    echo "... vifm"
+    stow -t ${TARGET_DIR} -D vifm
     rm -rf ~/.local/share/vifm
 fi
 if [ "$PACKAGE" = "" ] || [ "$PACKAGE" = "nvim" ]; then
-    echo "Uninstalling nvim ..."
-    stow -D nvim
+    echo "... nvim"
+    stow -t ${TARGET_DIR} -D nvim
     rm -rf ~/.local/share/nvim
     rm -rf ~/.cache/nvim
 fi
-echo "Done"
+echo "Finished uninstalling configurations"

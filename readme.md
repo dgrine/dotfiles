@@ -9,7 +9,8 @@ Development configuration files for:
 * [vifm](https://vifm.info) — File manager with curses interface providing a Vim-like environment 
 * [zsh](https://zsh.sourceforge.io) — Shell designed for interactive use
 
-The configurations work on Linux and macOS.
+The configurations are maintained for Ubuntu (22.04 LTS) and macOS (Ventura) devices,
+but should work on any Linux or macOS system.
 
 ![Example of Neovim, Vifm and zsh running inside a Tmux session within Alacritty](screenshot.png)
 
