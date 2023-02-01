@@ -122,7 +122,19 @@ alias sshx='ssh -X -C -c blowfish-cbc,arcfour'
 ###############################################################################
 alias gdt='git difftool'
 alias gdtui='git difftool --tool meld'
-alias glg='git log --graph --abbrev-commit --decorate --format=format:"%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)" --all'
+# see `git help log` for detailed help.
+#   %h: abbreviated commit hash
+#   %d: ref names, like the --decorate option of git-log(1)
+#   %cn: commiter name
+#   %ce: committer email
+#   %cr: committer date, relative
+#   %ci: committer date, ISO 8601-like format
+#   %an: author name
+#   %ae: author email
+#   %ar: author date, relative
+#   %ai: author date, ISO 8601-like format
+#   %s: subject
+alias glg='git log --graph --abbrev-commit --decorate --format=format:"%C(bold blue)%h%C(reset) - %C(bold green)(%ai)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)" --all'
 
 ###############################################################################
 # Coding
