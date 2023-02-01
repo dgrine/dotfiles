@@ -1,6 +1,6 @@
 -- Leader mappings
-local whichkey = require('which-key')
-local telescope = require('telescope.builtin')
+local whichkey = require("which-key")
+local telescope = require("telescope.builtin")
 
 local mappings = {
     f = {

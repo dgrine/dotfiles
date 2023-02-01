@@ -1,8 +1,8 @@
 ensure_packer = function()
     local fn = vim.fn
-    local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+    local install_path = fn.stdpath("data").."/site/pack/packer/start/packer.nvim"
     if fn.empty(fn.glob(install_path)) > 0 then
-        fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+        fn.system({"git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path})
         vim.cmd [[packadd packer.nvim]]
         return true
     end
@@ -11,17 +11,17 @@ end
 
 local packer_bootstrap = ensure_packer()
 
-return require('packer').startup(function(use)
+return require("packer").startup(function(use)
     -- Packer
-    use 'wbthomason/packer.nvim'
+    use "wbthomason/packer.nvim"
 
     -- Which Key
     use {
-        'folke/which-key.nvim',
+        "folke/which-key.nvim",
         config = function()
             vim.o.timeout = true
             vim.o.timeoutlen = 300
-            require('which-key').setup {
+            require("which-key").setup {
                 window = {
                     border = "single", -- none, single, double, shadow
                     position = "bottom", -- bottom, top
@@ -32,15 +32,15 @@ return require('packer').startup(function(use)
 
     -- Lualine
     use {
-        'nvim-lualine/lualine.nvim',
-        requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+        "nvim-lualine/lualine.nvim",
+        requires = { "kyazdani42/nvim-web-devicons", opt = true },
         config = function()
-            require('lualine').setup {
+            require("lualine").setup {
                 options = {
                     icons_enabled = true,
-                    theme = 'auto',
-                    component_separators = { left = '', right = ''},
-                    section_separators = { left = '', right = ''},
+                    theme = "auto",
+                    component_separators = { left = "", right = ""},
+                    section_separators = { left = "", right = ""},
                     disabled_filetypes = {
                         statusline = {},
                         winbar = {},
@@ -55,18 +55,18 @@ return require('packer').startup(function(use)
                     }
                 },
                 sections = {
-                    lualine_a = {'mode'},
-                    lualine_b = {'branch', 'diff', 'diagnostics'},
-                    lualine_c = {'filename'},
-                    lualine_x = {'encoding', 'fileformat', 'filetype'},
-                    lualine_y = {'progress'},
-                    lualine_z = {'location'}
+                    lualine_a = {"mode"},
+                    lualine_b = {"branch", "diff", "diagnostics"},
+                    lualine_c = {"filename"},
+                    lualine_x = {"encoding", "fileformat", "filetype"},
+                    lualine_y = {"progress"},
+                    lualine_z = {"location"}
                 },
                 inactive_sections = {
                     lualine_a = {},
                     lualine_b = {},
-                    lualine_c = {'filename'},
-                    lualine_x = {'location'},
+                    lualine_c = {"filename"},
+                    lualine_x = {"location"},
                     lualine_y = {},
                     lualine_z = {}
                 },
@@ -80,13 +80,13 @@ return require('packer').startup(function(use)
 
     -- Tabs and buffers
     use {
-        'akinsho/bufferline.nvim', 
+        "akinsho/bufferline.nvim", 
         tag = "v3.*",
-        requires = 'nvim-tree/nvim-web-devicons',
+        requires = "nvim-tree/nvim-web-devicons",
         config = function()
             require("bufferline").setup({
                 options = {
-                    -- separator_style = 'padded_slant',
+                    -- separator_style = "padded_slant",
                     diagnostics = "coc",
                     update_focused_file = {
                         enable = true,
@@ -103,24 +103,24 @@ return require('packer').startup(function(use)
 
     -- Tmux
     use {
-        'christoomey/vim-tmux-navigator',
+        "christoomey/vim-tmux-navigator",
         config = function()
             vim.g.tmux_navigator_disable_when_zoomed = 1
             vim.g.tmux_navigator_no_mappings = 1
         end
     }
-    use 'benmills/vimux' 
+    use "benmills/vimux" 
 
     -- Two character jump
-    use 'justinmk/vim-sneak'
+    use "justinmk/vim-sneak"
 
     -- Improved word jump, seems to be more of a hassle than it's worth
     -- Especially the change in word and multi-editing is not working well
     -- Would be nice if only the jump feature could be used
-    -- use 'chaoren/vim-wordmotion'
+    -- use "chaoren/vim-wordmotion"
 
     -- Multiple cursor editing
-    use 'mg979/vim-visual-multi'
+    use "mg979/vim-visual-multi"
 
     -- Change surround
     use {
@@ -135,9 +135,9 @@ return require('packer').startup(function(use)
 
     -- Commenter
     use {
-        'terrortylor/nvim-comment',
+        "terrortylor/nvim-comment",
         config = function()
-            require('nvim_comment').setup({
+            require("nvim_comment").setup({
                 create_mappings = true,
                 -- Normal mode mapping left hand side
                 line_mapping = "<Leader>c<Space>",
@@ -151,26 +151,26 @@ return require('packer').startup(function(use)
 
     -- Markers
     use {
-        'lfv89/vim-interestingwords',
+        "lfv89/vim-interestingwords",
         config = function()
             vim.g.interestingWordsDefaultMappings = 0
-            vim.g.interestingWordsGUIColors = {'#FFDB72', '#A4E57E', '#85D3F2', '#FF7272', '#FFB3FF', '#9999FF'}
-            vim.g.interestingWordsTermColors = {'100', '121', '211', '137', '214', '222'}
+            vim.g.interestingWordsGUIColors = {"#FFDB72", "#A4E57E", "#85D3F2", "#FF7272", "#FFB3FF", "#9999FF"}
+            vim.g.interestingWordsTermColors = {"100", "121", "211", "137", "214", "222"}
         end
     }
 
     -- CSS Colorizer
     use {
-        'norcalli/nvim-colorizer.lua',
+        "norcalli/nvim-colorizer.lua",
         config = function()
-            require'colorizer'.setup()
+            require"colorizer".setup()
         end
     }
 
     -- File browsers
     use {
-        'nvim-tree/nvim-tree.lua',
-        requires = 'nvim-tree/nvim-web-devicons',
+        "nvim-tree/nvim-tree.lua",
+        requires = "nvim-tree/nvim-web-devicons",
         config = function()
             require("nvim-tree").setup({
                 sort_by = "case_sensitive",
@@ -219,33 +219,33 @@ return require('packer').startup(function(use)
 
     -- Telescope
     use {
-        'nvim-telescope/telescope.nvim',
-        tag = '0.1.0',
-        requires = { {'nvim-lua/plenary.nvim', 'BurntSushi/ripgrep', 'nvim-telescope/telescope-fzf-native.nvim'} }
+        "nvim-telescope/telescope.nvim",
+        tag = "0.1.0",
+        requires = { {"nvim-lua/plenary.nvim", "BurntSushi/ripgrep", "nvim-telescope/telescope-fzf-native.nvim"} }
     }
 
     -- Git
     -- Jump to next/previous chunk with ]c [c
     use {
-        'airblade/vim-gitgutter',
+        "airblade/vim-gitgutter",
         config = function()
             vim.g.gitgutter_map_keys = 0
         end
     }
-    use 'tpope/vim-fugitive'
+    use "tpope/vim-fugitive"
 
     -- Coding
     -- Coc
     -- See https://github.com/neoclide/coc.nvim
     use {
-        'neoclide/coc.nvim',
-        branch = 'release',
+        "neoclide/coc.nvim",
+        branch = "release",
         config = function()
             local keyset = vim.keymap.set
             -- Autocomplete
             function _G.check_back_space()
-                local col = vim.fn.col('.') - 1
-                return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
+                local col = vim.fn.col(".") - 1
+                return col == 0 or vim.fn.getline("."):sub(col, col):match("%s") ~= nil
             end
 
             -- Use Tab for trigger completion with characters ahead and navigate
@@ -277,16 +277,16 @@ return require('packer').startup(function(use)
 
             -- Documentation
             function _G.show_docs()
-                local cw = vim.fn.expand('<cword>')
-                if vim.fn.index({'vim', 'help'}, vim.bo.filetype) >= 0 then
-                    vim.api.nvim_command('h ' .. cw)
-                elseif vim.api.nvim_eval('coc#rpc#ready()') then
-                    vim.fn.CocActionAsync('doHover')
+                local cw = vim.fn.expand("<cword>")
+                if vim.fn.index({"vim", "help"}, vim.bo.filetype) >= 0 then
+                    vim.api.nvim_command("h " .. cw)
+                elseif vim.api.nvim_eval("coc#rpc#ready()") then
+                    vim.fn.CocActionAsync("doHover")
                 else
-                    vim.api.nvim_command('!' .. vim.o.keywordprg .. ' ' .. cw)
+                    vim.api.nvim_command("!" .. vim.o.keywordprg .. " " .. cw)
                 end
             end
-            keyset("n", "<Leader>ck", '<Cmd>lua _G.show_docs()<CR>', { silent = true, desc = "Show documentation" })
+            keyset("n", "<Leader>ck", "<Cmd>lua _G.show_docs()<CR>", { silent = true, desc = "Show documentation" })
 
             -- Highlight the symbol and its references on a CursorHold event (cursor is idle)
             vim.api.nvim_create_augroup("CocGroup", {})
@@ -298,19 +298,19 @@ return require('packer').startup(function(use)
         end
     }
     use {
-        'fannheyward/coc-marketplace',
-        requires = 'neoclide/coc.nvim'
+        "fannheyward/coc-marketplace",
+        requires = "neoclide/coc.nvim"
     }
     use {
-        'fannheyward/coc-pyright',
-        requires = 'neoclide/coc.nvim'
+        "fannheyward/coc-pyright",
+        requires = "neoclide/coc.nvim"
     }
 
     -- Treesitter
     use {
-        'nvim-treesitter/nvim-treesitter',
+        "nvim-treesitter/nvim-treesitter",
         config = function()
-            require('nvim-treesitter.configs').setup({
+            require("nvim-treesitter.configs").setup({
                 ensure_installed = { "lua", "python", },
                 sync_install = true,
             })
@@ -318,17 +318,17 @@ return require('packer').startup(function(use)
     }
 
     -- Debugging
-    use 'mfussenegger/nvim-dap'
+    use "mfussenegger/nvim-dap"
     use {
-        'mfussenegger/nvim-dap-python',
+        "mfussenegger/nvim-dap-python",
         config = function()
-            require('dap').set_log_level('TRACE')
-            require('dap-python').setup()
+            require("dap").set_log_level("TRACE")
+            require("dap-python").setup()
         end
     }
     use {
-        'rcarriga/nvim-dap-ui',
-        requires = { 'mfussenegger/nvim-dap' },
+        "rcarriga/nvim-dap-ui",
+        requires = { "mfussenegger/nvim-dap" },
         config = function()
             local dap, dapui =require("dap"),require("dapui")
             dapui.setup()
@@ -345,7 +345,7 @@ return require('packer').startup(function(use)
         end
     }
     use {
-        'theHamsta/nvim-dap-virtual-text',
+        "theHamsta/nvim-dap-virtual-text",
         config = function()
             require("nvim-dap-virtual-text").setup {
                 enabled = true,                        -- enable this plugin (the default)
@@ -363,11 +363,11 @@ return require('packer').startup(function(use)
                 --- @param node userdata tree-sitter node identified as variable definition of reference (see `:h tsnode`)
                 --- @return string|nil A text how the virtual text should be displayed or nil, if this variable shouldn't be displayed
                 display_callback = function(variable, _buf, _stackframe, _node)
-                return variable.name .. ' = ' .. variable.value
+                return variable.name .. " = " .. variable.value
                 end,
 
                 -- experimental features:
-                virt_text_pos = 'right_align',                 -- position of virtual text, see `:h nvim_buf_set_extmark()`
+                virt_text_pos = "right_align",                 -- position of virtual text, see `:h nvim_buf_set_extmark()`
                 all_frames = false,                    -- show virtual text for all stack frames not only current. Only works for debugpy on my machine.
                 virt_lines = false,                    -- show virtual lines instead of virtual text (will flicker!)
                 virt_text_win_col = nil                -- position the virtual text at a fixed window column (starting from the first text column) ,
@@ -378,11 +378,11 @@ return require('packer').startup(function(use)
 
     -- Testing
     use {
-        'nvim-neotest/neotest',
+        "nvim-neotest/neotest",
         requires = {
-            'nvim-lua/plenary.nvim',
-            'nvim-treesitter/nvim-treesitter',
-            'antoinemadec/FixCursorHold.nvim'
+            "nvim-lua/plenary.nvim",
+            "nvim-treesitter/nvim-treesitter",
+            "antoinemadec/FixCursorHold.nvim"
         },
         config = function()
         require("neotest").setup({
@@ -398,13 +398,13 @@ return require('packer').startup(function(use)
         end
     }
     use {
-        'nvim-neotest/neotest-python',
-        requires='nvim-neotest/neotest'
+        "nvim-neotest/neotest-python",
+        requires="nvim-neotest/neotest"
     }
 
     -- Repl
     use {
-        'jpalardy/vim-slime',
+        "jpalardy/vim-slime",
         config = function()
             vim.g.slime_target = "tmux"
             vim.cmd 'let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.1"}'
@@ -412,7 +412,7 @@ return require('packer').startup(function(use)
     }
    
     -- Theme
-    use 'sainnhe/sonokai'
+    use "sainnhe/sonokai"
 
     -- Auto compile on save
     vim.cmd([[
@@ -423,7 +423,7 @@ return require('packer').startup(function(use)
     ]])
     
     if packer_bootstrap then
-        require('packer').sync()
+        require("packer").sync()
     end
 end)
 

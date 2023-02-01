@@ -13,10 +13,10 @@ vim.opt.shiftwidth = 4
 vim.opt.updatetime = 300
 
 -- Clipboard
-vim.opt.clipboard = 'unnamedplus'
+vim.opt.clipboard = "unnamedplus"
 
 -- Also match <> with highlights and %-jumps
 vim.opt.listchars:append(vim.opt, "<:>")
 
 -- Unix line endings
-vim.opt.ff = 'unix'
+vim.opt.ff = "unix"

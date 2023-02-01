@@ -14,7 +14,7 @@ vim.opt.wildmenu = true
 vim.opt.wrap = false
 
 -- Theme
-vim.cmd 'colorscheme sonokai'
+vim.cmd "colorscheme sonokai"
 
 -- Custom colors
 -- See :h coc-highlight
