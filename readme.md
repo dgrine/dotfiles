@@ -36,7 +36,9 @@ programming.
 
     * Lua-based configuration
     * Plugin management using [Packer](https://github.com/wbthomason/packer.nvim)
-    * Bootstrapping of all plugins (installation upon first launch)
+
+        * Bootstrapping of all plugins (installation upon first launch)
+
     * Code completion using [coc](https://github.com/neoclide/coc.nvim)
         
         * Install language support using, e.g. `:CocInstall coc-python coc-cmake coc-json`
@@ -55,8 +57,10 @@ programming.
 
     * [oh-my-zsh](https://ohmyz.sh) based configuration
     * Vim-style editing
-    * Support for [fzf](https://github.com/junegunn/fzf)
-    * Support for [bat](https://github.com/sharkdp/bat)
+    * Improved navigation using [fzf](https://github.com/junegunn/fzf)
+
+        * Optional preview using [bat](https://github.com/sharkdp/bat)
+
     * Extensibility via `~/.zshrc_local`
 
 
