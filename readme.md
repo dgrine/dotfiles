@@ -9,7 +9,7 @@ Development configuration files for:
 * [vifm](https://vifm.info) — File manager with curses interface providing a Vim-like environment 
 * [zsh](https://zsh.sourceforge.io) — Shell designed for interactive use
 
-The configurations are maintained for Ubuntu (22.04 LTS), Manjaro and macOS (Ventura, Big Sur) devices,
+The configurations are maintained for Ubuntu (22.04 LTS), Manjaro and macOS (Ventura, Big Sur),
 but should work on any other Linux or macOS system.
 
 ![Example of Neovim, Vifm and zsh running inside a Tmux session within Alacritty](screenshot.png)
@@ -37,6 +37,9 @@ programming.
     * Lua-based configuration
     * Plugin management using [Packer](https://github.com/wbthomason/packer.nvim)
     * Bootstrapping of all plugins (installation upon first launch)
+    * Code completion using [coc](https://github.com/neoclide/coc.nvim)
+        
+        * Install language support using, e.g. `:CocInstall coc-python coc-cmake coc-json`
 
 * Tmux
 
@@ -87,6 +90,7 @@ To uninstall a specific package use `./uninstall.sh <package>`
 
 * [alacritty](https://github.com/alacritty/alacritty) — Fast, cross-platform OpenGL terminal emulator
 * [bat](https://github.com/sharkdp/bat) — Cat clone with syntax highlighting and Git integration
+* [coc](https://github.com/neoclide/coc.nvim) — Code completion server for Neovim
 * [exa](https://github.com/ogham/exa) — Modern replacement for `ls`
 * [fzf](https://github.com/junegunn/fzf) — General-purpose command-line fuzzy finder
 * [git](https://git-scm.com) — Distributed version control system 

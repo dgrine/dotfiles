@@ -1,5 +1,6 @@
 *.swp
 __pycache__/*
+nvim/.config/coc/extensions/
 vifm/.config/vifm/vifminfo.json
 tmux/.tmux/plugins
 packer_compiled.lua

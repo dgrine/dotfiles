@@ -311,7 +311,7 @@ return require("packer").startup(function(use)
         "nvim-treesitter/nvim-treesitter",
         config = function()
             require("nvim-treesitter.configs").setup({
-                ensure_installed = { "lua", "python", },
+                ensure_installed = { "python", "cmake" },
                 sync_install = true,
             })
         end
