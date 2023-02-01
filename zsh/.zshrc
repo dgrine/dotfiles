@@ -120,6 +120,7 @@ alias sshx='ssh -X -C -c blowfish-cbc,arcfour'
 ###############################################################################
 # Versioning
 ###############################################################################
+# Git
 alias gdt='git difftool'
 alias gdtui='git difftool --tool meld'
 # see `git help log` for detailed help.
@@ -135,6 +136,7 @@ alias gdtui='git difftool --tool meld'
 #   %ai: author date, ISO 8601-like format
 #   %s: subject
 alias glg='git log --graph --abbrev-commit --decorate --format=format:"%C(bold blue)%h%C(reset) - %C(bold green)(%ai)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)" --all'
+alias gurl='git remote -v | cut -d: -f2 | cut -d"(" -f1 | uniq'
 
 ###############################################################################
 # Coding
