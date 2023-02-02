@@ -13,6 +13,7 @@ else
 fi
 
 # Path
+#TODO: check if this shouldn't be .local/bin (like where Python installs)
 export PATH="$PATH:$HOME/bin"
 
 ###############################################################################
@@ -27,12 +28,16 @@ fi
 
 # Plugins
 # Note that fzf must be before vi-mode for <C-t> and <C-r> to work correctly
-plugins=(fzf vi-mode git pip python npm brew z docker)
+plugins=(fzf vi-mode git pip python npm brew z docker kubectl)
 
 # Paths
 export ZSH="$HOME/.oh-my-zsh"
 if [ "${PLATFORM}" = "mac" ]; then
-    export FZF_BASE="/opt/homebrew/opt/fzf"
+    if [ -d "/opt/homebrew/opt/fzf" ]; then
+        export FZF_BASE="/opt/homebrew/opt/fzf"
+    else
+        export FZF_BASE="/usr/local/opt/fzf"
+    fi
 else
     export FZF_BASE="$HOME/.fzf"
 fi
@@ -56,6 +61,7 @@ alias conf-nvim='e $HOME/.config/nvim/init.lua'
 alias conf-nvim-mappings='e $HOME/.config/nvim/lua/mappings.lua'
 alias conf-nvim-plugins='e $HOME/.config/nvim/lua/plugins.lua'
 alias conf-tmux='e $HOME/.tmux.conf'
+alias conf-git='e $HOME/.gitconfig'
 alias conf-zsh='e $HOME/.zshrc'
 alias conf-zsh-local='e $HOME/.zshrc_local'
 alias conf-vifm='e $HOME/.config/vifm/vifmrc'
@@ -146,7 +152,8 @@ alias gurl='git remote -v | cut -d: -f2 | cut -d"(" -f1 | uniq'
 if [ -x "$(command -v python3)" ]; then
     alias python='python3'
     alias pip='pip3'
-    python_version=$(python -c 'from sys import version_info as v; print(f"{v.major}.{v.minor}")')
+    PYTHON_VERSION=$(python -c 'from sys import version_info as v; print(f"{v.major}.{v.minor}")')
+    export PATH="$PATH:$HOME/.local/bin"
     if [ "${PLATFORM}" = "mac" ]; then
         export PATH="$PATH:$HOME/Library/Python/${python_version}/bin"
     fi
@@ -178,6 +185,7 @@ fi
 # Docker
 alias rmdocker-containers='docker rm -f $(docker ps -a -q)'
 alias rmdocker-volumes='docker volume rm $(docker volume ls -q)'
+alias rmdocker-images='docker rmi -f $(docker images -aq)'
 alias rmdocker-clean='rmdocker-containers && rmdocker-volumes'
 
 # lldb

@@ -3,13 +3,15 @@ DOTFILES_TMUX_SESSIONS+=('eot')
 
 # Aliases
 alias conf-zsh-eot='e $HOME/dotfiles/zsh-profile/eot.zsh'
-alias cdsdk='cd $HOME/dev/repos/fusion-wowool-sdk'
-alias cdsdknative='cd $HOME/dev/repos/fusion-wowool-sdk/comp-wowool-sdk-native-py-cpp'
-alias cdportal='cd $HOME/dev/repos/fusion-wowool-portal'
-alias cdbrext='cd $HOME/dev/repos/breach-extractor'
-alias cdwowooldocs='cd $HOME/dev/repos/wowool-docs'
-alias eot-ssh-devserver='ssh -vv -i ${HOME}/dev/repos/docs/docs-eot/data/debian-buildserver.pem dev@3.64.83.152'
-alias eot-ssh-devserver-root='ssh -i ${HOME}/dev/repos/docs/docs-eot/data/debian-buildserver.pem ubuntu@3.64.83.152'
+alias cdportal-app='cd $HOME/dev/repos/eyeontext/comp-wowool-portal-app'
+alias cdportal-backend='cd $HOME/dev/repos/eyeontext/comp-wowool-portal-backend-py'
+alias cdportal-lxware='cd $HOME/dev/repos/eyeontext/comp-wowool-portal-lxware'
+alias cdportal-sdk='cd $HOME/dev/repos/eyeontext/comp-wowool-portal-sdk-py'
+alias cdbrext='cd $HOME/dev/repos/eyeontext/breach-extractor'
+alias cdwowooldocs='cd $HOME/dev/repos/eyeontext/wowool-docs'
+alias eot-kubectl="kubectl -n eyeontext-demo"
+alias eot-ssh-devserver='ssh -vv -i ${HOME}/dev/repos/blackboard/docs/docs-eot/data/debian-buildserver.pem dev@3.64.83.152'
+alias eot-ssh-devserver-root='ssh -i ${HOME}/dev/repos/blackboard/docs/docs-eot/data/debian-buildserver.pem ubuntu@3.64.83.152'
 alias eot-ssh-buildserver-root='ssh -vv -i ${HOME}/dev/repos/docs/docs-eot/data/debian-buildserver.pem builder@ec2-35-158-194-216.eu-central-1.compute.amazonaws.com'
 alias eot-ssh-breachserver='ssh djgr@44.206.52.68'
 alias eot-sshfs-breachserver='sudo mkdir -p /mnt/eot-breachserver && sudo sshfs -o debug,allow_other,IdentityFile=/home/djamelg/.ssh/id_rsa,reconnect,ServerAliveInterval=15,ServerAliveCountMax=3 djgr@44.206.52.68:/ /mnt/eot-breachserver'
@@ -118,6 +120,18 @@ function eot-menv-dev() {
         pip3 install --pre -r dev_requires_eot.txt
     else
         echo "Skipping dev_requires_eot.txt"
+    fi
+    if [ -f "build_requires.txt" ]; then
+        echo "Installing build_requires.txt"
+        pip3 install -r build_requires.txt
+    else
+        echo "Skipping build_requires.txt"
+    fi
+    if [ -f "build_requires_eot.txt" ]; then
+        echo "Installing build_requires_eot (pre-releases).txt"
+        pip3 install --pre -r build_requires_eot.txt
+    else
+        echo "Skipping build_requires_eot.txt"
     fi
 }
 function eot-ienv() {
