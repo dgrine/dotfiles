@@ -3,8 +3,8 @@
 [diff]
 	tool = icdiff
 [difftool "meld"]
-    cmd = meld "$LOCAL" "$REMOTE"
+    cmd = meld $LOCAL $REMOTE
 [difftool "icdiff"]
-	cmd = icdiff "$LOCAL" "$REMOTE" --highlight --line-numbers
+	cmd =icdiff --highlight --line-numbers $LOCAL $REMOTE
 [merge]
 	tool = meld
