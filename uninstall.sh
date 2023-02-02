@@ -4,13 +4,12 @@
 # Example: ./uninstall.sh <package> (<target_dir>)
 #  - Leave <package> empty to uninstall all packages
 #  - To test, you can provide a target directory as a second argument
-echo "Uninstalling configurations ..."
 PACKAGE=$1
 TARGET_DIR=$2
 if [ "${TARGET_DIR}" = "" ]; then
     TARGET_DIR=$HOME
 fi
-echo "Uninstalling configurations from ${TARGET_DIR}..."
+echo "Uninstalling configurations from ${TARGET_DIR} ..."
 if [ "$PACKAGE" = "" ] || [ "$PACKAGE" = "alacritty" ]; then
     echo "... alacritty"
     stow -t ${TARGET_DIR} -D alacritty

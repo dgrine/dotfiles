@@ -9,7 +9,7 @@ TARGET_DIR=$2
 if [ "${TARGET_DIR}" = "" ]; then
     TARGET_DIR=$HOME
 fi
-echo "Installing configurations to ${TARGET_DIR}..."
+echo "Installing configurations to ${TARGET_DIR} ..."
 mkdir -p ~/.config
 if [ "$PACKAGE" = "" ] || [ "$PACKAGE" = "alacritty" ]; then
     echo "... alacritty"
