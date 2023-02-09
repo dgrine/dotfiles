@@ -6,5 +6,6 @@
     "python.formatting.blackArgs": ["--line-length=80"],
     "pyright": {
         "enable": true
-    }
+    },
+    "prettier.enable": true
 }

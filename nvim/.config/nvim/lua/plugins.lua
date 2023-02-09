@@ -305,6 +305,10 @@ return require("packer").startup(function(use)
         "fannheyward/coc-pyright",
         requires = "neoclide/coc.nvim"
     }
+    -- use {
+    --     "neoclide/coc-prettier",
+    --     requires = "neoclide/coc.nvim"
+    -- }
 
     -- Treesitter
     use {
