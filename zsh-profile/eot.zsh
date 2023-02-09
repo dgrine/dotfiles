@@ -3,12 +3,12 @@ DOTFILES_TMUX_SESSIONS+=('eot')
 
 # Aliases
 alias conf-zsh-eot='e $HOME/dotfiles/zsh-profile/eot.zsh'
+alias cdbrext='cd $HOME/dev/repos/eyeontext/breach-extractor'
 alias cdportal-app='cd $HOME/dev/repos/eyeontext/comp-wowool-portal-app'
 alias cdportal-backend='cd $HOME/dev/repos/eyeontext/comp-wowool-portal-backend-py'
 alias cdportal-lxware='cd $HOME/dev/repos/eyeontext/comp-wowool-portal-lxware'
 alias cdportal-sdk='cd $HOME/dev/repos/eyeontext/comp-wowool-portal-sdk-py'
-alias cdbrext='cd $HOME/dev/repos/eyeontext/breach-extractor'
-alias cdwowooldocs='cd $HOME/dev/repos/eyeontext/wowool-docs'
+alias cdwowool-docs='cd $HOME/dev/repos/eyeontext/wowool-docs'
 alias eot-kubectl="kubectl -n eyeontext-demo"
 alias eot-ssh-devserver='ssh -vv -i ${HOME}/dev/repos/blackboard/docs/docs-eot/data/debian-buildserver.pem dev@3.64.83.152'
 alias eot-ssh-devserver-root='ssh -i ${HOME}/dev/repos/blackboard/docs/docs-eot/data/debian-buildserver.pem ubuntu@3.64.83.152'
