@@ -7,5 +7,6 @@
     "pyright": {
         "enable": true
     },
-    "prettier.enable": true
+    "prettier.enable": true,
+    "clangd.enabled": true
 }
