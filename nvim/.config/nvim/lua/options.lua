@@ -9,6 +9,11 @@ vim.opt.softtabstop = 4
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 
+-- Wrapping
+-- vim.wo.wrap = true
+-- vim.wo.linebreak = true
+-- vim.wo.list = false
+
 -- Update time
 vim.opt.updatetime = 300
 
