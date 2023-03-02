@@ -406,7 +406,7 @@ return require("packer").startup(function(use)
         requires="nvim-neotest/neotest"
     }
 
-    -- Repl
+    -- REPL
     use {
         "jpalardy/vim-slime",
         config = function()
