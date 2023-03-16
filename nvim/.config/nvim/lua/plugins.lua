@@ -159,6 +159,9 @@ return require("packer").startup(function(use)
         end
     }
 
+    -- Indent levels
+    use "lukas-reineke/indent-blankline.nvim"
+
     -- CSS Colorizer
     use {
         "norcalli/nvim-colorizer.lua",

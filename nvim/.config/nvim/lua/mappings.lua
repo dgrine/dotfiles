@@ -26,7 +26,7 @@ local mappings = {
     },
 
     -- e = { ":NvimTreeFindFileToggle!<CR>", "Explore Files" },
-    e = { "<Cmd>lua require('nvim-tree').toggle({find_file=true, focus=true, update_root=true})<CR>", "Explore Files" },
+    e = { "<Cmd>lua require('nvim-tree.api').tree.toggle({find_file=true, focus=true, update_root=true})<CR>", "Explore Files" },
 
     r = {
         name = "Run",
@@ -66,10 +66,17 @@ local mappings = {
         ["]"] = { "<Plug>(coc-diagnostic-next)", "Next diagnostic" },
     },
 
+    b = {
+        name = "Buffer",
+        d = { "<Cmd>bufdo bd<CR>", "Delete all buffers" },
+    },
+
     ["m"] = { ":call InterestingWords('n')<CR>", "Mark word under cursor" },
     ["<Space>"] = { ":call UncolorAllWords()<CR>:nohl<CR>", "Unmark all words" },
     ["n"] = { ":call WordNavigation(1)<CR>", "Next marked word" },
     ["N"] = { ":call WordNavigation(0)<CR>", "Previous marked word" },
+    ["w"] = { ":set wrap!<CR>", "Toggle wrapping" },
+    ["i"] = { ":IndentBlanklineToggle<CR>", "Toggle visual indentation" },
 
     ["<Leader>"] = { "<Cmd>WhichKey<CR>", "Show all mappings" },
 }
@@ -107,6 +114,7 @@ map("<A-,>", "<Cmd>BufferLineCyclePrev<CR>", "Previous buffer")
 map("<A-.>", "<Cmd>BufferLineCycleNext<CR>", "Next buffer")
 map("<A-c>", "<Cmd>BufferLinePickClose<CR>", "Close buffer")
 map("<A-p>", "<Cmd>BufferLinePick<CR>", "Pick buffer")
+map("<A-d>", "<Cmd>:bd<CR>", "Delete buffer")
 map("<A-t>", "<Cmd>tabnew<CR>", "New tab")
 map("<A-h>", "<Cmd>tabprevious<CR>", "Previous tab")
 map("<A-l>", "<Cmd>tabnext<CR>", "Next tab")
@@ -129,3 +137,12 @@ map("s", "<Plug>Sneak_s", "Jump to next char sequence")
 map("S", "<Plug>Sneak_S", "Jump to previous char sequence")
 map(";", "<Plug>Sneak_;", "Repeat next character jump")
 map(",", "<Plug>Sneak_,", "Repeat previous character jump")
+
+-- Apply macro to visual selection
+vim.api.nvim_exec([[
+    :xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+    function! ExecuteMacroOverVisualRange()
+        echo "@".getcmdline()
+        execute ":'<,'>normal @".nr2char(getchar())
+    endfunction
+    ]], true)
