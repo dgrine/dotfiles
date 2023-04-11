@@ -4,6 +4,7 @@ DOTFILES_TMUX_SESSIONS+=('blackboard')
 # Aliases
 alias conf-zsh-blackboard='e $HOME/dotfiles/zsh-profile/blackboard.zsh'
 alias cdblackboard='cd $HOME/Documents/Blackboard/'
+alias cdblackboard-docs='cd $HOME/dev/code/blackboard/docs'
 
 # C++
 # if [ -x "$(command -v cpp)" ]; then

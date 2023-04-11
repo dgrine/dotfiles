@@ -94,7 +94,6 @@ fi
 alias cddotfiles='cd $HOME/dotfiles'
 alias cddev='cd $HOME/dev'
 alias cdcode='cd $HOME/dev/code'
-alias cddocs='cd $HOME/dev/docs'
 alias cdbin='cd $HOME/bin'
 alias cdtmp='mkdir -p $HOME/dev/tmp && cd $HOME/dev/tmp';
 if [ "${PLATFORM}" = "linux" ]; then

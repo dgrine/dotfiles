@@ -97,8 +97,8 @@ function eot-menv-release() {
         pip3 install -r build_requires_eot.txt
     fi
 }
-function eot-menv-dev() {
-    echo "Installing development environment"
+function eot-menv-ci() {
+    echo "Installing CI environment"
     eot-menv
     senv
     if [ -f "install_requires.txt" ]; then
