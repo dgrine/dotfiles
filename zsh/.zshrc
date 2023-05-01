@@ -32,14 +32,14 @@ plugins=(fzf vi-mode git pip python npm brew z docker kubectl)
 
 # Paths
 export ZSH="$HOME/.oh-my-zsh"
-if [ "${PLATFORM}" = "mac" ]; then
-    if [ -d "/opt/homebrew/opt/fzf" ]; then
-        export FZF_BASE="/opt/homebrew/opt/fzf"
-    else
-        export FZF_BASE="/usr/local/opt/fzf"
-    fi
-else
-    export FZF_BASE="$HOME/.fzf"
+if [ -d "$HOME/.fzf/shell/" ]; then
+    export FZF_BASE="$HOME/.fzf/"
+elif [ -d "/usr/share/doc/fzf/examples/" ]; then
+    export FZF_BASE="/usr/share/doc/fzf/examples/"
+elif [ -d "/usr/local/opt/fzf/shell/" ]; then
+    export FZF_BASE="/usr/local/opt/fzf/shell/"
+elif [ -d "/opt/homebrew/opt/fzf/shell/" ]; then
+    export FZF_BASE="/opt/homebrew/opt/fzf/shell/"
 fi
 
 source $ZSH/oh-my-zsh.sh
@@ -228,8 +228,8 @@ if [ -x "$(command -v fzf)" ]; then
     # Edit command line in vim by pressing Esc-v
     zle -N edit-command-line
     [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-    source "$FZF_BASE/shell/key-bindings.zsh"
-    source "$FZF_BASE/shell/completion.zsh"
+    source "$FZF_BASE/key-bindings.zsh"
+    source "$FZF_BASE/completion.zsh"
 fi
 
 ###############################################################################
