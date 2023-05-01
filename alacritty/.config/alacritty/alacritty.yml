@@ -2,8 +2,8 @@
 # Font 
 font:
   normal:
-    family: "Hack Nerd Font"
-  size: 10
+    family: "UbuntuMono Nerd Font"
+  size: 12
 
 # Colors
 colors:
