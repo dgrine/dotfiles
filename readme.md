@@ -81,6 +81,9 @@ cd ~/dotfiles
 
 To install a specific package use `./install.sh <package>`
 
+.. note:: For Debian based Linux distributions, you can use the `./install-tools.sh`
+script to install (many of) the tools.
+
 ## Uninstall
 
 ```
