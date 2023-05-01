@@ -4,6 +4,7 @@
 # Example: ./uninstall.sh <package> (<target_dir>)
 #  - Leave <package> empty to uninstall all packages
 #  - To test, you can provide a target directory as a second argument
+set -e
 PACKAGE=$1
 TARGET_DIR=$2
 if [ "${TARGET_DIR}" = "" ]; then

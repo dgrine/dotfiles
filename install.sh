@@ -4,6 +4,7 @@
 # Example: ./install.sh <package> (<target_dir>)
 #  - Leave <package> empty to install all packages
 #  - To test, you can provide a target directory as a second argument
+set -e
 PACKAGE=$1
 TARGET_DIR=$2
 if [ "${TARGET_DIR}" = "" ]; then
@@ -36,5 +37,4 @@ if [ "$PACKAGE" = "" ] || [ "$PACKAGE" = "nvim" ]; then
     stow -t $TARGET_DIR nvim
 fi
 echo "Finished installing configurations"
-
 
