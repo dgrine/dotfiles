@@ -154,3 +154,9 @@ function eot-ienv() {
     pip3 install -r build_requires.txt
 }
 
+function eot-portal-uat-reset {
+    eot-kubectl exec deployment.apps/postgres -- psql -c 'DROP DATABASE IF EXISTS portal WITH (FORCE);'
+    eot-kubectl exec deployment.apps/postgres -- psql -c 'CREATE DATABASE portal WITH ENCODING UTF8 LC_COLLATE "en_US.utf8" LC_CTYPE "en_US.utf8";'
+    eot-kubectl exec deployment.apps/sdk -- /bin/bash -c 'cd /volumes/filesystem/ && rm -rf build && rm -rf lxware'
+    eot-kubectl rollout restart deployment.apps
+}
