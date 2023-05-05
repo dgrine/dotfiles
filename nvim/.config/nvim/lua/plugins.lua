@@ -171,6 +171,7 @@ return require("packer").startup(function(use)
     }
 
     -- File browsers
+    -- See https://github.com/nvim-tree/nvim-tree.lua/blob/master/doc/nvim-tree-lua.txt#L1458
     use {
         "nvim-tree/nvim-tree.lua",
         requires = "nvim-tree/nvim-web-devicons",
@@ -187,28 +188,6 @@ return require("packer").startup(function(use)
                 },
                 view = {
                     adaptive_size = true,
-                    mappings = {
-                        -- See https://github.com/nvim-tree/nvim-tree.lua/blob/master/doc/nvim-tree-lua.txt#L1458
-                        custom_only = true,
-                        list = {
-                            { key = "g?", action = "toggle_help" },
-                            { key = "dd", action = "remove" },
-                            { key = "u", action = "dir_up" },
-                            { key = "<A-v>", action = "vsplit" },
-                            { key = "<A-z>", action = "split" },
-                            { key = "<A-t>", action = "tabnew" },
-                            { key = "a", action = "create" },
-                            { key = "A", action = "full_rename" },
-                            { key = "f", action = "live_filter" },
-                            { key = "x", action = "cut" },
-                            { key = "y", action = "copy" },
-                            { key = "p", action = "paste" },
-                            { key = "o", action = "system_open" },
-                            { key = "K", action = "toggle_file_info" },
-                            { key = { "<CR>", "o", "<2-LeftMouse>" }, action = "edit" },
-                            { key = "za", action = "toggle_dotfiles" },
-                        },
-                    },
                 },
                 renderer = {
                     group_empty = true,
@@ -216,6 +195,30 @@ return require("packer").startup(function(use)
                 filters = {
                     dotfiles = true,
                 },
+                on_attach = function(bufnr)
+                    local api = require('nvim-tree.api')
+                    local function opts(desc)
+                        return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+                    end
+                    vim.keymap.set('n', 'g?', api.tree.toggle_help, opts('Help'))
+                    vim.keymap.set('n', 'dd', api.fs.remove, opts('Delete'))
+                    vim.keymap.set('n', 'u', api.tree.change_root_to_parent, opts('Up'))
+                    vim.keymap.set('n', '<A-v>', api.node.open.vertical, opts('Open: Vertical Split'))
+                    vim.keymap.set('n', '<A-z>', api.node.open.horizontal, opts('Open: Horizontal Split'))
+                    vim.keymap.set('n', '<A-t>', api.node.open.tab, opts('Open: New Tab'))
+                    vim.keymap.set('n', 'a', api.fs.create, opts('Create'))
+                    vim.keymap.set('n', 'A', api.fs.rename_sub, opts('Rename: Omit Filename'))
+                    vim.keymap.set('n', 'f', api.live_filter.start, opts('Filter'))
+                    vim.keymap.set('n', 'x', api.fs.cut, opts('Cut'))
+                    vim.keymap.set('n', 'y', api.fs.copy.node, opts('Copy'))
+                    vim.keymap.set('n', 'p', api.fs.paste, opts('Paste'))
+                    vim.keymap.set('n', 'o', api.node.run.system, opts('Run System'))
+                    vim.keymap.set('n', 'K', api.node.show_info_popup, opts('Info'))
+                    vim.keymap.set('n', '<CR>', api.node.open.edit, opts('Open'))
+                    vim.keymap.set('n', 'o', api.node.open.edit, opts('Open'))
+                    vim.keymap.set('n', '<2-LeftMouse>', api.node.open.edit, opts('Open'))
+                    vim.keymap.set('n', 'za', api.tree.toggle_hidden_filter, opts('Toggle Dotfiles'))
+                end
             })
         end
     }
