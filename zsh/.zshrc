@@ -150,13 +150,6 @@ alias gurl='git remote -v | cut -d: -f2 | cut -d"(" -f1 | uniq'
 
 # Python
 if [ -x "$(command -v python3)" ]; then
-    alias python='python3'
-    alias pip='pip3'
-    PYTHON_VERSION=$(python -c 'from sys import version_info as v; print(f"{v.major}.{v.minor}")')
-    export PATH="$PATH:$HOME/.local/bin"
-    if [ "${PLATFORM}" = "mac" ]; then
-        export PATH="$PATH:$HOME/Library/Python/${python_version}/bin"
-    fi
     function menv() {
         python3 -m venv .venv
         senv
