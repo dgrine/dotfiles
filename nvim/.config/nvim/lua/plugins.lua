@@ -399,7 +399,7 @@ return require("packer").startup(function(use)
             adapters = {
                 require("neotest-python")({
                     dap = { justMyCode = true },
-                    args = {"--log-level", "DEBUG"},
+                    args = {},
                     runner = "unittest",
                     python = "./.venv/bin/python"
                 }),
