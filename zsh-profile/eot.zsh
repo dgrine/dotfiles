@@ -15,11 +15,13 @@ alias cdportal-test='cd $HOME/dev/code/eyeontext/test-wowool-portal'
 alias cdwowool-docs='cd $HOME/dev/code/eyeontext/wowool-docs'
 alias eot-kubectl-uat="kubectl -n eyeontext-portal"
 alias eot-kubectl-dev="kubectl -n eyeontext-portal-dev"
-alias eot-ssh-devserver='ssh -vv -i ${HOME}/dev/code/blackboard/docs/docs-eot/data/debian-buildserver.pem dev@3.64.83.152'
-alias eot-ssh-devserver-root='ssh -i ${HOME}/dev/code/blackboard/docs/docs-eot/data/debian-buildserver.pem ubuntu@3.64.83.152'
-alias eot-ssh-buildserver-root='ssh -vv -i ${HOME}/dev/code/docs/docs-eot/data/debian-buildserver.pem builder@ec2-35-158-194-216.eu-central-1.compute.amazonaws.com'
+alias eot-ssh-devserver='ssh -vv -i ${HOME}/dev/code/blackboard/docs/eyeontext/data/debian-buildserver.pem dev@3.64.83.152'
+alias eot-ssh-devserver-root='ssh -i ${HOME}/dev/code/blackboard/docs/eyeontext/data/debian-buildserver.pem ubuntu@3.64.83.152'
+alias eot-ssh-buildserver-root='ssh -vv -i ${HOME}/dev/code/docs/eyeontext/data/debian-buildserver.pem builder@ec2-35-158-194-216.eu-central-1.compute.amazonaws.com'
 alias eot-ssh-breachserver='ssh djgr@44.206.52.68'
-alias eot-sshfs-breachserver='sudo mkdir -p /mnt/eot-breachserver && sudo sshfs -o debug,allow_other,IdentityFile=/home/djamelg/.ssh/id_rsa,reconnect,ServerAliveInterval=15,ServerAliveCountMax=3 djgr@44.206.52.68:/ /mnt/eot-breachserver'
+alias eot-ssh-breachserver-phforest='ssh phforest@44.206.52.68 -i ${HOME}/dev/code/blackboard/docs/eyeontext/data/breachserver-phforest'
+alias eot-sshfs-breachserver='sudo mkdir -p /mnt/eot/breachserver && sudo sshfs -o debug,allow_other,IdentityFile=/home/djamelg/.ssh/id_rsa,reconnect,ServerAliveInterval=15,ServerAliveCountMax=3 djgr@44.206.52.68:/ /mnt/eot/breachserver'
+alias eot-sshfs-breachserver-phforest='sudo mkdir -p /mnt/eot/breachserver && sudo sshfs -o debug,allow_other,IdentityFile=/home/djamelg/.ssh/id_rsa,reconnect,ServerAliveInterval=15,ServerAliveCountMax=3,ssh_command="ssh -i ${HOME}/dev/code/blackboard/docs/eyeontext/data/breachserver-phforest" phforest@44.206.52.68:/ /mnt/eot/breachserver'
 alias 'eot-brext-markers'='rg "(([A-Z][a-z]+)+Marker)" -o --no-heading | cut -d: -f2 | sort | uniq'
 alias 'eot-brext-values'='rg "(([A-Z][a-z]+)+Value)" -o --no-heading | cut -d: -f2 | sort | uniq'
 
