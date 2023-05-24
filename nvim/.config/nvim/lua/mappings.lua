@@ -25,7 +25,6 @@ local mappings = {
         ["]"] = { "<Plug>(GitGutterNextHunk)", "Next git hunk" },
     },
 
-    -- e = { ":NvimTreeFindFileToggle!<CR>", "Explore Files" },
     e = { "<Cmd>lua require('nvim-tree.api').tree.toggle({find_file=true, focus=true, update_root=true})<CR>", "Explore Files" },
 
     r = {
@@ -52,6 +51,8 @@ local mappings = {
         c = { "<Cmd>lua require'dap'.run_to_cursor()<CR>", "Continue until cursor position" },
         t = { "<Cmd>lua require'dap'.terminate()<CR>", "Terminate debug session" },
         i = { "<Cmd>lua require'dap'.repl.toggle()<CR>", "Show/hide REPL panel" },
+        s = { "<Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", "Show diagnostics of current line" },
+
     },
 
     c = { 
