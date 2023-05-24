@@ -1,6 +1,6 @@
 # Dotfiles
 
-Development configuration files for:
+My personal development configuration files for:
 
 * [alacritty](https://github.com/alacritty/alacritty) — Fast, cross-platform, OpenGL terminal emulator
 * [git](https://git-scm.com) — Distributed version control system 
@@ -79,10 +79,7 @@ cd ~/dotfiles
 ./install.sh
 ```
 
-To install a specific package use `./install.sh <package>`
-
-.. note:: For Debian based Linux distributions, you can use the `./install-tools.sh`
-script to install (many of) the tools.
+To install the configuration for a specific package use `./install.sh <package>`
 
 ## Uninstall
 
@@ -91,7 +88,7 @@ cd ~/dotfiles
 ./uninstall.sh
 ```
 
-To uninstall a specific package use `./uninstall.sh <package>`
+To uninstall the configuration for a specific package use `./uninstall.sh <package>`
 
 ## Recommended Software
 
@@ -118,4 +115,7 @@ To uninstall a specific package use `./uninstall.sh <package>`
 * [tmux](https://github.com/tmux/tmux/wiki) — Terminal multiplexer
 * [vifm](https://vifm.info) — File manager with curses interface providing a Vim-like environment 
 * [zsh](https://zsh.sourceforge.io) — Shell designed for interactive use
+
+.. note:: For Debian based Linux distributions, you can use the `./install-tools.sh`
+script to install (many of) the tools.
 
