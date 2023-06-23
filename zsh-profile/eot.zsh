@@ -11,7 +11,9 @@ alias cdportal-frontend='cd $HOME/dev/code/eyeontext/comp-wowool-portal-frontend
 alias cdportal-lxware='cd $HOME/dev/code/eyeontext/comp-wowool-portal-lxware'
 alias cdportal-scraper='cd $HOME/dev/code/eyeontext/comp-wowool-portal-scraper-py'
 alias cdportal-sdk='cd $HOME/dev/code/eyeontext/comp-wowool-portal-sdk-py'
-alias cdportal-test='cd $HOME/dev/code/eyeontext/test-wowool-portal'
+alias cdcore-build='cd $HOME/dev/code/eyeontext/core-build-py/'
+alias cdcore-utility='cd $HOME/dev/code/eyeontext/core-utility-py/'
+alias cdcore-io='cd $HOME/dev/code/eyeontext/core-io-py/'
 alias cdwowool-docs='cd $HOME/dev/code/eyeontext/wowool-docs'
 alias eot-kubectl-uat="kubectl -n eyeontext-portal"
 alias eot-kubectl-dev="kubectl -n eyeontext-portal-dev"
@@ -22,8 +24,9 @@ alias eot-ssh-breachserver='ssh djgr@44.206.52.68'
 alias eot-ssh-breachserver-phforest='ssh phforest@44.206.52.68 -i ${HOME}/dev/code/blackboard/docs/eyeontext/data/breachserver-phforest'
 alias eot-sshfs-breachserver='sudo mkdir -p /mnt/eot/breachserver && sudo sshfs -o debug,allow_other,IdentityFile=/home/djamelg/.ssh/id_rsa,reconnect,ServerAliveInterval=15,ServerAliveCountMax=3 djgr@44.206.52.68:/ /mnt/eot/breachserver'
 alias eot-sshfs-breachserver-phforest='sudo mkdir -p /mnt/eot/breachserver && sudo sshfs -o debug,allow_other,IdentityFile=/home/djamelg/.ssh/id_rsa,reconnect,ServerAliveInterval=15,ServerAliveCountMax=3,ssh_command="ssh -i ${HOME}/dev/code/blackboard/docs/eyeontext/data/breachserver-phforest" phforest@44.206.52.68:/ /mnt/eot/breachserver'
-alias 'eot-brext-markers'='rg "(([A-Z][a-z]+)+Marker)" -o --no-heading | cut -d: -f2 | sort | uniq'
-alias 'eot-brext-values'='rg "(([A-Z][a-z]+)+Value)" -o --no-heading | cut -d: -f2 | sort | uniq'
+alias eot-brext-markers='rg "(([A-Z][a-z]+)+Marker)" -o --no-heading | cut -d: -f2 | sort | uniq'
+alias eot-brext-values='rg "(([A-Z][a-z]+)+Value)" -o --no-heading | cut -d: -f2 | sort | uniq'
+alias eot-brext-diff='find . -name *.actual | xargs -I{} meld {} $({} | cut -d. -f1,2).actual'
 
 function eot-rebuild-tir {
     unset EOT_KEY
@@ -157,9 +160,16 @@ function eot-ienv() {
     pip3 install -r build_requires.txt
 }
 
+function eot-portal-dev-reset {
+    eot-kubectl-dev exec deployment.apps/postgres -- psql -c 'DROP DATABASE IF EXISTS portal WITH (FORCE);'
+    eot-kubectl-dev exec deployment.apps/postgres -- psql -c 'CREATE DATABASE portal WITH ENCODING UTF8 LC_COLLATE "en_US.utf8" LC_CTYPE "en_US.utf8";'
+    eot-kubectl-dev exec deployment.apps/sdk -- /bin/bash -c 'cd /volumes/filesystem/ && rm -rf build && rm -rf lxware'
+    eot-kubectl-dev rollout restart deployment.apps
+}
+
 function eot-portal-uat-reset {
-    eot-kubectl exec deployment.apps/postgres -- psql -c 'DROP DATABASE IF EXISTS portal WITH (FORCE);'
-    eot-kubectl exec deployment.apps/postgres -- psql -c 'CREATE DATABASE portal WITH ENCODING UTF8 LC_COLLATE "en_US.utf8" LC_CTYPE "en_US.utf8";'
-    eot-kubectl exec deployment.apps/sdk -- /bin/bash -c 'cd /volumes/filesystem/ && rm -rf build && rm -rf lxware'
-    eot-kubectl rollout restart deployment.apps
+    eot-kubectl-uat exec deployment.apps/postgres -- psql -c 'DROP DATABASE IF EXISTS portal WITH (FORCE);'
+    eot-kubectl-uat exec deployment.apps/postgres -- psql -c 'CREATE DATABASE portal WITH ENCODING UTF8 LC_COLLATE "en_US.utf8" LC_CTYPE "en_US.utf8";'
+    eot-kubectl-uat exec deployment.apps/sdk -- /bin/bash -c 'cd /volumes/filesystem/ && rm -rf build && rm -rf lxware'
+    eot-kubectl-uat rollout restart deployment.apps
 }
