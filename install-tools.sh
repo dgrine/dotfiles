@@ -170,6 +170,11 @@ if [ "$PACKAGE" = "" ] || [ "$PACKAGE" = "stow" ]; then
     echo "... stow"
     apt install -y stow
 fi
+# tldr — Simplified and community-driven man pages
+if [ "$PACKAGE" = "" ] || [ "$PACKAGE" = "tldr" ]; then
+    echo "... tldr"
+    apt install -y tldr
+fi
 # tmux — Terminal multiplexer
 if [ "$PACKAGE" = "" ] || [ "$PACKAGE" = "tmux" ]; then
     echo "... tmux"

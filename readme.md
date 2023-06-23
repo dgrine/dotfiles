@@ -112,6 +112,7 @@ To uninstall the configuration for a specific package use `./uninstall.sh <packa
 * [meld](https://meldmerge.org) — Visual diff and merge tool
 * [neovim](https://neovim.io) — Hyperextensible Vim-based text editor
 * [ripgrep](https://github.com/BurntSushi/ripgrep) — Fast, line-oriented search tool for regex patterns
+* [tldr](https://tldr.sh/) — Simplified and community-driven man pages
 * [tmux](https://github.com/tmux/tmux/wiki) — Terminal multiplexer
 * [vifm](https://vifm.info) — File manager with curses interface providing a Vim-like environment 
 * [zsh](https://zsh.sourceforge.io) — Shell designed for interactive use
