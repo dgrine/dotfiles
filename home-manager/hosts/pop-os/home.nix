@@ -3,9 +3,11 @@
 {
     imports = [
         ../../programs/alacritty/alacritty-native.nix
+        ../../programs/btop/btop.nix
         ../../programs/fzf/fzf.nix
         ../../programs/neofetch/neofetch.nix
         ../../programs/neovim/neovim.nix
+        ../../programs/ripgrep/ripgrep.nix
         ../../programs/tmux/tmux.nix
         ../../programs/vifm/vifm.nix
         ../../programs/zsh/zsh.nix
