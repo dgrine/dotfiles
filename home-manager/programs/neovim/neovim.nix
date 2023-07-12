@@ -3,15 +3,19 @@
 {
     programs.neovim = {
         enable = true;
+        defaultEditor = true;
         coc = {
             enable = true;
         };
-        defaultEditor = true;
     };
 
     xdg.configFile."nvim" = {
         source = ../../../nvim/.config/nvim;
         recursive = true;
     };
+
+    home.packages = with pkgs; [
+        black
+    ];
 }
 

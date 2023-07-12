@@ -4,6 +4,7 @@
     imports = [
         ../../programs/alacritty/alacritty-native.nix
         ../../programs/fzf/fzf.nix
+        ../../programs/neofetch/neofetch.nix
         ../../programs/neovim/neovim.nix
         ../../programs/tmux/tmux.nix
         ../../programs/vifm/vifm.nix
