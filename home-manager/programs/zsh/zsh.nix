@@ -4,8 +4,9 @@
     programs.zsh = {
         enable = true;
         enableAutosuggestions = true;
-        extraConfig = ''
-        source "${home.homeDirectory}/.zshrc_local"
+        initExtra = ''
+        mkdir -p $HOME/dev/code/
+        mkdir -p $HOME/dev/tmp/
         '';
         shellAliases = import ../shellAliases.nix;
         oh-my-zsh = {

@@ -10,8 +10,10 @@
         ../../programs/ripgrep/ripgrep.nix
         ../../programs/tmux/tmux.nix
         ../../programs/vifm/vifm.nix
+        ../../programs/zoxide/zoxide.nix
         ../../programs/zsh/zsh.nix
-        ../../roles/eyeontext.nix
+        ../../roles/blackboard.nix
+        ../../roles/eot.nix
     ];
 
     home = {
