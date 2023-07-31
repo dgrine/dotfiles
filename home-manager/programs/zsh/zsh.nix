@@ -4,6 +4,9 @@
     programs.zsh = {
         enable = true;
         enableAutosuggestions = true;
+        extraConfig = ''
+        source "${home.homeDirectory}/.zshrc_local"
+        '';
         shellAliases = import ../shellAliases.nix;
         oh-my-zsh = {
             enable = true;

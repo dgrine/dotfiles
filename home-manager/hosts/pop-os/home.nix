@@ -11,6 +11,7 @@
         ../../programs/tmux/tmux.nix
         ../../programs/vifm/vifm.nix
         ../../programs/zsh/zsh.nix
+        ../../roles/eyeontext.nix
     ];
 
     home = {
