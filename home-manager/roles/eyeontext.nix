@@ -1,6 +1,31 @@
 { pkgs, ... }:
 
-{
+let EOT_NAME = "eyeontext"; in {
+    programs.zsh = let EOT_ROOT = "$HOME/dev/${EOT_NAME}"; in {
+        initExtra = ''
+            # Add the root directory
+            mkdir -p ${EOT_ROOT}
+
+            # Add the code directory
+            mkdir -p ${EOT_ROOT}/code
+
+            # Add the secrets directory
+            if [ ! -d "${EOT_ROOT}/secrets" ] 
+            then
+                git clone git@gitlab.com:dgrine/${EOT_NAME}-secrets.git ${EOT_ROOT}/secrets
+            fi
+            source ${EOT_ROOT}/secrets/session.sh
+
+            # Add a tmux session
+            tmux new-session -d -s ${EOT_NAME} &> /dev/null
+        '';
+        shellAliases = {
+            eot-kubectl-dev = "AWS_SHARED_CREDENTIALS_FILE=${EOT_ROOT}/secrets/.aws/credentials kubectl -n ${EOT_NAME}-portal-dev";
+            eot-kubectl-uat = "AWS_SHARED_CREDENTIALS_FILE=${EOT_ROOT}/secrets/.aws/credentials kubectl -n ${EOT_NAME}-portal-uat";
+            eot-ssh-breachserver = "ssh djgr@44.206.52.68";
+            eot-sshfs-breachserver = "sudo mkdir -p /mnt/eot/breachserver; sudo sshfs -o debug,allow_other,IdentityFile=\${HOME}/.ssh/id_rsa,reconnect,ServerAliveInterval=15,ServerAliveCountMax=3 djgr@44.206.52.68:/ /mnt/eot/breachserver";
+        };
+    };
     home.packages = with pkgs; [
         (pkgs.writeShellScriptBin "eot-menv" ''
             python3 -m venv .venv
@@ -80,35 +105,4 @@
             fi
         '')
     ];
-
-    programs.zsh = let EOT_ROOT = "$HOME/dev/code/eot"; in {
-        initExtra = ''
-        # Add a root directory
-        mkdir -p ${EOT_ROOT}
-
-        # Add a tmux session
-        tmux new-session -d -s eot &> /dev/null
-        '';
-        shellAliases = {
-            eot-kubectl-uat = "kubectl -n eyeontext-portal";
-            eot-kubectl-dev = "kubectl -n eyeontext-portal-dev";
-            eot-ssh-breachserver = "ssh djgr@44.206.52.68";
-            eot-sshfs-breachserver = "sudo mkdir -p /mnt/eot/breachserver; sudo sshfs -o debug,allow_other,IdentityFile=\${HOME}/.ssh/id_rsa,reconnect,ServerAliveInterval=15,ServerAliveCountMax=3 djgr@44.206.52.68:/ /mnt/eot/breachserver";
-            #eot-ssh-breachserver-phforest = "ssh phforest@44.206.52.68 -i ${HOME}/dev/code/blackboard/docs/eyeontext/data/breachserver-phforest";
-            #eot-sshfs-breachserver-phforest = "sudo sshfs -o debug,allow_other,IdentityFile=/home/djamelg/.ssh/id_rsa,reconnect,ServerAliveInterval=15,ServerAliveCountMax=3,ssh_command = \"ssh -i \${HOME}/dev/code/blackboard/docs/eyeontext/data/breachserver-phforest\" phforest@44.206.52.68:/ /mnt/eot/breachserver";
-            #cdcode-eot = "cd ${EOT_ROOT}";
-            #cdbrext = "cd ${EOT_ROOT}/breach-extractor";
-            #cdportal-app = "cd ${EOT_ROOT}/comp-wowool-portal-app";
-            #cdportal-backend = "cd ${EOT_ROOT}/comp-wowool-portal-backend-py";
-            #cdportal-client = "cd ${EOT_ROOT}/comp-wowool-portal-client-py";
-            #cdportal-frontend = "cd ${EOT_ROOT}/comp-wowool-portal-frontend-js";
-            #cdportal-lxware = "cd ${EOT_ROOT}/comp-wowool-portal-lxware";
-            #cdportal-scraper = "cd ${EOT_ROOT}/comp-wowool-portal-scraper-py";
-            #cdportal-sdk = "cd ${EOT_ROOT}/comp-wowool-portal-sdk-py";
-            #cdcore-build = "cd ${EOT_ROOT}/core-build-py/";
-            #cdcore-utility = "cd ${EOT_ROOT}/core-utility-py/";
-            #cdcore-io = "cd ${EOT_ROOT}/core-io-py/";
-            #cdwowool-docs = "cd ${EOT_ROOT}/wowool-docs";
-        };
-    };
 }

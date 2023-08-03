@@ -9,16 +9,15 @@ My personal development configuration files for:
 * [vifm](https://vifm.info) — File manager with curses interface providing a Vim-like environment 
 * [zsh](https://zsh.sourceforge.io) — Shell designed for interactive use
 
-The configurations are maintained for Ubuntu (22.04 LTS), Manjaro and macOS (Ventura, Big Sur),
-but should work on any other Linux or macOS system.
+The configurations are maintained using Nix with Home Manager and are actively tested on Ubuntu (22.04 LTS), 
+Manjaro and macOS (Ventura, Big Sur), but should work on any other Linux or macOS system.
 
 ![Example of Neovim, Vifm and zsh running inside a Tmux session within Alacritty](screenshot.png)
 
 ## Features
 
 The configuration files provide a modern _terminal-only_ development environment
-that is heavily focused on _vim-style_ navigation, command line editing, and
-programming.
+that is heavily focused on _vim-style_ navigation with minimal mouse usage.
 
 * Alacritty
 
@@ -67,7 +66,8 @@ programming.
 ## Dependencies
 
 * [Git](https://git-scm.com) — Distributed version control system 
-* [GNU Stow](https://www.gnu.org/software/stow/) — Symlink farm manager
+* [Home Manager](https://github.com/nix-community/home-manager) — Declarative configuration management using Nix
+* [Nix](https://nixos.org/) — Package manager focusing on reproducible, declarative and reliable builds
 
 And of course the software related to the configuration packages of interest.
 
@@ -76,19 +76,9 @@ And of course the software related to the configuration packages of interest.
 ```
 git clone git@gitlab.com:dgrine/dotfiles.git ~/dotfiles
 cd ~/dotfiles
-./install.sh
+./install-nix.sh
+./install-home-manager.sh
 ```
-
-To install the configuration for a specific package use `./install.sh <package>`
-
-## Uninstall
-
-```
-cd ~/dotfiles
-./uninstall.sh
-```
-
-To uninstall the configuration for a specific package use `./uninstall.sh <package>`
 
 ## Recommended Software
 
