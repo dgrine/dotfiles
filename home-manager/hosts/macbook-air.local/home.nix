@@ -4,13 +4,14 @@
     imports = [
         ../../programs/alacritty/alacritty.nix
         ../../programs/bat/bat.nix
-        ../../programs/git/git.nix
         ../../programs/btop/btop.nix
         ../../programs/fzf/fzf.nix
+        ../../programs/git/git.nix
         ../../programs/neofetch/neofetch.nix
         ../../programs/neovim/neovim.nix
         ../../programs/python3/python3.nix
         ../../programs/ripgrep/ripgrep.nix
+        ../../programs/tldr/tldr.nix
         ../../programs/tmux/tmux.nix
         ../../programs/vifm/vifm.nix
         ../../programs/zoxide/zoxide.nix

@@ -5,8 +5,7 @@
         enable = true;
         enableAutosuggestions = true;
         initExtra = ''
-        mkdir -p $HOME/dev/code/
-        mkdir -p $HOME/dev/tmp/
+            mkdir -p $HOME/dev/tmp/
         '';
         shellAliases = import ../shellAliases.nix;
         oh-my-zsh = {
