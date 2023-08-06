@@ -8,9 +8,10 @@ My personal development configuration files for:
 * [tmux](https://github.com/tmux/tmux/wiki) — Terminal multiplexer
 * [vifm](https://vifm.info) — File manager with curses interface providing a Vim-like environment 
 * [zsh](https://zsh.sourceforge.io) — Shell designed for interactive use
+* ...
 
-The configurations are maintained using Nix with Home Manager and are actively tested on Ubuntu (22.04 LTS), 
-Manjaro and macOS (Ventura, Big Sur), but should work on any other Linux or macOS system.
+The configurations are maintained using [Nix](https://nixos.org/) with [Home Manager](https://github.com/nix-community/home-manager) and are actively tested on Ubuntu (22.04 LTS, 23.04), 
+Manjaro and macOS (Big Sur, Ventura), but should work on any other Linux or macOS system.
 
 ![Example of Neovim, Vifm and zsh running inside a Tmux session within Alacritty](screenshot.png)
 
@@ -59,6 +60,7 @@ that is heavily focused on _vim-style_ navigation with minimal mouse usage.
     * Improved navigation using [fzf](https://github.com/junegunn/fzf)
 
         * Optional preview using [bat](https://github.com/sharkdp/bat)
+        * Directory switching with [zoxide](https://github.com/ajeetdsouza/zoxide)
 
     * Extensibility via `~/.zshrc_local`
 
@@ -67,7 +69,7 @@ that is heavily focused on _vim-style_ navigation with minimal mouse usage.
 
 * [Git](https://git-scm.com) — Distributed version control system 
 * [Home Manager](https://github.com/nix-community/home-manager) — Declarative configuration management using Nix
-* [Nix](https://nixos.org/) — Package manager focusing on reproducible, declarative and reliable builds
+* [Nix](https://nixos.org/) — Package manager for declarative, reproducible builds
 
 And of course the software related to the configuration packages of interest.
 
@@ -80,7 +82,7 @@ cd ~/dotfiles
 ./install-home-manager.sh
 ```
 
-## Recommended Software
+The following program configurations are managed:
 
 * [alacritty](https://github.com/alacritty/alacritty) — Fast, cross-platform OpenGL terminal emulator
 * [bat](https://github.com/sharkdp/bat) — Cat clone with syntax highlighting and Git integration
@@ -105,8 +107,6 @@ cd ~/dotfiles
 * [tldr](https://tldr.sh/) — Simplified and community-driven man pages
 * [tmux](https://github.com/tmux/tmux/wiki) — Terminal multiplexer
 * [vifm](https://vifm.info) — File manager with curses interface providing a Vim-like environment 
+* [zoxide](https://github.com/ajeetdsouza/zoxide) — Smarter `cd` command
 * [zsh](https://zsh.sourceforge.io) — Shell designed for interactive use
-
-.. note:: For Debian based Linux distributions, you can use the `./install-tools.sh`
-script to install (many of) the tools.
 
