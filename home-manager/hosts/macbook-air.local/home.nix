@@ -7,6 +7,7 @@
         ../../programs/btop/btop.nix
         ../../programs/fzf/fzf.nix
         ../../programs/git/git.nix
+        ../../programs/macos/upgrades.nix
         ../../programs/neofetch/neofetch.nix
         ../../programs/neovim/neovim.nix
         ../../programs/python3/python3.nix
