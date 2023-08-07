@@ -6,7 +6,7 @@
         enableZshIntegration = true;
     };
     programs.zsh.initExtra = ''
-        # Ctrl + P to launch Zoxide
+        # Ctrl + p to launch Zoxide
         function launch_zi () {
             __zoxide_zi
             zle reset-prompt
