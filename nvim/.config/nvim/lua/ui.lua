@@ -1,7 +1,7 @@
 vim.opt.background = "dark"
 vim.opt.colorcolumn = "80"
 vim.opt.cursorline = true
-vim.opt.guifont = "Hack Nerd Font:9"
+vim.opt.guifont = "UbuntuMono Nerd Font:9"
 vim.opt.hidden = true
 vim.opt.laststatus = 2
 vim.opt.mouse = "a"

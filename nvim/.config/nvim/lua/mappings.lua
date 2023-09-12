@@ -78,6 +78,7 @@ local mappings = {
     ["N"] = { ":call WordNavigation(0)<CR>", "Previous marked word" },
     ["w"] = { ":set wrap!<CR>", "Toggle wrapping" },
     ["i"] = { ":IndentBlanklineToggle<CR>", "Toggle visual indentation" },
+    ["s"] = { "<Plug>SlimeSendCell", "Send code cell to REPL" },
 
     ["<Leader>"] = { "<Cmd>WhichKey<CR>", "Show all mappings" },
 }
