@@ -6,5 +6,7 @@
     cmd = meld $LOCAL $REMOTE &> /dev/null
 [difftool "icdiff"]
 	cmd =icdiff --highlight --line-numbers $LOCAL $REMOTE
+[difftool "compare"]
+	cmd =compare $LOCAL $REMOTE
 [merge]
 	tool = meld
