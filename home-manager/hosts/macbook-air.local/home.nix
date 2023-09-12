@@ -2,21 +2,10 @@
 
 {
     imports = [
-        ../../programs/alacritty/alacritty.nix
-        ../../programs/bat/bat.nix
-        ../../programs/btop/btop.nix
-        ../../programs/fzf/fzf.nix
-        ../../programs/git/git.nix
+        ../../programs/araxis-merge/araxis-merge.nix
+        ../../programs/base.nix
+        ../../programs/macos/stree.nix
         ../../programs/macos/upgrades.nix
-        ../../programs/neofetch/neofetch.nix
-        ../../programs/neovim/neovim.nix
-        ../../programs/python3/python3.nix
-        ../../programs/ripgrep/ripgrep.nix
-        ../../programs/tldr/tldr.nix
-        ../../programs/tmux/tmux.nix
-        ../../programs/vifm/vifm.nix
-        ../../programs/zoxide/zoxide.nix
-        ../../programs/zsh/zsh.nix
         ../../roles/blackboard.nix
         ../../roles/eyeontext.nix
     ];

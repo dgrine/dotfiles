@@ -1,6 +1,12 @@
 { pkgs, ... }:
 
 let EOT_NAME = "eyeontext"; in {
+    imports = [
+        ../programs/aws/aws.nix
+        ../programs/kubectl/kubectl.nix
+        ../programs/nodejs/nodejs.nix
+    ];
+
     programs.zsh = let EOT_ROOT = "$HOME/dev/${EOT_NAME}"; in {
         initExtra = ''
             # Add the root directory
@@ -27,15 +33,16 @@ let EOT_NAME = "eyeontext"; in {
         '';
         shellAliases = {
             eot-kubectl-dev = "AWS_SHARED_CREDENTIALS_FILE=${EOT_ROOT}/secrets/.aws/credentials kubectl -n ${EOT_NAME}-portal-dev";
-            eot-kubectl-uat = "AWS_SHARED_CREDENTIALS_FILE=${EOT_ROOT}/secrets/.aws/credentials kubectl -n ${EOT_NAME}-portal-uat";
-            eot-ssh-breachserver = "ssh djgr@44.206.52.68";
-            eot-sshfs-breachserver = "sudo mkdir -p /mnt/eot/breachserver; sudo sshfs -o debug,allow_other,IdentityFile=\${HOME}/.ssh/id_rsa,reconnect,ServerAliveInterval=15,ServerAliveCountMax=3 djgr@44.206.52.68:/ /mnt/eot/breachserver";
+            eot-kubectl-uat = "AWS_SHARED_CREDENTIALS_FILE=${EOT_ROOT}/secrets/.aws/credentials kubectl -n ${EOT_NAME}-portal";
+            eot-ssh-breachserver = "ssh -i ${EOT_ROOT}/secrets/.ssh/id_rsa-breach-server djgr@44.206.52.68";
+            eot-sshfs-breachserver = "sudo sshfs -o debug,allow_other,IdentityFile=${EOT_ROOT}/secrets/.ssh/id_rsa-breach-server,reconnect,ServerAliveInterval=15,ServerAliveCountMax=3 djgr@44.206.52.68:/ /Volumes/EyeOnID/Breaches/";
         };
         profileExtra = ''
             function eot-menv() {
                 python3 -m venv .venv
                 senv
                 pip3 config set global.extra-index-url https://$EOT_NEXUS_USERNAME:$EOT_NEXUS_PASSWORD_ENCODED@repo.eyeontext.com/repository/eyeontext-pypi/simple --site
+                pip3 install --upgrade pip
             }
 
             function eot-menv-release() {
