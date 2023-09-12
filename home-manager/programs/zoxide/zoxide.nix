@@ -12,6 +12,6 @@
             zle reset-prompt
         }
         zle -N launch_zi
-        bindkey '^P' launch_zi
+        bindkey '^p' launch_zi
     '';
 }

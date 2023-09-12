@@ -10,7 +10,12 @@
         ];
     };
 
-    home.packages = with pkgs; [
-        fzf
-    ];
+    home = {
+        packages = with pkgs; [
+            fzf
+        ];
+        sessionVariables = {
+            "FZF_DEFAULT_OPTS" = "--bind alt-j:down,alt-k:up";
+        };
+    };
 }

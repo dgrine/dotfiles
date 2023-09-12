@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, lib, ... }:
 
 {
     programs.zsh = {
@@ -11,17 +11,18 @@
         oh-my-zsh = {
             enable = true;
             plugins = [
-                "docker"
-                "git"
-                "kubectl"
-                "npm"
-                "pip"
-                "python"
                 "vi-mode"
                 "z"
             ];
             theme = "gianu";
         };
+
+        # TODO: Work-around for the fact that zsh does not work well with PATH
+        # changes
+        # See https://github.com/nix-community/home-manager/issues/2991
+        profileExtra = lib.optionalString (config.home.sessionPath != [ ]) ''
+            export PATH="$PATH''${PATH:+:}${lib.concatStringsSep ":" config.home.sessionPath}"
+        '';
     };
 
     home.packages = with pkgs; [

@@ -1,18 +1,21 @@
 { pkgs, ... }:
 
 {
-    programs.git = {
-        enable = true;
-    };
-    programs.zsh.shellAliases = {
-        gdt = "git difftool";
-        gdtui = "git difftool --tool meld";
-    };
     home = {
         file.".gitconfig".source = ../../../git/.gitconfig;
         packages = with pkgs; [
             icdiff
-            meld
         ];
+    };
+    programs = {
+        git = {
+            enable = true;
+        };
+        zsh = {
+            shellAliases = {
+                gdt = "git difftool";
+            };
+            oh-my-zsh.plugins = ["git"];
+        };
     };
 }
