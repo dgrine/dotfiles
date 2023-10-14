@@ -1,0 +1,23 @@
+{ pkgs, ... }:
+
+let ARCOLE_NAME = "arcole"; in {
+    imports = [
+        ../programs/ccls/ccls.nix
+        ../programs/cmake/cmake.nix
+        # ../programs/valgrind/valgrind.nix
+    ];
+
+    programs.zsh = let NEXTSTEP_ROOT = "$HOME/dev/${ARCOLE_NAME}"; in {
+        initExtra = ''
+            # Add the root directory
+            mkdir -p ${NEXTSTEP_ROOT}
+
+            # Add the code directory
+            mkdir -p ${NEXTSTEP_ROOT}/code
+
+            # Add a tmux session
+            tmux new-session -d -s ${ARCOLE_NAME} &> /dev/null
+        '';
+    };
+}
+

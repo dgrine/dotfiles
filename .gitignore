@@ -5,3 +5,4 @@ vifm/.config/vifm/vifminfo.json
 tmux/.tmux/plugins
 packer_compiled.lua
 .DS_Store
+.git

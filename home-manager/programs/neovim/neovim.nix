@@ -1,11 +1,16 @@
 { pkgs, ... }:
 
 {
-    programs.neovim = {
-        enable = true;
-        defaultEditor = true;
-        coc = {
+    programs = {
+        neovim = {
             enable = true;
+            defaultEditor = true;
+            coc = {
+                enable = true;
+            };
+        };
+        zsh.shellAliases = {
+            e = "nvim";
         };
     };
 

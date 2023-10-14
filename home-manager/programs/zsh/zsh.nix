@@ -7,7 +7,6 @@
         initExtra = ''
             mkdir -p $HOME/dev/tmp/
         '';
-        shellAliases = import ../shellAliases.nix;
         oh-my-zsh = {
             enable = true;
             plugins = [

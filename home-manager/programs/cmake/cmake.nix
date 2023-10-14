@@ -2,7 +2,8 @@
 
 {
     home.packages = with pkgs; [
-        pandoc
-        texlive.combined.scheme-basic
+        cmake
+        cmake-format
     ];
 }
+

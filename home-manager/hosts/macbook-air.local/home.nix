@@ -6,6 +6,7 @@
         ../../programs/base.nix
         ../../programs/macos/stree.nix
         ../../programs/macos/upgrades.nix
+        ../../roles/arcole.nix
         ../../roles/blackboard.nix
         ../../roles/eyeontext.nix
     ];
