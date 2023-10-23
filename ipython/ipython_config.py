@@ -601,7 +601,7 @@ c = get_config()  # noqa
 #  Control-Z/Enter in Windows). By typing 'exit' or 'quit', you can force a
 #  direct exit without any confirmation.
 #  Default: True
-# c.TerminalInteractiveShell.confirm_exit = True
+c.TerminalInteractiveShell.confirm_exit = False
 
 #  See also: InteractiveShell.debug
 # c.TerminalInteractiveShell.debug = False
@@ -635,7 +635,7 @@ c.TerminalInteractiveShell.editor = "nvim"
 
 ## Add shortcuts from 'emacs' insert mode to 'vi' insert mode.
 #  Default: True
-# c.TerminalInteractiveShell.emacs_bindings_in_vi_insert_mode = True
+c.TerminalInteractiveShell.emacs_bindings_in_vi_insert_mode = False
 
 ## Allows to enable/disable the prompt toolkit history search
 #  Default: True
