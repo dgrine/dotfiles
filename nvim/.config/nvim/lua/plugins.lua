@@ -183,7 +183,7 @@ autocmd BufFilePost *.cpp,*.h,*.hpp :lua vim.api.nvim_buf_set_option(0, "comment
             require("nvim-tree").setup({
                 sort_by = "case_sensitive",
                 view = {
-                    width = 40,
+                    width = 60,
                 },
                 renderer = {
                     group_empty = true,
@@ -281,15 +281,16 @@ autocmd BufFilePost *.cpp,*.h,*.hpp :lua vim.api.nvim_buf_set_option(0, "comment
     }
 
     -- Snippets, works best if you add coc-snippets too
-    -- use {
-    --     "SirVer/ultisnips",
-    --     config = function()
-    --         vim.g.UltiSnipsExpandTrigger="<tab>"
-    --         vim.g.UltiSnipsJumpForwardTrigger="<c-b>"
-    --         vim.g.UltiSnipsJumpBackwardTrigger="<c-z>"
-    --     end
-    -- }
-    use "honza/vim-snippets"
+    use {
+        "SirVer/ultisnips",
+        config = function()
+            vim.g.UltiSnipsExpandTrigger="<c-j>"
+            vim.g.UltiSnipsJumpForwardTrigger="<c-l>"
+            vim.g.UltiSnipsJumpBackwardTrigger="<c-h>"
+            vim.g.UltiSnipsSnippetDirectories={"~/.config/nvim/UltiSnips"}
+        end
+    }
+    -- use "honza/vim-snippets"
     
     -- Treesitter
     use {
