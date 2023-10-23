@@ -9,6 +9,7 @@
         ./ghostscript/ghostscript.nix
         ./git/git.nix
         ./gnu-sed/gnu-sed.nix
+        ./jq/jq.nix
         ./neofetch/neofetch.nix
         ./neovim/neovim.nix
         ./pandoc/pandoc.nix
