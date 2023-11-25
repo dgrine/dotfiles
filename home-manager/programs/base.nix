@@ -6,13 +6,12 @@
         ./bat/bat.nix
         ./btop/btop.nix
         ./fzf/fzf.nix
-        ./ghostscript/ghostscript.nix
         ./git/git.nix
         ./gnu-sed/gnu-sed.nix
         ./jq/jq.nix
         ./neofetch/neofetch.nix
         ./neovim/neovim.nix
-        ./pandoc/pandoc.nix
+        ./latex/latex.nix
         ./python3/python3.nix
         ./readline/readline.nix
         ./ripgrep/ripgrep.nix

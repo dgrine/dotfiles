@@ -5,6 +5,10 @@ $0
 #endif
 endsnippet
 
+snippet #ia "Include Arcole header" b
+#include <arcole/${1:header}$0
+endsnippet
+
 snippet nsa "Namespace" b
 namespace arcole::${1:namespace} {
 $0
@@ -39,6 +43,10 @@ SUBCASE("${1:description}") {
 }
 endsnippet
 
+snippet REQ "REQUIRE_EQ" b
+REQUIRE_EQ(${1:lhs}, ${2:rhs});
+endsnippet
+
 snippet class "Class" b
 class ${1:name} {
 public:
@@ -52,6 +60,4 @@ struct ${1:name} {
 };
 endsnippet
 
-snippet REQ "REQUIRE_EQ" b
-REQUIRE_EQ(${1:lhs}, ${2:rhs});
-endsnippet
+

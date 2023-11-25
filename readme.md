@@ -95,6 +95,7 @@ The following program configurations are managed:
         * [coc-json](https://github.com/neoclide/coc-json) — JSON
         * [coc-prettier](https://github.com/neoclide/coc-prettier) — HTML
         * [coc-pyright](https://github.com/fannheyward/coc-pyright) — Python
+        * [coc-texlab](https://github.com/fannheyward/coc-texlab)  — LaTeX
         * [coc-tsserver](https://github.com/neoclide/coc-tsserver) — TypeScript and JavaScript
 
 * [exa](https://github.com/ogham/exa) — Modern replacement for `ls`

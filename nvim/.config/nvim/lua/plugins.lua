@@ -397,6 +397,17 @@ autocmd BufFilePost *.cpp,*.h,*.hpp :lua vim.api.nvim_buf_set_option(0, "comment
             vim.cmd 'let g:slime_cell_delimiter = "#%%"'
         end
     }
+
+    -- LateX
+    use {
+        "lervag/vimtex",
+        config = function()
+            vim.g.vimtex_view_method = "zathura"
+            vim.g.vimtex_compiler_method = "latexrun"
+            -- Support for Pygments (colored code)
+            vim.g.vimtex_compiler_latexrun = { options = { "--latex-args='--shell-escape'" } }
+        end
+    }
       
     -- Theme
     use "sainnhe/sonokai"

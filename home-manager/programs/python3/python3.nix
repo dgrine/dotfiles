@@ -5,6 +5,7 @@
         file.".ipython/profile_default/ipython_config.py".source = ../../../ipython/ipython_config.py;
         packages = with pkgs; [
             python311
+            python311Packages.pygments
         ];
     };
     programs.zsh = {

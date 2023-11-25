@@ -1,0 +1,282 @@
+snippet chapter "Chapter" b
+\chapter{$1}
+
+$0
+endsnippet
+
+snippet sec "Section" b
+\section{$1}
+
+$0
+endsnippet
+
+snippet sub "Subsection" b
+\subsection{$1}
+
+$0
+endsnippet
+
+snippet subsub "Subsubsection" b
+\subsubsection{$1}
+
+$0
+endsnippet
+
+snippet label "Label" 
+\label{$1}$0
+endsnippet
+
+snippet ref "Reference" 
+\ref{$1}$0
+endsnippet
+
+snippet items "Items list" b
+\begin{itemize}
+	\item $0
+\end{itemize}
+endsnippet
+
+snippet enum "Enumerated list" b
+\begin{enumerate}
+	\item $0
+\end{enumerate}
+endsnippet
+
+snippet item "Item" b
+\item $0
+endsnippet
+
+snippet ci "Code inline" 
+\mintinline{c}{$1}$0
+endsnippet
+
+snippet cb "Code block" b
+\begin{listing}
+    \begin{minted}{Python}
+        $1
+    \end{minted}
+    \caption{$2}
+	\label{$3}
+\end{listing}
+
+$0
+endsnippet
+
+snippet ldots "Lower dots" 
+\ldots$0
+endsnippet
+
+snippet fig "Figure" b
+\begin{figure}[ht]
+    \begin{center}
+        \includegraphics{$1}
+    \end{center}
+    \caption{$2}
+	\label{$3}
+\end{figure}
+
+$0
+endsnippet
+
+snippet eq "Equation" b
+\begin{equation}
+    $0
+\end{equation}
+endsnippet
+
+snippet eqc "Equation with cases" b
+\begin{equation}
+\begin{cases}
+    $0
+\end{cases}
+\end{equation}
+endsnippet
+
+snippet eqs "Equation with split" b
+\begin{equation}
+\begin{split}
+    $0
+\end{split}
+\end{equation}
+endsnippet
+
+snippet eqat "Equation with align" b
+\begin{equation}
+\begin{alignat}{2}
+    $0
+\end{alignat}
+\end{equation}
+endsnippet
+
+snippet eqa "Equation with alignment" b
+\begin{align}
+    $0
+\end{align}
+endsnippet
+
+snippet mat "Matrix" b
+\begin{pmatrix}
+    $0
+\end{pmatrix}
+endsnippet
+
+snippet im "Inline math" 
+\$ $1 \$$0
+endsnippet
+
+snippet frac "Fraction" 
+\frac{ $1 }{ $2 } $0
+endsnippet
+
+snippet sfrac "Diagonal fraction" 
+\sfrac{ $1 }{ $2 } $0
+endsnippet
+
+snippet 1ov "Fraction 1/..."
+\frac{1}{ $1 } $0
+endsnippet
+
+snippet 1ov2 "Fraction 1/2"
+\frac{1}{2} $0
+endsnippet
+
+snippet s1ov "Diagonal fraction 1/..."
+\sfrac{1}{ $1 } $0
+endsnippet
+
+snippet mbf "Math-mode bold-face"
+\mathbf{ $1 } $0
+endsnippet
+
+snippet tbf "Text-mode bold-face"
+\textbf{$1}$0
+endsnippet
+
+snippet text "Text within Math-mode"
+\text{ $1 } $0
+endsnippet
+
+snippet it "Italic text"
+\textit{$1}$0
+endsnippet
+
+snippet lra "Left-right arrow"
+\Leftrightarrow $0
+endsnippet
+
+snippet bigl "Big ()"
+\Bigl( $1 \Bigr) $0
+endsnippet
+
+snippet exp "Exponential"
+e^{ $1 } $0
+endsnippet
+
+snippet expf "Exponential as function"
+\exp( $1 ) $0
+endsnippet
+
+snippet ln "Natural logarithm"
+\ln( $1 ) $0
+endsnippet
+
+snippet sin "Sine"
+\sin( $1 ) $0
+endsnippet
+
+snippet cos "Cosine"
+\cos( $1 ) $0
+endsnippet
+
+snippet sqrt "Square root"
+\sqrt{ $1 } $0
+endsnippet
+
+snippet sum "Sum"
+\sum_{ $1 }^{ $2 } $0
+endsnippet
+
+snippet laplace "Laplace transform symbol"
+\mathcal{L}\{ $1 \} $0
+endsnippet
+
+snippet laplaceinv "Laplace inverse transform symbol"
+\mathcal{L}^{-1}\{ $1 \} $0
+endsnippet
+
+snippet laplacefs "Laplace F(s)"
+\mathcal{F}(s) $0
+endsnippet
+
+snippet Dx "Delta x" 
+\Delta x $0
+endsnippet
+
+snippet Dt "Delta t" 
+\Delta t $0
+endsnippet
+
+snippet dx "Derivative dx" 
+\mathrm{dx} $0
+endsnippet
+
+snippet dy "Derivative dy" 
+\mathrm{dy} $0
+endsnippet
+
+snippet dt "Derivative dt" 
+\mathrm{dt} $0
+endsnippet
+
+snippet ddx "Derivative d/dx" 
+\frac{\mathrm{d}}{\mathrm{dx}} $0
+endsnippet
+
+snippet ddt "Derivative d/dt" 
+\frac{\mathrm{d}}{\mathrm{dt}} $0
+endsnippet
+
+snippet dydx "Derivative dy/dx" 
+\frac{\mathrm{d}}{\mathrm{dx}}y $0
+endsnippet
+
+snippet dydt "Derivative dy/dt" 
+\frac{\mathrm{d}}{\mathrm{dt}}y $0
+endsnippet
+
+snippet dxdt "Derivative dx/dt" 
+\frac{\mathrm{d}}{\mathrm{dt}}x $0
+endsnippet
+
+snippet dydx2 "Derivative 2nd order d^2y/dx^2" 
+\frac{\mathrm{d^2}}{\mathrm{dx}^2}y $0
+endsnippet
+
+snippet dydt2 "Derivative 2nd order d^2y/dt^2" 
+\frac{\mathrm{d^2}}{\mathrm{dt}^2}y $0
+endsnippet
+
+snippet dxdt2 "Derivative 2nd order d^2x/dt^2" 
+\frac{\mathrm{d^2}}{\mathrm{dt}^2}x $0
+endsnippet
+
+snippet ddxp "Partial derivative d/dx" 
+\frac{\mathrm{\delta}}{\mathrm{\delta x}} $0
+endsnippet
+
+snippet xn "x_n" 
+x_n $0
+endsnippet
+
+snippet yn "y_n" 
+y_n $0
+endsnippet
+
+snippet xnp1 "x_{n+1}" 
+x_{n+1} $0
+endsnippet
+
+snippet ynp1 "y_{n+1}" 
+y_{n+1} $0
+endsnippet
+
