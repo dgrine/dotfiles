@@ -1,21 +1,25 @@
-snippet #ifndef "Head include guard" b
+snippet ifn "Header include guard" b
 #ifndef HEADER_arcole_${1:namespace}_hpp_INCLUDE_GUARD
 #define HEADER_arcole_$1_hpp_INCLUDE_GUARD
+
 $0
+
 #endif
 endsnippet
 
-snippet #ia "Include Arcole header" b
+snippet ia "Include Arcole header" b
 #include <arcole/${1:header}$0
 endsnippet
 
 snippet nsa "Namespace" b
 namespace arcole::${1:namespace} {
+
 $0
+
 }
 endsnippet
 
-snippet MSS_BEGIN "MSS_BEGIN" b
+snippet MSSB "MSS_BEGIN" b
 MSS_BEGIN(bool);
 $0
 MSS_END();
@@ -31,13 +35,13 @@ for (auto ${1:idx} = 0u; $1 < ${2:count}; ++$1) {
 }
 endsnippet
 
-snippet TEST_CASE "Test Case for DocTest" b
+snippet TC "Test Case for DocTest" b
 TEST_CASE("arcole::${1:tag}") {
     $0
 }
 endsnippet
 
-snippet SUBCASE "Subcase for DocTest" b
+snippet SC "Subcase for DocTest" b
 SUBCASE("${1:description}") {
     $0
 }
@@ -47,14 +51,17 @@ snippet REQ "REQUIRE_EQ" b
 REQUIRE_EQ(${1:lhs}, ${2:rhs});
 endsnippet
 
-snippet class "Class" b
+snippet cls "Class" b
 class ${1:name} {
 public:
     explicit $1($0) {}
+
+private:
+
 };
 endsnippet
 
-snippet struct "Struct" b
+snippet str "Struct" b
 struct ${1:name} {
     $0
 };

@@ -1,4 +1,4 @@
-snippet chapter "Chapter" b
+snippet chap "Chapter" b
 \chapter{$1}
 
 $0
@@ -78,46 +78,46 @@ snippet fig "Figure" b
 $0
 endsnippet
 
-snippet eq "Equation" b
+snippet neq "Numbered equation with alignment" b
+\begin{align}
+    $1
+\end{align}
+
+$0
+endsnippet
+
+snippet neqc "Numbered equation with cases" b
 \begin{equation}
-    $0
+\begin{cases}
+    $1
+\end{cases}
 \end{equation}
+
+$0
+endsnippet
+
+snippet eq "Equation with alignment" b
+\begin{align*}
+    $1
+\end{align*}
+
+$0
 endsnippet
 
 snippet eqc "Equation with cases" b
-\begin{equation}
+\begin{equation*}
 \begin{cases}
-    $0
+    $1
 \end{cases}
-\end{equation}
+\end{equation*}
+
+$0
 endsnippet
 
-snippet eqs "Equation with split" b
-\begin{equation}
-\begin{split}
-    $0
-\end{split}
-\end{equation}
-endsnippet
-
-snippet eqat "Equation with align" b
-\begin{equation}
-\begin{alignat}{2}
-    $0
-\end{alignat}
-\end{equation}
-endsnippet
-
-snippet eqa "Equation with alignment" b
-\begin{align}
-    $0
-\end{align}
-endsnippet
-
-snippet mat "Matrix" b
+snippet mat "Matrix" 
 \begin{pmatrix}
-    $0
-\end{pmatrix}
+    $1
+\end{pmatrix} $0
 endsnippet
 
 snippet im "Inline math" 
@@ -153,7 +153,7 @@ snippet tbf "Text-mode bold-face"
 endsnippet
 
 snippet text "Text within Math-mode"
-\text{ $1 } $0
+\text{$1} $0
 endsnippet
 
 snippet it "Italic text"
@@ -194,6 +194,18 @@ endsnippet
 
 snippet sum "Sum"
 \sum_{ $1 }^{ $2 } $0
+endsnippet
+
+snippet int "Integral"
+\int_{ $1 }^{ $2 } $0
+endsnippet
+
+snippet ul "Underline"
+\underline{ $1 } $0
+endsnippet
+
+snippet ol "Overline"
+\overline{ $1 } $0
 endsnippet
 
 snippet laplace "Laplace transform symbol"
@@ -280,3 +292,8 @@ snippet ynp1 "y_{n+1}"
 y_{n+1} $0
 endsnippet
 
+snippet example "Example" b
+\subsubsection{Example}
+
+$0
+endsnippet
