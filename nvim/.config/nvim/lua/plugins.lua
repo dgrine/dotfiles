@@ -198,7 +198,7 @@ autocmd BufFilePost *.cpp,*.h,*.hpp :lua vim.api.nvim_buf_set_option(0, "comment
     -- Telescope
     use {
         "nvim-telescope/telescope.nvim",
-        tag = "0.1.0",
+        tag = "0.1.4",
         requires = { {"nvim-lua/plenary.nvim", "BurntSushi/ripgrep", "nvim-telescope/telescope-fzf-native.nvim"} }
     }
     
