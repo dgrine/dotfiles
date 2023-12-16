@@ -9,6 +9,7 @@
         ../../roles/arcole.nix
         ../../roles/blackboard.nix
         ../../roles/eyeontext.nix
+        ../../roles/wowooltech.nix
     ];
 
     home = {

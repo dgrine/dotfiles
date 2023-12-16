@@ -7,13 +7,13 @@ let ARCOLE_NAME = "arcole"; in {
         # ../programs/valgrind/valgrind.nix
     ];
 
-    programs.zsh = let NEXTSTEP_ROOT = "$HOME/dev/${ARCOLE_NAME}"; in {
+    programs.zsh = let ARCOLE_ROOT = "$HOME/dev/${ARCOLE_NAME}"; in {
         initExtra = ''
             # Add the root directory
-            mkdir -p ${NEXTSTEP_ROOT}
+            mkdir -p ${ARCOLE_ROOT}
 
             # Add the code directory
-            mkdir -p ${NEXTSTEP_ROOT}/code
+            mkdir -p ${ARCOLE_ROOT}/code
 
             # Add a tmux session
             tmux new-session -d -s ${ARCOLE_NAME} &> /dev/null

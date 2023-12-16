@@ -35,19 +35,36 @@ for (auto ${1:idx} = 0u; $1 < ${2:count}; ++$1) {
 }
 endsnippet
 
-snippet TC "Test Case for DocTest" b
+snippet test "Test File for DocTest" b
+#include <arcole/${1:header}
+
+#include <doctest.h>
+
+using namespace arcole;
+using namespace arcole::${2:namespace}
+
+TEST_CASE("arcole::${3:tag}") {
+    $0
+}
+endsnippet
+
+snippet tc "Test Case for DocTest" b
 TEST_CASE("arcole::${1:tag}") {
     $0
 }
 endsnippet
 
-snippet SC "Subcase for DocTest" b
+snippet sc "Subcase for DocTest" b
 SUBCASE("${1:description}") {
     $0
 }
 endsnippet
 
-snippet REQ "REQUIRE_EQ" b
+snippet req "REQUIRE"
+REQUIRE(${1:expr});
+endsnippet
+
+snippet eq "REQUIRE_EQ"
 REQUIRE_EQ(${1:lhs}, ${2:rhs});
 endsnippet
 

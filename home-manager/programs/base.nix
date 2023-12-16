@@ -9,9 +9,9 @@
         ./git/git.nix
         ./gnu-sed/gnu-sed.nix
         ./jq/jq.nix
+        ./latex/latex.nix
         ./neofetch/neofetch.nix
         ./neovim/neovim.nix
-        ./latex/latex.nix
         ./python3/python3.nix
         ./readline/readline.nix
         ./ripgrep/ripgrep.nix
