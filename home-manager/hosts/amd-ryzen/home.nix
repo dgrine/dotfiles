@@ -2,18 +2,9 @@
 
 {
     imports = [
-        ../../programs/alacritty/alacritty-native.nix
-        ../../programs/btop/btop.nix
-        ../../programs/fzf/fzf.nix
-        ../../programs/neofetch/neofetch.nix
-        ../../programs/neovim/neovim.nix
-        ../../programs/ripgrep/ripgrep.nix
-        ../../programs/tmux/tmux.nix
-        ../../programs/vifm/vifm.nix
-        ../../programs/zoxide/zoxide.nix
-        ../../programs/zsh/zsh.nix
-        ../../roles/blackboard.nix
-        ../../roles/eot.nix
+        ../../programs/base.nix
+        ../../programs/imhex/imhex.nix
+        ../../roles/arcole.nix
     ];
 
     home = {
