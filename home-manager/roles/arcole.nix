@@ -4,7 +4,6 @@ let ARCOLE_NAME = "arcole"; in {
     imports = [
         ../programs/ccls/ccls.nix
         ../programs/cmake/cmake.nix
-        # ../programs/valgrind/valgrind.nix
     ];
 
     programs.zsh = let ARCOLE_ROOT = "$HOME/dev/${ARCOLE_NAME}"; in {
