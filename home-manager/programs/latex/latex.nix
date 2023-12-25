@@ -2,7 +2,7 @@
 
 {
     imports = [
-        ../zathura/zathura.nix
+#        ../zathura/zathura.nix
     ];
 
     home.packages = with pkgs; [
