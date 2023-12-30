@@ -2,6 +2,7 @@
 
 {
     imports = [
+        ../../programs/alacritty/alacritty.nix
         ../../programs/bat/bat.nix
         ../../programs/btop/btop.nix
         ../../programs/fzf/fzf.nix

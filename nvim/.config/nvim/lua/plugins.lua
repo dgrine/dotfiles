@@ -412,7 +412,13 @@ autocmd BufFilePost *.cpp,*.h,*.hpp :lua vim.api.nvim_buf_set_option(0, "comment
             -- vim.g.vimtex_compiler_latexrun = { options = { "--latex-args='--shell-escape'" } }
         end
     }
-      
+
+    
+    -- GitHub CoPilot
+    use {
+        "github/copilot.vim"
+    }
+
     -- Theme
     use "sainnhe/sonokai"
     
