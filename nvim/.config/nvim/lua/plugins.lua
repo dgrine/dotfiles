@@ -415,13 +415,80 @@ autocmd BufFilePost *.cpp,*.h,*.hpp :lua vim.api.nvim_buf_set_option(0, "comment
 
     
     -- GitHub CoPilot
+    -- use "github/copilot.vim"
     use {
-        "github/copilot.vim"
+        "zbirenbaum/copilot.lua",
+        cmd = "Copilot",
+        event = "InsertEnter",
+        config = function()
+            require("copilot").setup({
+                panel = {
+                    enabled = true,
+                    auto_refresh = false,
+                    keymap = {
+                        jump_prev = "[[",
+                        jump_next = "]]",
+                        accept = "<CR>",
+                        refresh = "gr",
+                        open = ""
+                    },
+                    layout = {
+                        position = "bottom", -- | top | left | right
+                        ratio = 0.4
+                    },
+                },
+            })
+        end,
+    }
+
+    -- LSP configurations
+    -- Note: This allows other plugins to work
+    use {
+        "neovim/nvim-lspconfig",
+        config = function()
+            local navbuddy = require("nvim-navbuddy")
+
+            -- Pyright
+            require'lspconfig'.pyright.setup{
+                on_attach = function(client, bufnr)
+                    navbuddy.attach(client, bufnr)
+                end
+            }
+            -- ccls
+            require'lspconfig'.ccls.setup{
+                on_attach = function(client, bufnr)
+                    navbuddy.attach(client, bufnr)
+                end
+            }
+        end
+    }
+
+    -- Outline symbols
+    -- Note: Uses nvim-lspconfig
+    use {
+        "hedyhli/outline.nvim",
+        config = function()
+            -- Example mapping to toggle outline
+            require("outline").setup {}
+        end,
+    }
+
+    -- Navigate symbols
+    -- Note: Uses nvim-lspconfig
+    use {
+        "SmiteshP/nvim-navbuddy",
+        requires = {
+            "neovim/nvim-lspconfig",
+            "SmiteshP/nvim-navic",
+            "MunifTanjim/nui.nvim",
+            -- "numToStr/Comment.nvim",        -- Optional
+            -- "nvim-telescope/telescope.nvim" -- Optional
+        }
     }
 
     -- Theme
     use "sainnhe/sonokai"
-    
+
     -- Auto compile on save
     vim.cmd([[
         augroup packer_user_config

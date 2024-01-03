@@ -15,7 +15,7 @@
         ../../programs/macos/upgrades.nix
         ../../programs/neofetch/neofetch.nix
         ../../programs/neovim/neovim.nix
-        ../../programs/python3/python3.nix
+        ../../programs/python3/python3-11.nix
         ../../programs/readline/readline.nix
         ../../programs/ripgrep/ripgrep.nix
         ../../programs/sshfs/sshfs.nix
