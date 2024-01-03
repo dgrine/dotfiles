@@ -22,6 +22,7 @@
         ../../programs/tldr/tldr.nix
         ../../programs/tmux/tmux.nix
         ../../programs/vifm/vifm.nix
+        ../../programs/zathura/zathura.nix
         ../../programs/zoxide/zoxide.nix
         ../../programs/zsh/zsh.nix
         ../../roles/arcole.nix
