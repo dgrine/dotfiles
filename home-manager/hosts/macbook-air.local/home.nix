@@ -7,6 +7,7 @@
         ../../programs/bat/bat.nix
         ../../programs/btop/btop.nix
         ../../programs/fzf/fzf.nix
+        ../../programs/ghostscript/ghostscript.nix
         ../../programs/git/git.nix
         ../../programs/gnu-sed/gnu-sed.nix
         ../../programs/jq/jq.nix
