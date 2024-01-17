@@ -4,6 +4,7 @@
     imports = [
         ../../programs/alacritty/alacritty.nix
         ../../programs/araxis-merge/araxis-merge.nix
+        ../../programs/aws/aws.nix
         ../../programs/bat/bat.nix
         ../../programs/btop/btop.nix
         ../../programs/fzf/fzf.nix
@@ -11,11 +12,13 @@
         ../../programs/git/git.nix
         ../../programs/gnu-sed/gnu-sed.nix
         ../../programs/jq/jq.nix
+        ../../programs/kubectl/kubectl.nix
         ../../programs/latex/latex.nix
         ../../programs/macos/stree.nix
         ../../programs/macos/upgrades.nix
         ../../programs/neofetch/neofetch.nix
         ../../programs/neovim/neovim.nix
+        ../../programs/nodejs/nodejs.nix
         ../../programs/python3/python3-11.nix
         ../../programs/readline/readline.nix
         ../../programs/ripgrep/ripgrep.nix
@@ -26,10 +29,10 @@
         ../../programs/zathura/zathura.nix
         ../../programs/zoxide/zoxide.nix
         ../../programs/zsh/zsh.nix
-        ../../roles/arcole.nix
         ../../roles/blackboard.nix
-        ../../roles/eyeontext.nix
         ../../roles/wowooltech.nix
+        ../../roles/eyeonid.nix
+        ../../roles/arcole.nix
     ];
 
     home = {

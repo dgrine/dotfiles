@@ -24,13 +24,6 @@ let BB_NAME = "blackboard"; in {
                 git clone git@gitlab.com:dgrine/${BB_NAME}-docs.git ${BB_ROOT}/docs
             fi
 
-            # Add the secrets directory
-            # if [ ! -d "${BB_ROOT}/secrets" ] 
-            # then
-            #     git clone git@gitlab.com:dgrine/${BB_NAME}-secrets.git ${BB_ROOT}/secrets
-            # fi
-            # source ${BB_ROOT}/secrets/session.sh
-
             # Add a tmux session
             tmux new-session -d -s ${BB_NAME} &> /dev/null
         '';
