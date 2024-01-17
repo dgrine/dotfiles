@@ -424,20 +424,24 @@ autocmd BufFilePost *.cpp,*.h,*.hpp :lua vim.api.nvim_buf_set_option(0, "comment
             require("copilot").setup({
                 panel = {
                     enabled = true,
-                    auto_refresh = false,
+                    auto_refresh = true,
                     keymap = {
-                        jump_prev = "[[",
-                        jump_next = "]]",
-                        accept = "<CR>",
+                        jump_prev = "<M-[[>",
+                        jump_next = "<M-]]>",
+                        accept = "<M-l>",
                         refresh = "gr",
-                        open = ""
+                        open = "<M-CR>"
                     },
                     layout = {
                         position = "bottom", -- | top | left | right
-                        ratio = 0.4
+                        ratio = 0.2
                     },
                 },
+                suggestion = {
+                    auto_trigger = true,
+                },
             })
+            require("copilot.suggestion").toggle_auto_trigger()
         end,
     }
 
