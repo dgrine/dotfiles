@@ -7,6 +7,8 @@
         ../../programs/aws/aws.nix
         ../../programs/bat/bat.nix
         ../../programs/btop/btop.nix
+        ../../programs/coreutils/coreutils.nix
+        ../../programs/exa/exa.nix
         ../../programs/fzf/fzf.nix
         ../../programs/ghostscript/ghostscript.nix
         ../../programs/git/git.nix
@@ -30,7 +32,7 @@
         ../../programs/zoxide/zoxide.nix
         ../../programs/zsh/zsh.nix
         ../../roles/blackboard.nix
-        ../../roles/wowooltech.nix
+        ../../roles/wowool.nix
         ../../roles/eyeonid.nix
         ../../roles/arcole.nix
     ];
