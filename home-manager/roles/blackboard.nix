@@ -18,12 +18,6 @@ let BB_NAME = "blackboard"; in {
             # Add the code directory
             mkdir -p ${BB_ROOT}/code
 
-            # Add the docs directory
-            if [ ! -d "${BB_ROOT}/docs" ] 
-            then
-                git clone git@gitlab.com:dgrine/${BB_NAME}-docs.git ${BB_ROOT}/docs
-            fi
-
             # Add a tmux session
             tmux new-session -d -s ${BB_NAME} &> /dev/null
         '';

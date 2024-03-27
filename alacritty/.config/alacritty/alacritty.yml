@@ -1,9 +1,16 @@
 # See https://github.com/alacritty/alacritty/blob/master/alacritty.yml
+
+# Window title
+title: Alacritty
+  
+# Allow terminal applications to change Alacritty's window title.
+dynamic_title: false
+
 # Font 
 font:
   normal:
     family: "UbuntuMono Nerd Font"
-  size: 12
+  size: 14
 
 # Colors
 colors:
