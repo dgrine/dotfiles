@@ -406,6 +406,8 @@ autocmd BufFilePost *.cpp,*.h,*.hpp :lua vim.api.nvim_buf_set_option(0, "comment
 
             -- latexmk: continuous builds, however shell-escape via .latexmkrc
             vim.g.vimtex_compiler_method = "latexmk"
+            -- Disable insert mode mappings
+            vim.g.vimtex_imaps_enabled = 0
 
             -- latexrun: no continuous builds, built-in shell-escape
             -- vim.g.vimtex_compiler_method = "latexrun"

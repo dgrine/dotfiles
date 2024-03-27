@@ -67,9 +67,9 @@ snippet ldots "Lower dots"
 endsnippet
 
 snippet fig "Figure" b
-\begin{figure}[ht]
+\begin{figure}[H]
     \begin{center}
-        \includegraphics{$1}
+        \includegraphics[scale=.6]{$1}
     \end{center}
     \caption{$2}
 	\label{$3}
@@ -94,6 +94,12 @@ snippet neqc "Numbered equation with cases" b
 \end{equation}
 
 $0
+endsnippet
+
+snippet cases "Cases" b
+\begin{cases}
+	$0
+\end{cases}
 endsnippet
 
 snippet eq "Equation with alignment" b
@@ -164,8 +170,20 @@ snippet lra "Left-right arrow"
 \Leftrightarrow $0
 endsnippet
 
+snippet ra "Right arrow"
+\Rightarrow $0
+endsnippet
+
 snippet bigl "Big ()"
 \Bigl( $1 \Bigr) $0
+endsnippet
+
+snippet () "()"
+\left( $1 \right) $0
+endsnippet
+
+snippet 2pi "2 pi"
+2 \pi $0
 endsnippet
 
 snippet exp "Exponential"
@@ -186,6 +204,18 @@ endsnippet
 
 snippet cos "Cosine"
 \cos( $1 ) $0
+endsnippet
+
+snippet omega "omega"
+\omega $0
+endsnippet
+
+snippet omega0 "omega_0"
+\omega_0 $0
+endsnippet
+
+snippet omegak "omega_k"
+\omega_k $0
 endsnippet
 
 snippet sqrt "Square root"
@@ -210,6 +240,10 @@ endsnippet
 
 snippet ol "Overline"
 \overline{ $1 } $0
+endsnippet
+
+snippet ub "Underbrace"
+\underbrace{ $1 }_{ $2 } $0
 endsnippet
 
 snippet laplace "Laplace transform symbol"
