@@ -8,5 +8,5 @@
 	cmd =icdiff --highlight --line-numbers $LOCAL $REMOTE
 [difftool "compare"]
 	cmd =compare $LOCAL $REMOTE
-[merge]
-	tool = meld
+[difftool "p4merge"]
+	cmd =p4merge $LOCAL $REMOTE
