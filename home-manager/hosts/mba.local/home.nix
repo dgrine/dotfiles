@@ -3,7 +3,6 @@
 {
     imports = [
         ../../programs/alacritty/alacritty.nix
-        ../../programs/araxis-merge/araxis-merge.nix
         ../../programs/aws/aws.nix
         ../../programs/bat/bat.nix
         ../../programs/btop/btop.nix
@@ -21,6 +20,7 @@
         ../../programs/neofetch/neofetch.nix
         ../../programs/neovim/neovim.nix
         ../../programs/nodejs/nodejs.nix
+        ../../programs/perforce-p4merge/perforce-p4merge.nix
         ../../programs/python3/python3-11.nix
         ../../programs/readline/readline.nix
         ../../programs/ripgrep/ripgrep.nix
@@ -31,6 +31,7 @@
         ../../programs/zathura/zathura.nix
         ../../programs/zoxide/zoxide.nix
         ../../programs/zsh/zsh.nix
+
         ../../roles/blackboard.nix
         ../../roles/wowool.nix
         ../../roles/eyeonid.nix
