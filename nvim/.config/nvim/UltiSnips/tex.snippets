@@ -37,7 +37,7 @@ snippet items "Items list" b
 endsnippet
 
 snippet enum "Enumerated list" b
-\begin{enumerate}
+\begin{enumerate}[(i)]
 	\item $0
 \end{enumerate}
 endsnippet
@@ -198,6 +198,10 @@ snippet ln "Natural logarithm"
 \ln( $1 ) $0
 endsnippet
 
+snippet log "Logarithm 10-based"
+\log_{10}( $1 ) $0
+endsnippet
+
 snippet sin "Sine"
 \sin( $1 ) $0
 endsnippet
@@ -232,6 +236,10 @@ endsnippet
 
 snippet int "Integral"
 \int_{ $1 }^{ $2 } $0
+endsnippet
+
+snippet norm "Norm"
+\norm{ $1 } $0
 endsnippet
 
 snippet ul "Underline"
