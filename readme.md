@@ -68,6 +68,7 @@ that is heavily focused on _vim-style_ navigation with minimal mouse usage.
 ## Dependencies
 
 * [Git](https://git-scm.com) — Distributed version control system 
+* [Curl](https://curl.se) — URL based data transfer tool
 * [Home Manager](https://github.com/nix-community/home-manager) — Declarative configuration management using Nix
 * [Nix](https://nixos.org/) — Package manager for declarative, reproducible builds
 
