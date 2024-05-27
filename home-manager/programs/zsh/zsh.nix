@@ -3,7 +3,9 @@
 {
     programs.zsh = {
         enable = true;
-        enableAutosuggestions = true;
+        autosuggestion = {
+            enable = true;
+        };
         initExtra = ''
             mkdir -p $HOME/dev/tmp/
         '';
