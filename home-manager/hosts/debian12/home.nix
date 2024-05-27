@@ -2,25 +2,14 @@
 
 {
     imports = [
-        ../../programs/alacritty/alacritty.nix
-        ../../programs/araxis-merge/araxis-merge.nix
+        ../../programs/alacritty/alacritty-config.nix
         ../../programs/bat/bat.nix
         ../../programs/btop/btop.nix
         ../../programs/ccls/ccls.nix
-        ../../programs/cmake/cmake.nix
         ../../programs/fzf/fzf.nix
         ../../programs/git/git.nix
-        ../../programs/gnu-sed/gnu-sed.nix
-        ../../programs/jq/jq.nix
-        ../../programs/latex/latex.nix
-        ../../programs/macos/stree.nix
-        ../../programs/macos/upgrades.nix
-        ../../programs/neofetch/neofetch.nix
         ../../programs/neovim/neovim.nix
-        ../../programs/python3/python3-11.nix
-        ../../programs/readline/readline.nix
         ../../programs/ripgrep/ripgrep.nix
-        ../../programs/sshfs/sshfs.nix
         ../../programs/tldr/tldr.nix
         ../../programs/tmux/tmux.nix
         ../../programs/vifm/vifm.nix
