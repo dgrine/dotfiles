@@ -4,13 +4,13 @@ let WOWOOL_NAME = "wowool"; in {
     imports = [
     ];
 
-    programs.zsh = let WOWOOL_ROOT = "$HOME/dev/${WOWOOL_NAME}"; in {
+    programs.zsh = let WOWOOL_ROOT = "$HOME/dev/roles/${WOWOOL_NAME}"; in {
         initExtra = ''
             # Add the root directory
             mkdir -p ${WOWOOL_ROOT}
 
-            # Add the code directory
-            mkdir -p ${WOWOOL_ROOT}/code
+            # Add the repos directory
+            mkdir -p ${WOWOOL_ROOT}/repos
 
             # Add the docs directory
             mkdir -p ${WOWOOL_ROOT}/docs
