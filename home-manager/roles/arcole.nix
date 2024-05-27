@@ -1,11 +1,6 @@
 { pkgs, ... }:
 
 let ARCOLE_NAME = "arcole"; in {
-    imports = [
-        ../programs/ccls/ccls.nix
-        ../programs/cmake/cmake.nix
-    ];
-
     programs.zsh = let ARCOLE_ROOT = "$HOME/dev/roles/${ARCOLE_NAME}"; in {
         initExtra = ''
             # Add the root directory

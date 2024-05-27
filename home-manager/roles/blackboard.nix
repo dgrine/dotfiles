@@ -1,9 +1,6 @@
 { pkgs, ... }:
 
 let BB_NAME = "blackboard"; in {
-    imports = [
-    ];
-
     programs.zsh = let BB_ROOT = "$HOME/dev/roles/${BB_NAME}"; in {
         initExtra = ''
             # Add the root directory

@@ -6,6 +6,8 @@
         ../../programs/araxis-merge/araxis-merge.nix
         ../../programs/bat/bat.nix
         ../../programs/btop/btop.nix
+        ../../programs/ccls/ccls.nix
+        ../../programs/cmake/cmake.nix
         ../../programs/fzf/fzf.nix
         ../../programs/git/git.nix
         ../../programs/gnu-sed/gnu-sed.nix

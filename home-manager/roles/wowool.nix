@@ -1,9 +1,6 @@
 { pkgs, ... }:
 
 let WOWOOL_NAME = "wowool"; in {
-    imports = [
-    ];
-
     programs.zsh = let WOWOOL_ROOT = "$HOME/dev/roles/${WOWOOL_NAME}"; in {
         initExtra = ''
             # Add the root directory

@@ -1,10 +1,6 @@
 { pkgs, ... }:
 
 let EOID_NAME = "eyeonid"; in {
-    imports = [
-        ../programs/nodejs/nodejs.nix
-    ];
-
     programs.zsh = let EOID_ROOT = "$HOME/dev/roles/${EOID_NAME}"; in {
         initExtra = ''
             # Add the root directory
