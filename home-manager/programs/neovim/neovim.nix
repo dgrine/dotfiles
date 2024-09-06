@@ -1,6 +1,12 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
+    imports = [ 
+        ../lua/lua-5.nix
+        ../lua/luarocks.nix
+        ../black/black.nix
+        ../tree-sitter/tree-sitter.nix
+    ];
     programs = {
         neovim = {
             enable = true;
@@ -18,9 +24,5 @@
         source = ../../../nvim/.config/nvim;
         recursive = true;
     };
-
-    home.packages = with pkgs; [
-        black
-    ];
 }
 

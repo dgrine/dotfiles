@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # install-home-manager.sh
 # Installs the home-manager for nix
-# Example: ./install-home-manager.sh 
+# Usage: ./install-home-manager.sh
 set -e
 nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
 nix-channel --update
