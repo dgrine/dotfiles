@@ -6,6 +6,8 @@
         ../../programs/aws/aws.nix
         ../../programs/bat/bat.nix
         ../../programs/btop/btop.nix
+        ../../programs/ccls/ccls.nix
+        ../../programs/cmake/cmake.nix
         ../../programs/coreutils/coreutils.nix
         ../../programs/exa/exa.nix
         ../../programs/fzf/fzf.nix
@@ -17,8 +19,10 @@
         ../../programs/latex/latex.nix
         ../../programs/macos/stree.nix
         ../../programs/macos/upgrades.nix
+        ../../programs/macos/wimlib.nix
         ../../programs/neofetch/neofetch.nix
         ../../programs/neovim/neovim.nix
+        ../../programs/ninja/ninja.nix
         ../../programs/nodejs/nodejs.nix
         ../../programs/perforce-p4merge/perforce-p4merge.nix
         ../../programs/python3/python3-11.nix
@@ -27,8 +31,8 @@
         ../../programs/sshfs/sshfs.nix
         ../../programs/tldr/tldr.nix
         ../../programs/tmux/tmux.nix
+        ../../programs/tree-sitter/tree-sitter.nix
         ../../programs/vifm/vifm.nix
-        ../../programs/zathura/zathura.nix
         ../../programs/zoxide/zoxide.nix
         ../../programs/zsh/zsh.nix
 
@@ -48,7 +52,7 @@
         # You should not change this value, even if you update Home Manager. If you do
         # want to update the value, then make sure to first check the Home Manager
         # release notes.
-        stateVersion = "23.05"; # Please read the comment before changing.
+        stateVersion = "24.05"; # Please read the comment before changing.
 
         # The home.packages option allows you to install Nix packages into your
         # environment.

@@ -7,12 +7,20 @@ $0
 #endif
 endsnippet
 
-snippet ia "Include Arcole header" b
+snippet ia "Include arcole header" b
 #include <arcole/${1:header}$0
 endsnippet
 
-snippet nsa "Namespace" b
-namespace arcole::${1:namespace} {
+snippet ns "Namespace" b
+namespace ${1:} {
+
+$0
+
+}
+endsnippet
+
+snippet nsa "Namespace arcole" b
+namespace arcole::${1:} {
 
 $0
 
@@ -35,7 +43,7 @@ for (auto ${1:idx} = 0u; $1 < ${2:count}; ++$1) {
 }
 endsnippet
 
-snippet test "Test File for DocTest" b
+snippet test "Test file for doctest" b
 #include <arcole/${1:header}
 
 #include <doctest.h>
@@ -45,6 +53,28 @@ using namespace arcole::${2:namespace}
 
 TEST_CASE("arcole::${3:tag}") {
     $0
+}
+endsnippet
+
+snippet testf "Test file filled in for doctest" b
+#include <arcole/LOG.hpp>
+
+#include <doctest.h>
+
+using namespace arcole;
+
+TEST_CASE("arcole::${7:tag}") {
+	S(true);
+	${1:input_type} input;
+	${2:return_type} expected;
+	$2 actual;
+	SUBCASE("${3:description}") {
+		input = ${4:input};
+		expected = ${5:expected};
+	}
+	actual = ${6:function}(input);
+	LOG(C(actual));
+	CHECK_EQ(expected, actual); $0
 }
 endsnippet
 
