@@ -73,6 +73,15 @@ map("[<Space>", "O<Esc>", "Add empty line below")
 
 vim.cmd "verbose imap <tab>"
 
+-- Organize Python imports on save
+-- vim.autocmd BufWritePre *.py silent! :call CocAction('runCommand', 'python.sortImports')
+vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = { '*.py' },
+    callback = function()
+        vim.cmd("CocCommand pyright.organizeimports")
+    end,
+})
+
 -- Commenting
 vim.keymap.set( {"n", "v"}, "<Leader>c<Space>", "gc", { remap = true, desc = "Comment" } )
 vim.keymap.set( {"n"}, "<Leader>c<Space>", "gcc", { remap = true, desc = "Comment" } )  -- Use with leader n to comment n lines

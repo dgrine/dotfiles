@@ -1,7 +1,6 @@
 {
     "coc.preferences.formatOnSaveFiletypes": ["python", "cmake", "lua", "c", "cpp", "html", "typescript"],
     "coc.preferences.formatOnType": true,
-    "python.formatting.provider": "black",
     "coc.preferences.useQuickfixForLocations": true,
     "prettier.enable": true,
     "suggest.noselect": true,
@@ -9,14 +8,18 @@
     "diagnostic.virtualTextCurrentLineOnly": true,
     "languageserver": {
         "ccls": {
-              "command": "ccls",
-              "filetypes": ["c", "cpp", "objc", "objcpp"],
-              "rootPatterns": [".ccls", "compile_commands.json", ".vim/", ".git/", ".hg/"],
-              "initializationOptions": {
-                       "cache": {
-                                  "directory": "/tmp/ccls"
-                                }
-                     }
+            "command": "ccls",
+            "filetypes": ["c", "cpp", "objc", "objcpp"],
+            "rootPatterns": [".ccls", "compile_commands.json", ".vim/", ".git/", ".hg/"],
+            "initializationOptions": {
+                "cache": {
+                    "directory": "/tmp/ccls"
+                }
             }
-      }
+        }
+    },
+    "python.formatting.provider": "black",
+    "pyright.inlayHints.functionReturnTypes": false,
+    "pyright.inlayHints.variableTypes": false,
+    "pyright.inlayHints.parameterTypes": false
 }

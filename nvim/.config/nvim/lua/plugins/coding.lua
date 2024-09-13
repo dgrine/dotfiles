@@ -81,6 +81,7 @@ return {
             wk.add( { "<Leader>cs", group = "Symbols", icon = { icon = "", color = "grey" } } )
             wk.add( { "<Leader>csd", "<Cmd>Telescope coc document_symbols<CR>", desc = "Document", icon = { icon = "", color = "grey" } } )
             wk.add( { "<Leader>csw", "<Cmd>Telescope coc workspace_symbols<CR>", desc = "Workspace", icon = { icon = "", color = "grey" } } )
+            wk.add( { "<Leader>cm", "<Cmd>Telescope coc commands<CR>", desc = "Commands", icon = { icon = "", color = "grey" } } )
         end
     },
 
