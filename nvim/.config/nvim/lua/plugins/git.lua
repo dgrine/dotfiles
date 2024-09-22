@@ -21,6 +21,7 @@ return {
             wk.add( { "<Leader>gh", "<Cmd>0Gllog<CR>", desc = "History", icon = { icon = "󰅓", color = "grey" } } )
             wk.add( { "<Leader>g[", "<Plug>(GitGutterPrevHunk)", desc = "Previous hunk", icon = { icon = "↩", color = "grey" } } )
             wk.add( { "<Leader>g]", "<Plug>(GitGutterNextHunk)", desc = "Next hunk", icon = { icon = "↪", color = "grey" } } )
+            wk.add( { "<Leader>gu", "<Plug>(GitGutteeUndoHunk)", desc = "Undo hunk", icon = { icon = "", color = "grey" } } )
         end,
     }
 

@@ -1,4 +1,62 @@
 return {
+    -- Note: There is an issue with using TSInstall under alacritty, the `arch` command incorrectly
+    -- reports that the architecture is i386 instead of arm64. So it is best to use a different terminal
+    -- when installing parsers.
+    {
+        "nvim-treesitter/nvim-treesitter",
+        build = function()
+            require("nvim-treesitter.install").update({ with_sync = true })()
+        end,
+        config = function () 
+            require("nvim-treesitter.configs").setup {
+            highlight = { enable = true },
+            indent = { enable = true },  
+            }
+        end,
+    },
+
+    {
+        "mg979/vim-visual-multi",
+        lazy = false,
+    },
+
+    {
+        "kylechui/nvim-surround",
+        version = "*",
+        event = "VeryLazy",
+        config = function()
+            require("nvim-surround").setup {
+            -- Configuration here, or leave empty to use defaults
+            }
+        end
+    },
+
+    {
+        "SirVer/ultisnips",
+        config = function()
+            -- Use <C-j> to trigger snippets
+            vim.keymap.set("i", "<C-j>", "<Plug>(coc-snippets-expand-jump)", { silent = true, noremap = true, expr = true, desc = "Snippet" })
+            -- vim.g.coc_snippet_next = '<c-l>'
+            -- vim.g.coc_snippet_prev = '<c-h>'
+
+        end
+    },
+
+    {
+        "Wansmer/treesj",
+        dependencies = { "nvim-treesitter/nvim-treesitter", "neoclide/coc.nvim" }, -- if you install parsers with `nvim-treesitter`
+        config = function()
+            require("treesj").setup({
+                use_default_keymaps = false,
+            })
+            local wk = require("which-key")
+            wk.add( { "<Leader>s", group = "Split", icon = { icon = "󰃻", color = "grey" } } )
+            wk.add( { "<Leader>st", "<Cmd>TSJToggle<CR>", desc = "Toggle", icon = { icon = "󰔡", color = "grey" } } )
+            wk.add( { "<Leader>ss", "<Cmd>TSJSplit<CR>", desc = "Split", icon = { icon = "󰃻", color = "grey" } } )
+            wk.add( { "<Leader>sj", "<Cmd>TSJJoin<CR>", desc = "Join", icon = { icon = "󰽜", color = "grey" } } )
+        end,
+    },
+
     {
         "neoclide/coc.nvim",
         branch = "release",
@@ -33,13 +91,8 @@ return {
             -- <C-g>u breaks current undo, please make your own choice
             keyset("i", "<CR>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], { silent = false, noremap = true, expr = true, replace_keycodes = false, desc = "Use auto-completion item"})
 
-            -- Use <C-j> to trigger snippets
-            -- keyset("i", "<C-j>", "<Plug>(coc-snippets-expand-jump)")
-            -- vim.g.coc_snippet_next = '<c-l>'
-            -- vim.g.coc_snippet_prev = '<c-h>'
-
             -- Use <C-space> to trigger completion
-            -- keyset("i", "<C-space>", "coc#refresh()", { silent = true, expr = true, desc = "Trigger auto-completion" })
+            keyset("i", "<C-space>", "coc#refresh()", { silent = true, expr = true, desc = "Auto-completion" })
 
             -- Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
 
@@ -47,11 +100,11 @@ return {
             function _G.show_docs()
                 local cw = vim.fn.expand("<cword>")
                 if vim.fn.index({"vim", "help"}, vim.bo.filetype) >= 0 then
-                vim.api.nvim_command("h " .. cw)
+                    vim.api.nvim_command("h " .. cw)
                 elseif vim.api.nvim_eval("coc#rpc#ready()") then
-                vim.fn.CocActionAsync("doHover")
+                    vim.fn.CocActionAsync("doHover")
                 else
-                vim.api.nvim_command("!" .. vim.o.keywordprg .. " " .. cw)
+                    vim.api.nvim_command("!" .. vim.o.keywordprg .. " " .. cw)
                 end
             end
             wk.add( { "<Leader>ck", "<Cmd>lua _G.show_docs()<CR>", desc = "Show documentation", icon = { icon = "", color = "grey" } } )
@@ -69,6 +122,11 @@ return {
             wk.add( { "<Leader>cdd", "<Cmd>CocDiagnostics<CR>", desc = "Diagnostics", icon = { icon = "", color = "grey" } } )
             wk.add( { "<Leader>cd[", "<Plug>(coc-diagnostic-prev)", desc = "Previous", icon = { icon = "↩️", color = "grey" } } )
             wk.add( { "<Leader>cd]", "<Plug>(coc-diagnostic-next)", desc = "Next", icon = { icon = "↪️", color = "grey" } } )
+            wk.add( { "<Leader>ch", "<Cmd>CocCommand document.toggleInlayHint<CR>", desc = "Hints", icon = { icon = "", color = "grey" } } )
+            -- Disable the inlay hints by default
+            -- vim.api.nvim_command("autocmd BufEnter *.cpp silent! CocCommand document.toggleInlayHint")
+            -- vim.api.nvim_command("autocmd User CocNvimInit call CocAction('runCommand', 'document.toggleInlayHint')")
+            -- vim.api.nvim_command("autocmd FileType cpp autocmd User CocNvimInit call CocAction('runCommand', 'document.toggleInlayHint')")
 
             -- Using telescope-coc
             wk.add( { "<Leader>cr", "<Cmd>Telescope coc references<CR>", desc = "References", icon = { icon = "", color = "grey" } } )
@@ -76,7 +134,7 @@ return {
             wk.add( { "<Leader>ca", group = "Actions", icon = { icon = "⚡", color = "grey" } } )
             wk.add( { "<Leader>cac", "<Cmd>Telescope coc code_actions<CR>", desc = "Code", icon = { icon = "", color = "grey" } } )
             wk.add( { "<Leader>cal", "<Cmd>Telescope coc line_code_actions<CR>", desc = "Line", icon = { icon = "󰸱", color = "grey" } } )
-            wk.add( { "<Leader>caf", "<Cmd>Telescope coc file_code_actions<CR>", desc = "File", icon = { icon = "󱁻", color = "grey" } } )
+            wk.add( { "<Leader>cad", "<Cmd>Telescope coc file_code_actions<CR>", desc = "Document", icon = { icon = "󱁻", color = "grey" } } )
             wk.add( { "<Leader>caa", "<Cmd>Telescope coc<CR>", desc = "Available...", icon = { icon = "", color = "grey" } } )
             wk.add( { "<Leader>cs", group = "Symbols", icon = { icon = "", color = "grey" } } )
             wk.add( { "<Leader>csd", "<Cmd>Telescope coc document_symbols<CR>", desc = "Document", icon = { icon = "", color = "grey" } } )
@@ -139,7 +197,7 @@ return {
                     return
                 end
                 if not vim.tbl_isempty(vim.fn.getqflist()) then
-                    vim.cmd "copen"
+                    vim.cmd "copen 40"
                 end
             end
             wk.add( { "<Leader>cqq", quickfix_toggle, desc = "Quickfix", icon = { icon = "", color = "grey" } } )

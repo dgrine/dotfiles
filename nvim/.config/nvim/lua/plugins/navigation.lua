@@ -117,6 +117,7 @@ return {
             wk.add( { "<Leader>bb", "<Cmd>:BufferLinePick<CR>", desc = "Pick", icon = { icon = "󰉻", color = "grey" } } )
             wk.add( { "<Leader>bc", "<Cmd>:BufferLinePickClose<CR>", desc = "Close", icon = { icon = "", color = "grey" } } )
             wk.add( { "<Leader>bd", "<Cmd>:bd<CR>", desc = "Delete", icon = { icon = "", color = "grey" } } )
+            wk.add( { "<Leader>bb", "<Cmd>:%bd|e#<CR>", desc = "Keep", icon = { icon = "", color = "grey" } } )
             wk.add( { "<Leader>bq", "<Cmd>:bufdo bd<CR>", desc = "Delete all", icon = { icon = "", color = "grey" } } )
             wk.add( { "<Leader>bs", group = "Split", icon = { icon = "", color = "grey" } } )
             wk.add( { "<Leader>bsv", "<Cmd>vsplit<CR>", desc = "Vertical", icon = { icon = "", color = "grey" } } )
@@ -137,6 +138,21 @@ return {
         end,
     },
 
+    {
+        "nvim-pack/nvim-spectre",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        config = function()
+            spectre = require("spectre")
+            local wk = require("which-key")
+            wk.add( { "<Leader>fs", spectre.toggle, desc = "Search and replace", icon = { icon = "󰈞", color = "grey" } } )
+            wk.add( { "<Leader>fs", spectre.open_visual, mode = "v", desc = "Search and replace", icon = { icon = "󰈞", color = "grey" } } )
+            -- vim.keymap.set("n", "<Leader>fs", spectre.toggle, { desc = "Search and replace" })
+            -- vim.keymap.set("n", "<leader>fsw", "<cmd>lua require("spectre").open_visual({select_word=true})<CR>", {
+            --     desc = "Search current word"
+            -- })
+            -- vim.keymap.set("v", "<Leader>fs", spectre.open_visual, { desc = "Search word" })
+        end,
+    },
     {
         "nvim-telescope/telescope.nvim",
         tag = "0.1.8",
@@ -164,7 +180,7 @@ return {
             wk.add( { "<Leader>fr", telescope.oldfiles, desc = "Recent file", icon = { icon = "󰷊", color = "grey" } } )
             wk.add( { "<Leader>bf", telescope.buffers, desc = "Find buffer", icon = { icon = "󰮗", color = "grey" } } )
             wk.add( { "<Leader>fg", telescope.live_grep, desc = "Any expression", icon = { icon = "", color = "grey" } } )
-            wk.add( { "<Leader>fd", telescope.current_buffer_fuzzy_find, desc = "In current buffer", icon = { icon = "󰈞", color = "grey" } } )
+            wk.add( { "<Leader>fd", telescope.current_buffer_fuzzy_find, desc = "In document", icon = { icon = "󰈞", color = "grey" } } )
             wk.add( { "<Leader>fj", telescope.jumplist, desc = "Jump location", icon = { icon = "󱘈", color = "grey" } } )
             wk.add( { "<Leader>fc", telescope.commands, desc = "Command", icon = { icon = "󰘳", color = "grey" } } )
             wk.add( { "<Leader>fy", telescope.registers, desc = "Registers", icon = { icon = "", color = "grey" } } )

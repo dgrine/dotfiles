@@ -46,13 +46,13 @@ snippet item "Item" b
 \item $0
 endsnippet
 
-snippet ci "Code inline" 
-\mintinline{c}{$1}$0
+snippet cic "Code inline (C++)" 
+\mintinline{c++}{$1}$0
 endsnippet
 
-snippet cb "Code block" b
+snippet cbc "Code block (C++)" b
 \begin{listing}
-    \begin{minted}{$1}
+    \begin{minted}{C++}
         $2
     \end{minted}
 	\label{$3}
@@ -62,25 +62,25 @@ snippet cb "Code block" b
 $0
 endsnippet
 
-snippet cbp "Code block for Python" b
+snippet cbp "Code block (Python)" b
 \begin{listing}
     \begin{minted}{Python}
         $1
     \end{minted}
-	\label{$2}
     \caption{$3}
+	\label{$2}
 \end{listing}
 
 $0
 endsnippet
 
-snippet cbs "Code block for Swift" b
+snippet cbs "Code block (Swift)" b
 \begin{listing}
     \begin{minted}{Swift}
         $1
     \end{minted}
-	\label{$2}
     \caption{$3}
+	\label{$2}
 \end{listing}
 
 $0
@@ -95,8 +95,8 @@ snippet fig "Figure" b
     \begin{center}
         \includegraphics[scale=.6]{$1}
     \end{center}
-	\label{$2}
     \caption{$3}
+	\label{$2}
 \end{figure}
 
 $0
