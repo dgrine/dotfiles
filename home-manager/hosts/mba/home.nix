@@ -6,7 +6,6 @@
         ../../programs/aws/aws.nix
         ../../programs/bat/bat.nix
         ../../programs/btop/btop.nix
-        ../../programs/ccls/ccls.nix
         ../../programs/cmake/cmake.nix
         ../../programs/coreutils/coreutils.nix
         ../../programs/exa/exa.nix

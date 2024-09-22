@@ -92,10 +92,11 @@ The following program configurations are managed:
     * [coc-marketplace](https://github.com/fannheyward/coc-marketplace) — Marketplace for extensions
     * Extensions
 
+        * [coc-clangd](https://github.com/clangd/coc-clangd) — Clangd
         * [coc-cmake](https://github.com/voldikss/coc-cmake) — CMake
         * [coc-json](https://github.com/neoclide/coc-json) — JSON
-        * [coc-prettier](https://github.com/neoclide/coc-prettier) — HTML
         * [coc-pyright](https://github.com/fannheyward/coc-pyright) — Python
+        * [coc-snippets](https://github.com/neoclide/coc-snippets) — Snippets
         * [coc-texlab](https://github.com/fannheyward/coc-texlab)  — LaTeX
         * [coc-tsserver](https://github.com/neoclide/coc-tsserver) — TypeScript and JavaScript
 
