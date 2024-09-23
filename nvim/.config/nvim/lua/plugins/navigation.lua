@@ -187,6 +187,7 @@ return {
             wk.add( { "<Leader>z", "<Cmd>Lazy<CR>", desc = "Plugins", icon = { icon = "󱐥", color = "grey" } } )
             wk.add( { "<Leader>w", "<Cmd>w<CR>", desc = "Write", icon = { icon = "", color = "grey" } } )
             wk.add( { "<Leader>q", "<Cmd>qa<CR>", desc = "Quit", icon = { icon = "", color = "grey" } } )
+            wk.add( { "<Leader>qf", "<Cmd>qa!<CR>", desc = "Force quit", icon = { icon = "", color = "grey" } } )
             wk.add( { "<Leader>p", group = "Project", icon = { icon = "", color = "grey" } })
         end,
     },
