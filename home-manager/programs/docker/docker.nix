@@ -1,16 +1,12 @@
 { pkgs, ... }:
 
 {
+    imports = [
+        ./docker-completion-zsh.nix
+    ];
     home.packages = with pkgs; [
         docker
         docker-compose
     ];
-    programs.zsh = {
-        oh-my-zsh.plugins = [
-            "docker"
-            "docker-compose"
-        ];
-    };
-    
 }
 
