@@ -8,6 +8,7 @@
         ../../programs/btop/btop.nix
         ../../programs/cmake/cmake.nix
         ../../programs/coreutils/coreutils.nix
+        ../../programs/docker/docker-completion-zsh.nix
         ../../programs/exa/exa.nix
         ../../programs/fzf/fzf.nix
         ../../programs/ghostscript/ghostscript.nix
@@ -24,7 +25,7 @@
         ../../programs/ninja/ninja.nix
         ../../programs/nodejs/nodejs.nix
         ../../programs/perforce-p4merge/perforce-p4merge.nix
-        ../../programs/python3/python3-11.nix
+        ../../programs/python3/python3-13.nix
         ../../programs/readline/readline.nix
         ../../programs/ripgrep/ripgrep.nix
         ../../programs/sshfs/sshfs.nix
@@ -35,10 +36,11 @@
         ../../programs/zoxide/zoxide.nix
         ../../programs/zsh/zsh.nix
 
-        ../../roles/blackboard.nix
-        ../../roles/wowool.nix
-        ../../roles/eyeonid.nix
         ../../roles/arcole.nix
+        ../../roles/blackboard.nix
+        ../../roles/eyeonid.nix
+        ../../roles/mountfive.nix
+        ../../roles/wowool.nix
     ];
 
     home = {
