@@ -130,6 +130,7 @@ return {
             wk.add( { "<Leader>cd[", "<Plug>(coc-diagnostic-prev)", desc = "Previous", icon = { icon = "↩️", color = "grey" } } )
             wk.add( { "<Leader>cd]", "<Plug>(coc-diagnostic-next)", desc = "Next", icon = { icon = "↪️", color = "grey" } } )
             wk.add( { "<Leader>ch", "<Cmd>CocCommand document.toggleInlayHint<CR>", desc = "Hints", icon = { icon = "", color = "grey" } } )
+            wk.add( { "<Leader>cQ", "<Cmd>CocRestart<CR>", desc = "Quit & restart", icon = { icon = "󰐥", color = "grey" } } )
             -- Disable the inlay hints by default
             -- vim.api.nvim_command("autocmd BufEnter *.cpp silent! CocCommand document.toggleInlayHint")
             -- vim.api.nvim_command("autocmd User CocNvimInit call CocAction('runCommand', 'document.toggleInlayHint')")
@@ -147,6 +148,15 @@ return {
             wk.add( { "<Leader>csd", "<Cmd>Telescope coc document_symbols<CR>", desc = "Document", icon = { icon = "", color = "grey" } } )
             wk.add( { "<Leader>csw", "<Cmd>Telescope coc workspace_symbols<CR>", desc = "Workspace", icon = { icon = "", color = "grey" } } )
             wk.add( { "<Leader>cm", "<Cmd>Telescope coc commands<CR>", desc = "Commands", icon = { icon = "", color = "grey" } } )
+        end
+    },
+
+    {
+        "AndrewRadev/switch.vim",
+        config = function()
+            vim.g.switch_mapping = ""
+            local wk = require("which-key")
+            wk.add( { "<Leader>ct", "<Cmd>Switch<CR>", desc = "Toggle value", icon = { icon = "󰓤", color = "grey" } } )
         end
     },
 

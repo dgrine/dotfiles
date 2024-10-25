@@ -1,5 +1,5 @@
 {
-    "coc.preferences.formatOnSaveFiletypes": ["python", "cmake", "lua", "c", "cpp", "html", "typescript"],
+    "coc.preferences.formatOnSaveFiletypes": ["python", "cmake", "lua", "c", "cpp", "html", "typescript", "css"],
     "coc.preferences.formatOnType": true,
     "coc.preferences.useQuickfixForLocations": true,
     "prettier.enable": true,
@@ -10,5 +10,11 @@
     },
     "python.formatting.provider": "black",
     "inlayHint.enable": true,
-    "inlayHint.display": false
+    "inlayHint.display": false,
+    "javascript.format.insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": true,
+    "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+    "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
+    "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": true,
+    "javascript.format.insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces": true,
+    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrace": true
 }

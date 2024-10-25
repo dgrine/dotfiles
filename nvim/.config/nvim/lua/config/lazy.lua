@@ -63,15 +63,23 @@ function map(shortcut, command, description)
     vim.api.nvim_set_keymap("n", shortcut, command, { noremap = true, silent = true, desc = description })
 end
 
--- Increment/decrement next number on line
+    -- Increment/decrement next number on line
 map("<A-a>", "<C-a>", "Increment next number on line")
 map("<A-x>", "<C-x>", "Decrement next number on line")
 
--- Add line without going to insert mode
+    -- Add line without going to insert mode
 map("]<Space>", "o<Esc>", "Add empty line above")
 map("[<Space>", "O<Esc>", "Add empty line below")
 
 vim.cmd "verbose imap <tab>"
+
+-- Adjust quickfix window height
+vim.api.nvim_exec([[
+    au FileType qf call AdjustWindowHeight(25, 45)
+    function! AdjustWindowHeight(minheight, maxheight)
+      exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
+    endfunction
+            ]], true)
 
 -- Organize Python imports on save
 -- vim.autocmd BufWritePre *.py silent! :call CocAction('runCommand', 'python.sortImports')

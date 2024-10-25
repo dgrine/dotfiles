@@ -11,7 +11,7 @@ return {
         },
         keys = {
             -- {
-            --   "<leader>?",
+            --   "<Leader>?",
             --   function()
             --     require("which-key").show({ global = false })
             --   end,
@@ -66,7 +66,7 @@ return {
                 },
             })
             local wk = require("which-key")
-            wk.add( { "<leader>e", function() require("nvim-tree.api").tree.toggle({find_file=true, focus=true, update_root=true}) end, desc = "Navigator", mode = "n", icon = { icon = "", color = "grey" } } )
+            wk.add( { "<Leader>e", function() require("nvim-tree.api").tree.toggle({find_file=true, focus=true, update_root=true}) end, desc = "Navigator", mode = "n", icon = { icon = "", color = "grey" } } )
         end,
     },
 
@@ -83,10 +83,6 @@ return {
         keys = {
             { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash forward search" },
             { "S", mode = { "n", "x", "o" }, function() require("flash").jump({ search = { forward = false, wrap = false, multi_window = false } }) end, desc = "Flash backward search" },
-            -- { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-            -- { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
-            -- { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-            -- { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
         },
     },
 
@@ -147,7 +143,7 @@ return {
             wk.add( { "<Leader>fs", spectre.toggle, desc = "Search and replace", icon = { icon = "󰈞", color = "grey" } } )
             wk.add( { "<Leader>fs", spectre.open_visual, mode = "v", desc = "Search and replace", icon = { icon = "󰈞", color = "grey" } } )
             -- vim.keymap.set("n", "<Leader>fs", spectre.toggle, { desc = "Search and replace" })
-            -- vim.keymap.set("n", "<leader>fsw", "<cmd>lua require("spectre").open_visual({select_word=true})<CR>", {
+            -- vim.keymap.set("n", "<Leader>fsw", "<cmd>lua require("spectre").open_visual({select_word=true})<CR>", {
             --     desc = "Search current word"
             -- })
             -- vim.keymap.set("v", "<Leader>fs", spectre.open_visual, { desc = "Search word" })
@@ -187,7 +183,7 @@ return {
             wk.add( { "<Leader>z", "<Cmd>Lazy<CR>", desc = "Plugins", icon = { icon = "󱐥", color = "grey" } } )
             wk.add( { "<Leader>w", "<Cmd>w<CR>", desc = "Write", icon = { icon = "", color = "grey" } } )
             wk.add( { "<Leader>q", "<Cmd>qa<CR>", desc = "Quit", icon = { icon = "", color = "grey" } } )
-            wk.add( { "<Leader>qf", "<Cmd>qa!<CR>", desc = "Force quit", icon = { icon = "", color = "grey" } } )
+            wk.add( { "<Leader>Q", "<Cmd>qa!<CR>", desc = "Force quit", icon = { icon = "", color = "grey" } } )
             wk.add( { "<Leader>p", group = "Project", icon = { icon = "", color = "grey" } })
         end,
     },
@@ -197,8 +193,8 @@ return {
         config = function()
             vim.g.floaterm_shell = "zsh -l"
             local wk = require("which-key")
-            wk.add( { "<Leader>t", "<Cmd>FloatermToggle term<CR>", mode = "n", desc = "Terminal", icon = { icon = "", color = "grey" } } )
-            wk.add( { "<Leader>t", "<Cmd>FloatermToggle term<CR>", mode = "t", desc = "Terminal", icon = { icon = "", color = "grey" } } )
+            wk.add( { "<Leader><Tab>", "<Cmd>FloatermToggle term<CR>", mode = "n", desc = "Terminal", icon = { icon = "", color = "grey" } } )
+            wk.add( { "<Leader><Tab>", "<Cmd>FloatermToggle term<CR>", mode = "t", desc = "Terminal", icon = { icon = "", color = "grey" } } )
         end,
     }
 

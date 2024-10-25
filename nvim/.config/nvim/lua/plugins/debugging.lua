@@ -50,6 +50,9 @@ return {
             wk.add( { "<Leader>db", dap.toggle_breakpoint, desc = "Breakpoint", icon = { icon = "", color = "grey" } } )
             wk.add( { "<Leader>dq", dap.terminate, desc = "Quit", icon = { icon = "", color = "grey" } } )
 
+            local neotest = require("neotest")
+            wk.add( { "<Leader>dt", function() neotest.run.run({strategy="dap"}) end, desc = "Test", icon = { icon = "󰈙", color = "grey" } } )
+
             --
             -- DAP-Client ----- Debug Adapter ------- Debugger ------ Debugee
             -- (nvim-dap)  |   (per language)  |   (per language)    (your app)
