@@ -27,7 +27,7 @@ let EOID_NAME = "eyeonid"; in {
                 python3 -m venv .venv
                 senv
                 source ${EOID_ROOT}/secrets/session.sh
-                pip3 config set global.extra-index-url https://$EOID_NEXUS_USERNAME:$EOID_NEXUS_PASSWORD_ENCODED@repo.eyeontext.com/repository/eyeontext-pypi/simple --site
+                pip3 config set global.extra-index-url https://$NEXUS_USERNAME:$NEXUS_PASSWORD_ENCODED@repo.eyeontext.com/repository/eyeontext-pypi/simple --site
                 pip3 install --upgrade pip
             }
         '';
