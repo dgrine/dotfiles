@@ -2,7 +2,6 @@
 
 {
     home = {
-        file.".ipython/profile_default/ipython_config.py".source = ../../../ipython/ipython_config.py;
         packages = with pkgs; [
             python310
             python310Packages.pygments
