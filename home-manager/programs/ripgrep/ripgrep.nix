@@ -6,6 +6,7 @@
         arguments = [
             "--colors=line:style:bold"
             "--hidden"
+            "--glob=!*.git"
             "--max-columns-preview"
         ];
     };
