@@ -2,7 +2,7 @@
 
 {
     home = {
-        file.".npmrc".source = ../../../npm/.npmrc;
+        # file.".npmrc".source = ../../../npm/.npmrc;
         packages = with pkgs; [
             nodejs
             yarn
