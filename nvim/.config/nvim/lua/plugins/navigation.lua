@@ -76,7 +76,7 @@ return {
         opts = {
             modes = {
                 search = {
-                    enabled = true,
+                    enabled = false,
                 },
             },
         },
@@ -174,7 +174,7 @@ return {
             wk.add( { "<Leader>f", group = "Find", icon = { icon = "", color = "grey" } } )
             wk.add( { "<Leader>ff", telescope.find_files, desc = "Any file", icon = { icon = "󰈞", color = "grey" } } )
             wk.add( { "<Leader>fr", telescope.oldfiles, desc = "Recent file", icon = { icon = "󰷊", color = "grey" } } )
-            wk.add( { "<Leader>bf", telescope.buffers, desc = "Find buffer", icon = { icon = "󰮗", color = "grey" } } )
+            wk.add( { "<Leader>fb", telescope.buffers, desc = "Find buffer", icon = { icon = "󰮗", color = "grey" } } )
             wk.add( { "<Leader>fg", telescope.live_grep, desc = "Any expression", icon = { icon = "", color = "grey" } } )
             wk.add( { "<Leader>fd", telescope.current_buffer_fuzzy_find, desc = "In document", icon = { icon = "󰈞", color = "grey" } } )
             wk.add( { "<Leader>fj", telescope.jumplist, desc = "Jump location", icon = { icon = "󱘈", color = "grey" } } )
@@ -196,6 +196,28 @@ return {
             wk.add( { "<Leader><Tab>", "<Cmd>FloatermToggle term<CR>", mode = "n", desc = "Terminal", icon = { icon = "", color = "grey" } } )
             wk.add( { "<Leader><Tab>", "<Cmd>FloatermToggle term<CR>", mode = "t", desc = "Terminal", icon = { icon = "", color = "grey" } } )
         end,
+    },
+
+    {
+        "rgroli/other.nvim",
+        config = function()
+            require("other-nvim").setup({
+                mappings = {
+                    "angular",
+                    "python",
+                },
+            })
+
+            local wk = require("which-key")
+            wk.add({"<Leader>fa", group = "Associated", icon = { icon = "∗", color = "grey" }})
+            wk.add({"<Leader>faa", "<Cmd>:Other<CR>", mode = "n", desc = "Other", icon = { icon = "∗", color = "grey" }})
+            wk.add({"<Leader>fat", "<Cmd>:OtherTabNew<CR>", mode = "n", desc = "Other in tab", icon = { icon = "∗", color = "grey" }})
+            wk.add({"<Leader>fav", "<Cmd>:OtherVSplit<CR>", mode = "n", desc = "Other in v-split", icon = { icon = "∗", color = "grey" }})
+            wk.add({"<Leader>fah", "<Cmd>:OtherSplit<CR>", mode = "n", desc = "Other in h-split", icon = { icon = "∗", color = "grey" }})
+            -- Context specific bindings
+            -- vim.api.nvim_set_keymap("n", "<leader>lt", "<cmd>:Other test<CR>", { noremap = true, silent = true })
+            -- vim.api.nvim_set_keymap("n", "<leader>ls", "<cmd>:Other scss<CR>", { noremap = true, silent = true })
+        end
     }
 
 }

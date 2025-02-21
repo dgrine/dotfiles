@@ -192,6 +192,13 @@ return {
         end,
     },
 
+    -- {
+    --     "zbirenbaum/copilot-cmp",
+    --     config = function ()
+    --         require("copilot_cmp").setup()
+    --     end
+    -- },
+
     { "fannheyward/telescope-coc.nvim" },
 
     { "tpope/vim-dispatch" },
@@ -227,6 +234,13 @@ return {
         "yorickpeterse/nvim-pqf",
         config = function()
             require('pqf').setup()
+        end,
+    },
+
+    {
+        "brenoprata10/nvim-highlight-colors",
+        config = function()
+            require("nvim-highlight-colors").setup()
         end,
     },
 
