@@ -10,8 +10,8 @@ My personal development configuration files for:
 * [zsh](https://zsh.sourceforge.io) — Shell designed for interactive use
 * ...
 
-The configurations are maintained using [Nix](https://nixos.org/) with [Home Manager](https://github.com/nix-community/home-manager) and are actively tested on Ubuntu (22.04 LTS, 23.04), 
-Manjaro and macOS (Big Sur, Ventura), but should work on any other Linux or macOS system.
+The configurations are maintained using [Nix](https://nixos.org/) with [Home Manager](https://github.com/nix-community/home-manager) and are actively tested on Debian, Ubuntu, 
+Manjaro and macOS.
 
 ![Example of Neovim, Vifm and zsh running inside a Tmux session within Alacritty](screenshot.png)
 
@@ -95,6 +95,7 @@ The following program configurations are managed:
         * [coc-clangd](https://github.com/clangd/coc-clangd) — Clangd
         * [coc-cmake](https://github.com/voldikss/coc-cmake) — CMake
         * [coc-json](https://github.com/neoclide/coc-json) — JSON
+        * [coc-prettier](https://github.com/neoclide/coc-prettier) — TypeScript, HTML, etc.
         * [coc-pyright](https://github.com/fannheyward/coc-pyright) — Python
         * [coc-snippets](https://github.com/neoclide/coc-snippets) — Snippets
         * [coc-texlab](https://github.com/fannheyward/coc-texlab)  — LaTeX
