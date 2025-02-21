@@ -17,7 +17,6 @@
         ../../programs/jq/jq.nix
         ../../programs/kubectl/kubectl.nix
         ../../programs/latex/latex.nix
-        ../../programs/macos/stree.nix
         ../../programs/macos/upgrades.nix
         ../../programs/macos/wimlib.nix
         ../../programs/neofetch/neofetch.nix
@@ -37,7 +36,6 @@
         ../../programs/zsh/zsh.nix
 
         ../../roles/arcole.nix
-        ../../roles/blackboard.nix
         ../../roles/eyeonid.nix
         ../../roles/mountfive.nix
         ../../roles/wowool.nix
