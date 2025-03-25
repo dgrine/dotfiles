@@ -31,6 +31,7 @@
         ../../programs/tldr/tldr.nix
         ../../programs/tmux/tmux.nix
         ../../programs/tree-sitter/tree-sitter.nix
+        ../../programs/tree/tree.nix
         ../../programs/vifm/vifm.nix
         ../../programs/zoxide/zoxide.nix
         ../../programs/zsh/zsh.nix
@@ -56,19 +57,7 @@
         # The home.packages option allows you to install Nix packages into your
         # environment.
         packages = with pkgs; [
-
-            # # It is sometimes useful to fine-tune packages, for example, by applying
-            # # overrides. You can do that directly here, just don't forget the
-            # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-            # # fonts?
-            (pkgs.nerdfonts.override { fonts = [ "UbuntuMono" ]; })
-
-            # # You can also create simple shell scripts directly inside your
-            # # configuration. For example, this adds a command 'my-hello' to your
-            # # environment:
-            # (pkgs.writeShellScriptBin "my-hello" ''
-            #   echo "Hello, ${config.home.username}!"
-            # '')
+            pkgs.nerd-fonts.ubuntu-mono
         ];
 
         # Home Manager is pretty good at managing dotfiles. The primary way to manage
