@@ -16,10 +16,10 @@
         ../../programs/gnu-sed/gnu-sed.nix
         ../../programs/jq/jq.nix
         ../../programs/kubectl/kubectl.nix
-        ../../programs/latex/latex.nix
+        # ../../programs/latex/latex.nix
         ../../programs/macos/upgrades.nix
         ../../programs/macos/wimlib.nix
-        ../../programs/neofetch/neofetch.nix
+        # ../../programs/neofetch/neofetch.nix
         ../../programs/neovim/neovim.nix
         ../../programs/ninja/ninja.nix
         ../../programs/nodejs/nodejs.nix
@@ -38,7 +38,7 @@
 
         ../../roles/arcole.nix
         ../../roles/eyeonid.nix
-        ../../roles/mountfive.nix
+        # ../../roles/mountfive.nix
         ../../roles/wowool.nix
     ];
 

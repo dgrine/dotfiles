@@ -22,7 +22,7 @@
         # See https://github.com/nix-community/home-manager/issues/2991
         profileExtra = lib.optionalString (config.home.sessionPath != [ ]) ''
             export PATH="$PATH''${PATH:+:}${lib.concatStringsSep ":" config.home.sessionPath}"
-            export PATH="$PATH:$HOME/dev/bin"
+            export PATH="$PATH:$HOME/dev/bin:$HOME/.local/bin"
             export DISABLE_AUTO_TITLE="true"
         '';
     };

@@ -138,15 +138,9 @@ return {
 
             -- Using telescope-coc
             wk.add( { "<Leader>cr", "<Cmd>Telescope coc references<CR>", desc = "References", icon = { icon = "", color = "grey" } } )
-            wk.add( { "<Leader>cp", "<Cmd>Telescope coc definitions<CR>", desc = "Definition peek", icon = { icon = "", color = "grey" } } )
-            wk.add( { "<Leader>ca", group = "Actions", icon = { icon = "⚡", color = "grey" } } )
-            wk.add( { "<Leader>cac", "<Cmd>Telescope coc code_actions<CR>", desc = "Code", icon = { icon = "", color = "grey" } } )
-            wk.add( { "<Leader>cal", "<Cmd>Telescope coc line_code_actions<CR>", desc = "Line", icon = { icon = "󰸱", color = "grey" } } )
-            wk.add( { "<Leader>cad", "<Cmd>Telescope coc file_code_actions<CR>", desc = "Document", icon = { icon = "󱁻", color = "grey" } } )
-            wk.add( { "<Leader>caa", "<Cmd>Telescope coc<CR>", desc = "Available...", icon = { icon = "", color = "grey" } } )
             wk.add( { "<Leader>cs", group = "Symbols", icon = { icon = "", color = "grey" } } )
             wk.add( { "<Leader>csd", "<Cmd>Telescope coc document_symbols<CR>", desc = "Document", icon = { icon = "", color = "grey" } } )
-            wk.add( { "<Leader>csw", "<Cmd>Telescope coc workspace_symbols<CR>", desc = "Workspace", icon = { icon = "", color = "grey" } } )
+            wk.add( { "<Leader>css", "<Cmd>Telescope coc workspace_symbols<CR>", desc = "Workspace", icon = { icon = "", color = "grey" } } )
             wk.add( { "<Leader>cm", "<Cmd>Telescope coc commands<CR>", desc = "Commands", icon = { icon = "", color = "grey" } } )
         end
     },
@@ -187,10 +181,52 @@ return {
                 },
             }
             require("copilot.suggestion").toggle_auto_trigger()
-            local wk = require("which-key")
-            wk.add( { "<Leader>cp", "<Cmd>Copilot panel<CR>", desc = "GitHub Copilot", icon = { icon = "", color = "grey" } } )
+            -- local wk = require("which-key")
+            -- wk.add( { "<Leader>cp", "<Cmd>Copilot panel<CR>", desc = "GitHub Copilot", icon = { icon = "", color = "grey" } } )
         end,
     },
+
+    {
+      "olimorris/codecompanion.nvim",
+      opts = {},
+      dependencies = {
+        "nvim-lua/plenary.nvim",
+        "nvim-treesitter/nvim-treesitter",
+      },
+    },
+
+    {
+      "MeanderingProgrammer/render-markdown.nvim",
+      ft = { "markdown", "codecompanion" }
+    },
+
+    -- {
+    --     "CopilotC-Nvim/CopilotChat.nvim",
+    --     dependencies = {
+    --         { "zbirenbaum/copilot.lua" },
+    --         { "nvim-lua/plenary.nvim", branch = "master" },
+    --         { "nvim-telescope/telescope.nvim" },
+    --     },
+    --     build = "make tiktoken", -- Only on MacOS or Linux
+    --     config = function()
+    --         require("CopilotChat").setup {
+    --             mappings = {
+    --                 reset = {
+    --                   normal = '<C-r>',
+    --                   insert = '<C-r>',
+    --                 },
+    --             },
+    --         }
+    --         local wk = require("which-key")
+    --         local chat = require("CopilotChat")
+    --         wk.add( { "<Leader>a", group = "AI", icon = { icon = "", color = "grey" } } )
+    --         wk.add( { "<Leader>aa", chat.toggle, desc = "Toggle", icon = { icon = "", color = "grey" } } )
+    --         -- wk.add( { "<Leader>ap", chat.select_prompt, desc = "Prompt", icon = { icon = "", color = "grey" } } )
+    --         wk.add( { "<Leader>ap", require("CopilotChat.integrations.telescope").pick, desc = "Prompt", icon = { icon = "", color = "grey" } } )
+    --         wk.add( { "<Leader>am", chat.select_model, desc = "Model", icon = { icon = "", color = "grey" } } )
+    --         wk.add( { "<Leader>ag", chat.select_agent, desc = "Agent", icon = { icon = "", color = "grey" } } )
+    --     end,
+    -- },
 
     -- {
     --     "zbirenbaum/copilot-cmp",

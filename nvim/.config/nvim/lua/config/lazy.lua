@@ -1,3 +1,7 @@
+-- Remove Neovim’s default <Tab> snippet keymap
+pcall(vim.keymap.del, "i", "<Tab>")
+-- vim.keymap.set("i", "<Tab>", "<Tab>", { silent = true })
+
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -82,11 +86,13 @@ vim.api.nvim_exec([[
             ]], true)
 
 -- Organize Python imports on save
+-- WARNING: This caused a race condition between black and pyright, better to use coc-settings.json
 -- vim.autocmd BufWritePre *.py silent! :call CocAction('runCommand', 'python.sortImports')
 vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = { '*.py' },
     callback = function()
-        vim.cmd("CocCommand pyright.organizeimports")
+        -- vim.cmd("CocCommand pyright.organizeimports")
+        vim.fn.CocAction("runCommand", "pyright.organizeimports")
     end,
 })
 
@@ -94,7 +100,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 vim.keymap.set( {"n", "v"}, "<Leader>c<Space>", "gc", { remap = true, desc = "Comment" } )
 vim.keymap.set( {"n"}, "<Leader>c<Space>", "gcc", { remap = true, desc = "Comment" } )  -- Use with leader n to comment n lines
 
--- Ultisnips
+-- UltiSnips
 vim.g.UltiSnipsExpandTrigger="<c-j>"
 vim.g.UltiSnipsJumpForwardTrigger="<c-l>"
 vim.g.UltiSnipsJumpBackwardTrigger="<c-h>"

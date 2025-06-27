@@ -36,15 +36,25 @@ return {
         end
     },
 
-    -- the colorscheme should be available when starting Neovim
+    -- Rosé Pine theme setup with lazy.nvim
     {
-        "sainnhe/sonokai",
-        lazy = false, -- make sure we load this during startup if it is your main colorscheme
-        priority = 1000, -- make sure to load this before all the other start plugins
+      {
+        "rose-pine/neovim",
+        name = "rose-pine",
+        priority = 1000,
         config = function()
-            -- load the colorscheme here
-            vim.cmd([[colorscheme sonokai]])
+          require("rose-pine").setup({
+            variant = "moon", -- options: "main" (default), "moon", "dawn"
+            styles = {
+              bold = true,
+              italic = true,
+              transparency = true,
+            },
+          })
+
+          vim.cmd("colorscheme rose-pine")
         end,
+      },
     },
 
     {
