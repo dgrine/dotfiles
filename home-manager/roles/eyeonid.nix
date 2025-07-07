@@ -2,7 +2,7 @@
 
 let EOID_NAME = "eyeonid"; in {
     programs.zsh = let EOID_ROOT = "$HOME/dev/roles/${EOID_NAME}"; in {
-        initExtra = ''
+        initContent = ''
             # Add the root directory
             mkdir -p ${EOID_ROOT}
 

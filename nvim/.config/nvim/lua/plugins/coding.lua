@@ -1,283 +1,400 @@
 return {
-    -- Note: There is an issue with using TSInstall under alacritty, the `arch` command incorrectly
-    -- reports that the architecture is i386 instead of arm64. So it is best to use a different terminal
-    -- when installing parsers.
-    {
-        "nvim-treesitter/nvim-treesitter",
-        build = function()
-            require("nvim-treesitter.install").update({ with_sync = true })()
-        end,
-        config = function () 
-            require("nvim-treesitter.configs").setup {
-            highlight = { enable = true },
-            indent = { enable = true },  
-            }
-        end,
-    },
+	-- Note: There is an issue with using TSInstall under alacritty, the `arch` command incorrectly
+	-- reports that the architecture is i386 instead of arm64. So it is best to use a different terminal
+	-- when installing parsers.
+	{
+		"nvim-treesitter/nvim-treesitter",
+		build = function()
+			require("nvim-treesitter.install").update({ with_sync = true })()
+		end,
+		config = function()
+			require("nvim-treesitter.configs").setup({
+				highlight = { enable = true },
+				indent = { enable = true },
+			})
+		end,
+	},
 
-    {
-        "numToStr/Comment.nvim",
-        opts = {
-            -- add any options here
-        }
-    },
+	-- Comment out code
+	{
+		"numToStr/Comment.nvim",
+		config = function()
+			require("Comment").setup({})
+			local wk = require("which-key")
+			wk.add({ "<Leader>c", group = "Code", icon = { icon = "", color = "grey" } })
+			wk.add({
+				"<Leader>c<Space>",
+				"<Cmd>lua require('Comment.api').toggle.linewise.current()<CR>",
+				desc = "Toggle comment",
+				icon = { icon = "󰓯", color = "grey" },
+			})
+		end,
+	},
 
-    {
-        "mg979/vim-visual-multi",
-        lazy = false,
-    },
+	-- Visual multi-cursor editing
+	{
+		"mg979/vim-visual-multi",
+		lazy = false,
+	},
 
-    {
-        "kylechui/nvim-surround",
-        version = "*",
-        event = "VeryLazy",
-        config = function()
-            require("nvim-surround").setup {
-            -- Configuration here, or leave empty to use defaults
-            }
-        end
-    },
+	-- Surround text with characters
+	{
+		"kylechui/nvim-surround",
+		version = "*",
+		event = "VeryLazy",
+		config = function()
+			require("nvim-surround").setup({
+				-- Configuration here, or leave empty to use defaults
+			})
+		end,
+	},
 
-    {
-        "SirVer/ultisnips",
-        config = function()
-            -- Use <C-j> to trigger snippets
-            vim.keymap.set("i", "<C-j>", "<Plug>(coc-snippets-expand-jump)", { silent = true, noremap = true, expr = true, desc = "Snippet" })
-            -- vim.g.coc_snippet_next = '<c-l>'
-            -- vim.g.coc_snippet_prev = '<c-h>'
+	-- Pretty quickfix window
+	{
+		"yorickpeterse/nvim-pqf",
+		config = function()
+			require("pqf").setup()
+		end,
+	},
 
-        end
-    },
+	-- Highlight colors in code
+	{
+		"brenoprata10/nvim-highlight-colors",
+		config = function()
+			require("nvim-highlight-colors").setup()
+		end,
+	},
 
-    {
-        "Wansmer/treesj",
-        dependencies = { "nvim-treesitter/nvim-treesitter", "neoclide/coc.nvim" }, -- if you install parsers with `nvim-treesitter`
-        config = function()
-            require("treesj").setup({
-                use_default_keymaps = false,
-            })
-            local wk = require("which-key")
-            wk.add( { "<Leader>s", group = "Split", icon = { icon = "󰃻", color = "grey" } } )
-            wk.add( { "<Leader>st", "<Cmd>TSJToggle<CR>", desc = "Toggle", icon = { icon = "󰔡", color = "grey" } } )
-            wk.add( { "<Leader>ss", "<Cmd>TSJSplit<CR>", desc = "Split", icon = { icon = "󰃻", color = "grey" } } )
-            wk.add( { "<Leader>sj", "<Cmd>TSJJoin<CR>", desc = "Join", icon = { icon = "󰽜", color = "grey" } } )
-        end,
-    },
+	-- Switch between values (e.g., true/false, on/off)
+	{
+		"AndrewRadev/switch.vim",
+		config = function()
+			vim.g.switch_mapping = ""
+			local wk = require("which-key")
+			wk.add({ "<Leader>ct", "<Cmd>Switch<CR>", desc = "Toggle value", icon = { icon = "󰓤", color = "grey" } })
+		end,
+	},
 
-    {
-        "neoclide/coc.nvim",
-        branch = "release",
-        config = function()
-            local keyset = vim.keymap.set
-            local wk = require("which-key")
-            wk.add( {"<Leader>c", group = "Code", icon = { icon = "", color = "grey" } } )
+	-- Run commands asynchronously
+	{ "tpope/vim-dispatch" },
 
-            -- Autocomplete
-            function _G.check_back_space()
-                local col = vim.fn.col(".") - 1
-                return col == 0 or vim.fn.getline("."):sub(col, col):match("%s") ~= nil
-            end
+	-- GitHub Copilot
+	{
+		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		-- event = "InsertEnter",
+		event = "VeryLazy",
+		config = function()
+			require("copilot").setup({
+				panel = {
+					enabled = true,
+					auto_refresh = true,
+					keymap = {
+						jump_prev = "<M-[[>",
+						jump_next = "<M-]]>",
+						accept = "<M-l>",
+						refresh = "gr",
+						open = "<M-CR>",
+					},
+					layout = {
+						position = "bottom", -- | top | left | right
+						ratio = 0.2,
+					},
+				},
+				suggestion = {
+					auto_trigger = true,
+				},
+			})
+			require("copilot.suggestion").toggle_auto_trigger()
+		end,
+	},
 
-            -- Use Tab for trigger completion with characters ahead and navigate
-            -- NOTE: There's always a completion item selected by default, you may want to enable
-            -- no select by setting `"suggest.noselect": true` in your configuration file
-            -- NOTE: Use command ':verbose imap <tab>' to make sure Tab is not mapped by
-            -- other plugins before putting this into your config
-            keyset(
-            "i",
-            "<TAB>", 'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()',
-            { silent = false, noremap = true, expr = true, replace_keycodes = false, desc = "Next auto-completion item"}
-            )
-            keyset(
-            "i",
-            "<S-TAB>", [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]],
-            { silent = false, noremap = true, expr = true, replace_keycodes = false, desc = "Next auto-completion item"}
-            )
+	-- Render markdown in a floating window, used by Code Companion
+	{
+		"MeanderingProgrammer/render-markdown.nvim",
+		ft = { "markdown", "codecompanion" },
+		config = function()
+			-- apply the highlight fix
+			vim.api.nvim_set_hl(0, "RenderMarkdownCode", { blend = 100 })
+		end,
+	},
 
-            -- Make <CR> to accept selected completion item or notify coc.nvim to format
-            -- <C-g>u breaks current undo, please make your own choice
-            keyset("i", "<CR>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], { silent = false, noremap = true, expr = true, replace_keycodes = false, desc = "Use auto-completion item"})
+	-- Lazy.nvim config for nvim-cmp + Mason + LSPs + Formatters + Linting + Copilot
+	-- 1. Completion engine
+	{
+		"saghen/blink.cmp",
+		-- optional: provides snippets for the snippet source
+		dependencies = { "rafamadriz/friendly-snippets" },
 
-            -- Use <C-space> to trigger completion
-            keyset("i", "<C-space>", "coc#refresh()", { silent = true, expr = true, desc = "Auto-completion" })
+		-- use a release tag to download pre-built binaries
+		version = "1.*",
+		-- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
+		-- build = 'cargo build --release',
+		-- If you use nix, you can build from source using latest nightly rust with:
+		-- build = 'nix run .#build-plugin',
 
-            -- Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
+		---@module 'blink.cmp'
+		---@type blink.cmp.Config
+		opts = {
+			-- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
+			-- 'super-tab' for mappings similar to vscode (tab to accept)
+			-- 'enter' for enter to accept
+			-- 'none' for no mappings
+			--
+			-- All presets have the following mappings:
+			-- C-space: Open menu or open docs if already open
+			-- C-n/C-p or Up/Down: Select next/previous item
+			-- C-e: Hide menu
+			-- C-k: Toggle signature help (if signature.enabled = true)
+			--
+			-- See :h blink-cmp-config-keymap for defining your own keymap
+			-- keymap = { preset = 'default' },
+			keymap = {
+				preset = "none",
+				["<A-k>"] = { "select_prev", "fallback_to_mappings" },
+				["<A-j>"] = { "select_next", "fallback_to_mappings" },
+				["<C-Space>"] = { "show", "show_documentation", "hide_documentation" },
+				["<C-e>"] = { "hide" },
+				["<Tab>"] = { "select_and_accept" },
+				["<C-b>"] = { "scroll_documentation_up", "fallback" },
+				["<C-f>"] = { "scroll_documentation_down", "fallback" },
+				["<C-n>"] = { "snippet_forward", "fallback" },
+				["<C-p>"] = { "snippet_backward", "fallback" },
+				["<C-s>"] = { "show_signature", "hide_signature", "fallback" },
+			},
 
-            -- Documentation
-            function _G.show_docs()
-                local cw = vim.fn.expand("<cword>")
-                if vim.fn.index({"vim", "help"}, vim.bo.filetype) >= 0 then
-                    vim.api.nvim_command("h " .. cw)
-                elseif vim.api.nvim_eval("coc#rpc#ready()") then
-                    vim.fn.CocActionAsync("doHover")
-                else
-                    vim.api.nvim_command("!" .. vim.o.keywordprg .. " " .. cw)
-                end
-            end
-            wk.add( { "<Leader>ck", "<Cmd>lua _G.show_docs()<CR>", desc = "Show documentation", icon = { icon = "", color = "grey" } } )
+			signature = { enabled = true },
 
-            -- Highlight the symbol and its references on a CursorHold event (cursor is idle)
-            vim.api.nvim_create_augroup("CocGroup", {})
-            vim.api.nvim_create_autocmd("CursorHold", {
-                group = "CocGroup",
-                command = "silent call CocActionAsync('highlight')",
-                desc = "Highlight symbol under cursor on CursorHold"
-            })
+			appearance = {
+				-- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+				-- Adjusts spacing to ensure icons are aligned
+				nerd_font_variant = "mono",
+			},
 
-            wk.add( { "<Leader>cc", "<Plug>(coc-definition)", desc = "Definition", icon = { icon = "", color = "grey" } } )
-            wk.add( { "<Leader>cd", group = "Diagnostic", icon = { icon = "", color = "grey" } } )
-            wk.add( { "<Leader>cdd", "<Cmd>CocDiagnostics<CR>", desc = "Diagnostics", icon = { icon = "", color = "grey" } } )
-            wk.add( { "<Leader>cd[", "<Plug>(coc-diagnostic-prev)", desc = "Previous", icon = { icon = "↩️", color = "grey" } } )
-            wk.add( { "<Leader>cd]", "<Plug>(coc-diagnostic-next)", desc = "Next", icon = { icon = "↪️", color = "grey" } } )
-            wk.add( { "<Leader>ch", "<Cmd>CocCommand document.toggleInlayHint<CR>", desc = "Hints", icon = { icon = "", color = "grey" } } )
-            wk.add( { "<Leader>cQ", "<Cmd>CocRestart<CR>", desc = "Quit & restart", icon = { icon = "󰐥", color = "grey" } } )
-            -- Disable the inlay hints by default
-            -- vim.api.nvim_command("autocmd BufEnter *.cpp silent! CocCommand document.toggleInlayHint")
-            -- vim.api.nvim_command("autocmd User CocNvimInit call CocAction('runCommand', 'document.toggleInlayHint')")
-            -- vim.api.nvim_command("autocmd FileType cpp autocmd User CocNvimInit call CocAction('runCommand', 'document.toggleInlayHint')")
+			-- (Default) Only show the documentation popup when manually triggered
+			completion = { documentation = { auto_show = false } },
 
-            -- Using telescope-coc
-            wk.add( { "<Leader>cr", "<Cmd>Telescope coc references<CR>", desc = "References", icon = { icon = "", color = "grey" } } )
-            wk.add( { "<Leader>cs", group = "Symbols", icon = { icon = "", color = "grey" } } )
-            wk.add( { "<Leader>csd", "<Cmd>Telescope coc document_symbols<CR>", desc = "Document", icon = { icon = "", color = "grey" } } )
-            wk.add( { "<Leader>css", "<Cmd>Telescope coc workspace_symbols<CR>", desc = "Workspace", icon = { icon = "", color = "grey" } } )
-            wk.add( { "<Leader>cm", "<Cmd>Telescope coc commands<CR>", desc = "Commands", icon = { icon = "", color = "grey" } } )
-        end
-    },
+			-- Default list of enabled providers defined so that you can extend it
+			-- elsewhere in your config, without redefining it, due to `opts_extend`
+			sources = {
+				default = { "lsp", "path", "snippets", "buffer", "codecompanion" },
+			},
 
-    {
-        "AndrewRadev/switch.vim",
-        config = function()
-            vim.g.switch_mapping = ""
-            local wk = require("which-key")
-            wk.add( { "<Leader>ct", "<Cmd>Switch<CR>", desc = "Toggle value", icon = { icon = "󰓤", color = "grey" } } )
-        end
-    },
+			-- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
+			-- You may use a lua implementation instead by using `implementation = "lua"` or fallback to the lua implementation,
+			-- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
+			--
+			-- See the fuzzy documentation for more information
+			fuzzy = { implementation = "prefer_rust_with_warning" },
+		},
+		opts_extend = { "sources.default" },
+	},
 
-    {
-        "zbirenbaum/copilot.lua",
-        cmd = "Copilot",
-        -- event = "InsertEnter",
-        event = "VeryLazy",
-        config = function()
-            require("copilot").setup {
-                panel = {
-                    enabled = true,
-                    auto_refresh = true,
-                    keymap = {
-                        jump_prev = "<M-[[>",
-                        jump_next = "<M-]]>",
-                        accept = "<M-l>",
-                        refresh = "gr",
-                        open = "<M-CR>"
-                    },
-                    layout = {
-                        position = "bottom", -- | top | left | right
-                        ratio = 0.2
-                    },
-                },
-                suggestion = {
-                    auto_trigger = true,
-                },
-            }
-            require("copilot.suggestion").toggle_auto_trigger()
-            -- local wk = require("which-key")
-            -- wk.add( { "<Leader>cp", "<Cmd>Copilot panel<CR>", desc = "GitHub Copilot", icon = { icon = "", color = "grey" } } )
-        end,
-    },
+	-- 2. Snippet engine
+	{
+		"L3MON4D3/LuaSnip",
+		build = "make install_jsregexp",
+		config = function()
+			require("luasnip.loaders.from_vscode").lazy_load()
+		end,
+	},
 
-    {
-      "olimorris/codecompanion.nvim",
-      opts = {},
-      dependencies = {
-        "nvim-lua/plenary.nvim",
-        "nvim-treesitter/nvim-treesitter",
-      },
-    },
+	-- 3. Mason for installing LSPs, formatters, linters
+	{
+		"williamboman/mason.nvim",
+		build = ":MasonUpdate",
+		config = true,
+	},
+	{
+		"williamboman/mason-lspconfig.nvim",
+		dependencies = { "williamboman/mason.nvim" },
+		config = function()
+			require("mason-lspconfig").setup({
+				-- These are the LSPs that will be installed automatically
+				ensure_installed = {
+					"clangd", -- C++
+					"pyright", -- Python
+					"ts_ls", -- TypeScript / JavaScript
+					"lua_ls", -- Lua
+					"html", -- HTML
+				},
+			})
 
-    {
-      "MeanderingProgrammer/render-markdown.nvim",
-      ft = { "markdown", "codecompanion" }
-    },
+			vim.keymap.set("n", "gl", function()
+				vim.diagnostic.open_float(nil, { focusable = false, border = "rounded", source = "always" })
+			end, { desc = "Show diagnostic under cursor" })
+		end,
+	},
+	{
+		"jay-babu/mason-null-ls.nvim",
+		dependencies = {
+			"williamboman/mason.nvim",
+			"nvimtools/none-ls.nvim",
+		},
+		config = function()
+			require("mason-null-ls").setup({
+				-- These are the formatters and linters that will be installed automatically
+				ensure_installed = {
+					"prettier",
+					"isort",
+					"black",
+					"clang_format",
+					"eslint_d",
+					"stylua",
+				},
+				automatic_setup = true,
+			})
+			local null_ls = require("null-ls")
 
-    -- {
-    --     "CopilotC-Nvim/CopilotChat.nvim",
-    --     dependencies = {
-    --         { "zbirenbaum/copilot.lua" },
-    --         { "nvim-lua/plenary.nvim", branch = "master" },
-    --         { "nvim-telescope/telescope.nvim" },
-    --     },
-    --     build = "make tiktoken", -- Only on MacOS or Linux
-    --     config = function()
-    --         require("CopilotChat").setup {
-    --             mappings = {
-    --                 reset = {
-    --                   normal = '<C-r>',
-    --                   insert = '<C-r>',
-    --                 },
-    --             },
-    --         }
-    --         local wk = require("which-key")
-    --         local chat = require("CopilotChat")
-    --         wk.add( { "<Leader>a", group = "AI", icon = { icon = "", color = "grey" } } )
-    --         wk.add( { "<Leader>aa", chat.toggle, desc = "Toggle", icon = { icon = "", color = "grey" } } )
-    --         -- wk.add( { "<Leader>ap", chat.select_prompt, desc = "Prompt", icon = { icon = "", color = "grey" } } )
-    --         wk.add( { "<Leader>ap", require("CopilotChat.integrations.telescope").pick, desc = "Prompt", icon = { icon = "", color = "grey" } } )
-    --         wk.add( { "<Leader>am", chat.select_model, desc = "Model", icon = { icon = "", color = "grey" } } )
-    --         wk.add( { "<Leader>ag", chat.select_agent, desc = "Agent", icon = { icon = "", color = "grey" } } )
-    --     end,
-    -- },
+			-- Register formatters
+			null_ls.setup({
+				sources = {
+					null_ls.builtins.formatting.isort,
+					null_ls.builtins.formatting.black,
+					null_ls.builtins.formatting.prettier,
+					null_ls.builtins.formatting.clang_format,
+					null_ls.builtins.formatting.stylua,
+				},
+			})
+			vim.api.nvim_create_autocmd("BufWritePre", {
+				callback = function(args)
+					vim.lsp.buf.format({
+						bufnr = args.buf,
+						async = false,
+						filter = function(client)
+							return client.name == "null-ls"
+						end,
+					})
+				end,
+			})
+		end,
+	},
 
-    -- {
-    --     "zbirenbaum/copilot-cmp",
-    --     config = function ()
-    --         require("copilot_cmp").setup()
-    --     end
-    -- },
+	-- 4. Native LSP client config
+	{
+		"neovim/nvim-lspconfig",
+		dependencies = {
+			"williamboman/mason-lspconfig.nvim",
+		},
+		config = function()
+			local wk = require("which-key")
+			local ts = require("telescope.builtin")
 
-    { "fannheyward/telescope-coc.nvim" },
+			wk.add({ "<Leader>c", group = "Code", icon = { icon = "", color = "grey" } })
 
-    { "tpope/vim-dispatch" },
+			-- Diagnostics
+			vim.api.nvim_create_autocmd("CursorHold", {
+				callback = function()
+					vim.diagnostic.open_float(nil, {
+						focusable = false,
+						border = "rounded",
+						source = "always",
+						prefix = "",
+						scope = "cursor",
+					})
+				end,
+			})
 
-    {
-        "kevinhwang91/nvim-bqf",
-        config = function()
-            local wk = require("which-key")
-            wk.add( { "<Leader>cq", group = "Quickfix", icon = { icon = "", color = "grey" } } )
+			-- Groups
+			wk.add({ "<Leader>cd", group = "Diagnostic", icon = { icon = "", color = "grey" } })
+			wk.add({ "<Leader>cs", group = "Symbols", icon = { icon = "", color = "grey" } })
 
-            local quickfix_toggle = function()
-                local qf_exists = false
-                for _, win in pairs(vim.fn.getwininfo()) do
-                    if win["quickfix"] == 1 then
-                        qf_exists = true
-                    end
-                end
-                if qf_exists == true then
-                    vim.cmd "cclose"
-                    return
-                end
-                if not vim.tbl_isempty(vim.fn.getqflist()) then
-                    vim.cmd "copen 40"
-                end
-            end
-            wk.add( { "<Leader>cqq", quickfix_toggle, desc = "Quickfix", icon = { icon = "", color = "grey" } } )
-            wk.add( { "<Leader>cq[", "<Cmd>cprev<CR>", desc = "Previous", icon = { icon = "↩️", color = "grey" } } )
-            wk.add( { "<Leader>cq]", "<Cmd>cnext<CR>", desc = "Next", icon = { icon = "↪️", color = "grey" } } )
-        end,
-    },
+			-- Diagnostics
+			wk.add({ "<Leader>cd]", vim.diagnostic.goto_next, desc = "Next", icon = { icon = "→", color = "grey" } })
+			wk.add({
+				"<Leader>cd[",
+				vim.diagnostic.goto_prev,
+				desc = "Previous",
+				icon = { icon = "←", color = "grey" },
+			})
+			-- Actions
+			wk.add({
+				"<Leader>csr",
+				vim.lsp.buf.rename,
+				desc = "Rename symbol",
+				icon = { icon = "󰒡", color = "grey" },
+			})
 
-    {
-        "yorickpeterse/nvim-pqf",
-        config = function()
-            require('pqf').setup()
-        end,
-    },
+			-- Telescope
+			wk.add({ "<Leader>cdd", ts.diagnostics, desc = "Diagnostics", icon = { icon = "", color = "grey" } })
+			wk.add({ "gd", ts.lsp_definitions, desc = "Go to definition", icon = { icon = "", color = "grey" } })
+			wk.add({
+				"<Leader>cc",
+				ts.lsp_definitions,
+				desc = "Go to definition",
+				icon = { icon = "", color = "grey" },
+			})
+			wk.add({ "gr", ts.lsp_references, desc = "References", icon = { icon = "", color = "grey" } })
+			wk.add({ "gi", ts.lsp_incoming_calls, desc = "Incoming calls", icon = { icon = "󰕮", color = "grey" } })
+			wk.add({ "go", ts.lsp_incoming_calls, desc = "Outgoing calls", icon = { icon = "󰕮", color = "grey" } })
+			wk.add({
+				"<Leader>csd",
+				"<Cmd>Telescope aerial<CR>",
+				desc = "Document",
+				icon = { icon = "󰈭", color = "grey" },
+			})
+			wk.add({
+				"<Leader>csw",
+				ts.lsp_dynamic_workspace_symbols,
+				desc = "Workspace",
+				icon = { icon = "󰈭", color = "grey" },
+			})
+		end,
+	},
 
-    {
-        "brenoprata10/nvim-highlight-colors",
-        config = function()
-            require("nvim-highlight-colors").setup()
-        end,
-    },
+	-- 5. Code Companion
+	{
+		"olimorris/codecompanion.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
+			"Saghen/blink.cmp",
+		},
+		config = function()
+			require("codecompanion").setup({})
+		end,
+	},
 
+	{
+		"stevearc/aerial.nvim",
+		opts = {},
+		-- Optional dependencies
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			"nvim-tree/nvim-web-devicons",
+		},
+		config = function()
+			require("aerial").setup({
+				backends = { "treesitter", "lsp" },
+				attach_mode = "global",
+				show_guides = true,
+				show_guide_icons = true,
+				show_cursor = true,
+				show_unnamed = false,
+				close_on_select = true,
+				link_tree_to_folds = true,
+				filter_kind = {
+					"Class",
+					"Constructor",
+					"Enum",
+					"Function",
+					"Interface",
+					"Module",
+					"Method",
+					"Struct",
+					"Trait",
+					-- optionally:
+					-- "Namespace",
+					-- "Package",
+				},
+			})
+			local wk = require("which-key")
+			wk.add({
+				"<Leader>cso",
+				"<Cmd>AerialToggle!<CR>",
+				desc = "Outline",
+				icon = { icon = "󰈭", color = "grey" },
+			})
+		end,
+	},
 }

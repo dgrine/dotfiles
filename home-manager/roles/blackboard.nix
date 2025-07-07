@@ -2,7 +2,7 @@
 
 let BB_NAME = "blackboard"; in {
     programs.zsh = let BB_ROOT = "$HOME/dev/roles/${BB_NAME}"; in {
-        initExtra = ''
+        initContent = ''
             # Add the root directory
             mkdir -p ${BB_ROOT}
 

@@ -1,7 +1,9 @@
 [gui]
 	editor = nvim
 [diff]
-	tool = icdiff
+	tool = gittower
+[difftool "gittower"]
+    cmd = gittower diff -- $LOCAL $REMOTE
 [difftool "meld"]
     cmd = meld $LOCAL $REMOTE &> /dev/null
 [difftool "icdiff"]

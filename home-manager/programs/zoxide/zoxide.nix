@@ -5,7 +5,7 @@
         enable = true;
         enableZshIntegration = true;
     };
-    programs.zsh.initExtra = ''
+    programs.zsh.initContent = ''
         # Ctrl + p to launch Zoxide
         function launch_zi () {
             __zoxide_zi

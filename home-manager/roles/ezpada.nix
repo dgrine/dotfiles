@@ -7,7 +7,7 @@ let EZPADA_NAME = "ezpada"; in {
     ];
 
     programs.zsh = let EZPADA_ROOT = "$HOME/dev/"; in {
-        initExtra = ''
+        initContent = ''
             # Add the root directory
             mkdir -p ${EZPADA_ROOT}
 

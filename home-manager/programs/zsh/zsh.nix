@@ -4,7 +4,7 @@
     programs.zsh = {
         enable = true;
         autosuggestion.enable = true;
-        initExtra = ''
+        initContent = ''
             mkdir -p $HOME/dev/tmp/
             mkdir -p $HOME/dev/bin/
         '';

@@ -2,7 +2,7 @@
 
 let ARCOLE_NAME = "arcole"; in {
     programs.zsh = let ARCOLE_ROOT = "$HOME/dev/roles/${ARCOLE_NAME}"; in {
-        initExtra = ''
+        initContent = ''
             # Add the root directory
             mkdir -p ${ARCOLE_ROOT}
 

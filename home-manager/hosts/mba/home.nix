@@ -43,6 +43,11 @@
     ];
 
     home = {
+        # Default value is true, which means that Home Manager will check if the
+        # Nixpkgs release is compatible with the Home Manager release.
+        # I've set it to false temporarily to avoid issues with the
+        # Home Manager release check.
+        enableNixpkgsReleaseCheck = false;
         username = "djamelg";
         homeDirectory = "/Users/djamelg";
 

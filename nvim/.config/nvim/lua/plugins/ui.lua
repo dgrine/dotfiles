@@ -62,45 +62,63 @@ return {
         dependencies = { "nvim-tree/nvim-web-devicons" },
         lazy = false,
         config = function()
-            require("lualine").setup {
-                options = {
-                    icons_enabled = true,
-                    theme = "auto",
-                    component_separators = { left = "", right = "" },
-                    section_separators = { left = "", right = "" },
-                    disabled_filetypes = {
-                        statusline = {},
-                        winbar = {},
-                    },
-                    ignore_focus = {},
-                    always_divide_middle = true,
-                    globalstatus = false,
-                    refresh = {
-                    statusline = 1000,
-                    tabline = 1000,
-                    winbar = 1000,
-                    }
+            local colors = {
+              blue   = '#80a0ff',
+              cyan   = '#9ccfd8',
+              black  = '#191724',
+              white  = '#faf4ed',
+              red    = '#eb6f92',
+              violet = '#c4a7e7',
+              grey   = '#403d52',
+            }
+
+            local bubbles_theme = {
+              normal = {
+                a = { fg = colors.black, bg = colors.violet },
+                b = { fg = colors.white, bg = colors.grey },
+                c = { fg = colors.white },
+              },
+
+              insert = { a = { fg = colors.black, bg = colors.blue } },
+              visual = { a = { fg = colors.black, bg = colors.cyan } },
+              replace = { a = { fg = colors.black, bg = colors.red } },
+
+              inactive = {
+                a = { fg = colors.white, bg = colors.black },
+                b = { fg = colors.white, bg = colors.black },
+                c = { fg = colors.white },
+              },
+            }
+
+            require('lualine').setup {
+              options = {
+                theme = bubbles_theme,
+                component_separators = '',
+                section_separators = { left = '', right = '' },
+              },
+              sections = {
+                lualine_a = { { 'mode', separator = { left = '' }, right_padding = 2 } },
+                lualine_b = { 'filename', 'branch', 'diff' },
+                lualine_c = {
+                  'diagnostics',
+                  '%=',
                 },
-                sections = {
-                    lualine_a = { "mode" },
-                    lualine_b = { "branch", "diff", "diagnostics" },
-                    lualine_c = { "filename" },
-                    lualine_x = { "encoding", "fileformat", "filetype", },
-                    lualine_y = { "progress" },
-                    lualine_z = { "location" }
+                lualine_x = {},
+                lualine_y = { 'filetype', 'progress' },
+                lualine_z = {
+                  { 'location', separator = { right = '' }, left_padding = 2 },
                 },
-                inactive_sections = {
-                    lualine_a = {},
-                    lualine_b = {},
-                    lualine_c = { "filename" },
-                    lualine_x = { "location" },
-                    lualine_y = {},
-                    lualine_z = {}
-                },
-                tabline = {},
-                winbar = {},
-                inactive_winbar = {},
-                extensions = {},
+              },
+              inactive_sections = {
+                lualine_a = { 'filename' },
+                lualine_b = {},
+                lualine_c = {},
+                lualine_x = {},
+                lualine_y = {},
+                lualine_z = { 'location' },
+              },
+              tabline = {},
+              extensions = {},
             }
         end,
     },

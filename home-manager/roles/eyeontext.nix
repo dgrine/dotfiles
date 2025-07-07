@@ -2,7 +2,7 @@
 
 let EOT_NAME = "eyeontext"; in {
     programs.zsh = let EOT_ROOT = "$HOME/dev/roles/${EOT_NAME}"; in {
-        initExtra = ''
+        initContent = ''
             # Add the root directory
             mkdir -p ${EOT_ROOT}
 

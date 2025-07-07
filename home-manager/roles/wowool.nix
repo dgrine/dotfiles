@@ -2,7 +2,7 @@
 
 let WOWOOL_NAME = "wowool"; in {
     programs.zsh = let WOWOOL_ROOT = "$HOME/dev/roles/${WOWOOL_NAME}"; in {
-        initExtra = ''
+        initContent = ''
             # Add the root directory
             mkdir -p ${WOWOOL_ROOT}
 

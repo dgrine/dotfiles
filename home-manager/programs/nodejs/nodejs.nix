@@ -6,11 +6,12 @@
         packages = with pkgs; [
             nodejs
             yarn
+            eslint_d
         ];
     };
     programs.zsh = {
         oh-my-zsh.plugins = ["npm"];
-        initExtra = ''
+        initContent = ''
             export PATH=$PATH:~/.npm-packages/bin
         '';
     };

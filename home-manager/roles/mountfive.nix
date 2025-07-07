@@ -2,7 +2,7 @@
 
 let M5_NAME = "mountfive"; in {
     programs.zsh = let M5_ROOT = "$HOME/dev/roles/${M5_NAME}"; in {
-        initExtra = ''
+        initContent = ''
             # Add the root directory
             mkdir -p ${M5_ROOT}
 
