@@ -87,20 +87,6 @@ The following program configurations are managed:
 
 * [alacritty](https://github.com/alacritty/alacritty) — Fast, cross-platform OpenGL terminal emulator
 * [bat](https://github.com/sharkdp/bat) — Cat clone with syntax highlighting and Git integration
-* [coc](https://github.com/neoclide/coc.nvim) — Code completion server for Neovim
-
-    * [coc-marketplace](https://github.com/fannheyward/coc-marketplace) — Marketplace for extensions
-    * Extensions
-
-        * [coc-clangd](https://github.com/clangd/coc-clangd) — Clangd
-        * [coc-cmake](https://github.com/voldikss/coc-cmake) — CMake
-        * [coc-json](https://github.com/neoclide/coc-json) — JSON
-        * [coc-prettier](https://github.com/neoclide/coc-prettier) — TypeScript, HTML, etc.
-        * [coc-pyright](https://github.com/fannheyward/coc-pyright) — Python
-        * [coc-snippets](https://github.com/neoclide/coc-snippets) — Snippets
-        * [coc-texlab](https://github.com/fannheyward/coc-texlab)  — LaTeX
-        * [coc-tsserver](https://github.com/neoclide/coc-tsserver) — TypeScript and JavaScript
-
 * [exa](https://github.com/ogham/exa) — Modern replacement for `ls`
 * [fzf](https://github.com/junegunn/fzf) — General-purpose command-line fuzzy finder
 * [git](https://git-scm.com) — Distributed version control system 
