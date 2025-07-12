@@ -7,6 +7,9 @@
         initContent = ''
             mkdir -p $HOME/dev/tmp/
             mkdir -p $HOME/dev/bin/
+            fpath=("$HOME/.zfunc" $fpath)
+            autoload -Uz compinit
+            compinit
         '';
         oh-my-zsh = {
             enable = true;
@@ -26,8 +29,4 @@
             export DISABLE_AUTO_TITLE="true"
         '';
     };
-
-    home.packages = with pkgs; [
-        oh-my-zsh
-    ];
 }

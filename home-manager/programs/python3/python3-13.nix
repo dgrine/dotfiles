@@ -10,9 +10,8 @@
     programs.zsh = {
         profileExtra = ''
             function menv() {
-                python3 -m venv .venv
+                ~/.nix-profile/bin/python -m venv .venv
                 senv
-                pip3 install --upgrade pip
             }
 
             function senv() {
@@ -25,8 +24,6 @@
         '';
         oh-my-zsh.plugins = [
             "python"
-            "pip"
-            "invoke"
         ];
     };
     
