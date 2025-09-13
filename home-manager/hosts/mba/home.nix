@@ -62,7 +62,8 @@
         # The home.packages option allows you to install Nix packages into your
         # environment.
         packages = with pkgs; [
-            pkgs.nerd-fonts.ubuntu-mono
+            nerd-fonts.ubuntu-mono
+            nerd-fonts.fira-code
         ];
 
         # Home Manager is pretty good at managing dotfiles. The primary way to manage

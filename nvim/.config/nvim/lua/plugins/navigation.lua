@@ -3,6 +3,7 @@ return {
 	-- Which-key displays a popup with possible keybindings
 	{
 		"folke/which-key.nvim",
+		enabled = not vim.g.vscode,
 		dependencies = { "nvim-tree/nvim-web-devicons", "echasnovski/mini.icons" },
 		event = "VeryLazy",
 		opts = {
@@ -16,6 +17,7 @@ return {
 	-- Navigation between tmux and vim
 	{
 		"christoomey/vim-tmux-navigator",
+		enabled = not vim.g.vscode,
 		lazy = false,
 		config = function()
 			vim.g.tmux_navigator_disable_when_zoomed = 1
@@ -26,6 +28,7 @@ return {
 	-- Vimux allows to run commands in tmux panes
 	{
 		"benmills/vimux",
+		enabled = not vim.g.vscode,
 		lazy = false,
 		config = function()
 			local wk = require("which-key")
@@ -38,6 +41,7 @@ return {
 	-- Slime allows to send code to tmux panes
 	{
 		"jpalardy/vim-slime",
+		enabled = not vim.g.vscode,
 		config = function()
 			vim.g.slime_target = "tmux"
 			vim.cmd('let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.1"}')
@@ -48,6 +52,7 @@ return {
 	-- Nvim-tree is a file explorer
 	{
 		"nvim-tree/nvim-tree.lua",
+		enabled = not vim.g.vscode,
 		dependency = "nvim-tree/nvim-web-devicons",
 		config = function()
 			require("nvim-tree").setup({
@@ -109,6 +114,7 @@ return {
 	-- Bufferline is a tab-like buffer manager
 	{
 		"akinsho/bufferline.nvim",
+		enabled = not vim.g.vscode,
 		version = "*",
 		dependencies = "nvim-tree/nvim-web-devicons",
 		lazy = false,
@@ -194,6 +200,7 @@ return {
 	-- Search and replace
 	{
 		"nvim-pack/nvim-spectre",
+		enabled = not vim.g.vscode,
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
 			spectre = require("spectre")
@@ -217,6 +224,7 @@ return {
 	-- Telescope is a fuzzy finder
 	{
 		"nvim-telescope/telescope.nvim",
+		enabled = not vim.g.vscode,
 		tag = "0.1.8",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -284,6 +292,7 @@ return {
 	-- Floaterm is a floating terminal
 	{
 		"voldikss/vim-floaterm",
+		enabled = not vim.g.vscode,
 		config = function()
 			vim.g.floaterm_shell = "zsh -l"
 			local wk = require("which-key")
@@ -307,6 +316,7 @@ return {
 	-- Other-nvim allows to quickly switch between files of the same type
 	{
 		"rgroli/other.nvim",
+		enabled = not vim.g.vscode,
 		config = function()
 			require("other-nvim").setup({
 				mappings = {

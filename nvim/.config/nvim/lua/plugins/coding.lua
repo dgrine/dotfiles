@@ -4,6 +4,7 @@ return {
 	-- when installing parsers.
 	{
 		"nvim-treesitter/nvim-treesitter",
+		enabled = not vim.g.vscode,
 		build = function()
 			require("nvim-treesitter.install").update({ with_sync = true })()
 		end,
@@ -13,9 +14,10 @@ return {
 				indent = { enable = true },
 				ensure_installed = {
 					"c",
-					"cpp" ,
+					"cpp",
 					"bash",
 					"css",
+					"cmake",
 					"javascript",
 					"json",
 					"lua",
@@ -66,6 +68,7 @@ return {
 	-- Pretty quickfix window
 	{
 		"yorickpeterse/nvim-pqf",
+		enabled = not vim.g.vscode,
 		config = function()
 			require("pqf").setup()
 		end,
@@ -90,11 +93,15 @@ return {
 	},
 
 	-- Run commands asynchronously
-	{ "tpope/vim-dispatch" },
+	{
+		"tpope/vim-dispatch",
+		enabled = not vim.g.vscode,
+	},
 
 	-- GitHub Copilot
 	{
 		"zbirenbaum/copilot.lua",
+		enabled = not vim.g.vscode,
 		cmd = "Copilot",
 		-- event = "InsertEnter",
 		event = "VeryLazy",
@@ -118,18 +125,17 @@ return {
 				suggestion = {
 					auto_trigger = true,
 				},
+				filetypes = {
+					["*"] = true, -- enable elsewhere
+					["dap-repl"] = false,
+					["dapui_console"] = false,
+					["dapui_watches"] = false,
+					["dapui_stacks"] = false,
+					["dapui_breakpoints"] = false,
+					["dapui_scopes"] = false,
+				},
 			})
 			require("copilot.suggestion").toggle_auto_trigger()
-		end,
-	},
-
-	-- Render markdown in a floating window, used by Code Companion
-	{
-		"MeanderingProgrammer/render-markdown.nvim",
-		ft = { "markdown", "codecompanion" },
-		config = function()
-			-- apply the highlight fix
-			vim.api.nvim_set_hl(0, "RenderMarkdownCode", { blend = 100 })
 		end,
 	},
 
@@ -137,8 +143,12 @@ return {
 	-- 1. Completion engine
 	{
 		"saghen/blink.cmp",
+		enabled = not vim.g.vscode,
 		-- optional: provides snippets for the snippet source
-		dependencies = { "rafamadriz/friendly-snippets" },
+		dependencies = {
+			"rafamadriz/friendly-snippets",
+			"Kaiser-Yang/blink-cmp-avante",
+		},
 
 		-- use a release tag to download pre-built binaries
 		version = "1.*",
@@ -191,7 +201,23 @@ return {
 			-- Default list of enabled providers defined so that you can extend it
 			-- elsewhere in your config, without redefining it, due to `opts_extend`
 			sources = {
-				default = { "lsp", "path", "snippets", "buffer", "codecompanion" },
+				default = {
+					"lsp",
+					"path",
+					"snippets",
+					"buffer",
+					-- "codecompanion",
+					"avante",
+				},
+				providers = {
+					avante = {
+						module = "blink-cmp-avante",
+						name = "Avante",
+						opts = {
+							-- options for blink-cmp-avante
+						},
+					},
+				},
 			},
 
 			-- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
@@ -207,6 +233,7 @@ return {
 	-- 2. Snippet engine
 	{
 		"L3MON4D3/LuaSnip",
+		enabled = not vim.g.vscode,
 		build = "make install_jsregexp",
 		config = function()
 			require("luasnip.loaders.from_vscode").lazy_load()
@@ -216,21 +243,24 @@ return {
 	-- 3. Mason for installing LSPs, formatters, linters
 	{
 		"williamboman/mason.nvim",
+		enabled = not vim.g.vscode,
 		build = ":MasonUpdate",
 		config = true,
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
+		enabled = not vim.g.vscode,
 		dependencies = { "williamboman/mason.nvim" },
 		config = function()
 			require("mason-lspconfig").setup({
 				-- These are the LSPs that will be installed automatically
 				ensure_installed = {
 					"clangd", -- C++
+					"html", -- HTML
+					"lua_ls", -- Lua
 					"pyright", -- Python
 					"ts_ls", -- TypeScript / JavaScript
-					"lua_ls", -- Lua
-					"html", -- HTML
+					"neocmake", -- CMake
 				},
 			})
 
@@ -241,6 +271,7 @@ return {
 	},
 	{
 		"jay-babu/mason-null-ls.nvim",
+		enabled = not vim.g.vscode,
 		dependencies = {
 			"williamboman/mason.nvim",
 			"nvimtools/none-ls.nvim",
@@ -287,6 +318,7 @@ return {
 	-- 4. Native LSP client config
 	{
 		"neovim/nvim-lspconfig",
+		enabled = not vim.g.vscode,
 		dependencies = {
 			"williamboman/mason-lspconfig.nvim",
 		},
@@ -356,21 +388,96 @@ return {
 		end,
 	},
 
-	-- 5. Code Companion
+	-- 5. Avante.nvim - AI code companion
 	{
-		"olimorris/codecompanion.nvim",
+		"yetone/avante.nvim",
+		enabled = not vim.g.vscode,
+		build = vim.fn.has("win32") ~= 0
+				and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
+			or "make",
+		event = "VeryLazy",
+		version = false,
+		opts = {
+			use_default_keymaps = true,
+			provider = "copilot",
+			providers = {
+				copilot = {
+					-- You can optionally customize things here
+					model = "gpt-4", -- default: gpt-4 or gpt-3.5-turbo
+					timeout = 30000,
+				},
+				claude = {
+					endpoint = "https://api.anthropic.com",
+					model = "claude-sonnet-4-20250514",
+					timeout = 30000,
+					extra_request_body = {
+						temperature = 0.75,
+						max_tokens = 20480,
+					},
+				},
+				moonshot = {
+					endpoint = "https://api.moonshot.ai/v1",
+					model = "kimi-k2-0711-preview",
+					timeout = 30000,
+					extra_request_body = {
+						temperature = 0.75,
+						max_tokens = 32768,
+					},
+				},
+			},
+
+			-- ✅ Fix warning: Use Dressing for input/selector
+			selector = {
+				provider = "dressing",
+			},
+			input = {
+				provider = "dressing",
+			},
+		},
 		dependencies = {
 			"nvim-lua/plenary.nvim",
-			"nvim-treesitter/nvim-treesitter",
-			"Saghen/blink.cmp",
+			"MunifTanjim/nui.nvim",
+			"echasnovski/mini.pick",
+			"nvim-telescope/telescope.nvim",
+			"hrsh7th/nvim-cmp",
+			"ibhagwan/fzf-lua",
+			"stevearc/dressing.nvim", -- input/selector UI
+			"folke/snacks.nvim", -- optional alternative UI
+			"nvim-tree/nvim-web-devicons",
+			"zbirenbaum/copilot.lua",
+			{
+				"HakonHarnes/img-clip.nvim",
+				event = "VeryLazy",
+				opts = {
+					default = {
+						embed_image_as_base64 = false,
+						prompt_for_file_name = false,
+						drag_and_drop = {
+							insert_mode = true,
+						},
+						use_absolute_path = true,
+					},
+				},
+			},
+			{
+				"MeanderingProgrammer/render-markdown.nvim",
+				opts = {
+					file_types = { "markdown", "Avante" },
+				},
+				ft = { "markdown", "Avante" },
+			},
 		},
-		config = function()
-			require("codecompanion").setup({})
-		end,
+	},
+	{
+		"stevearc/dressing.nvim", -- or use 'snacks.nvim'
+		enabled = not vim.g.vscode,
+		opts = {},
 	},
 
+	-- 6. Aerial.nvim - Code outline viewer
 	{
 		"stevearc/aerial.nvim",
+		enabled = not vim.g.vscode,
 		opts = {},
 		-- Optional dependencies
 		dependencies = {

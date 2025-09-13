@@ -113,10 +113,16 @@ vim.keymap.set({ "n", "v" }, "<Leader>c<Space>", "gc", { remap = true, desc = "C
 vim.keymap.set({ "n" }, "<Leader>c<Space>", "gcc", { remap = true, desc = "Comment" }) -- Use with leader n to comment n lines
 
 -- UltiSnips
-vim.g.UltiSnipsExpandTrigger = "<c-j>"
-vim.g.UltiSnipsJumpForwardTrigger = "<c-l>"
-vim.g.UltiSnipsJumpBackwardTrigger = "<c-h>"
-vim.g.UltiSnipsSnippetDirectories = { "~/.config/nvim/UltiSnips" }
+-- vim.g.UltiSnipsExpandTrigger = "<c-j>"
+-- vim.g.UltiSnipsJumpForwardTrigger = "<c-l>"
+-- vim.g.UltiSnipsJumpBackwardTrigger = "<c-h>"
+-- vim.g.UltiSnipsSnippetDirectories = { "~/.config/nvim/UltiSnips" }
+
+if vim.g.vscode then
+	vim.o.errorbells = false
+	vim.o.visualbell = false
+	vim.o.belloff = "all" -- disable all bells (Esc, search fail, etc.)
+end
 
 -- Setup lazy.nvim
 require("lazy").setup({

@@ -2,7 +2,9 @@
 
 {
     imports = [
-        ../../programs/alacritty/alacritty.nix
+        # ../../programs/alacritty/alacritty.nix
+        # ../../programs/macos/wimlib.nix
+        # ../../programs/neofetch/neofetch.nix
         ../../programs/aws/aws.nix
         ../../programs/bat/bat.nix
         ../../programs/btop/btop.nix
@@ -17,10 +19,8 @@
         ../../programs/gnu-sed/gnu-sed.nix
         ../../programs/jq/jq.nix
         ../../programs/kubectl/kubectl.nix
-        # ../../programs/latex/latex.nix
+        ../../programs/latex/latex.nix
         ../../programs/macos/upgrades.nix
-        ../../programs/macos/wimlib.nix
-        # ../../programs/neofetch/neofetch.nix
         ../../programs/neovim/neovim.nix
         ../../programs/ninja/ninja.nix
         ../../programs/nodejs/nodejs.nix
@@ -34,6 +34,7 @@
         ../../programs/tree-sitter/tree-sitter.nix
         ../../programs/tree/tree.nix
         ../../programs/vifm/vifm.nix
+        ../../programs/visidata/visidata.nix
         ../../programs/zoxide/zoxide.nix
         ../../programs/zsh/zsh.nix
 
@@ -62,7 +63,9 @@
         # The home.packages option allows you to install Nix packages into your
         # environment.
         packages = with pkgs; [
-            pkgs.nerd-fonts.ubuntu-mono
+            nerd-fonts.ubuntu-mono
+            nerd-fonts.fira-code
+            nerd-fonts.jetbrains-mono
         ];
 
         # Home Manager is pretty good at managing dotfiles. The primary way to manage

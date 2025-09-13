@@ -418,6 +418,12 @@ nnoremap <f8> :delete<cr>
 " =============================================================================
 nnoremap zo :sync %c/.. <CR><Tab>
 
+" Single pane mode
+only
+
+" Exit using \Q
+nnoremap \Q :quit<CR>
+
 
 " Open all .ts files with nvim regardless of MIME type
 filetype *.ts nvim %f
