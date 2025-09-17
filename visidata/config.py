@@ -34,7 +34,7 @@ def plot_column(sheet):
                 "x": x,
                 "y": y,
                 "xlabel": xlabel,
-                "ylabel": "Value",
+                "ylabel": "",  # no y-label
                 "title": col.name,
                 "window": getattr(sheet, "name", "Plot"),
             },
@@ -44,19 +44,23 @@ def plot_column(sheet):
 
     with tempfile.NamedTemporaryFile(mode="w", delete=False, suffix=".py") as pyfile:
         pyfile.write(
-            f"""
+            """
 import json
 import matplotlib.pyplot as plt
-from matplotlib.widgets import RadioButtons
+import matplotlib.gridspec as gridspec
+from matplotlib.widgets import Button
 
-with open({repr(tmpfile_path)}, 'r') as f:
+with open("{path}", 'r') as f:
     data = json.load(f)
 
 x = data['x']
 y = data['y']
 
-fig, ax = plt.subplots()
-plt.subplots_adjust(bottom=0.25)
+fig = plt.figure(figsize=(6, 4))
+gs = gridspec.GridSpec(2, 1, height_ratios=[10, 1])
+ax = fig.add_subplot(gs[0])
+btn_area = fig.add_subplot(gs[1])
+btn_area.axis("off")
 
 [line_plot] = ax.plot(x, y, visible=True)
 scatter_plot = ax.scatter(x, y, color='red', visible=False)
@@ -67,35 +71,45 @@ for part in stem_container:
     except AttributeError:
         pass
 
-# Horizontal layout
-radio_ax = plt.axes([0.2, 0.05, 0.6, 0.05])  # wider, shorter
-radio = RadioButtons(radio_ax, ['Line', 'Scatter', 'Stem'], active=0)
+btns = {{}}
+btn_width = 0.2
+lefts = [0.2, 0.4, 0.6]
+labels = ["Line", "Scatter", "Stem"]
 
-# Smaller font for compact horizontal layout
-for label in radio.labels:
-    label.set_fontsize(8)
+for left, label in zip(lefts, labels):
+    ax_btn = fig.add_axes([left, 0.05, btn_width, 0.08])
+    btns[label] = Button(ax_btn, label)
+    for text in btns[label].ax.texts:
+        text.set_fontsize(8)
 
-def update(style):
-    line_plot.set_visible(style == 'Line')
-    scatter_plot.set_visible(style == 'Scatter')
+def set_style(style):
+    line_plot.set_visible(style == "Line")
+    scatter_plot.set_visible(style == "Scatter")
     for part in stem_container:
         try:
-            part.set_visible(style == 'Stem')
+            part.set_visible(style == "Stem")
         except AttributeError:
             pass
     plt.draw()
 
-radio.on_clicked(update)
+btns["Line"].on_clicked(lambda event: set_style("Line"))
+btns["Scatter"].on_clicked(lambda event: set_style("Scatter"))
+btns["Stem"].on_clicked(lambda event: set_style("Stem"))
 
 ax.set_title(data['title'])
 ax.set_xlabel(data['xlabel'])
-ax.set_ylabel(data['ylabel'])
+ax.set_ylabel("")  # no y-label
 ax.grid(True)
+ax.set_xlim(auto=True)
+fig.tight_layout()
 fig.canvas.manager.set_window_title(data['window'])
 fig.autofmt_xdate()
 plt.show()
-"""
+""".format(
+                path=tmpfile_path
+            )
         )
+
         pyfile_path = pyfile.name
 
     subprocess.Popen(["python3", pyfile_path])
@@ -103,6 +117,6 @@ plt.show()
 
 
 vd.addCommand(
-    None, "plot_column", "plot_column(sheet)", "Plot column with style selector"
+    None, "plot_column", "plot_column(sheet)", "Plot column with style buttons"
 )
 vd.bindkey("g;", "plot_column")

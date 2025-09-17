@@ -31,10 +31,46 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -------------------------------------------------------
---- (3) DAP: View Pandas DataFrame in VisiData
+--- (3) DAP: Dispatch viewer based on variable type
 -------------------------------------------------------
--- Put this anywhere after nvim-dap is loaded
-local function dap_show_df_in_visidata()
+local function handle_dataframe(expr, session, frame_id)
+	local feather_path = vim.fn.tempname() .. ".feather"
+	local py = string.format([[%s.reset_index().to_feather(r"%s")]], expr, feather_path)
+
+	session:request("evaluate", { expression = py, context = "repl", frameId = frame_id }, function(err, _)
+		if err then
+			vim.schedule(function()
+				vim.notify("Export failed: " .. tostring(err.message or err), vim.log.levels.ERROR)
+			end)
+			return
+		end
+		if vim.fn.executable("vd") == 0 then
+			vim.schedule(function()
+				vim.notify("VisiData (vd) not found in PATH.", vim.log.levels.ERROR)
+			end)
+			return
+		end
+		local cmd = string.format([[vd "%s"]], feather_path)
+		if os.getenv("TMUX") then
+			vim.fn.jobstart({ "tmux", "split-window", "-v", cmd }, { detach = true })
+		else
+			vim.cmd("botright split | resize 12")
+			vim.cmd("terminal " .. cmd)
+			vim.cmd("startinsert")
+		end
+		vim.schedule(function()
+			vim.notify("Opened DataFrame in VisiData (typed): " .. feather_path, vim.log.levels.INFO)
+		end)
+	end)
+end
+
+local function handle_numpy_array(expr, session, frame_id)
+	local wrapped_expr =
+		string.format("__import__('pandas').DataFrame(%s.reshape(-1, 1) if %s.ndim == 1 else %s)", expr, expr, expr)
+	handle_dataframe(wrapped_expr, session, frame_id)
+end
+
+local function dap_view_variable()
 	local dap = require("dap")
 	local session = dap.session()
 	if not session then
@@ -42,51 +78,48 @@ local function dap_show_df_in_visidata()
 		return
 	end
 
-	local expr = vim.fn.input({ prompt = "DataFrame expr: ", default = "df" })
+	local expr = vim.fn.input({ prompt = "Variable name: ", default = "df" })
 	if not expr or expr == "" then
 		return
 	end
 
-	local csv_path = vim.fn.tempname() .. ".csv"
-	local py = string.format([[%s.to_csv(r"%s", index=False)]], expr, csv_path)
-
-	-- helper to run evaluate once we have a frame id
-	local function evaluate_in_frame(frame_id)
+	local function resolve_and_dispatch(frame_id)
 		if not frame_id then
 			vim.notify("DAP: no frame id available for evaluation.", vim.log.levels.ERROR)
 			return
 		end
-		session:request("evaluate", { expression = py, context = "repl", frameId = frame_id }, function(err, _)
-			if err then
-				vim.schedule(function()
-					vim.notify("Export failed: " .. tostring(err.message or err), vim.log.levels.ERROR)
-				end)
-				return
+
+		-- Evaluate the type of the variable
+		local type_expr = string.format([[type(%s).__name__]], expr)
+		session:request(
+			"evaluate",
+			{ expression = type_expr, context = "repl", frameId = frame_id },
+			function(err, resp)
+				if err or not resp or not resp.result then
+					vim.schedule(function()
+						vim.notify(
+							"Could not resolve type of variable: " .. tostring(err and err.message or ""),
+							vim.log.levels.ERROR
+						)
+					end)
+					return
+				end
+
+				local typename = resp.result:gsub("^['\"](.-)['\"]$", "%1")
+				if typename == "DataFrame" then
+					handle_dataframe(expr, session, frame_id)
+				elseif typename == "ndarray" then
+					handle_numpy_array(expr, session, frame_id)
+				else
+					vim.notify("Unsupported type: " .. typename, vim.log.levels.WARN)
+				end
 			end
-			if vim.fn.executable("vd") == 0 then
-				vim.schedule(function()
-					vim.notify("VisiData (vd) not found in PATH.", vim.log.levels.ERROR)
-				end)
-				return
-			end
-			local cmd = string.format([[vd "%s"]], csv_path)
-			if os.getenv("TMUX") then
-				vim.fn.jobstart({ "tmux", "split-window", "-v", cmd }, { detach = true })
-			else
-				vim.cmd("botright split | resize 12")
-				vim.cmd("terminal " .. cmd)
-				vim.cmd("startinsert")
-			end
-			vim.schedule(function()
-				vim.notify("Opened DataFrame in VisiData: " .. csv_path, vim.log.levels.INFO)
-			end)
-		end)
+		)
 	end
 
-	-- try to use the currently selected frame; otherwise query top frame
 	local frame = session.current_frame
 	if frame and frame.id then
-		evaluate_in_frame(frame.id)
+		resolve_and_dispatch(frame.id)
 	else
 		local thread_id = session.stopped_thread_id
 		if not thread_id then
@@ -101,9 +134,9 @@ local function dap_show_df_in_visidata()
 				return
 			end
 			local top = resp and resp.stackFrames and resp.stackFrames[1]
-			evaluate_in_frame(top and top.id or nil)
+			resolve_and_dispatch(top and top.id or nil)
 		end)
 	end
 end
 
-vim.keymap.set("n", "<Leader>dv", dap_show_df_in_visidata, { desc = "View DataFrame in VisiData" })
+vim.keymap.set("n", "<Leader>dv", dap_view_variable, { desc = "View in VisiData" })
