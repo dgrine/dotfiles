@@ -110,19 +110,13 @@ return {
 				panel = {
 					enabled = true,
 					auto_refresh = true,
-					keymap = {
-						jump_prev = "<M-[[>",
-						jump_next = "<M-]]>",
-						accept = "<M-l>",
-						refresh = "gr",
-						open = "<M-CR>",
-					},
 					layout = {
 						position = "bottom", -- | top | left | right
 						ratio = 0.2,
 					},
 				},
 				suggestion = {
+					enabled = true,
 					auto_trigger = true,
 				},
 				filetypes = {
@@ -135,7 +129,32 @@ return {
 					["dapui_scopes"] = false,
 				},
 			})
-			require("copilot.suggestion").toggle_auto_trigger()
+			local wk = require("which-key")
+			local suggestion = require("copilot.suggestion")
+			wk.add({
+				{
+					"<M-l>",
+					suggestion.accept,
+					mode = "i",
+					desc = "Copilot accept",
+				},
+			})
+			wk.add({
+				{
+					"<M-]>",
+					suggestion.next,
+					mode = "i",
+					desc = "Copilot next",
+				},
+			})
+			wk.add({
+				{
+					"<M-]>",
+					suggestion.prev,
+					mode = "i",
+					desc = "Copilot previous",
+				},
+			})
 		end,
 	},
 

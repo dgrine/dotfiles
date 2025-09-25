@@ -17,6 +17,7 @@
         ../../programs/ghostscript/ghostscript.nix
         ../../programs/git/git.nix
         ../../programs/gnu-sed/gnu-sed.nix
+        ../../programs/grc/grc.nix
         ../../programs/jq/jq.nix
         ../../programs/kubectl/kubectl.nix
         ../../programs/latex/latex.nix
