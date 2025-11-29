@@ -198,7 +198,33 @@ return {
 				["<A-j>"] = { "select_next", "fallback_to_mappings" },
 				["<C-Space>"] = { "show", "show_documentation", "hide_documentation" },
 				["<C-e>"] = { "hide" },
-				["<Tab>"] = { "select_and_accept" },
+				-- ["<Tab>"] = { "select_and_accept" },
+				["<Tab>"] = {
+					function()
+						local blink = require("blink.cmp")
+						if blink.is_visible() then
+							-- blink.select_next()
+							blink.accept()
+						else
+							-- Insert a single indentation (let Neovim handle expandtab)
+							vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, true, true), "n", true)
+						end
+					end,
+				},
+				["<S-Tab>"] = {
+					function()
+						local blink = require("blink.cmp")
+						if blink.is_visible() then
+							blink.select_prev()
+						else
+							vim.api.nvim_feedkeys(
+								vim.api.nvim_replace_termcodes("<S-Tab>", true, true, true),
+								"n",
+								true
+							)
+						end
+					end,
+				},
 				["<C-b>"] = { "scroll_documentation_up", "fallback" },
 				["<C-f>"] = { "scroll_documentation_down", "fallback" },
 				["<C-n>"] = { "snippet_forward", "fallback" },
@@ -389,9 +415,19 @@ return {
 				desc = "Go to definition",
 				icon = { icon = "", color = "grey" },
 			})
-			wk.add({ "gr", ts.lsp_references, desc = "References", icon = { icon = "", color = "grey" } })
-			wk.add({ "gi", ts.lsp_incoming_calls, desc = "Incoming calls", icon = { icon = "󰕮", color = "grey" } })
-			wk.add({ "go", ts.lsp_incoming_calls, desc = "Outgoing calls", icon = { icon = "󰕮", color = "grey" } })
+			wk.add({ "<Leader>cr", ts.lsp_references, desc = "References", icon = { icon = "", color = "grey" } })
+			wk.add({
+				"<Leader>ci",
+				ts.lsp_incoming_calls,
+				desc = "Incoming calls",
+				icon = { icon = "󰕮", color = "grey" },
+			})
+			wk.add({
+				"<Leader>co",
+				ts.lsp_incoming_calls,
+				desc = "Outgoing calls",
+				icon = { icon = "󰕮", color = "grey" },
+			})
 			wk.add({
 				"<Leader>csd",
 				"<Cmd>Telescope aerial<CR>",
@@ -403,6 +439,12 @@ return {
 				ts.lsp_dynamic_workspace_symbols,
 				desc = "Workspace",
 				icon = { icon = "󰈭", color = "grey" },
+			})
+			wk.add({
+				"<Leader>ca",
+				vim.lsp.buf.code_action,
+				desc = "Code Action / Fix",
+				icon = { icon = "💡", color = "grey" },
 			})
 		end,
 	},
