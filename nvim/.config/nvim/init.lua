@@ -1,13 +1,18 @@
 require("config.lazy")
 
 -------------------------------------------------------
---- (1) Which-key group and icon for AI-related commands
+--- Add reload
+-------------------------------------------------------
+vim.keymap.set("n", "<Leader>l", ":e<CR>", { desc = "Reload file" })
+
+-------------------------------------------------------
+--- Which-key group and icon for AI-related commands
 -------------------------------------------------------
 local wk = require("which-key")
 wk.add({ "<Leader>a", group = "AI", icon = { icon = "", color = "grey" } })
 
 -------------------------------------------------------
---- (2) DAP: Prevent LSP from attaching to DAP / dap-ui buffers
+--- DAP: Prevent LSP from attaching to DAP / dap-ui buffers
 -------------------------------------------------------
 -- Never let LSP attach to DAP / dap-ui buffers
 -- Keep LSP clients off DAP buffers, but do NOT change buftype/filetype
@@ -31,7 +36,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -------------------------------------------------------
---- (3) DAP: Dispatch viewer based on variable type
+--- DAP: Dispatch viewer based on variable type
 -------------------------------------------------------
 local function handle_dataframe(expr, session, frame_id)
 	local feather_path = vim.fn.tempname() .. ".feather"

@@ -435,7 +435,7 @@ return {
 				icon = { icon = "󰈭", color = "grey" },
 			})
 			wk.add({
-				"<Leader>csw",
+				"<Leader>css",
 				ts.lsp_dynamic_workspace_symbols,
 				desc = "Workspace",
 				icon = { icon = "󰈭", color = "grey" },
